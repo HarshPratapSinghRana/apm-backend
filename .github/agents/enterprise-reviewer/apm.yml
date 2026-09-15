@@ -1,0 +1,9 @@
+name: enterprise-reviewer
+version: 1.0.0
+type: agent
+description: Enterprise AI agent for code review, accessibility, and security compliance.
+author: producer@company.com
+files:
+  - enterprise-reviewer.agent.md
+  - instructions/code-quality.md
+  - rules/security-rules.md
