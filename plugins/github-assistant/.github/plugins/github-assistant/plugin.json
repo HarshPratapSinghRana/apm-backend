@@ -1,0 +1,9 @@
+{
+  "name": "github-assistant",
+  "type": "plugin",
+  "version": "1.0.0",
+  "description": "GitHub Assistant plugin providing PR, issue, and workflow automation.",
+  "author": "Company AI Platform Team",
+  "entrypoint": "index.js",
+  "permissions": ["repo", "workflow", "pull_requests"]
+}
