@@ -1,1 +1,78 @@
-{ "name": "apm-catalog", "version": "1.0.0" }
+{
+  "repository": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons",
+  "updatedAt": "2026-09-15T11:26:19.9491438Z",
+  "artifacts": [
+    {
+      "id": "design-reviewer",
+      "name": "design-reviewer",
+      "type": "agent",
+      "version": "1.1.0",
+      "description": "Official APM Design Reviewer Agent",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#design-reviewer"
+    },
+    {
+      "id": "api-test-generator",
+      "name": "api-test-generator",
+      "type": "skill",
+      "version": "1.0.0",
+      "description": "Automated xUnit and Integration test generator",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#api-test-generator"
+    },
+    {
+      "id": "review-and-refactor",
+      "name": "review-and-refactor",
+      "type": "skill",
+      "version": "1.0.0",
+      "description": "AI code review and refactoring assistant",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#review-and-refactor"
+    },
+    {
+      "id": "github-assistant",
+      "name": "github-assistant",
+      "type": "plugin",
+      "version": "1.0.0",
+      "description": "GitHub and ADO integration assistant plugin",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#github-assistant"
+    },
+    {
+      "id": "accessibility-fix",
+      "name": "accessibility-fix",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Accessibility fix and remediation agent",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#accessibility-fix"
+    },
+    {
+      "id": "enterprise-reviewer",
+      "name": "enterprise-reviewer",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Enterprise code and architecture reviewer",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#enterprise-reviewer"
+    },
+    {
+      "id": "postgres-mcp",
+      "name": "postgres-mcp",
+      "type": "mcpserver",
+      "version": "1.0.0",
+      "description": "PostgreSQL Model Context Protocol Server",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#postgres-mcp"
+    },
+    {
+      "id": "time-mcp",
+      "name": "time-mcp",
+      "type": "mcpserver",
+      "version": "1.0.0",
+      "description": "Time and timezone calculation MCP Server",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#time-mcp"
+    },
+    {
+      "id": "apm-db-explorer",
+      "name": "apm-db-explorer",
+      "type": "mcpserver",
+      "version": "1.0.0",
+      "description": "APM Database Explorer MCP Server",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#apm-db-explorer"
+    }
+  ]
+}
