@@ -1,0 +1,1 @@
+{"name":"apm-consumer-poc","type":"apmpackage","version":"1.0.0","description":"Official apmpackage artifact apm-consumer-poc","files":[{"path":".agents/agents/apm-consumer-poc.agent.md","content":"xUnit integration and mock test suite."}]}
