@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-07T07:06:28.495Z",
-  "totalRequests": 1,
+  "updatedAt": "2026-10-07T07:07:01.866Z",
+  "totalRequests": 2,
   "requests": [
     {
       "id": "req-init-1",
@@ -11,6 +11,16 @@
       "reason": "I would like to contribute new skills to the AI Artifacts marketplace.",
       "adminEmail": "harsh.rana@maqsoftware.com",
       "requestedAt": "2026-10-07T06:03:10.055Z"
+    },
+    {
+      "id": "req-1791356821628-995rmp",
+      "userEmail": "test.consumer@maqsoftware.com",
+      "requestedRole": "CONTRIBUTOR",
+      "currentRole": "CONSUMER",
+      "status": "Pending",
+      "reason": "Want to contribute new skills",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T07:07:01.628Z"
     }
   ]
 }
