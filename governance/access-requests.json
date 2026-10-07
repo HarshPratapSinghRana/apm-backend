@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T08:56:02.348Z",
+  "updatedAt": "2026-10-07T08:56:59.681Z",
   "totalRequests": 5,
   "requests": [
     {
@@ -7,10 +7,12 @@
       "userEmail": "rishabhy@maqsoftware.com",
       "requestedRole": "REVIEWER",
       "currentRole": "CONTRIBUTOR",
-      "status": "Pending",
+      "status": "Approved",
       "reason": "Requesting Reviewer permissions for reviewing WCAG accessibility agents.",
       "adminEmail": "harsh.rana@maqsoftware.com",
-      "requestedAt": "2026-10-07T05:29:35.282Z"
+      "requestedAt": "2026-10-07T05:29:35.282Z",
+      "reviewedAt": "2026-10-07T08:56:59.529Z",
+      "adminNotes": "approved"
     },
     {
       "id": "req-8f822992",
