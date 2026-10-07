@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T08:55:42.386Z",
+  "updatedAt": "2026-10-07T08:55:58.227Z",
   "totalRequests": 4,
   "requests": [
     {
@@ -17,10 +17,12 @@
       "userEmail": "vivekprasad@maqsoftware.com",
       "requestedRole": "CONTRIBUTOR",
       "currentRole": "CONSUMER",
-      "status": "Pending",
+      "status": "Approved",
       "reason": "I would like to contribute and publish new skills to the AI Artifacts marketplace.",
       "adminEmail": "harsh.rana@maqsoftware.com",
-      "requestedAt": "2026-10-07T03:29:35.282Z"
+      "requestedAt": "2026-10-07T03:29:35.282Z",
+      "reviewedAt": "2026-10-07T08:55:58.047Z",
+      "adminNotes": "approved"
     },
     {
       "id": "req-0bc92e5e",

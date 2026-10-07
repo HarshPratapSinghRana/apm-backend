@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T08:55:42.386Z",
+  "updatedAt": "2026-10-07T08:55:58.227Z",
   "organization": "MAQ Software",
   "totalUsers": 8,
   "userRoles": [
@@ -26,10 +26,10 @@
       "userEmail": "vivekprasad@maqsoftware.com",
       "role": "CONTRIBUTOR",
       "isCertifiedReviewer": false,
-      "grantedBy": "SYSTEM",
-      "notes": "AI Engineer & Artifact Publisher",
+      "grantedBy": "harsh.rana@maqsoftware.com",
+      "notes": "approved",
       "grantedAt": "2026-09-20T08:15:00.000Z",
-      "updatedAt": "2026-10-07T07:29:35.282Z"
+      "updatedAt": "2026-10-07T08:55:58.047Z"
     },
     {
       "userEmail": "reviewer@maqsoftware.com",
