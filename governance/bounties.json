@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T10:45:54.655Z",
+  "updatedAt": "2026-10-07T10:46:46.027Z",
   "totalBounties": 6,
   "bounties": [
     {
@@ -10,10 +10,10 @@
       "credits": 120,
       "points": 120,
       "rewardCredits": 120,
-      "status": "Completed",
-      "stage": "Completed",
+      "status": "Open",
+      "stage": "InReview",
       "relatedArtifactId": "vp-agent",
-      "reviewId": "rev-vp-agent-01",
+      "reviewId": "rev-muxzg5s2-w61k",
       "dueInDays": 2,
       "autoReleasesHours": 18,
       "createdAt": "2026-10-07T09:16:44.682Z",
@@ -21,7 +21,8 @@
       "canClaim": true,
       "canSubmitCode": false,
       "canReview": true,
-      "canRunTests": false
+      "canRunTests": false,
+      "claimedByEmail": null
     },
     {
       "id": "bty-1",
