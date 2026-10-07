@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T07:07:01.866Z",
+  "updatedAt": "2026-10-07T07:07:02.520Z",
   "totalRequests": 2,
   "requests": [
     {
@@ -17,10 +17,12 @@
       "userEmail": "test.consumer@maqsoftware.com",
       "requestedRole": "CONTRIBUTOR",
       "currentRole": "CONSUMER",
-      "status": "Pending",
+      "status": "Approved",
       "reason": "Want to contribute new skills",
       "adminEmail": "harsh.rana@maqsoftware.com",
-      "requestedAt": "2026-10-07T07:07:01.628Z"
+      "requestedAt": "2026-10-07T07:07:01.628Z",
+      "adminNotes": "Approved by admin for testing",
+      "reviewedAt": "2026-10-07T07:07:02.256Z"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-07T07:07:01.866Z",
+  "updatedAt": "2026-10-07T07:07:02.520Z",
   "organization": "MAQ Software",
-  "totalUsers": 3,
+  "totalUsers": 4,
   "userRoles": [
     {
       "userEmail": "harsh.rana@maqsoftware.com",
@@ -29,6 +29,15 @@
       "notes": "Contributor role for AI Artifacts",
       "grantedAt": "2026-10-07T07:03:10.055Z",
       "updatedAt": "2026-10-07T07:03:10.055Z"
+    },
+    {
+      "userEmail": "test.consumer@maqsoftware.com",
+      "role": "CONTRIBUTOR",
+      "isCertifiedReviewer": false,
+      "grantedBy": "harsh.rana@maqsoftware.com",
+      "notes": "Approved by admin for testing",
+      "grantedAt": "2026-10-07T07:07:02.256Z",
+      "updatedAt": "2026-10-07T07:07:02.256Z"
     }
   ]
 }
