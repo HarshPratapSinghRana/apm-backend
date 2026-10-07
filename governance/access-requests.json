@@ -1,28 +1,50 @@
 {
-  "updatedAt": "2026-10-07T07:07:03.395Z",
-  "totalRequests": 2,
+  "updatedAt": "2026-10-07T07:29:35.496Z",
+  "totalRequests": 4,
   "requests": [
     {
-      "id": "req-init-1",
-      "userEmail": "developer@maqsoftware.com",
+      "id": "req-21425ee6",
+      "userEmail": "rishabhy@maqsoftware.com",
+      "requestedRole": "REVIEWER",
+      "currentRole": "CONTRIBUTOR",
+      "status": "Pending",
+      "reason": "Requesting Reviewer permissions for reviewing WCAG accessibility agents.",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T05:29:35.282Z"
+    },
+    {
+      "id": "req-8f822992",
+      "userEmail": "vivekprasad@maqsoftware.com",
       "requestedRole": "CONTRIBUTOR",
       "currentRole": "CONSUMER",
       "status": "Pending",
-      "reason": "I would like to contribute new skills to the AI Artifacts marketplace.",
+      "reason": "I would like to contribute and publish new skills to the AI Artifacts marketplace.",
       "adminEmail": "harsh.rana@maqsoftware.com",
-      "requestedAt": "2026-10-07T06:03:10.055Z"
+      "requestedAt": "2026-10-07T03:29:35.282Z"
     },
     {
-      "id": "req-1791356821628-995rmp",
-      "userEmail": "test.consumer@maqsoftware.com",
+      "id": "req-0bc92e5e",
+      "userEmail": "producer@company.com",
       "requestedRole": "CONTRIBUTOR",
       "currentRole": "CONSUMER",
       "status": "Approved",
-      "reason": "Want to contribute new skills",
+      "reason": "Need access to publish team artifacts",
       "adminEmail": "harsh.rana@maqsoftware.com",
-      "requestedAt": "2026-10-07T07:07:01.628Z",
-      "adminNotes": "Approved by admin for testing",
-      "reviewedAt": "2026-10-07T07:07:02.256Z"
+      "adminNotes": "Approved for contribution privileges",
+      "requestedAt": "2026-09-10T06:56:03.000Z",
+      "reviewedAt": "2026-09-10T06:56:15.000Z"
+    },
+    {
+      "id": "req-eae37b33",
+      "userEmail": "consumer@company.com",
+      "requestedRole": "REVIEWER",
+      "currentRole": "CONTRIBUTOR",
+      "status": "Approved",
+      "reason": "Need reviewer access to inspect AI artifacts and prompts",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "adminNotes": "Approved for reviewer permissions",
+      "requestedAt": "2026-09-09T17:21:11.000Z",
+      "reviewedAt": "2026-09-09T17:41:05.000Z"
     }
   ]
 }

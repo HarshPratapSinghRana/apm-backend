@@ -1,43 +1,79 @@
 {
-  "updatedAt": "2026-10-07T07:07:03.395Z",
+  "updatedAt": "2026-10-07T07:29:35.496Z",
   "organization": "MAQ Software",
-  "totalUsers": 4,
+  "totalUsers": 8,
   "userRoles": [
     {
       "userEmail": "harsh.rana@maqsoftware.com",
       "role": "ADMIN",
       "isCertifiedReviewer": true,
       "grantedBy": "SYSTEM",
-      "notes": "Default SuperAdmin",
-      "grantedAt": "2026-10-07T07:03:10.055Z",
-      "updatedAt": "2026-10-07T07:03:10.055Z"
+      "notes": "Platform SuperAdmin & Certified Reviewer Lead",
+      "grantedAt": "2026-09-09T17:39:43.000Z",
+      "updatedAt": "2026-10-07T07:29:35.280Z"
+    },
+    {
+      "userEmail": "rishabhy@maqsoftware.com",
+      "role": "CONTRIBUTOR",
+      "isCertifiedReviewer": false,
+      "grantedBy": "SYSTEM",
+      "notes": "Active Contributor & AI Engineer",
+      "grantedAt": "2026-09-16T10:38:11.810Z",
+      "updatedAt": "2026-10-07T07:29:35.282Z"
+    },
+    {
+      "userEmail": "vivekprasad@maqsoftware.com",
+      "role": "CONTRIBUTOR",
+      "isCertifiedReviewer": false,
+      "grantedBy": "SYSTEM",
+      "notes": "AI Engineer & Artifact Publisher",
+      "grantedAt": "2026-09-20T08:15:00.000Z",
+      "updatedAt": "2026-10-07T07:29:35.282Z"
     },
     {
       "userEmail": "reviewer@maqsoftware.com",
       "role": "REVIEWER",
       "isCertifiedReviewer": true,
       "grantedBy": "harsh.rana@maqsoftware.com",
-      "notes": "Certified AI reviewer",
-      "grantedAt": "2026-10-07T07:03:10.055Z",
-      "updatedAt": "2026-10-07T07:07:02.973Z"
+      "notes": "Certified Reviewer for AI Leap",
+      "grantedAt": "2026-09-09T17:39:43.000Z",
+      "updatedAt": "2026-10-07T07:29:35.282Z"
     },
     {
       "userEmail": "producer@maqsoftware.com",
       "role": "CONTRIBUTOR",
       "isCertifiedReviewer": false,
-      "grantedBy": "ADMIN",
-      "notes": "Contributor role for AI Artifacts",
-      "grantedAt": "2026-10-07T07:03:10.055Z",
-      "updatedAt": "2026-10-07T07:03:10.055Z"
+      "grantedBy": "harsh.rana@maqsoftware.com",
+      "notes": "Artifact Producer with publishing permissions",
+      "grantedAt": "2026-09-09T17:39:43.000Z",
+      "updatedAt": "2026-10-07T07:29:35.282Z"
     },
     {
-      "userEmail": "test.consumer@maqsoftware.com",
-      "role": "CONTRIBUTOR",
+      "userEmail": "consumer@company.com",
+      "role": "REVIEWER",
       "isCertifiedReviewer": false,
       "grantedBy": "harsh.rana@maqsoftware.com",
-      "notes": "Approved by admin for testing",
-      "grantedAt": "2026-10-07T07:07:02.256Z",
-      "updatedAt": "2026-10-07T07:07:02.256Z"
+      "notes": "Approved for reviewer permissions",
+      "grantedAt": "2026-09-09T17:39:43.000Z",
+      "updatedAt": "2026-09-09T17:41:05.670Z"
+    },
+    {
+      "userEmail": "producer@company.com",
+      "role": "CONTRIBUTOR",
+      "isCertifiedReviewer": false,
+      "grantedBy": "SYSTEM",
+      "notes": "Producer with artifact publishing permissions",
+      "grantedAt": "2026-09-09T17:39:43.000Z",
+      "updatedAt": "2026-10-07T07:29:35.282Z"
+    },
+    {
+      "userEmail": "consumer@test.com",
+      "role": "CONSUMER",
+      "isCertifiedReviewer": false,
+      "grantedBy": "SYSTEM",
+      "notes": "Test Consumer account",
+      "grantedAt": "2026-09-09T17:39:43.000Z",
+      "updatedAt": "2026-10-07T07:29:35.282Z"
     }
   ]
 }
