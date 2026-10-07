@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T09:16:46.063Z",
+  "updatedAt": "2026-10-07T09:18:47.409Z",
   "totalBounties": 6,
   "bounties": [
     {
@@ -10,8 +10,8 @@
       "credits": 120,
       "points": 120,
       "rewardCredits": 120,
-      "status": "Open",
-      "stage": "InReview",
+      "status": "Completed",
+      "stage": "Completed",
       "relatedArtifactId": "vp-agent",
       "reviewId": "rev-vp-agent-01",
       "dueInDays": 2,

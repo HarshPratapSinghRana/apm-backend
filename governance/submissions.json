@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T09:16:46.063Z",
+  "updatedAt": "2026-10-07T09:18:47.409Z",
   "totalSubmissions": 2,
   "submissions": [
     {
@@ -12,13 +12,15 @@
       "content": "# VP Agent\nAn intelligent agent for enterprise VP reporting, metrics aggregation, and AI executive summaries.\n\n```yaml\nname: vp-agent\nversion: 1.0.0\ntype: agent\nstatus: InReview\n```",
       "producerEmail": "producer@maqsoftware.com",
       "userEmail": "producer@maqsoftware.com",
-      "status": "UnderReview",
+      "status": "Approved",
       "isPrivate": false,
       "allowedContributors": null,
       "allowedReviewers": null,
       "allowedConsumers": null,
       "submittedAt": "2026-10-07T09:16:44.682Z",
-      "feedback": null
+      "feedback": "approve",
+      "reviewerEmail": "harsh.rana@maqsoftware.com",
+      "reviewedAt": "2026-10-07T09:18:45.907Z"
     },
     {
       "id": "rev-a12f",
