@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T09:18:47.409Z",
+  "updatedAt": "2026-10-07T10:45:54.655Z",
   "totalBounties": 6,
   "bounties": [
     {
@@ -31,18 +31,28 @@
       "credits": 120,
       "points": 120,
       "rewardCredits": 120,
-      "status": "Open",
+      "status": "InProgress",
       "stage": "InReview",
       "relatedArtifactId": "accessibility-fix",
       "reviewId": "rev-a12f",
       "dueInDays": 2,
       "autoReleasesHours": 18,
       "createdAt": "2026-10-07T09:16:44.682Z",
-      "isClaimedByMe": false,
-      "canClaim": true,
-      "canSubmitCode": false,
+      "isClaimedByMe": true,
+      "canClaim": false,
+      "canSubmitCode": true,
       "canReview": true,
-      "canRunTests": false
+      "canRunTests": false,
+      "claimedByEmail": "vivekp@maqsoftware.com",
+      "claimedAt": "2026-10-07T10:45:53.168Z",
+      "slaDeadline": "2026-10-09T10:45:53.168Z",
+      "slaRemainingMinutes": 2880,
+      "slaRemainingFormatted": "48h 0m",
+      "autoReleaseDeadline": "2026-10-08T04:45:53.168Z",
+      "autoReleaseRemainingMinutes": 1080,
+      "autoReleaseRemainingFormatted": "18h 0m",
+      "isSlaWarning": false,
+      "isSlaBreached": false
     },
     {
       "id": "1",
