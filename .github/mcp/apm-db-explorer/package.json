@@ -1,9 +1,0 @@
-{
-  "name": "apm-db-explorer",
-  "version": "1.0.0",
-  "description": "Model Context Protocol (MCP) server for querying APM telemetry and certified artifacts from GitHub Copilot",
-  "main": "index.js",
-  "bin": {
-    "apm-db-explorer": "./index.js"
-  }
-}
