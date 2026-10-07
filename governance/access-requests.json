@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T09:04:59.022Z",
+  "updatedAt": "2026-10-07T09:05:12.656Z",
   "totalRequests": 6,
   "requests": [
     {
@@ -67,10 +67,12 @@
       "userEmail": "developer@maqsoftware.com",
       "requestedRole": "CONTRIBUTOR",
       "currentRole": "CONSUMER",
-      "status": "Pending",
+      "status": "Rejected",
       "reason": "I would like to contribute new skills to the AI Artifacts marketplace.",
       "adminEmail": "harsh.rana@maqsoftware.com",
-      "requestedAt": "2026-10-07T07:51:32.805Z"
+      "requestedAt": "2026-10-07T07:51:32.805Z",
+      "reviewedAt": "2026-10-07T09:05:12.331Z",
+      "adminNotes": "reject"
     }
   ]
 }
