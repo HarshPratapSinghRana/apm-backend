@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T07:06:27.682Z",
+  "updatedAt": "2026-10-07T07:06:28.495Z",
   "organization": "MAQ Software",
   "totalUsers": 3,
   "userRoles": [
@@ -16,10 +16,10 @@
       "userEmail": "reviewer@maqsoftware.com",
       "role": "REVIEWER",
       "isCertifiedReviewer": true,
-      "grantedBy": "ADMIN",
-      "notes": "Certified Reviewer for AI Leap",
+      "grantedBy": "harsh.rana@maqsoftware.com",
+      "notes": "Certified AI reviewer",
       "grantedAt": "2026-10-07T07:03:10.055Z",
-      "updatedAt": "2026-10-07T07:03:10.055Z"
+      "updatedAt": "2026-10-07T07:06:28.297Z"
     },
     {
       "userEmail": "producer@maqsoftware.com",
