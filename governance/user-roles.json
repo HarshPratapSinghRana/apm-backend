@@ -1,0 +1,34 @@
+{
+  "updatedAt": "2026-10-07T07:03:10.736Z",
+  "organization": "MAQ Software",
+  "totalUsers": 3,
+  "userRoles": [
+    {
+      "userEmail": "harsh.rana@maqsoftware.com",
+      "role": "ADMIN",
+      "isCertifiedReviewer": true,
+      "grantedBy": "SYSTEM",
+      "notes": "Default SuperAdmin",
+      "grantedAt": "2026-10-07T07:03:10.055Z",
+      "updatedAt": "2026-10-07T07:03:10.055Z"
+    },
+    {
+      "userEmail": "reviewer@maqsoftware.com",
+      "role": "REVIEWER",
+      "isCertifiedReviewer": true,
+      "grantedBy": "ADMIN",
+      "notes": "Certified Reviewer for AI Leap",
+      "grantedAt": "2026-10-07T07:03:10.055Z",
+      "updatedAt": "2026-10-07T07:03:10.055Z"
+    },
+    {
+      "userEmail": "producer@maqsoftware.com",
+      "role": "CONTRIBUTOR",
+      "isCertifiedReviewer": false,
+      "grantedBy": "ADMIN",
+      "notes": "Contributor role for AI Artifacts",
+      "grantedAt": "2026-10-07T07:03:10.055Z",
+      "updatedAt": "2026-10-07T07:03:10.055Z"
+    }
+  ]
+}

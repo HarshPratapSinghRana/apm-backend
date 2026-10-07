@@ -1,0 +1,16 @@
+{
+  "updatedAt": "2026-10-07T07:03:10.736Z",
+  "totalRequests": 1,
+  "requests": [
+    {
+      "id": "req-init-1",
+      "userEmail": "developer@maqsoftware.com",
+      "requestedRole": "CONTRIBUTOR",
+      "currentRole": "CONSUMER",
+      "status": "Pending",
+      "reason": "I would like to contribute new skills to the AI Artifacts marketplace.",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T06:03:10.055Z"
+    }
+  ]
+}
