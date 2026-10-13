@@ -17411,5 +17411,39 @@
     "metadata": "Workspace MODIFY: plugins",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-13T05:03:39.324Z"
+  },
+  {
+    "id": "a0ae4b13-ab10-436f-8457-d8d491708451",
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "automated-customer-service",
+    "artifactName": "automated-customer-service",
+    "artifactVersion": "1.0.0",
+    "artifactType": "agent",
+    "eventType": "INSTALL",
+    "action": "INSTALL",
+    "source": "CLI",
+    "platform": "CompanyApm",
+    "sessionId": "b5dd6ee3-c54b-4070-a465-fcc69d904ec9",
+    "metadata": null,
+    "workspace": "cli-workspace",
+    "timestamp": "2026-10-13T05:24:09.9185814Z"
+  },
+  {
+    "id": "127be1d0-b0e4-486f-a725-9e7197612c51",
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "leap-automated-customer-service",
+    "artifactName": "leap-automated-customer-service",
+    "artifactVersion": "1.0.0",
+    "artifactType": "agent",
+    "eventType": "INSTALL",
+    "action": "INSTALL",
+    "source": "CLI",
+    "platform": "CompanyApm",
+    "sessionId": "07873900-6154-400e-a208-719ab82465d2",
+    "metadata": null,
+    "workspace": "cli-workspace",
+    "timestamp": "2026-10-13T05:24:20.0971346Z"
   }
 ]
