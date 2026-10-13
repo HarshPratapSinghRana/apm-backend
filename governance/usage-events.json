@@ -17842,5 +17842,33 @@
     "metadata": "Workspace OPEN: monday-morning-agent.agent.md",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-13T10:01:25.005Z"
+  },
+  {
+    "artifactId": "enterprise-reviewer",
+    "artifactName": "enterprise-reviewer",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1791885689421",
+    "metadata": "Workspace OPEN: enterprise-reviewer.agent.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-13T10:01:29.421Z"
+  },
+  {
+    "artifactId": "monday-morning-agent",
+    "artifactName": "monday-morning-agent",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1791885690374",
+    "metadata": "Workspace OPEN: monday-morning-agent.agent.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-13T10:01:30.374Z"
   }
 ]
