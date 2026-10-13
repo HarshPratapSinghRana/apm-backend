@@ -17445,5 +17445,22 @@
     "metadata": null,
     "workspace": "cli-workspace",
     "timestamp": "2026-10-13T05:24:20.0971346Z"
+  },
+  {
+    "id": "9a92e54f-b5fe-4a63-9750-3ccaea540597",
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "certyfast",
+    "artifactName": "certyfast",
+    "artifactVersion": "1.0.0",
+    "artifactType": "agent",
+    "eventType": "INSTALL",
+    "action": "INSTALL",
+    "source": "CLI",
+    "platform": "CompanyApm",
+    "sessionId": "907d217f-3169-4753-a635-b58386c34cf3",
+    "metadata": null,
+    "workspace": "cli-workspace",
+    "timestamp": "2026-10-13T05:38:19.6854927Z"
   }
 ]
