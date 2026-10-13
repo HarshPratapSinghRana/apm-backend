@@ -17715,5 +17715,36 @@
     "metadata": null,
     "workspace": "cli-workspace",
     "timestamp": "2026-10-13T08:51:53.3646579Z"
+  },
+  {
+    "id": "386da471-89e2-4af4-8c29-41970434a385",
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "ai-personal-stylist-shopping-agent",
+    "artifactName": "ai-personal-stylist-shopping-agent",
+    "artifactVersion": "1.0.0",
+    "artifactType": "agent",
+    "eventType": "INSTALL",
+    "action": "INSTALL",
+    "source": "CLI",
+    "platform": "CompanyApm",
+    "sessionId": "0b339303-1644-472e-abca-0644a5f26a11",
+    "metadata": null,
+    "workspace": "cli-workspace",
+    "timestamp": "2026-10-13T08:53:30.4173509Z"
+  },
+  {
+    "artifactId": "api-test-generator",
+    "artifactName": "api-test-generator",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1791881610575",
+    "metadata": "Workspace CREATE: SKILL.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-13T08:53:30.575Z"
   }
 ]
