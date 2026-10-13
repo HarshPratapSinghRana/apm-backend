@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-07T10:53:03.130Z",
-  "totalSubmissions": 2,
+  "updatedAt": "2026-10-13T10:00:22.428Z",
+  "totalSubmissions": 3,
   "submissions": [
     {
       "id": "rev-muxzg5s2-w61k",
@@ -38,6 +38,24 @@
       "allowedReviewers": null,
       "allowedConsumers": null,
       "submittedAt": "2026-10-07T08:16:44.682Z",
+      "feedback": null
+    },
+    {
+      "id": "rev-vp-agent-01",
+      "reviewId": "rev-vp-agent-01",
+      "artifactId": "vp-agent",
+      "artifactName": "vp-agent",
+      "artifactType": "agent",
+      "version": "1.0.0",
+      "content": "# VP Agent\nAn intelligent agent for enterprise VP reporting, metrics aggregation, and AI executive summaries.\n\n```yaml\nname: vp-agent\nversion: 1.0.0\ntype: agent\nstatus: InReview\n```",
+      "producerEmail": "producer@maqsoftware.com",
+      "userEmail": "producer@maqsoftware.com",
+      "status": "UnderReview",
+      "isPrivate": false,
+      "allowedContributors": null,
+      "allowedReviewers": null,
+      "allowedConsumers": null,
+      "submittedAt": "2026-10-13T09:06:05.188Z",
       "feedback": null
     }
   ]

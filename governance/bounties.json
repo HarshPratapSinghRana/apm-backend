@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T10:53:03.130Z",
+  "updatedAt": "2026-10-13T10:00:22.428Z",
   "totalBounties": 6,
   "bounties": [
     {
@@ -23,11 +23,11 @@
       "canReview": true,
       "canRunTests": false,
       "claimedByEmail": "harsh.rana@maqsoftware.com",
-      "claimedAt": "2026-10-07T10:53:01.621Z",
-      "slaDeadline": "2026-10-09T10:53:01.621Z",
+      "claimedAt": "2026-10-13T10:00:21.094Z",
+      "slaDeadline": "2026-10-15T10:00:21.094Z",
       "slaRemainingMinutes": 2880,
       "slaRemainingFormatted": "48h 0m",
-      "autoReleaseDeadline": "2026-10-08T04:53:01.621Z",
+      "autoReleaseDeadline": "2026-10-14T04:00:21.094Z",
       "autoReleaseRemainingMinutes": 1080,
       "autoReleaseRemainingFormatted": "18h 0m",
       "isSlaWarning": false,
