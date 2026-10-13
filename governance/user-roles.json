@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T10:23:01.849Z",
+  "updatedAt": "2026-10-13T10:24:07.602Z",
   "organization": "MAQ Software",
   "totalUsers": 9,
   "userRoles": [
@@ -79,12 +79,12 @@
     },
     {
       "userEmail": "vivekp@maqsoftware.com",
-      "role": "CONTRIBUTOR",
+      "role": "REVIEWER",
       "isCertifiedReviewer": false,
       "grantedBy": "harsh.rana@maqsoftware.com",
-      "notes": "approved",
+      "notes": "approve",
       "grantedAt": "2026-10-07T09:00:34.967Z",
-      "updatedAt": "2026-10-08T13:05:04.325Z",
+      "updatedAt": "2026-10-13T10:24:07.190Z",
       "lastLoginAt": "2026-10-08T13:05:04.325Z"
     }
   ]
