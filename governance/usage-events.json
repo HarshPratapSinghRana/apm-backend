@@ -17870,5 +17870,19 @@
     "metadata": "Workspace OPEN: monday-morning-agent.agent.md",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-13T10:01:30.374Z"
+  },
+  {
+    "artifactId": "monday-morning-agent",
+    "artifactName": "monday-morning-agent",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1791885715720",
+    "metadata": "Workspace OPEN: monday-morning-agent.json",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-13T10:01:55.720Z"
   }
 ]
