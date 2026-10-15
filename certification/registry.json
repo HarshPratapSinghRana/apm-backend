@@ -1,11 +1,10 @@
 {
-  "updatedAt": "2026-10-15T07:44:29.481Z",
+  "updatedAt": "2026-10-15T10:58:55.171Z",
   "organization": "MAQ Software - Engineering Commons",
   "totalArtifacts": 81,
   "certifiedCount": 11,
   "verifiedCount": 0,
   "communityCount": 70,
-  "dataSource": "Authoritative Azure DevOps Git (/governance/usage-events.json)",
   "artifacts": {
     "accessibility-audit": {
       "artifactId": "accessibility-audit",

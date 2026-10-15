@@ -1,7 +1,6 @@
 {
-  "updatedAt": "2026-10-15T07:44:29.481Z",
+  "updatedAt": "2026-10-15T10:58:55.172Z",
   "totalEvents": 1230,
-  "dataSource": "100% Genuine Telemetry from /governance/usage-events.json",
   "events": [
     {
       "eventId": "real-evt-1",
