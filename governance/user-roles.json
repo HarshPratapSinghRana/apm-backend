@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-15T12:00:25.531Z",
+  "updatedAt": "2026-10-15T12:00:25.943Z",
   "organization": "MAQ Software",
   "totalUsers": 12,
   "userRoles": [
@@ -116,8 +116,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Auto-registered on user login",
       "grantedAt": "2026-10-13T10:56:17.710Z",
-      "updatedAt": "2026-10-15T12:00:25.453Z",
-      "lastLoginAt": "2026-10-15T12:00:25.453Z"
+      "updatedAt": "2026-10-15T12:00:25.853Z",
+      "lastLoginAt": "2026-10-15T12:00:25.853Z"
     }
   ]
 }
