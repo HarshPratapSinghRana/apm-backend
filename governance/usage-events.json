@@ -18920,5 +18920,19 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "harness-studio",
     "timestamp": "2026-10-15T22:01:37.379Z"
+  },
+  {
+    "artifactId": "SKILL",
+    "artifactName": "SKILL",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792104787814",
+    "metadata": "Workspace MODIFY: agents",
+    "workspace": "harness-studio",
+    "timestamp": "2026-10-15T22:53:07.814Z"
   }
 ]
