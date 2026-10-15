@@ -1,1446 +1,204 @@
 {
-  "updatedAt": "2026-10-15T06:59:22.003Z",
-  "totalEntries": 80,
+  "updatedAt": "2026-10-15T07:44:29.481Z",
+  "totalEntries": 11,
   "entries": [
     {
-      "id": "audit-accessibility-audit-init",
-      "artifactId": "accessibility-audit",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.1/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.1,
-        "adoption": 92,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 96.4,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.694Z"
-    },
-    {
-      "id": "audit-accessibility-fix-init",
+      "id": "audit-accessibility-fix-actual",
       "artifactId": "accessibility-fix",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.3/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 87 real invocations across 8 developers. Composite score: 97/100.",
       "scoreSnapshot": {
-        "compositeScore": 97.3,
-        "adoption": 89,
-        "feedback": 100,
+        "compositeScore": 97,
+        "adoption": 100,
+        "feedback": 80,
         "dx": 100,
         "technical": 100,
         "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.695Z"
+      "timestamp": "2026-10-15T07:44:29.459Z"
     },
     {
-      "id": "audit-leap-agent-eval-init",
-      "artifactId": "leap-agent-eval",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98,
-        "adoption": 92,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.695Z"
-    },
-    {
-      "id": "audit-leap-agent-mart-init",
-      "artifactId": "leap-agent-mart",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 93,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.696Z"
-    },
-    {
-      "id": "audit-leap-ai-biller-timekeeper-agent-init",
-      "artifactId": "leap-ai-biller-timekeeper-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.8,
-        "adoption": 87,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.696Z"
-    },
-    {
-      "id": "audit-leap-ai-personal-stylist-shopping-agent-init",
-      "artifactId": "leap-ai-personal-stylist-shopping-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 93,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.696Z"
-    },
-    {
-      "id": "audit-leap-angular-migration-tool-init",
-      "artifactId": "leap-angular-migration-tool",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.8,
-        "adoption": 99,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.696Z"
-    },
-    {
-      "id": "audit-api-test-generator-init",
+      "id": "audit-api-test-generator-actual",
       "artifactId": "api-test-generator",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 94.1/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 103 real invocations across 8 developers. Composite score: 94.6/100.",
       "scoreSnapshot": {
-        "compositeScore": 94.1,
-        "adoption": 88,
-        "feedback": 100,
+        "compositeScore": 94.6,
+        "adoption": 100,
+        "feedback": 80,
         "dx": 84,
-        "technical": 100,
-        "health": 98.1,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.697Z"
-    },
-    {
-      "id": "audit-leap-apm-active-production-monitoring-init",
-      "artifactId": "leap-apm-active-production-monitoring",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 93,
-        "feedback": 100,
-        "dx": 100,
         "technical": 100,
         "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.697Z"
+      "timestamp": "2026-10-15T07:44:29.460Z"
     },
     {
-      "id": "audit-apm-db-explorer-init",
+      "id": "audit-apm-db-explorer-actual",
       "artifactId": "apm-db-explorer",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 95.6/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 36 real invocations across 8 developers. Composite score: 91.4/100.",
       "scoreSnapshot": {
-        "compositeScore": 95.6,
-        "adoption": 95,
-        "feedback": 100,
+        "compositeScore": 91.4,
+        "adoption": 86,
+        "feedback": 80,
         "dx": 86,
         "technical": 100,
-        "health": 95.7,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.697Z"
-    },
-    {
-      "id": "audit-apm-init",
-      "artifactId": "apm",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 93/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 93,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 60,
-        "technical": 100,
-        "health": 96.1,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.697Z"
-    },
-    {
-      "id": "audit-leap-automated-customer-service-init",
-      "artifactId": "leap-automated-customer-service",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.8,
-        "adoption": 91,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
         "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.697Z"
+      "timestamp": "2026-10-15T07:44:29.461Z"
     },
     {
-      "id": "audit-leap-automated-product-tag-generator-init",
-      "artifactId": "leap-automated-product-tag-generator",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99,
-        "adoption": 96,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.698Z"
-    },
-    {
-      "id": "audit-azure-cost-optimizer-init",
-      "artifactId": "azure-cost-optimizer",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 92.7/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 92.7,
-        "adoption": 91,
-        "feedback": 100,
-        "dx": 74,
-        "technical": 100,
-        "health": 95.5,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.698Z"
-    },
-    {
-      "id": "audit-leap-certyfast-init",
-      "artifactId": "leap-certyfast",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.8,
-        "adoption": 99,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.698Z"
-    },
-    {
-      "id": "audit-code-review-init",
-      "artifactId": "code-review",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 93.4/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 93.4,
-        "adoption": 85,
-        "feedback": 100,
-        "dx": 86,
-        "technical": 100,
-        "health": 96.8,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.698Z"
-    },
-    {
-      "id": "audit-leap-code-standards-reviewer-agent-init",
-      "artifactId": "leap-code-standards-reviewer-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97,
-        "adoption": 88,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.698Z"
-    },
-    {
-      "id": "audit-leap-codeguardian-init",
-      "artifactId": "leap-codeguardian",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.699Z"
-    },
-    {
-      "id": "audit-leap-consumer-intelligence-agent-init",
-      "artifactId": "leap-consumer-intelligence-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.3,
-        "adoption": 89,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.699Z"
-    },
-    {
-      "id": "audit-leap-copilot-accessibility-testing-init",
-      "artifactId": "leap-copilot-accessibility-testing",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.699Z"
-    },
-    {
-      "id": "audit-leap-copilot-code-upgrade-init",
-      "artifactId": "leap-copilot-code-upgrade",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.699Z"
-    },
-    {
-      "id": "audit-leap-copilot-mcp-server-init",
-      "artifactId": "leap-copilot-mcp-server",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.700Z"
-    },
-    {
-      "id": "audit-leap-copilot-ui-testing-init",
-      "artifactId": "leap-copilot-ui-testing",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98,
-        "adoption": 92,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.700Z"
-    },
-    {
-      "id": "audit-leap-copilot-unit-testing-init",
-      "artifactId": "leap-copilot-unit-testing",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 93,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.701Z"
-    },
-    {
-      "id": "audit-demo-skill-init",
-      "artifactId": "demo-skill",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 96,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 97.1,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.701Z"
-    },
-    {
-      "id": "audit-design-reviewer-init",
+      "id": "audit-design-reviewer-actual",
       "artifactId": "design-reviewer",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.9/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 74 real invocations across 8 developers. Composite score: 94.9/100.",
       "scoreSnapshot": {
-        "compositeScore": 97.9,
+        "compositeScore": 94.9,
         "adoption": 100,
-        "feedback": 100,
+        "feedback": 80,
         "dx": 86,
         "technical": 100,
         "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.701Z"
+      "timestamp": "2026-10-15T07:44:29.465Z"
     },
     {
-      "id": "audit-leap-develop-fast-init",
-      "artifactId": "leap-develop-fast",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 93,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.701Z"
-    },
-    {
-      "id": "audit-leap-devops-powerbi-semantic-model-init",
-      "artifactId": "leap-devops-powerbi-semantic-model",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99,
-        "adoption": 96,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.702Z"
-    },
-    {
-      "id": "audit-leap-embedfast-init",
-      "artifactId": "leap-embedfast",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.702Z"
-    },
-    {
-      "id": "audit-enterprise-coding-standards-init",
-      "artifactId": "enterprise-coding-standards",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 92.6/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 92.6,
-        "adoption": 86,
-        "feedback": 100,
-        "dx": 78,
-        "technical": 100,
-        "health": 97.4,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.702Z"
-    },
-    {
-      "id": "audit-leap-enterprise-knowledge-bot-init",
-      "artifactId": "leap-enterprise-knowledge-bot",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.3,
-        "adoption": 85,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.702Z"
-    },
-    {
-      "id": "audit-enterprise-reviewer-init",
+      "id": "audit-enterprise-reviewer-actual",
       "artifactId": "enterprise-reviewer",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.9/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 56 real invocations across 8 developers. Composite score: 94.6/100.",
       "scoreSnapshot": {
-        "compositeScore": 96.9,
-        "adoption": 97,
-        "feedback": 100,
+        "compositeScore": 94.6,
+        "adoption": 100,
+        "feedback": 80,
         "dx": 84,
         "technical": 100,
         "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.703Z"
+      "timestamp": "2026-10-15T07:44:29.467Z"
     },
     {
-      "id": "audit-leap-executive-copilot-agent-init",
-      "artifactId": "leap-executive-copilot-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.5,
-        "adoption": 94,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.703Z"
-    },
-    {
-      "id": "audit-leap-expense-forecaster-init",
-      "artifactId": "leap-expense-forecaster",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.704Z"
-    },
-    {
-      "id": "audit-leap-expense-trend-analyzer-init",
-      "artifactId": "leap-expense-trend-analyzer",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.8,
-        "adoption": 95,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.704Z"
-    },
-    {
-      "id": "audit-find_agent_debug_logs-init",
-      "artifactId": "find_agent_debug_logs",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 91.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 91.8,
-        "adoption": 91,
-        "feedback": 100,
-        "dx": 60,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.704Z"
-    },
-    {
-      "id": "audit-leap-fraud-anomaly-detection-agent-init",
-      "artifactId": "leap-fraud-anomaly-detection-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.8,
-        "adoption": 91,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.704Z"
-    },
-    {
-      "id": "audit-full-test-agent-init",
-      "artifactId": "full-test-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 94.1/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 94.1,
-        "adoption": 92,
-        "feedback": 100,
-        "dx": 74,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.704Z"
-    },
-    {
-      "id": "audit-leap-gdpr-compliance-agent-init",
-      "artifactId": "leap-gdpr-compliance-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.5,
-        "adoption": 90,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.705Z"
-    },
-    {
-      "id": "audit-github-assistant-init",
+      "id": "audit-github-assistant-actual",
       "artifactId": "github-assistant",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 92.5/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 54 real invocations across 8 developers. Composite score: 93.1/100.",
       "scoreSnapshot": {
-        "compositeScore": 92.5,
-        "adoption": 87,
-        "feedback": 100,
+        "compositeScore": 93.1,
+        "adoption": 100,
+        "feedback": 80,
         "dx": 74,
         "technical": 100,
-        "health": 98.7,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.705Z"
-    },
-    {
-      "id": "audit-leap-hiring-support-agent-init",
-      "artifactId": "leap-hiring-support-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.8,
-        "adoption": 87,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
         "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.705Z"
+      "timestamp": "2026-10-15T07:44:29.467Z"
     },
     {
-      "id": "audit-leap-inventory-overview-agent-init",
-      "artifactId": "leap-inventory-overview-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.5,
-        "adoption": 98,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.705Z"
-    },
-    {
-      "id": "audit-leap-invoice-extraction-agent-init",
-      "artifactId": "leap-invoice-extraction-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.3,
-        "adoption": 97,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.705Z"
-    },
-    {
-      "id": "audit-leap-invoice-po-matching-agent-init",
-      "artifactId": "leap-invoice-po-matching-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.8,
-        "adoption": 87,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.705Z"
-    },
-    {
-      "id": "audit-kubernetes-security-auditor-init",
-      "artifactId": "kubernetes-security-auditor",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 93.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 93.8,
-        "adoption": 85,
-        "feedback": 100,
-        "dx": 88,
-        "technical": 100,
-        "health": 97.2,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.706Z"
-    },
-    {
-      "id": "audit-leap-launch-fast-init",
-      "artifactId": "leap-launch-fast",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98,
-        "adoption": 92,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.706Z"
-    },
-    {
-      "id": "audit-leap-legal-intake-routing-init",
-      "artifactId": "leap-legal-intake-routing",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 93,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.706Z"
-    },
-    {
-      "id": "audit-leap-loadfast-init",
-      "artifactId": "leap-loadfast",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97,
-        "adoption": 88,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.706Z"
-    },
-    {
-      "id": "audit-leap-loan-underwriting-agent-init",
-      "artifactId": "leap-loan-underwriting-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.5,
-        "adoption": 94,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.706Z"
-    },
-    {
-      "id": "audit-leap-loyalty-newsletter-enrollment-agent-init",
-      "artifactId": "leap-loyalty-newsletter-enrollment-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.706Z"
-    },
-    {
-      "id": "audit-leap-market-intelligence-pricing-agent-init",
-      "artifactId": "leap-market-intelligence-pricing-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.5,
-        "adoption": 90,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.707Z"
-    },
-    {
-      "id": "audit-leap-mcp-chat-application-init",
-      "artifactId": "leap-mcp-chat-application",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.5,
-        "adoption": 86,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.707Z"
-    },
-    {
-      "id": "audit-leap-migratefast-init",
-      "artifactId": "leap-migratefast",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.5,
-        "adoption": 98,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.707Z"
-    },
-    {
-      "id": "audit-leap-monday-morning-agent-init",
-      "artifactId": "leap-monday-morning-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98,
-        "adoption": 92,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.707Z"
-    },
-    {
-      "id": "audit-leap-new-hire-experience-and-onboarding-orchestration-agent-init",
-      "artifactId": "leap-new-hire-experience-and-onboarding-orchestration-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.3,
-        "adoption": 97,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.708Z"
-    },
-    {
-      "id": "audit-leap-pdf-extraction-utility-init",
-      "artifactId": "leap-pdf-extraction-utility",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.5,
-        "adoption": 98,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.708Z"
-    },
-    {
-      "id": "audit-leap-personalization-engine-init",
-      "artifactId": "leap-personalization-engine",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.5,
-        "adoption": 86,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.708Z"
-    },
-    {
-      "id": "audit-leap-planogram-compliance-agent-init",
-      "artifactId": "leap-planogram-compliance-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.708Z"
-    },
-    {
-      "id": "audit-leap-poe-scanner-init",
-      "artifactId": "leap-poe-scanner",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.708Z"
-    },
-    {
-      "id": "audit-leap-pre-sales-agent-init",
-      "artifactId": "leap-pre-sales-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.709Z"
-    },
-    {
-      "id": "audit-leap-product-discovery-bot-init",
-      "artifactId": "leap-product-discovery-bot",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.3,
-        "adoption": 85,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.709Z"
-    },
-    {
-      "id": "audit-leap-rai-agent-init",
-      "artifactId": "leap-rai-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.3,
-        "adoption": 93,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.709Z"
-    },
-    {
-      "id": "audit-leap-recruiter-copilot-init",
-      "artifactId": "leap-recruiter-copilot",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.3/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.3,
-        "adoption": 85,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.709Z"
-    },
-    {
-      "id": "audit-leap-smart-store-supplychain-agent-init",
-      "artifactId": "leap-smart-store-supplychain-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.5,
-        "adoption": 90,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.710Z"
-    },
-    {
-      "id": "audit-leap-synthetic-data-generation-init",
-      "artifactId": "leap-synthetic-data-generation",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96.5/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96.5,
-        "adoption": 86,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.710Z"
-    },
-    {
-      "id": "audit-leap-vendor-invoice-reconciliation-agent-init",
-      "artifactId": "leap-vendor-invoice-reconciliation-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.8,
-        "adoption": 99,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.710Z"
-    },
-    {
-      "id": "audit-leap-vendor-receipt-scanner-init",
-      "artifactId": "leap-vendor-receipt-scanner",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.710Z"
-    },
-    {
-      "id": "audit-leap-video-generator-agent-init",
-      "artifactId": "leap-video-generator-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.710Z"
-    },
-    {
-      "id": "audit-leap-voice-faq-agent-init",
-      "artifactId": "leap-voice-faq-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 100/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 100,
-        "adoption": 100,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.711Z"
-    },
-    {
-      "id": "audit-leap-wpp-pricing-optimizer-agent-init",
-      "artifactId": "leap-wpp-pricing-optimizer-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 98.8/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 98.8,
-        "adoption": 95,
-        "feedback": 100,
-        "dx": 100,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.711Z"
-    },
-    {
-      "id": "audit-postgres-mcp-init",
+      "id": "audit-postgres-mcp-actual",
       "artifactId": "postgres-mcp",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 95.1/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 95.1,
-        "adoption": 99,
-        "feedback": 100,
-        "dx": 74,
-        "technical": 100,
-        "health": 97.2,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.711Z"
-    },
-    {
-      "id": "audit-powerautomate-sync-engine-init",
-      "artifactId": "powerautomate-sync-engine",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 92.6/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 48 real invocations across 8 developers. Composite score: 92.6/100.",
       "scoreSnapshot": {
         "compositeScore": 92.6,
-        "adoption": 89,
-        "feedback": 100,
+        "adoption": 98,
+        "feedback": 80,
         "dx": 74,
         "technical": 100,
-        "health": 96.8,
+        "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.711Z"
+      "timestamp": "2026-10-15T07:44:29.472Z"
     },
     {
-      "id": "audit-review-and-refactor-init",
+      "id": "audit-powerautomate-sync-engine-actual",
+      "artifactId": "powerautomate-sync-engine",
+      "version": "1.0.0",
+      "oldBadge": "Community",
+      "newBadge": "Certified",
+      "triggerReason": "Qualified by actual developer usage: 134 real invocations across 8 developers. Composite score: 93.1/100.",
+      "scoreSnapshot": {
+        "compositeScore": 93.1,
+        "adoption": 100,
+        "feedback": 80,
+        "dx": 74,
+        "technical": 100,
+        "health": 100,
+        "fer": 0
+      },
+      "timestamp": "2026-10-15T07:44:29.473Z"
+    },
+    {
+      "id": "audit-review-and-refactor-actual",
       "artifactId": "review-and-refactor",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 94.4/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 121 real invocations across 8 developers. Composite score: 93.1/100.",
       "scoreSnapshot": {
-        "compositeScore": 94.4,
-        "adoption": 95,
-        "feedback": 100,
-        "dx": 74,
-        "technical": 100,
-        "health": 98.1,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.712Z"
-    },
-    {
-      "id": "audit-run-linter-init",
-      "artifactId": "run-linter",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 94/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 94,
-        "adoption": 89,
-        "feedback": 100,
-        "dx": 78,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.712Z"
-    },
-    {
-      "id": "audit-security-scan-init",
-      "artifactId": "security-scan",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 94.7/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 94.7,
-        "adoption": 92,
-        "feedback": 100,
-        "dx": 78,
-        "technical": 100,
-        "health": 100,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.712Z"
-    },
-    {
-      "id": "audit-semantic-sql-optimizer-init",
-      "artifactId": "semantic-sql-optimizer",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 97.2/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 97.2,
+        "compositeScore": 93.1,
         "adoption": 100,
-        "feedback": 100,
-        "dx": 84,
-        "technical": 100,
-        "health": 98.4,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.712Z"
-    },
-    {
-      "id": "audit-sql-optimizer-init",
-      "artifactId": "sql-optimizer",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 96/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 96,
-        "adoption": 91,
-        "feedback": 100,
-        "dx": 96,
-        "technical": 100,
-        "health": 95.4,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.712Z"
-    },
-    {
-      "id": "audit-style-checker-init",
-      "artifactId": "style-checker",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 91.9/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 91.9,
-        "adoption": 86,
-        "feedback": 100,
+        "feedback": 80,
         "dx": 74,
         "technical": 100,
-        "health": 97.3,
+        "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.712Z"
+      "timestamp": "2026-10-15T07:44:29.473Z"
     },
     {
-      "id": "audit-time-mcp-init",
+      "id": "audit-time-mcp-actual",
       "artifactId": "time-mcp",
       "version": "1.0.0",
-      "oldBadge": "Verified",
+      "oldBadge": "Community",
       "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 95.3/100, FER 0%, 6 active developers.",
+      "triggerReason": "Qualified by actual developer usage: 41 real invocations across 8 developers. Composite score: 94.2/100.",
       "scoreSnapshot": {
-        "compositeScore": 95.3,
-        "adoption": 85,
-        "feedback": 100,
-        "dx": 96,
-        "technical": 100,
-        "health": 98.4,
-        "fer": 0
-      },
-      "timestamp": "2026-10-15T06:21:05.712Z"
-    },
-    {
-      "id": "audit-vp-agent-init",
-      "artifactId": "vp-agent",
-      "version": "1.0.0",
-      "oldBadge": "Verified",
-      "newBadge": "Certified",
-      "triggerReason": "Telemetry & Quality criteria achieved: Composite 99.2/100, FER 0%, 6 active developers.",
-      "scoreSnapshot": {
-        "compositeScore": 99.2,
-        "adoption": 99,
-        "feedback": 100,
+        "compositeScore": 94.2,
+        "adoption": 91,
+        "feedback": 80,
         "dx": 96,
         "technical": 100,
         "health": 100,
         "fer": 0
       },
-      "timestamp": "2026-10-15T06:21:05.713Z"
+      "timestamp": "2026-10-15T07:44:29.473Z"
+    },
+    {
+      "id": "audit-vp-agent-actual",
+      "artifactId": "vp-agent",
+      "version": "1.0.0",
+      "oldBadge": "Community",
+      "newBadge": "Certified",
+      "triggerReason": "Qualified by actual developer usage: 58 real invocations across 8 developers. Composite score: 96.4/100.",
+      "scoreSnapshot": {
+        "compositeScore": 96.4,
+        "adoption": 100,
+        "feedback": 80,
+        "dx": 96,
+        "technical": 100,
+        "health": 100,
+        "fer": 0
+      },
+      "timestamp": "2026-10-15T07:44:29.474Z"
     }
   ]
 }
