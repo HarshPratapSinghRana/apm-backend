@@ -18586,5 +18586,17 @@
     "metadata": "Workspace MODIFY: SKILL.md",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-15T12:00:30.850Z"
+  },
+  {
+    "artifactId": "company-apm",
+    "artifactName": "company-apm",
+    "artifactType": "sso_microsoft",
+    "artifactVersion": "1.0.0",
+    "eventType": "ACTIVATED",
+    "action": "ACTIVATED",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-15T12:01:09.596Z"
   }
 ]
