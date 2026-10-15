@@ -1,0 +1,572 @@
+{
+  "updatedAt": "2026-10-15T06:59:06.971Z",
+  "certifications": {
+    "design-reviewer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.701Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.9/100, 0 fatal crashes, verified developer adoption."
+    },
+    "accessibility-fix": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.695Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "powerautomate-sync-engine": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.711Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 92.6/100, 0 fatal crashes, verified developer adoption."
+    },
+    "vp-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.713Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.2/100, 0 fatal crashes, verified developer adoption."
+    },
+    "accessibility-audit": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.694Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.1/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-agent-eval": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.695Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-agent-mart": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.696Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-ai-biller-timekeeper-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.696Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-ai-personal-stylist-shopping-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.696Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-angular-migration-tool": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.696Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "api-test-generator": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.697Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.1/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-apm-active-production-monitoring": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.697Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "apm-db-explorer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.697Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 95.6/100, 0 fatal crashes, verified developer adoption."
+    },
+    "apm": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.697Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 93/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-automated-customer-service": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.697Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-automated-product-tag-generator": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.698Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99/100, 0 fatal crashes, verified developer adoption."
+    },
+    "azure-cost-optimizer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.698Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 92.7/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-certyfast": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.698Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "code-review": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.698Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 93.4/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-code-standards-reviewer-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.698Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-codeguardian": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.699Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-consumer-intelligence-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.699Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-copilot-accessibility-testing": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.699Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-copilot-code-upgrade": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.699Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-copilot-mcp-server": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.700Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-copilot-ui-testing": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.700Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-copilot-unit-testing": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.701Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "demo-skill": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.701Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-develop-fast": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.701Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-devops-powerbi-semantic-model": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.702Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-embedfast": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.702Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "enterprise-coding-standards": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.702Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 92.6/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-enterprise-knowledge-bot": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.702Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "enterprise-reviewer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.703Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.9/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-executive-copilot-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.703Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-expense-forecaster": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.704Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-expense-trend-analyzer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.704Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "find_agent_debug_logs": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.704Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 91.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-fraud-anomaly-detection-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.704Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "full-test-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.704Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.1/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-gdpr-compliance-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.705Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "github-assistant": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.705Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 92.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-hiring-support-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.705Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-inventory-overview-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.705Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-invoice-extraction-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.705Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-invoice-po-matching-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.705Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "kubernetes-security-auditor": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.706Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 93.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-launch-fast": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.706Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-legal-intake-routing": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.706Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-loadfast": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.706Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-loan-underwriting-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.706Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-loyalty-newsletter-enrollment-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.706Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-market-intelligence-pricing-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.707Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-mcp-chat-application": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.707Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-migratefast": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.707Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-monday-morning-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.707Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-new-hire-experience-and-onboarding-orchestration-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.708Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-pdf-extraction-utility": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.708Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-personalization-engine": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.708Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-planogram-compliance-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.708Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-poe-scanner": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.708Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-pre-sales-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.709Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-product-discovery-bot": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.709Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-rai-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.709Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-recruiter-copilot": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.709Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.3/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-smart-store-supplychain-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.710Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-synthetic-data-generation": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.710Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.5/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-vendor-invoice-reconciliation-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.710Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 99.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-vendor-receipt-scanner": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.710Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-video-generator-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.710Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-voice-faq-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.711Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 100/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-wpp-pricing-optimizer-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.711Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 98.8/100, 0 fatal crashes, verified developer adoption."
+    },
+    "postgres-mcp": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.711Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 95.1/100, 0 fatal crashes, verified developer adoption."
+    },
+    "review-and-refactor": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.712Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.4/100, 0 fatal crashes, verified developer adoption."
+    },
+    "run-linter": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.712Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94/100, 0 fatal crashes, verified developer adoption."
+    },
+    "security-rules": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "security-scan": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.712Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.7/100, 0 fatal crashes, verified developer adoption."
+    },
+    "semantic-sql-optimizer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.712Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97.2/100, 0 fatal crashes, verified developer adoption."
+    },
+    "sql-optimizer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.712Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96/100, 0 fatal crashes, verified developer adoption."
+    },
+    "style-checker": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.712Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 91.9/100, 0 fatal crashes, verified developer adoption."
+    },
+    "time-mcp": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T06:21:05.712Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 95.3/100, 0 fatal crashes, verified developer adoption."
+    }
+  }
+}
