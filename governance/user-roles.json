@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-15T12:00:34.159Z",
+  "updatedAt": "2026-10-15T12:00:42.751Z",
   "organization": "MAQ Software",
   "totalUsers": 12,
   "userRoles": [
@@ -10,8 +10,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Platform SuperAdmin & Certified Reviewer Lead",
       "grantedAt": "2026-09-09T17:39:43.000Z",
-      "updatedAt": "2026-10-15T12:00:32.643Z",
-      "lastLoginAt": "2026-10-15T12:00:32.643Z"
+      "updatedAt": "2026-10-15T12:00:42.479Z",
+      "lastLoginAt": "2026-10-15T12:00:42.479Z"
     },
     {
       "userEmail": "rishabhy@maqsoftware.com",
