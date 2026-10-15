@@ -18438,5 +18438,17 @@
     "platform": "CompanyApm",
     "workspace": "harness-studio",
     "timestamp": "2026-10-15T11:37:40.711Z"
+  },
+  {
+    "artifactId": "company-apm",
+    "artifactName": "company-apm",
+    "artifactType": "sso_microsoft",
+    "artifactVersion": "1.0.0",
+    "eventType": "ACTIVATED",
+    "action": "ACTIVATED",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "workspace": "harness-studio",
+    "timestamp": "2026-10-15T11:48:18.895Z"
   }
 ]
