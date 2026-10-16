@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T08:20:36.649Z",
+  "updatedAt": "2026-10-16T08:20:37.304Z",
   "totalBounties": 4,
   "bounties": [
     {
@@ -32,7 +32,7 @@
       "points": 180,
       "rewardCredits": 180,
       "status": "Open",
-      "stage": "InReview",
+      "stage": "CodeGeneration",
       "relatedArtifactId": "secops-threat-hunter",
       "reviewId": "rev-secops-hunter-01",
       "dueInDays": 3,
@@ -40,9 +40,9 @@
       "createdAt": "2026-10-16T08:16:12.210Z",
       "isClaimedByMe": false,
       "canClaim": true,
-      "canSubmitCode": false,
-      "canReview": true,
-      "canRunTests": true
+      "canSubmitCode": true,
+      "canReview": false,
+      "canRunTests": false
     },
     {
       "id": "bty-playwright-e2e",
