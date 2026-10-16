@@ -1623,5 +1623,21 @@
     "timestamp": "2026-10-16T10:22:37.719Z",
     "userEmail": "harsh.rana@maqsoftware.com",
     "userId": "harsh.rana@maqsoftware.com"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "cloud-finops-sentinel",
+    "artifactName": "cloud-finops-sentinel",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792146915122",
+    "metadata": "Workspace MODIFY: .github",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-16T10:35:15.122Z"
   }
 ]
