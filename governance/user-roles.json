@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T08:42:41.541Z",
+  "updatedAt": "2026-10-16T08:42:42.070Z",
   "organization": "MAQ Software",
   "totalUsers": 12,
   "userRoles": [
@@ -76,8 +76,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Test Consumer account",
       "grantedAt": "2026-09-09T17:39:43.000Z",
-      "updatedAt": "2026-10-16T08:42:41.475Z",
-      "lastLoginAt": "2026-10-16T08:42:41.475Z"
+      "updatedAt": "2026-10-16T08:42:42.023Z",
+      "lastLoginAt": "2026-10-16T08:42:42.023Z"
     },
     {
       "userEmail": "vivekp@maqsoftware.com",
