@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:36:20.787Z",
+  "updatedAt": "2026-10-16T09:38:14.408Z",
   "certifications": {
     "cloud-finops-sentinel": {
       "isCertified": true,
@@ -28,6 +28,34 @@
       "certifiedAt": "2026-10-16T09:30:36.290Z",
       "certifiedVersion": "1.0.0",
       "reason": "Zero-downtime database standard verified"
+    },
+    "memory-mcp-server": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Anthropic Model Context Protocol standard verified"
+    },
+    "system-architect-prompt": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Enterprise Architecture prompt standard verified"
+    },
+    "git-smart-commit": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Conventional Commits tooling standard verified"
+    },
+    "apm-telemetry-sdk": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "OpenTelemetry distributed tracing standard verified"
     },
     "design-reviewer": {
       "isCertified": true,
