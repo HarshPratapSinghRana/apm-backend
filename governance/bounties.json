@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T07:23:13.151Z",
+  "updatedAt": "2026-10-16T08:04:59.927Z",
   "totalBounties": 6,
   "bounties": [
     {
@@ -42,7 +42,7 @@
       "points": 120,
       "rewardCredits": 120,
       "status": "Completed",
-      "stage": "Completed",
+      "stage": "CodeGeneration",
       "relatedArtifactId": "accessibility-fix",
       "reviewId": "rev-a12f",
       "dueInDays": 2,
@@ -50,7 +50,7 @@
       "createdAt": "2026-10-15T06:53:49.578Z",
       "isClaimedByMe": false,
       "canClaim": false,
-      "canSubmitCode": false,
+      "canSubmitCode": true,
       "canReview": false,
       "canRunTests": false,
       "isPublished": true,
