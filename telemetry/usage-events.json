@@ -1221,5 +1221,19 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "ado-connection-app",
     "timestamp": "2026-10-16T10:46:27.780Z"
+  },
+  {
+    "artifactId": "speckit-agent-context-update",
+    "artifactName": "speckit-agent-context-update",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792148288306",
+    "metadata": "Workspace MODIFY: skills",
+    "workspace": "ado-connection-app",
+    "timestamp": "2026-10-16T10:58:08.306Z"
   }
 ]
