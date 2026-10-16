@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:53:26.230Z",
+  "updatedAt": "2026-10-16T09:53:27.147Z",
   "totalBounties": 2,
   "bounties": [
     {
@@ -30,13 +30,13 @@
       "rewardCredits": 140,
       "points": 140,
       "status": "Open",
-      "stage": "InReview",
+      "stage": "CodeGeneration",
       "dueInDays": 2,
       "autoReleasesHours": 18,
       "createdAt": "2026-10-16T09:52:28.621Z",
       "description": "Peer review GraphQL Schema Guardian skill. Review AST breaking-change detection rules, Apollo Federation directive verifiers, and complexity analysis.",
       "canClaim": true,
-      "canSubmitCode": false,
+      "canSubmitCode": true,
       "canReview": false,
       "canRunTests": false
     }
