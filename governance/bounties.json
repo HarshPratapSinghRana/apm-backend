@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:36:20.787Z",
+  "updatedAt": "2026-10-16T09:37:31.727Z",
   "totalBounties": 8,
   "bounties": [
     {
@@ -11,7 +11,7 @@
       "points": 150,
       "rewardCredits": 150,
       "status": "Open",
-      "stage": "CodeGeneration",
+      "stage": "InTesting",
       "relatedArtifactId": "cloud-finops-sentinel",
       "reviewId": "rev-cloud-finops-01",
       "dueInDays": 2,
@@ -19,9 +19,9 @@
       "createdAt": "2026-10-16T08:16:12.210Z",
       "isClaimedByMe": false,
       "canClaim": true,
-      "canSubmitCode": true,
+      "canSubmitCode": false,
       "canReview": false,
-      "canRunTests": false
+      "canRunTests": true
     },
     {
       "id": "bty-secops-hunter",
