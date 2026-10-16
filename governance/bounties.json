@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T08:32:27.815Z",
+  "updatedAt": "2026-10-16T08:32:28.797Z",
   "totalBounties": 4,
   "bounties": [
     {
@@ -74,7 +74,7 @@
       "points": 140,
       "rewardCredits": 140,
       "status": "Open",
-      "stage": "InReview",
+      "stage": "CodeGeneration",
       "relatedArtifactId": "database-migration-guardian",
       "reviewId": "rev-db-migration-01",
       "dueInDays": 2,
@@ -82,9 +82,9 @@
       "createdAt": "2026-10-16T08:16:12.210Z",
       "isClaimedByMe": false,
       "canClaim": true,
-      "canSubmitCode": false,
-      "canReview": true,
-      "canRunTests": true
+      "canSubmitCode": true,
+      "canReview": false,
+      "canRunTests": false
     }
   ]
 }
