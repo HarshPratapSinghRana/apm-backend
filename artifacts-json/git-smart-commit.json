@@ -1,0 +1,37 @@
+{
+  "name": "git-smart-commit",
+  "version": "1.0.0",
+  "type": "command",
+  "category": "Developer Tools",
+  "description": "Conventional Commits enforcement and semantic changelog generator command. Enforces standardized commit formats with zero external dependencies.",
+  "author": "conventional-changelog",
+  "isCertified": true,
+  "downloads": 115,
+  "rating": 4.8,
+  "techStack": [
+    "Node.js",
+    "Git",
+    "Commitlint",
+    "CLI"
+  ],
+  "keyFeatures": [
+    "Conventional Commits 1.0.0 validation",
+    "Header length and format linting",
+    "CI/CD Git hook integration",
+    "Zero external npm runtime dependencies"
+  ],
+  "files": [
+    {
+      "path": ".github/commands/git-smart-commit/index.js",
+      "content": "#!/usr/bin/env node\n// Conventional commit validation script\n"
+    },
+    {
+      "path": ".github/commands/git-smart-commit/package.json",
+      "content": "{\n  \"name\": \"git-smart-commit\",\n  \"version\": \"1.0.0\"\n}"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true
+}

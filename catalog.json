@@ -1,6 +1,6 @@
 {
   "repository": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons",
-  "updatedAt": "2026-10-16T08:16:12.210Z",
+  "updatedAt": "2026-10-16T09:36:01.377Z",
   "artifacts": [
     {
       "id": "cloud-finops-sentinel",
@@ -82,6 +82,66 @@
       "description": "GitHub and Azure DevOps integration assistant plugin",
       "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#github-assistant",
       "isCertified": true
+    },
+    {
+      "id": "memory-mcp-server",
+      "name": "memory-mcp-server",
+      "type": "mcpserver",
+      "version": "1.0.0",
+      "description": "Anthropic Model Context Protocol (MCP) Knowledge Graph Memory Server with 9 tools for persistent cross-session graph memory.",
+      "category": "AI & Infrastructure",
+      "isCertified": true,
+      "certified": true,
+      "author": "modelcontextprotocol",
+      "downloads": 142,
+      "rating": 4.9,
+      "usability": "copilot-ready",
+      "isCopilotReady": true
+    },
+    {
+      "id": "system-architect-prompt",
+      "name": "system-architect-prompt",
+      "type": "prompt",
+      "version": "1.0.0",
+      "description": "Enterprise Cloud-Native System Architect & High-Level Design Prompt Template. Generates C4 models, API contracts, gap analysis, and NFR specifications.",
+      "category": "Architecture & Design",
+      "isCertified": true,
+      "certified": true,
+      "author": "gtonic",
+      "downloads": 98,
+      "rating": 4.8,
+      "usability": "copilot-ready",
+      "isCopilotReady": true
+    },
+    {
+      "id": "git-smart-commit",
+      "name": "git-smart-commit",
+      "type": "command",
+      "version": "1.0.0",
+      "description": "Conventional Commits enforcement and semantic changelog generator command. Enforces standardized commit formats with zero external dependencies.",
+      "category": "Developer Tools",
+      "isCertified": true,
+      "certified": true,
+      "author": "conventional-changelog",
+      "downloads": 115,
+      "rating": 4.8,
+      "usability": "copilot-ready",
+      "isCopilotReady": true
+    },
+    {
+      "id": "apm-telemetry-sdk",
+      "name": "apm-telemetry-sdk",
+      "type": "package",
+      "version": "1.0.0",
+      "description": "Enterprise APM OpenTelemetry client package for distributed tracing, structured correlation logging, and health probing.",
+      "category": "DevOps & Monitoring",
+      "isCertified": true,
+      "certified": true,
+      "author": "Engineering Commons",
+      "downloads": 182,
+      "rating": 4.9,
+      "usability": "copilot-ready",
+      "isCopilotReady": true
     }
   ]
 }

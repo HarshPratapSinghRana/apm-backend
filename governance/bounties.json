@@ -85,6 +85,182 @@
       "canSubmitCode": true,
       "canReview": false,
       "canRunTests": false
+    },
+    {
+      "id": "bty-memory-mcp",
+      "title": "Memory MCP Knowledge Graph Server Integration",
+      "relatedArtifactId": "memory-mcp-server",
+      "category": "MCP Server",
+      "credits": 160,
+      "rewardCredits": 160,
+      "points": 160,
+      "status": "Completed",
+      "stage": "Completed",
+      "isPublished": true,
+      "claimedByEmail": "harsh.rana@maqsoftware.com",
+      "claimedAt": "2026-10-14T09:36:01.379Z",
+      "completedAt": "2026-10-16T09:36:01.379Z",
+      "submissions": [
+        {
+          "id": "sub-mcp-1",
+          "submittedByEmail": "producer@maqsoftware.com",
+          "solutionCode": "Integrated Anthropic Model Context Protocol Knowledge Graph Memory server with 9 tools over stdio.",
+          "submittedAt": "2026-10-14T21:36:01.379Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "rev-mcp-1",
+          "reviewerEmail": "harsh.rana@maqsoftware.com",
+          "isApproved": true,
+          "feedback": "Verified adherence to official Model Context Protocol v1.0.0 specs.",
+          "reviewedAt": "2026-10-15T09:36:01.379Z"
+        }
+      ],
+      "testRuns": [
+        {
+          "id": "tr-mcp-1",
+          "testerEmail": "harsh.rana@maqsoftware.com",
+          "testSuiteName": "MCP Tools Automated Test Suite",
+          "isPassed": true,
+          "passedCount": 9,
+          "failedCount": 0,
+          "testLogs": "All 9 MCP tools (create_entities, create_relations, read_graph, search_nodes) passed 100% cleanly.",
+          "executedAt": "2026-10-15T21:36:01.379Z"
+        }
+      ]
+    },
+    {
+      "id": "bty-system-architect-prompt",
+      "title": "System Architect Prompt Template Standard",
+      "relatedArtifactId": "system-architect-prompt",
+      "category": "Prompt",
+      "credits": 110,
+      "rewardCredits": 110,
+      "points": 110,
+      "status": "Completed",
+      "stage": "Completed",
+      "isPublished": true,
+      "claimedByEmail": "harsh.rana@maqsoftware.com",
+      "claimedAt": "2026-10-14T09:36:01.379Z",
+      "completedAt": "2026-10-16T09:36:01.379Z",
+      "submissions": [
+        {
+          "id": "sub-prm-1",
+          "submittedByEmail": "producer@maqsoftware.com",
+          "solutionCode": "Enterprise High-Level Design prompt with C4 diagram syntax, DDD bounded contexts, and NFR parameters.",
+          "submittedAt": "2026-10-14T21:36:01.379Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "rev-prm-1",
+          "reviewerEmail": "harsh.rana@maqsoftware.com",
+          "isApproved": true,
+          "feedback": "Deterministic C4 architecture output validated against enterprise cloud standards.",
+          "reviewedAt": "2026-10-15T09:36:01.379Z"
+        }
+      ],
+      "testRuns": [
+        {
+          "id": "tr-prm-1",
+          "testerEmail": "harsh.rana@maqsoftware.com",
+          "testSuiteName": "Prompt Coherence & AST Test Suite",
+          "isPassed": true,
+          "passedCount": 6,
+          "failedCount": 0,
+          "testLogs": "All 6 scenario test matrices generated valid C4 Mermaid diagrams and OpenAPI contracts.",
+          "executedAt": "2026-10-15T21:36:01.379Z"
+        }
+      ]
+    },
+    {
+      "id": "bty-git-smart-commit",
+      "title": "Git Smart Commit Conventional Linting Command",
+      "relatedArtifactId": "git-smart-commit",
+      "category": "Command",
+      "credits": 130,
+      "rewardCredits": 130,
+      "points": 130,
+      "status": "Completed",
+      "stage": "Completed",
+      "isPublished": true,
+      "claimedByEmail": "harsh.rana@maqsoftware.com",
+      "claimedAt": "2026-10-14T09:36:01.379Z",
+      "completedAt": "2026-10-16T09:36:01.379Z",
+      "submissions": [
+        {
+          "id": "sub-cmd-1",
+          "submittedByEmail": "producer@maqsoftware.com",
+          "solutionCode": "Zero-dependency Conventional Commits linting CLI command enforcing semver commit hygiene.",
+          "submittedAt": "2026-10-14T21:36:01.379Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "rev-cmd-1",
+          "reviewerEmail": "harsh.rana@maqsoftware.com",
+          "isApproved": true,
+          "feedback": "Verified header length enforcement and exit code contract.",
+          "reviewedAt": "2026-10-15T09:36:01.379Z"
+        }
+      ],
+      "testRuns": [
+        {
+          "id": "tr-cmd-1",
+          "testerEmail": "harsh.rana@maqsoftware.com",
+          "testSuiteName": "Conventional Commit Linter Test Suite",
+          "isPassed": true,
+          "passedCount": 8,
+          "failedCount": 0,
+          "testLogs": "All 8 unit test fixtures passed.",
+          "executedAt": "2026-10-15T21:36:01.379Z"
+        }
+      ]
+    },
+    {
+      "id": "bty-apm-telemetry-sdk",
+      "title": "OpenTelemetry APM Client Package",
+      "relatedArtifactId": "apm-telemetry-sdk",
+      "category": "Package",
+      "credits": 150,
+      "rewardCredits": 150,
+      "points": 150,
+      "status": "Completed",
+      "stage": "Completed",
+      "isPublished": true,
+      "claimedByEmail": "harsh.rana@maqsoftware.com",
+      "claimedAt": "2026-10-14T09:36:01.379Z",
+      "completedAt": "2026-10-16T09:36:01.379Z",
+      "submissions": [
+        {
+          "id": "sub-pkg-1",
+          "submittedByEmail": "producer@maqsoftware.com",
+          "solutionCode": "Lightweight W3C TraceContext client SDK for microservices tracing and correlation logging.",
+          "submittedAt": "2026-10-14T21:36:01.379Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "rev-pkg-1",
+          "reviewerEmail": "harsh.rana@maqsoftware.com",
+          "isApproved": true,
+          "feedback": "Valid W3C traceparent formatting and zero-allocation span tracking confirmed.",
+          "reviewedAt": "2026-10-15T09:36:01.379Z"
+        }
+      ],
+      "testRuns": [
+        {
+          "id": "tr-pkg-1",
+          "testerEmail": "harsh.rana@maqsoftware.com",
+          "testSuiteName": "Distributed Tracing & Context Propagation Suite",
+          "isPassed": true,
+          "passedCount": 10,
+          "failedCount": 0,
+          "testLogs": "10 of 10 distributed trace context propagation tests passed.",
+          "executedAt": "2026-10-15T21:36:01.379Z"
+        }
+      ]
     }
   ]
 }

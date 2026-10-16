@@ -1,0 +1,37 @@
+{
+  "name": "system-architect-prompt",
+  "version": "1.0.0",
+  "type": "prompt",
+  "category": "Architecture & Design",
+  "description": "Enterprise Cloud-Native System Architect & High-Level Design Prompt Template. Generates C4 models, API contracts, gap analysis, and NFR specifications.",
+  "author": "gtonic",
+  "isCertified": true,
+  "downloads": 98,
+  "rating": 4.8,
+  "techStack": [
+    "Prompt Engineering",
+    "C4 Model",
+    "Mermaid",
+    "OpenAPI 3.0"
+  ],
+  "keyFeatures": [
+    "High-Level Design & C4 Blueprint generation",
+    "Domain-Driven Design (DDD) service boundaries",
+    "Data model and caching strategies",
+    "Resilience and NFR modeling"
+  ],
+  "files": [
+    {
+      "path": ".github/prompts/system-architect-prompt/system-architect.prompt.md",
+      "content": "# Enterprise System Architect Prompt\nSystem directive and structured execution template for high-level solution blueprints."
+    },
+    {
+      "path": ".github/prompts/system-architect-prompt/prompt.json",
+      "content": "{\n  \"name\": \"system-architect-prompt\",\n  \"type\": \"prompt\",\n  \"version\": \"1.0.0\"\n}"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true
+}

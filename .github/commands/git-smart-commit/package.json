@@ -1,0 +1,17 @@
+{
+  "name": "git-smart-commit",
+  "version": "1.0.0",
+  "description": "Conventional Commits enforcement and semantic changelog generator command.",
+  "main": "index.js",
+  "bin": {
+    "git-smart-commit": "./index.js"
+  },
+  "keywords": [
+    "commitlint",
+    "conventional-commits",
+    "git",
+    "cli"
+  ],
+  "author": "conventional-changelog",
+  "license": "MIT"
+}

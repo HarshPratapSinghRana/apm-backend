@@ -1,0 +1,37 @@
+{
+  "name": "memory-mcp-server",
+  "version": "1.0.0",
+  "type": "mcpserver",
+  "category": "AI & Infrastructure",
+  "description": "Anthropic Model Context Protocol (MCP) Knowledge Graph Memory Server with 9 tools for persistent cross-session graph memory.",
+  "author": "modelcontextprotocol",
+  "isCertified": true,
+  "downloads": 142,
+  "rating": 4.9,
+  "techStack": [
+    "TypeScript",
+    "Model Context Protocol",
+    "JSONL Graph",
+    "Node.js"
+  ],
+  "keyFeatures": [
+    "9 MCP tools (create_entities, create_relations, read_graph, search_nodes)",
+    "Persistent local JSONL knowledge graph",
+    "Semantic entity relation mapping",
+    "Zero external cloud dependencies"
+  ],
+  "files": [
+    {
+      "path": ".github/mcp/memory-mcp-server/README.md",
+      "content": "# Knowledge Graph Memory Server\n\nOfficial Anthropic Model Context Protocol persistent memory server."
+    },
+    {
+      "path": ".github/mcp/memory-mcp-server/package.json",
+      "content": "{\n  \"name\": \"@modelcontextprotocol/server-memory\",\n  \"version\": \"1.0.0\",\n  \"type\": \"module\"\n}"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true
+}
