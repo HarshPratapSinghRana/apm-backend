@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T06:05:01.132Z",
+  "updatedAt": "2026-10-16T06:24:38.367Z",
   "totalSubmissions": 2,
   "submissions": [
     {
@@ -32,13 +32,15 @@
       "content": "# Accessibility Fix Agent\nAutomated WCAG compliance and contrast checks in source code.",
       "producerEmail": "producer@maqsoftware.com",
       "userEmail": "producer@maqsoftware.com",
-      "status": "UnderReview",
+      "status": "Approved",
       "isPrivate": false,
       "allowedContributors": null,
       "allowedReviewers": null,
       "allowedConsumers": null,
       "submittedAt": "2026-10-15T05:53:49.578Z",
-      "feedback": null
+      "feedback": "Code review approved.",
+      "reviewerEmail": "harsh.rana@maqsoftware.com",
+      "reviewedAt": "2026-10-16T06:24:35.198Z"
     }
   ]
 }
