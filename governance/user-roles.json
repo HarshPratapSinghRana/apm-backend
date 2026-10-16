@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:36:33.299Z",
+  "updatedAt": "2026-10-16T09:36:41.799Z",
   "organization": "MAQ Software",
   "totalUsers": 13,
   "userRoles": [
@@ -126,8 +126,8 @@
       "grantedBy": "harsh.rana@maqsoftware.com",
       "notes": "approve",
       "grantedAt": "2026-10-16T09:35:13.047Z",
-      "updatedAt": "2026-10-16T09:36:29.074Z",
-      "lastLoginAt": "2026-10-16T09:36:29.074Z"
+      "updatedAt": "2026-10-16T09:36:41.597Z",
+      "lastLoginAt": "2026-10-16T09:36:41.597Z"
     }
   ]
 }
