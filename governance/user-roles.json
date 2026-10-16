@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:37:28.648Z",
+  "updatedAt": "2026-10-16T09:37:29.161Z",
   "organization": "MAQ Software",
   "totalUsers": 13,
   "userRoles": [
@@ -106,8 +106,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Auto-registered on user login",
       "grantedAt": "2026-10-13T10:56:16.942Z",
-      "updatedAt": "2026-10-16T09:37:26.807Z",
-      "lastLoginAt": "2026-10-16T09:37:26.807Z"
+      "updatedAt": "2026-10-16T09:37:29.059Z",
+      "lastLoginAt": "2026-10-16T09:37:29.059Z"
     },
     {
       "userEmail": "reviewer@test.com",
@@ -116,8 +116,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Auto-registered on user login",
       "grantedAt": "2026-10-13T10:56:17.710Z",
-      "updatedAt": "2026-10-16T09:37:28.551Z",
-      "lastLoginAt": "2026-10-16T09:37:28.551Z"
+      "updatedAt": "2026-10-16T09:37:27.626Z",
+      "lastLoginAt": "2026-10-16T09:37:27.626Z"
     },
     {
       "userEmail": "mridul.mahajan@maqsoftware.com",
