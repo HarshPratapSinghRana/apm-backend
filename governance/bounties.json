@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T08:20:37.304Z",
+  "updatedAt": "2026-10-16T08:32:27.815Z",
   "totalBounties": 4,
   "bounties": [
     {
@@ -53,7 +53,7 @@
       "points": 120,
       "rewardCredits": 120,
       "status": "Open",
-      "stage": "InReview",
+      "stage": "InTesting",
       "relatedArtifactId": "playwright-e2e-synthesizer",
       "reviewId": "rev-playwright-e2e-01",
       "dueInDays": 2,
@@ -62,7 +62,7 @@
       "isClaimedByMe": false,
       "canClaim": true,
       "canSubmitCode": false,
-      "canReview": true,
+      "canReview": false,
       "canRunTests": true
     },
     {
