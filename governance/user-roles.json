@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T10:39:32.321Z",
+  "updatedAt": "2026-10-16T10:39:32.941Z",
   "organization": "MAQ Software",
   "totalUsers": 13,
   "userRoles": [
@@ -10,8 +10,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Platform SuperAdmin & Certified Reviewer Lead",
       "grantedAt": "2026-09-09T17:39:43.000Z",
-      "updatedAt": "2026-10-16T10:35:17.096Z",
-      "lastLoginAt": "2026-10-16T10:35:17.096Z"
+      "updatedAt": "2026-10-16T10:39:32.890Z",
+      "lastLoginAt": "2026-10-16T10:39:32.890Z"
     },
     {
       "userEmail": "rishabhy@maqsoftware.com",
@@ -116,8 +116,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Auto-registered on user login",
       "grantedAt": "2026-10-13T10:56:17.710Z",
-      "updatedAt": "2026-10-16T10:39:31.237Z",
-      "lastLoginAt": "2026-10-16T10:39:31.237Z"
+      "updatedAt": "2026-10-16T10:39:31.802Z",
+      "lastLoginAt": "2026-10-16T10:39:31.802Z"
     },
     {
       "userEmail": "mridul.mahajan@maqsoftware.com",
