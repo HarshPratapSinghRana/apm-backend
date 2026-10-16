@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:54:53.919Z",
+  "updatedAt": "2026-10-16T09:54:54.736Z",
   "totalBounties": 2,
   "bounties": [
     {
@@ -11,15 +11,15 @@
       "rewardCredits": 160,
       "points": 160,
       "status": "Open",
-      "stage": "InTesting",
+      "stage": "CodeGeneration",
       "dueInDays": 2,
       "autoReleasesHours": 18,
       "createdAt": "2026-10-16T09:52:28.621Z",
       "description": "Peer review Terraform Compliance Guard agent. Audit CIS benchmark checks, IAM privilege escalation checks, and policy rule definitions.",
       "canClaim": true,
-      "canSubmitCode": false,
+      "canSubmitCode": true,
       "canReview": false,
-      "canRunTests": true
+      "canRunTests": false
     },
     {
       "id": "bty-graphql-guardian",
