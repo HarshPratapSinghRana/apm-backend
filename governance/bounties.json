@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T08:16:12.210Z",
+  "updatedAt": "2026-10-16T08:20:36.649Z",
   "totalBounties": 4,
   "bounties": [
     {
@@ -11,7 +11,7 @@
       "points": 150,
       "rewardCredits": 150,
       "status": "Open",
-      "stage": "InReview",
+      "stage": "InTesting",
       "relatedArtifactId": "cloud-finops-sentinel",
       "reviewId": "rev-cloud-finops-01",
       "dueInDays": 2,
@@ -20,7 +20,7 @@
       "isClaimedByMe": false,
       "canClaim": true,
       "canSubmitCode": false,
-      "canReview": true,
+      "canReview": false,
       "canRunTests": true
     },
     {
