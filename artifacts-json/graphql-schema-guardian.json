@@ -1,0 +1,33 @@
+{
+  "name": "graphql-schema-guardian",
+  "version": "1.0.0",
+  "type": "skill",
+  "category": "Data Engineering",
+  "description": "Zero-Breaking-Change GraphQL Schema Verifier, Apollo Federation Subgraph Linter, and Query Complexity Cost Analyzer.",
+  "author": "Engineering Commons",
+  "isCertified": true,
+  "downloads": 121,
+  "rating": 4.9,
+  "techStack": [
+    "GraphQL",
+    "Apollo Federation v2",
+    "AST Parser",
+    "GraphQL-Inspector"
+  ],
+  "keyFeatures": [
+    "Semantic breaking change detection",
+    "Apollo Federation v2 directive validation",
+    "Query complexity and cyclic depth budget check",
+    "Relay cursor pagination conformity validation"
+  ],
+  "files": [
+    {
+      "path": ".agents/skills/graphql-schema-guardian/SKILL.md",
+      "content": "---\nname: graphql-schema-guardian\n---\n# GraphQL Schema Guardian Skill\nZero-breaking-change schema verifier."
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true
+}

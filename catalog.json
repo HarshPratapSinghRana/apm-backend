@@ -1,6 +1,6 @@
 {
   "repository": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons",
-  "updatedAt": "2026-10-16T09:36:01.377Z",
+  "updatedAt": "2026-10-16T09:52:28.619Z",
   "artifacts": [
     {
       "id": "cloud-finops-sentinel",
@@ -139,6 +139,36 @@
       "certified": true,
       "author": "Engineering Commons",
       "downloads": 182,
+      "rating": 4.9,
+      "usability": "copilot-ready",
+      "isCopilotReady": true
+    },
+    {
+      "id": "terraform-compliance-guard",
+      "name": "terraform-compliance-guard",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Automated Infrastructure as Code (IaC) compliance agent. Scans Terraform configurations against CIS Benchmarks, enforces encryption, and blocks security regressions before deployment.",
+      "category": "DevOps & Security",
+      "isCertified": true,
+      "certified": true,
+      "author": "Engineering Commons",
+      "downloads": 134,
+      "rating": 4.9,
+      "usability": "copilot-ready",
+      "isCopilotReady": true
+    },
+    {
+      "id": "graphql-schema-guardian",
+      "name": "graphql-schema-guardian",
+      "type": "skill",
+      "version": "1.0.0",
+      "description": "Zero-Breaking-Change GraphQL Schema Verifier, Apollo Federation Subgraph Linter, and Query Complexity Cost Analyzer.",
+      "category": "Data Engineering",
+      "isCertified": true,
+      "certified": true,
+      "author": "Engineering Commons",
+      "downloads": 121,
       "rating": 4.9,
       "usability": "copilot-ready",
       "isCopilotReady": true

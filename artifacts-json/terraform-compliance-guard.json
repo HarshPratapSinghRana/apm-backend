@@ -1,0 +1,39 @@
+{
+  "name": "terraform-compliance-guard",
+  "version": "1.0.0",
+  "type": "agent",
+  "category": "DevOps & Security",
+  "description": "Automated Infrastructure as Code (IaC) compliance agent. Scans Terraform configurations against CIS Benchmarks, enforces encryption, and blocks security regressions before deployment.",
+  "author": "Engineering Commons",
+  "isCertified": true,
+  "downloads": 134,
+  "rating": 4.9,
+  "techStack": [
+    "Terraform",
+    "HCL",
+    "CIS Benchmarks",
+    "Checkov",
+    "Azure",
+    "AWS"
+  ],
+  "keyFeatures": [
+    "CIS Cloud Benchmark compliance scanning",
+    "Zero-Trust network ingress validation (no open 0.0.0.0/0)",
+    "Storage at-rest & in-transit encryption enforcement",
+    "Mandatory corporate tagging validation"
+  ],
+  "files": [
+    {
+      "path": ".github/agents/terraform-compliance-guard.agent.md",
+      "content": "# Terraform Compliance Guard Agent\nAutomated Infrastructure as Code (IaC) compliance agent."
+    },
+    {
+      "path": ".agents/skills/terraform-compliance-guard/SKILL.md",
+      "content": "---\nname: terraform-compliance-guard\n---\n# Workflow instructions"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true
+}
