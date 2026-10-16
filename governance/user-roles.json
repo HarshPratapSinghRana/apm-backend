@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:37:25.115Z",
+  "updatedAt": "2026-10-16T09:37:25.691Z",
   "organization": "MAQ Software",
   "totalUsers": 13,
   "userRoles": [
@@ -66,8 +66,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Producer with artifact publishing permissions",
       "grantedAt": "2026-09-09T17:39:43.000Z",
-      "updatedAt": "2026-10-16T09:37:25.065Z",
-      "lastLoginAt": "2026-10-16T09:37:25.065Z"
+      "updatedAt": "2026-10-16T09:37:24.356Z",
+      "lastLoginAt": "2026-10-16T09:37:24.356Z"
     },
     {
       "userEmail": "consumer@test.com",
@@ -76,8 +76,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Test Consumer account",
       "grantedAt": "2026-09-09T17:39:43.000Z",
-      "updatedAt": "2026-10-16T08:42:42.023Z",
-      "lastLoginAt": "2026-10-16T08:42:42.023Z"
+      "updatedAt": "2026-10-16T09:37:25.577Z",
+      "lastLoginAt": "2026-10-16T09:37:25.577Z"
     },
     {
       "userEmail": "vivekp@maqsoftware.com",
