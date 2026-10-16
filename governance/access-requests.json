@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-16T10:03:37.033Z",
-  "totalRequests": 10,
+  "updatedAt": "2026-10-16T10:09:22.756Z",
+  "totalRequests": 9,
   "requests": [
     {
       "id": "req-1792143511736-mj2dm6",
@@ -109,18 +109,6 @@
       "requestedAt": "2026-10-07T07:51:32.805Z",
       "reviewedAt": "2026-10-07T09:05:14.976Z",
       "adminNotes": "reject"
-    },
-    {
-      "id": "req-1792143354232-7xv4k3",
-      "userEmail": "mridul.mahajan@maqsoftware.com",
-      "requestedRole": "CONTRIBUTOR",
-      "currentRole": "CONSUMER",
-      "status": "Approved",
-      "reason": "marketplace",
-      "adminEmail": "harsh.rana@maqsoftware.com",
-      "requestedAt": "2026-10-16T09:35:54.232Z",
-      "adminNotes": "approve",
-      "reviewedAt": "2026-10-16T09:38:10.227Z"
     }
   ]
 }
