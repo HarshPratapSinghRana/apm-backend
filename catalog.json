@@ -1,70 +1,87 @@
 {
   "repository": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons",
-  "updatedAt": "2026-10-07T10:50:24.433Z",
+  "updatedAt": "2026-10-16T08:16:12.210Z",
   "artifacts": [
     {
-      "id": "design-reviewer",
-      "name": "design-reviewer",
+      "id": "cloud-finops-sentinel",
+      "name": "cloud-finops-sentinel",
       "type": "agent",
-      "version": "1.1.0",
-      "description": "Official APM Design Reviewer Agent",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#design-reviewer"
+      "version": "1.0.0",
+      "description": "Multi-cloud FinOps governance, idle compute reclamation, and cost optimization agent",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#cloud-finops-sentinel",
+      "isCertified": true
     },
     {
-      "id": "api-test-generator",
-      "name": "api-test-generator",
+      "id": "secops-threat-hunter",
+      "name": "secops-threat-hunter",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Zero-trust security auditor, secret scanning, and OWASP API threat detection agent",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#secops-threat-hunter",
+      "isCertified": true
+    },
+    {
+      "id": "playwright-e2e-synthesizer",
+      "name": "playwright-e2e-synthesizer",
       "type": "skill",
       "version": "1.0.0",
-      "description": "Automated xUnit and Integration test generator",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#api-test-generator"
+      "description": "Autonomous Playwright TypeScript E2E test suite synthesizer with axe-core accessibility checks",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#playwright-e2e-synthesizer",
+      "isCertified": true
     },
     {
-      "id": "review-and-refactor",
-      "name": "review-and-refactor",
+      "id": "database-migration-guardian",
+      "name": "database-migration-guardian",
       "type": "skill",
       "version": "1.0.0",
-      "description": "AI code review and refactoring assistant",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#review-and-refactor"
-    },
-    {
-      "id": "github-assistant",
-      "name": "github-assistant",
-      "type": "plugin",
-      "version": "1.0.0",
-      "description": "GitHub and ADO integration assistant plugin",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#github-assistant"
+      "description": "Zero-downtime database migration review, lock hazard elimination, and safe rollback verifier",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#database-migration-guardian",
+      "isCertified": true
     },
     {
       "id": "accessibility-fix",
       "name": "accessibility-fix",
       "type": "agent",
       "version": "1.0.0",
-      "description": "Accessibility fix and remediation agent",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#accessibility-fix"
+      "description": "Enterprise automated WCAG 2.1 AA accessibility remediation and contrast checking agent",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#accessibility-fix",
+      "isCertified": true
     },
     {
-      "id": "enterprise-reviewer",
-      "name": "enterprise-reviewer",
+      "id": "api-test-generator",
+      "name": "api-test-generator",
+      "type": "skill",
+      "version": "1.0.0",
+      "description": "Automated xUnit and Integration test generator for REST API endpoints",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#api-test-generator",
+      "isCertified": true
+    },
+    {
+      "id": "design-reviewer",
+      "name": "design-reviewer",
       "type": "agent",
-      "version": "1.0.0",
-      "description": "Enterprise code and architecture reviewer",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#enterprise-reviewer"
+      "version": "1.1.0",
+      "description": "Official APM Design Reviewer Agent for architecture and pattern compliance",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#design-reviewer",
+      "isCertified": true
     },
     {
-      "id": "postgres-mcp",
-      "name": "postgres-mcp",
-      "type": "mcpserver",
+      "id": "review-and-refactor",
+      "name": "review-and-refactor",
+      "type": "skill",
       "version": "1.0.0",
-      "description": "PostgreSQL Model Context Protocol Server",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#postgres-mcp"
+      "description": "AI code review and clean architecture refactoring assistant",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#review-and-refactor",
+      "isCertified": true
     },
     {
-      "id": "time-mcp",
-      "name": "time-mcp",
-      "type": "mcpserver",
+      "id": "github-assistant",
+      "name": "github-assistant",
+      "type": "plugin",
       "version": "1.0.0",
-      "description": "Time and timezone calculation MCP Server",
-      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#time-mcp"
+      "description": "GitHub and Azure DevOps integration assistant plugin",
+      "apmPackage": "MAQInternalCIP-Engineering-Commons/Engineering Commons/Engineering Commons#github-assistant",
+      "isCertified": true
     }
   ]
 }

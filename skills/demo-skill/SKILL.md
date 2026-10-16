@@ -1,1 +1,0 @@
----\nname: demo-skill\nversion: 1.0.0\ndescription: Demo skill for E2E testing\n---\n# Demo Skill\nInstructions for execution.
