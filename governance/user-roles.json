@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T04:09:08.134Z",
+  "updatedAt": "2026-10-19T04:09:08.452Z",
   "organization": "MAQ Software",
   "totalUsers": 13,
   "userRoles": [
@@ -10,8 +10,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Platform SuperAdmin & Certified Reviewer Lead",
       "grantedAt": "2026-09-09T17:39:43.000Z",
-      "updatedAt": "2026-10-19T04:09:02.880Z",
-      "lastLoginAt": "2026-10-19T04:09:02.880Z"
+      "updatedAt": "2026-10-19T04:09:08.407Z",
+      "lastLoginAt": "2026-10-19T04:09:08.407Z"
     },
     {
       "userEmail": "rishabhy@maqsoftware.com",
@@ -106,8 +106,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Auto-registered on user login",
       "grantedAt": "2026-10-13T10:56:16.942Z",
-      "updatedAt": "2026-10-19T04:09:08.090Z",
-      "lastLoginAt": "2026-10-19T04:09:08.090Z"
+      "updatedAt": "2026-10-19T04:00:20.930Z",
+      "lastLoginAt": "2026-10-19T04:00:20.930Z"
     },
     {
       "userEmail": "reviewer@test.com",
@@ -116,8 +116,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Auto-registered on user login",
       "grantedAt": "2026-10-13T10:56:17.710Z",
-      "updatedAt": "2026-10-19T04:09:07.250Z",
-      "lastLoginAt": "2026-10-19T04:09:07.250Z"
+      "updatedAt": "2026-10-19T04:09:07.836Z",
+      "lastLoginAt": "2026-10-19T04:09:07.836Z"
     },
     {
       "userEmail": "mridul.mahajan@maqsoftware.com",
