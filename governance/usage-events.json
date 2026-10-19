@@ -1421,5 +1421,53 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "ado-connection-app",
     "timestamp": "2026-10-19T03:05:03.582Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "cloud-finops-sentinel",
+    "artifactName": "cloud-finops-sentinel",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792382416347",
+    "metadata": "Workspace MODIFY: agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-19T04:00:16.347Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "apm-active-production-monitoring",
+    "artifactName": "apm-active-production-monitoring",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792382416449",
+    "metadata": "Workspace MODIFY: skills",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-19T04:00:16.449Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "github-assistant",
+    "artifactName": "github-assistant",
+    "artifactType": "plugin",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792382416451",
+    "metadata": "Workspace MODIFY: plugins",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-19T04:00:16.451Z"
   }
 ]
