@@ -1365,5 +1365,61 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "harness-studio",
     "timestamp": "2026-10-16T19:33:08.654Z"
+  },
+  {
+    "artifactId": "accessibility-fix",
+    "artifactName": "accessibility-fix",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792379101685",
+    "metadata": "Workspace MODIFY: agents",
+    "workspace": "ado-connection-app",
+    "timestamp": "2026-10-19T03:05:01.685Z"
+  },
+  {
+    "artifactId": "SKILL",
+    "artifactName": "SKILL",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792379103414",
+    "metadata": "Workspace MODIFY: skills",
+    "workspace": "ado-connection-app",
+    "timestamp": "2026-10-19T03:05:03.414Z"
+  },
+  {
+    "artifactId": "speckit-agent-context-update",
+    "artifactName": "speckit-agent-context-update",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792379103519",
+    "metadata": "Workspace MODIFY: skills",
+    "workspace": "ado-connection-app",
+    "timestamp": "2026-10-19T03:05:03.519Z"
+  },
+  {
+    "artifactId": "playwright-e2e-synthesizer",
+    "artifactName": "playwright-e2e-synthesizer",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792379103582",
+    "metadata": "Workspace MODIFY: skills",
+    "workspace": "ado-connection-app",
+    "timestamp": "2026-10-19T03:05:03.582Z"
   }
 ]
