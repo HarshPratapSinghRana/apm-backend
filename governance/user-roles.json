@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T03:57:32.273Z",
+  "updatedAt": "2026-10-20T03:57:32.701Z",
   "organization": "MAQ Software",
   "totalUsers": 13,
   "userRoles": [
@@ -116,8 +116,8 @@
       "grantedBy": "SYSTEM",
       "notes": "Auto-registered on user login",
       "grantedAt": "2026-10-13T10:56:17.710Z",
-      "updatedAt": "2026-10-20T03:57:32.228Z",
-      "lastLoginAt": "2026-10-20T03:57:32.228Z"
+      "updatedAt": "2026-10-20T03:57:32.659Z",
+      "lastLoginAt": "2026-10-20T03:57:32.659Z"
     },
     {
       "userEmail": "mridul.mahajan@maqsoftware.com",
