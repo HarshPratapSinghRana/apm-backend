@@ -1336,5 +1336,37 @@
     "metadata": "Workspace MODIFY: catalog.json",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-20T07:47:51.356Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "apm-active-production-monitoring",
+    "artifactName": "apm-active-production-monitoring",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792483082005",
+    "metadata": "Workspace MODIFY: SKILL.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-20T07:58:02.005Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792483082009",
+    "metadata": "Workspace MODIFY: SKILL.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-20T07:58:02.009Z"
   }
 ]
