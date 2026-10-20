@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-20T06:16:16.016Z",
+  "updatedAt": "2026-10-20T10:56:41.501Z",
   "organization": "MAQ Software",
-  "totalUsers": 13,
+  "totalUsers": 12,
   "userRoles": [
     {
       "userEmail": "harsh.rana@maqsoftware.com",
@@ -22,15 +22,6 @@
       "grantedAt": "2026-09-16T10:38:11.810Z",
       "updatedAt": "2026-10-16T19:33:15.692Z",
       "lastLoginAt": "2026-10-16T19:33:15.692Z"
-    },
-    {
-      "userEmail": "vivekprasad@maqsoftware.com",
-      "role": "CONTRIBUTOR",
-      "isCertifiedReviewer": false,
-      "grantedBy": "harsh.rana@maqsoftware.com",
-      "notes": "approved",
-      "grantedAt": "2026-09-20T08:15:00.000Z",
-      "updatedAt": "2026-10-07T08:55:59.335Z"
     },
     {
       "userEmail": "reviewer@maqsoftware.com",
@@ -84,9 +75,9 @@
       "role": "REVIEWER",
       "isCertifiedReviewer": false,
       "grantedBy": "harsh.rana@maqsoftware.com",
-      "notes": "approve",
+      "notes": "Approved Reviewer (Alias: vivekprasad@maqsoftware.com). Reviewer role inherently includes Contributor permissions.",
       "grantedAt": "2026-10-07T09:00:34.967Z",
-      "updatedAt": "2026-10-13T10:24:10.322Z",
+      "updatedAt": "2026-10-20T10:56:41.500Z",
       "lastLoginAt": "2026-10-08T13:05:04.325Z"
     },
     {
