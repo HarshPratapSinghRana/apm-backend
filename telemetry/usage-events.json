@@ -1932,5 +1932,19 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "harness-studio",
     "timestamp": "2026-10-21T07:37:17.140Z"
+  },
+  {
+    "artifactId": "speckit-agent-context-update",
+    "artifactName": "speckit-agent-context-update",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792572190745",
+    "metadata": "Workspace MODIFY: skills",
+    "workspace": "ado-connection-app",
+    "timestamp": "2026-10-21T08:43:10.745Z"
   }
 ]
