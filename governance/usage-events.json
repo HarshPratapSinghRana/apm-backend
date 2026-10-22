@@ -3874,5 +3874,37 @@
     "metadata": "Workspace MODIFY: agents",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-22T06:35:38.798Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792650942263",
+    "metadata": "Workspace CREATE: engineering-commons-advisor",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-22T06:35:42.263Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "cloud-finops-sentinel",
+    "artifactName": "cloud-finops-sentinel",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792650942262",
+    "metadata": "Workspace CREATE: .github",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-22T06:35:42.262Z"
   }
 ]
