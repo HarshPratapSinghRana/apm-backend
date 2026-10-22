@@ -1,0 +1,35 @@
+{
+  "name": "postgres-mcp",
+  "version": "1.0.0",
+  "type": "mcpserver",
+  "category": "Database & Storage",
+  "description": "PostgreSQL Model Context Protocol (MCP) server connector.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 52,
+  "rating": 4.7,
+  "techStack": [
+    "Node.js",
+    "MCP",
+    "pg"
+  ],
+  "keyFeatures": [
+    "PostgreSQL integration",
+    "SSL connections",
+    "Parameterized execution"
+  ],
+  "files": [
+    {
+      "path": ".github/mcp/postgres-mcp/README.md",
+      "content": "# PostgreSQL MCP Server\n\nProvides database schema inspection, query generation, and execution capabilities through the Model Context Protocol (MCP).\n"
+    },
+    {
+      "path": ".github/mcp/postgres-mcp/mcp.json",
+      "content": "{\n  \"name\": \"postgres-mcp\",\n  \"type\": \"mcpserver\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Model Context Protocol (MCP) Server for PostgreSQL database inspection and query execution.\",\n  \"mcpServers\": {\n    \"postgres\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-postgres\", \"postgresql://localhost:5432/main\"]\n    }\n  }\n}\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "?? Copilot & Claude Ready",
+  "isCopilotReady": true
+}

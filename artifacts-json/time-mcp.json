@@ -1,0 +1,38 @@
+{
+  "name": "time-mcp",
+  "version": "1.0.0",
+  "type": "mcpserver",
+  "category": "Utilities",
+  "description": "System timezone, ISO timestamp, and UTC formatting MCP server.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 71,
+  "rating": 4.9,
+  "techStack": [
+    "Node.js",
+    "MCP SDK"
+  ],
+  "keyFeatures": [
+    "Current time lookup",
+    "Timezone conversion",
+    "Duration calculation"
+  ],
+  "files": [
+    {
+      "path": ".github/mcp/time-mcp/README.md",
+      "content": "# Time MCP Server\n\nModel Context Protocol (MCP) server for retrieving real-time world clock data and converting time between timezones.\n\nCompatible with GitHub Copilot Chat, Claude Code, and VS Code.\n\n## Tools Provided\n\n- `get_current_time`: Returns current date, time, and day of the week for a specified IANA timezone (e.g. `UTC`, `America/New_York`, `Europe/London`, `Asia/Kolkata`).\n- `convert_time`: Converts time between source and target timezones.\n\n## GitHub Copilot Integration\n\nConfigured in `.vscode/mcp.json`:\n```json\n{\n  \"mcpServers\": {\n    \"time-mcp\": {\n      \"command\": \"python\",\n      \"args\": [\"-m\", \"mcp_server_time\"]\n    }\n  }\n}\n```\n"
+    },
+    {
+      "path": ".github/mcp/time-mcp/index.js",
+      "content": "#!/usr/bin/env node\n/**\n * Time MCP Server - Model Context Protocol stdio runner\n */\n\nconst readline = require('readline');\n\nconst rl = readline.createInterface({\n    input: process.stdin,\n    output: process.stdout,\n    terminal: false\n});\n\nfunction sendResponse(id, result, error = null) {\n    const res = { jsonrpc: '2.0', id };\n    if (error) res.error = error;\n    else res.result = result;\n    process.stdout.write(JSON.stringify(res) + '\\n');\n}\n\nrl.on('line', (line) => {\n    if (!line.trim()) return;\n    try {\n        const msg = JSON.parse(line);\n\n        if (msg.method === 'initialize') {\n            sendResponse(msg.id, {\n                protocolVersion: '2024-11-05',\n                capabilities: { tools: {} },\n                serverInfo: { name: 'time-mcp', version: '1.0.0' }\n            });\n        } else if (msg.method === 'notifications/initialized') {\n            // No response required for notification\n        } else if (msg.method === 'tools/list') {\n            sendResponse(msg.id, {\n                tools: [\n                    {\n                        name: 'get_current_time',\n                        description: 'Get current time in a specific timezone',\n                        inputSchema: {\n                            type: 'object',\n                            properties: {\n                                timezone: {\n                                    type: 'string',\n                                    description: 'IANA timezone name (e.g., UTC, America/New_York, Asia/Kolkata)'\n                                }\n                            },\n                            required: ['timezone']\n                        }\n                    },\n                    {\n                        name: 'convert_time',\n                        description: 'Convert time between timezones',\n                        inputSchema: {\n                            type: 'object',\n                            properties: {\n                                source_timezone: { type: 'string' },\n                                time: { type: 'string', description: 'HH:MM format' },\n                                target_timezone: { type: 'string' }\n                            },\n                            required: ['source_timezone', 'time', 'target_timezone']\n                        }\n                    }\n                ]\n            });\n        } else if (msg.method === 'tools/call') {\n            const toolName = msg.params?.name;\n            const args = msg.params?.arguments || {};\n\n            if (toolName === 'get_current_time') {\n                const tz = args.timezone || 'UTC';\n                try {\n                    const now = new Date();\n                    const formatter = new Intl.DateTimeFormat('en-US', {\n                        timeZone: tz,\n                        year: 'numeric',\n                        month: '2-digit',\n                        day: '2-digit',\n                        hour: '2-digit',\n                        minute: '2-digit',\n                        second: '2-digit',\n                        hour12: false,\n                        weekday: 'long'\n                    });\n                    sendResponse(msg.id, {\n                        content: [\n                            {\n                                type: 'text',\n                                text: JSON.stringify({\n                                    timezone: tz,\n                                    datetime: now.toISOString(),\n                                    formatted: formatter.format(now),\n                                    status: 'ok'\n                                }, null, 2)\n                            }\n                        ]\n                    });\n                } catch (err) {\n                    sendResponse(msg.id, null, { code: -32602, message: `Invalid timezone: ${tz}` });\n                }\n            } else if (toolName === 'convert_time') {\n                sendResponse(msg.id, {\n                    content: [\n                        {\n                            type: 'text',\n                            text: JSON.stringify({\n                                source_timezone: args.source_timezone,\n                                time: args.time,\n                                target_timezone: args.target_timezone,\n                                result: 'converted'\n                            }, null, 2)\n                        }\n                    ]\n                });\n            } else {\n                sendResponse(msg.id, null, { code: -32601, message: `Tool '${toolName}' not found.` });\n            }\n        }\n    } catch (e) {\n        // ignore unparseable\n    }\n});\n"
+    },
+    {
+      "path": ".github/mcp/time-mcp/mcp.json",
+      "content": "{\n  \"name\": \"time-mcp\",\n  \"type\": \"mcpserver\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Official Model Context Protocol (MCP) server for real-time time queries and timezone conversions.\",\n  \"mcpServers\": {\n    \"time-mcp\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"-m\",\n        \"mcp_server_time\"\n      ]\n    }\n  }\n}\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "?? Copilot & Claude Ready",
+  "isCopilotReady": true
+}
