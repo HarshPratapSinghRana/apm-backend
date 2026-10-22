@@ -5534,5 +5534,19 @@
     "metadata": "Workspace MODIFY: .agents",
     "workspace": "harness-studio",
     "timestamp": "2026-10-22T13:45:05.498Z"
+  },
+  {
+    "userId": "rishabhy@maqsoftware.com",
+    "userEmail": "rishabhy@maqsoftware.com",
+    "artifactId": "company-apm",
+    "artifactName": "company-apm",
+    "artifactType": "sso_microsoft",
+    "artifactVersion": "1.0.0",
+    "eventType": "ACTIVATED",
+    "action": "ACTIVATED",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "workspace": "harness-studio",
+    "timestamp": "2026-10-22T13:49:44.139Z"
   }
 ]
