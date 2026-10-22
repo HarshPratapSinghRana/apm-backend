@@ -3606,5 +3606,19 @@
     "metadata": "Workspace OPEN: SKILL.md",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-22T06:23:45.729Z"
+  },
+  {
+    "eventType": "DOWNLOAD",
+    "action": "DOWNLOAD",
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "ponytail",
+    "artifactName": "ponytail",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "platform": "CompanyApm",
+    "source": "VS_CODE",
+    "timestamp": "2026-10-22T06:24:21.285Z",
+    "workspace": "c:\\Users\\HarshPratapSinghRana\\Downloads\\ponytail-v1.0.0.zip"
   }
 ]
