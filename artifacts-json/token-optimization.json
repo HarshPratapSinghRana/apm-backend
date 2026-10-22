@@ -1,0 +1,37 @@
+{
+  "name": "token-optimization",
+  "title": "Token Optimization (Context Budget & Search)",
+  "version": "1.0.0",
+  "type": "skill",
+  "category": "Token Optimization",
+  "domain": "Token Optimization",
+  "description": "Token-aware context budgeting, progressive disclosure, targeted search, selective MCP loading, and proactive compaction for large codebases.",
+  "author": "i-onlabs",
+  "source": "COMMUNITY",
+  "isCertified": true,
+  "downloads": 3890,
+  "rating": 4.8,
+  "techStack": [
+    "Claude Code",
+    "Context Management",
+    "MCP Optimization",
+    "Prompt Caching"
+  ],
+  "keyFeatures": [
+    "Context budget monitoring",
+    "Progressive file disclosure",
+    "Selective MCP disabling",
+    "Timely compaction at 70%"
+  ],
+  "githubRepo": "https://github.com/i-onlabs/claude-code-skills",
+  "files": [
+    {
+      "path": "skills/token-optimization/SKILL.md",
+      "content": "---\nname: token-optimization\ndescription: Token-aware patterns for efficient context usage. Activates when working on long sessions, large codebases, or when context pressure is detected. Provides strategies for reducing token consumption while maintaining quality.\n---\n\n# Token Optimization Skill\n\n## When This Skill Activates\n\nThis skill provides methodology for efficient token usage:\n- Long-running sessions approaching context limits\n- Large codebase exploration\n- Multiple file modifications\n- Complex multi-step tasks\n\n## Token Awareness\n\n### Context Budget\n- Total context: ~200K tokens\n- Practical limit: ~160K (leave buffer)\n- Compact at: 70% capacity\n- Avoid complex work at: >80% capacity\n\n### Token Costs (Approximate)\n| Content | Tokens |\n|---------|--------|\n| 1 line code | ~10-20 |\n| 1 page text | ~500 |\n| Average file | ~500-2000 |\n| CLAUDE.md | ~3000 |\n| Full conversation | Grows rapidly |\n\n## Optimization Strategies\n\n### 1. Progressive Disclosure\nInstead of loading everything upfront:\n```\nBad:  Read all 50 files at once\nGood: Read index → identify relevant → read specific\n```\n\n### 2. Targeted Search\nUse efficient search patterns:\n```\nBad:  Read entire directory tree\nGood: Glob pattern → Grep specific → Read matches\n```\n\n### 3. Minimal Context\nInclude only what's needed:\n```\nBad:  Include entire file for small change\nGood: Include function + surrounding context\n```\n\n### 4. Structured Summaries\nFor long outputs:\n```\nBad:  Full test output (10K tokens)\nGood: Summary + key failures (500 tokens)\n```\n\n### 5. Timely Compaction\nMonitor and compact proactively:\n```\nBad:  Wait for \"Context low\" warning\nGood: Compact at 70% after task completion\n```\n\n## MCP Token Management\n\n### Problem: MCP Server Token Drain\nMCP tools can consume 30-60K tokens before conversation starts.\n\n### Solution: Selective Loading\n- Only enable needed MCP servers per session\n- Disable unused servers when not needed\n- Use `claude mcp list` to audit\n\n### Memory Server Strategy\n| Server | When to Use |\n|--------|-------------|\n| memory-keeper | Session continuity, compaction recovery |\n| server-memory | Long-term key-value storage |\n| Neither | Short, focused tasks |\n\n## Compaction Strategy\n\n### Pre-Compaction Checklist\n1. ✅ Critical context saved to memory MCP\n2. ✅ Important decisions documented\n3. ✅ Current task state captured\n4. ✅ Key file paths noted\n\n### Post-Compaction Recovery\n1. Load context from memory MCP\n2. Re-read critical files if needed\n3. Check decision-audit.jsonl for context\n4. Resume task from documented state\n\n## Code Patterns\n\n### Efficient File Operations\n```python\n# Bad: Read all then filter\nfor f in all_files:\n    content = read(f)\n    if \"pattern\" in content:\n        process(f)\n\n# Good: Search first then read\nmatches = grep(\"pattern\", all_files)\nfor f in matches:\n    content = read(f)\n    process(f)\n```\n\n### Efficient Updates\n```python\n# Bad: Full file replacement\ncontent = read(file)\nnew_content = content.replace(old, new)\nwrite(file, new_content)\n\n# Good: Targeted edit\nedit(file, old_string=old, new_string=new)\n```\n\n### Efficient Exploration\n```python\n# Bad: Deep recursive exploration\nexplore_all_directories(root)\n\n# Good: Breadth-first with limits\nlist_top_level(root)\nidentify_relevant_dirs()\nexplore_targeted(relevant_only)\n```\n\n## Session Management\n\n### Long Session Strategy\n1. **Start**: Load minimal context\n2. **Work**: Add context as needed\n3. **Checkpoint**: Save state periodically\n4. **Compact**: At 70% or task completion\n5. **Recover**: Restore from checkpoint\n\n### Task Batching\n```\nBad:  One massive continuous session\nGood: Multiple focused sessions with clear handoffs\n```\n\n## Integration with Hooks\n\n### Pre-Compact Hook\nAutomatically triggered when context low:\n- Backs up transcript\n- Creates recovery index\n- Logs compaction event\n\n### Session Start Hook\nRestores context efficiently:\n- Loads minimal git status\n- Checks for recovery context\n- Provides continuation hints\n\n## Metrics to Monitor\n\nTrack these for optimization:\n- Session length before compaction\n- Files read per task\n- Tool calls per operation\n- Recovery success rate\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Official GitHub Skill",
+  "usabilityBadge": "⚡ Token Optimization",
+  "isCopilotReady": true
+}

@@ -1,0 +1,37 @@
+{
+  "name": "token-hygiene",
+  "title": "Token Hygiene (Context Waste Audit)",
+  "version": "1.1.0",
+  "type": "skill",
+  "category": "Token Optimization",
+  "domain": "Token Optimization",
+  "description": "Audit active sessions for token waste: CLAUDE.md size, active MCP server schema overhead (~1,300 tokens/server), cache health, and model tier checks.",
+  "author": "leogallego",
+  "source": "COMMUNITY",
+  "isCertified": true,
+  "downloads": 4210,
+  "rating": 4.9,
+  "techStack": [
+    "Context Waste Audit",
+    "Claude Code",
+    "Token Hygiene",
+    "Settings Audit"
+  ],
+  "keyFeatures": [
+    "CLAUDE.md size auditor",
+    "MCP schema overhead estimator",
+    "Prompt cache health monitor",
+    "Model tier recommendation"
+  ],
+  "githubRepo": "https://github.com/leogallego/claude-skills-tokens",
+  "files": [
+    {
+      "path": "skills/token-hygiene/SKILL.md",
+      "content": "---\nname: token-hygiene\ndescription: Audit current session for token waste. Use when context feels slow, costs seem high, or before starting expensive work. Shows CLAUDE.md size, active MCP servers, skill count, and recommends cuts. Use when user says \"check tokens\", \"audit context\", \"why is this expensive\", or \"token hygiene\".\nlicense: Apache-2.0\ncompatibility: Designed for Claude Code\nmetadata:\n  author: leogallego\n  version: \"1.1\"\n---\n\n# Token Hygiene Audit\n\nRun these checks in order. Report findings as a table, then recommend top 3 actions.\n\n## 1. CLAUDE.md Overhead\n\n```bash\nwc -l ~/.claude/CLAUDE.md 2>/dev/null\n# Also check project-level\nfind . -maxdepth 2 -name \"CLAUDE.md\" -exec wc -l {} +\n```\n\n- Target: under 200 lines global, under 50 lines project\n- Flag any over target with estimated per-message token cost (~5 tokens/line)\n\n## 2. Active MCP Servers\n\nCount servers contributing tool schemas to this session. Check:\n- Project `.mcp.json` server count\n- Which servers have `defer_loading: true`\n- Estimate: ~1,300 tokens per server (21 tools), ~46,000 for GitHub MCP alone\n\nReport: `N servers active, ~X estimated schema tokens`\n\n## 3. Skill Inventory\n\n```bash\nls ~/.claude/skills/ | wc -l\nfind ~/.claude/skills/ -name \"SKILL.md\" -exec wc -l {} + | sort -rn | head -10\n```\n\n- Flag skills over 200 lines\n- Flag skills missing `disable-model-invocation` that are tool-driven (not conversational)\n- Count enabled plugins in settings.json\n\n## 4. Context Utilization\n\nAdvise user to run `/context` to see breakdown. Interpret the output:\n- Over 50% = quality degradation starting, recommend `/compact`\n- Over 70% = recommend `/compact [focus]` with specific preservation instructions\n- Over 83% = auto-compaction imminent, `/compact` now or `/clear` if switching tasks\n\n## 5. Cache Health\n\nCheck for recent cache-breaking actions:\n- Was `/model` or `/effort` changed this session?\n- Were MCP servers connected/disconnected?\n- Was `/compact` run recently?\n\nIf yes, note that cache is rebuilding and next few turns will be more expensive.\n\n## 6. Model Tier Check\n\n- What model is the session currently on?\n- Is `/fast` mode enabled? It runs at frontier-model cost for faster output — flag if left on for routine, non-urgent work.\n- If the current model is the most expensive available tier, sanity-check it against the task: boilerplate/routine work should default cheaper and escalate only on demonstrated need (see token-optimizer's `references/model-selection.md` for the full ladder).\n\n## 7. Session Pattern Check\n\n- How many turns so far? (Over 30 = recommend `/clear` + progress.md)\n- Any large unfiltered bash output in history? (Recommend PostToolUse hooks)\n- Are there unused files loaded into context? (Recommend line-range reads)\n\n## Report Format\n\n```\n## Token Hygiene Report\n\n| Check | Status | Value | Action |\n|-------|--------|-------|--------|\n| CLAUDE.md | OK/WARN | N lines | Trim to X |\n| MCP Servers | OK/WARN | N active | Defer X |\n| Skills | OK/WARN | N loaded | Override X |\n| Context | OK/WARN | N% used | /compact |\n| Cache | OK/WARN | warm/cold | Avoid switching |\n| Model tier | OK/WARN | model (+fast?) | Downgrade for routine work |\n| Session age | OK/WARN | N turns | /clear if >30 |\n\n### Top 3 Recommendations\n1. ...\n2. ...\n3. ...\n```\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Official GitHub Skill",
+  "usabilityBadge": "⚡ Token Optimization",
+  "isCopilotReady": true
+}
