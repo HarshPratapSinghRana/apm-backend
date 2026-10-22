@@ -3684,5 +3684,19 @@
     "metadata": "Workspace CREATE: CLAUDE.md",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-22T06:25:58.526Z"
+  },
+  {
+    "artifactId": "speckit-agent-context-update",
+    "artifactName": "speckit-agent-context-update",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792650549855",
+    "metadata": "Workspace MODIFY: skills",
+    "workspace": "ado-connection-app",
+    "timestamp": "2026-10-22T06:29:09.855Z"
   }
 ]
