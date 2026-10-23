@@ -5640,5 +5640,53 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "ado-connection-app",
     "timestamp": "2026-10-23T03:11:14.634Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792671166728",
+    "metadata": "Workspace MODIFY: .agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-22T12:12:46.728Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792671169458",
+    "metadata": "Workspace MODIFY: catalog.json",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-22T12:12:49.458Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792691282842",
+    "metadata": "Workspace MODIFY: .agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-22T17:48:02.842Z"
   }
 ]
