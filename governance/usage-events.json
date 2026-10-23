@@ -5846,5 +5846,53 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "ado-connection-app",
     "timestamp": "2026-10-23T05:10:27.859Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "apm-active-production-monitoring",
+    "artifactName": "apm-active-production-monitoring",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792732714326",
+    "metadata": "Workspace CREATE: SKILL.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T05:18:34.326Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "cloud-finops-sentinel",
+    "artifactName": "cloud-finops-sentinel",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792732714330",
+    "metadata": "Workspace CREATE: agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T05:18:34.330Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792732714465",
+    "metadata": "Workspace CREATE: SKILL.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T05:18:34.465Z"
   }
 ]
