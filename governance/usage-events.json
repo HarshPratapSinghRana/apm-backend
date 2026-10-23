@@ -7404,5 +7404,19 @@
     "metadata": "Workspace MODIFY: .agents",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-23T10:00:49.699Z"
+  },
+  {
+    "artifactId": "github-assistant",
+    "artifactName": "github-assistant",
+    "artifactType": "plugin",
+    "artifactVersion": "1.0.0",
+    "eventType": "INVOKE",
+    "action": "INVOKE",
+    "source": "GITHUB_COPILOT",
+    "platform": "GitHubCopilot",
+    "sessionId": "agent-1792750042935",
+    "metadata": "Triggered: github (from agenthost.log)",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T10:07:22.935Z"
   }
 ]
