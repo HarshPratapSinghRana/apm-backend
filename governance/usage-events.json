@@ -5784,5 +5784,21 @@
     "metadata": "Workspace MODIFY: catalog.json",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-23T04:01:17.374Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "chrome-devtools-mcp",
+    "artifactName": "chrome-devtools-mcp",
+    "artifactType": "mcpserver",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792728959995",
+    "metadata": "Workspace OPEN: package.json",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T04:15:59.995Z"
   }
 ]
