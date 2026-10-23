@@ -6814,5 +6814,37 @@
     "metadata": "Workspace CREATE: tests",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-23T09:12:07.645Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "playwright",
+    "artifactName": "playwright",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792746749791",
+    "metadata": "Workspace CREATE: run_playwright.py",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T09:12:29.791Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "playwright",
+    "artifactName": "playwright",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792746749794",
+    "metadata": "Workspace CREATE: run_playwright.py",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T09:12:29.794Z"
   }
 ]
