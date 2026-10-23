@@ -7196,5 +7196,21 @@
     "metadata": "Workspace CREATE: playwright.agent.md",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-23T09:18:06.778Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "playwright",
+    "artifactName": "playwright",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1792747138450",
+    "metadata": "Workspace OPEN: playwright.json",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-23T09:18:58.450Z"
   }
 ]
