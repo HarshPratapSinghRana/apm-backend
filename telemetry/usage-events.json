@@ -7858,5 +7858,21 @@
     "metadata": "Workspace OPEN: package.json",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-26T07:56:54.216Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "ponytail",
+    "artifactName": "ponytail",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1793001810621",
+    "metadata": "Workspace OPEN: README.md",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-26T08:03:30.621Z"
   }
 ]
