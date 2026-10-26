@@ -8000,5 +8000,21 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "ado-connection-app",
     "timestamp": "2026-10-26T08:39:29.988Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1793005650998",
+    "metadata": "Workspace MODIFY: .agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-26T09:07:30.998Z"
   }
 ]
