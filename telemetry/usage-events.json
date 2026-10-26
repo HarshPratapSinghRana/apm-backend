@@ -7748,5 +7748,19 @@
     "metadata": "Workspace OPEN: package.json",
     "workspace": "ecommerce-app",
     "timestamp": "2026-10-26T07:33:44.421Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "company-apm",
+    "artifactName": "company-apm",
+    "artifactType": "sso_microsoft",
+    "artifactVersion": "1.0.0",
+    "eventType": "ACTIVATED",
+    "action": "ACTIVATED",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-26T07:43:09.845Z"
   }
 ]
