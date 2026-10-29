@@ -9762,5 +9762,37 @@
     "metadata": "Workspace MODIFY: .github",
     "workspace": "harness-studio",
     "timestamp": "2026-10-29T07:55:48.959Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1793261958584",
+    "metadata": "Workspace MODIFY: .agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-29T08:19:18.584Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "README",
+    "artifactName": "README",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1793261958803",
+    "metadata": "Workspace MODIFY: .github",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-10-29T08:19:18.803Z"
   }
 ]
