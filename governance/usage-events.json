@@ -12132,5 +12132,37 @@
     "metadata": "Workspace MODIFY: skills",
     "workspace": "ecommerce-app",
     "timestamp": "2026-11-03T11:53:35.668Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1793763225639",
+    "metadata": "Workspace MODIFY: .agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-11-04T03:33:45.639Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "README",
+    "artifactName": "README",
+    "artifactType": "agent",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1793763225838",
+    "metadata": "Workspace MODIFY: agents",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-11-04T03:33:45.838Z"
   }
 ]
