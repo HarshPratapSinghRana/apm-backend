@@ -1,0 +1,13 @@
+{
+  "name": "non-existent-artifact",
+  "version": "1.0.0",
+  "artifactType": "agent",
+  "installedAt": "2026-10-16T08:20:40.714Z",
+  "placedFiles": [
+    ".github/agents/non-existent-artifact.agent.md",
+    ".agents/skills/non-existent-artifact/SKILL.md",
+    ".github/agents/SKILL.md",
+    "cip.yml",
+    "README.md"
+  ]
+}

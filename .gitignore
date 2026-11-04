@@ -1,0 +1,56 @@
+# Dependencies and build outputs
+node_modules/
+build/
+dist/
+out/
+engineering-commons-vscode/out/
+*.vsix
+*.zip
+.vercel
+cip_modules/
+.DS_Store
+
+# .NET Build artifacts
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+TestResults/
+*.exe
+*.dll
+*.pdb
+
+# Environment files and credentials (CRITICAL: never commit real secrets)
+.env
+.env.*
+*.env
+**/.env
+**/.env.*
+
+# Scratch and temporary directories
+scratch/
+
+# Logs, test execution traces, and scanner outputs
+*.log
+logs/
+strix_runs/
+strix-test/
+gitleaks*.json
+tools/
+
+# Architecture and documentation exports
+engineering-commons-architecture.*
+generate_final_architecture.py
+ENGINEERING-COMMONS-ARCHITECTURE.md
+convert_svg_to_png.py
+temp_render.html
+render-diagram.html
+
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+

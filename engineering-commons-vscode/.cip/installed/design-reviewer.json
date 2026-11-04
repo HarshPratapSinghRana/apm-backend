@@ -1,0 +1,9 @@
+{
+  "name": "design-reviewer",
+  "version": "1.0.0",
+  "artifactType": "agent",
+  "installedAt": "2026-10-26T10:43:20.499Z",
+  "placedFiles": [
+    ".github/agents/design-reviewer.agent.md"
+  ]
+}

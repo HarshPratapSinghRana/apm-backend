@@ -1,0 +1,335 @@
+{
+  "name": "engineering-commons-vscode",
+  "displayName": "Engineering Commons",
+  "description": "VS Code extension for Engineering Commons CLI with usage tracking, AI artifacts registry, and private marketplace integration",
+  "version": "1.2.8",
+  "publisher": "company",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/company/engineering-commons-vscode"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/src/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:engineering-commons-explorer",
+    "onCommand:engineeringCommons.login",
+    "onCommand:engineeringCommons.loginSso",
+    "onCommand:engineeringCommons.list",
+    "onCommand:engineeringCommons.showArtifactDetails",
+    "onCommand:engineeringCommons.install",
+    "onCommand:engineeringCommons.downloadZip",
+    "onCommand:engineeringCommons.update",
+    "onCommand:engineeringCommons.contribute",
+    "onCommand:engineeringCommons.visibility",
+    "onCommand:engineeringCommons.review",
+    "onCommand:engineeringCommons.openThread",
+    "onCommand:engineeringCommons.openUsageDashboard",
+    "onCommand:engineeringCommons.openNotificationsTab",
+    "onCommand:engineeringCommons.refreshTree",
+    "onCommand:engineeringCommons.installCli",
+    "onCommand:engineeringCommons.requestAccess",
+    "onCommand:engineeringCommons.accessStatus",
+    "onCommand:engineeringCommons.manageAccessRequests",
+    "onCommand:engineeringCommons.approveAccessRequest",
+    "onCommand:engineeringCommons.rejectAccessRequest",
+    "onCommand:engineeringCommons.revokeAccess",
+    "onCommand:engineeringCommons.certifyReviewer",
+    "onCommand:engineeringCommons.checkEmailStatus",
+    "onCommand:engineeringCommons.deleteArtifact",
+    "onCommand:engineeringCommons.setBackendUrl",
+    "onCommand:engineeringCommons.findArtifact"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "engineering-commons-activitybar",
+          "title": "Engineering Commons",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "engineering-commons-activitybar": [
+        {
+          "type": "webview",
+          "id": "engineering-commons-explorer",
+          "name": "Engineering Commons"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "engineeringCommons.findArtifact",
+        "title": "Engineering Commons: Find & Match AI Artifacts (Copilot Advisor)",
+        "icon": "$(search)"
+      },
+      {
+        "command": "engineeringCommons.login",
+        "title": "Engineering Commons: Login / Switch Account",
+        "icon": "$(account)"
+      },
+      {
+        "command": "engineeringCommons.loginSso",
+        "title": "Engineering Commons: Sign in with MAQ Microsoft SSO",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "engineeringCommons.logout",
+        "title": "Engineering Commons: Logout",
+        "icon": "$(sign-out)"
+      },
+      {
+        "command": "engineeringCommons.list",
+        "title": "Engineering Commons: List Artifacts"
+      },
+      {
+        "command": "engineeringCommons.showArtifactDetails",
+        "title": "Engineering Commons: Show Artifact Details",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "engineeringCommons.install",
+        "title": "Engineering Commons: Install Artifact",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "engineeringCommons.downloadZip",
+        "title": "Engineering Commons: Download ZIP File (for Personal VM)",
+        "icon": "$(file-zip)"
+      },
+      {
+        "command": "engineeringCommons.update",
+        "title": "Engineering Commons: Update Artifact",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "engineeringCommons.contribute",
+        "title": "Engineering Commons: Contribute"
+      },
+      {
+        "command": "engineeringCommons.visibility",
+        "title": "Engineering Commons: Change Artifact Visibility",
+        "icon": "$(lock)"
+      },
+      {
+        "command": "engineeringCommons.review",
+        "title": "Engineering Commons: Review Submission"
+      },
+      {
+        "command": "engineeringCommons.openThread",
+        "title": "Engineering Commons: Open Review Thread"
+      },
+      {
+        "command": "engineeringCommons.openNotification",
+        "title": "Engineering Commons: Open Notification"
+      },
+      {
+        "command": "engineeringCommons.deleteNotification",
+        "title": "Engineering Commons: Delete Notification",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "engineeringCommons.clearNotifications",
+        "title": "Engineering Commons: Clear All Notifications",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "engineeringCommons.mySubmissions",
+        "title": "Engineering Commons: View My Submissions"
+      },
+      {
+        "command": "engineeringCommons.openNotificationsTab",
+        "title": "Engineering Commons: Notifications",
+        "icon": "$(bell)"
+      },
+      {
+        "command": "engineeringCommons.openUsageDashboard",
+        "title": "Engineering Commons: Open Usage Analytics Dashboard",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "engineeringCommons.setBackendUrl",
+        "title": "Engineering Commons: Configure Backend Server / Cloudflare Tunnel URL",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "engineeringCommons.installCli",
+        "title": "Engineering Commons: Install / Update Global CLI in System PATH",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "engineeringCommons.refreshTree",
+        "title": "Refresh Artifacts",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "engineeringCommons.requestAccess",
+        "title": "Engineering Commons: Request Reviewer Access",
+        "icon": "$(key)"
+      },
+      {
+        "command": "engineeringCommons.accessStatus",
+        "title": "Engineering Commons: Check Access Request Status",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "engineeringCommons.manageAccessRequests",
+        "title": "Engineering Commons: Manage Access Requests (Admin)",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "engineeringCommons.approveAccessRequest",
+        "title": "Engineering Commons: Approve Access Request (Admin)"
+      },
+      {
+        "command": "engineeringCommons.rejectAccessRequest",
+        "title": "Engineering Commons: Reject Access Request (Admin)"
+      },
+      {
+        "command": "engineeringCommons.deleteArtifact",
+        "title": "Engineering Commons (Admin): Delete Artifact Permanently",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "engineeringCommons.revokeAccess",
+        "title": "Engineering Commons: Revoke Reviewer Access (Admin)"
+      },
+      {
+        "command": "engineeringCommons.certifyReviewer",
+        "title": "Engineering Commons: Certify Reviewer (Admin)"
+      },
+      {
+        "command": "engineeringCommons.checkEmailStatus",
+        "title": "Engineering Commons: Check Email Notification Service / View Outbox",
+        "icon": "$(mail)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "engineeringCommons.openNotificationsTab",
+          "when": "view == engineering-commons-explorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "engineeringCommons.refreshTree",
+          "when": "view == engineering-commons-explorer",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "engineeringCommons.deleteNotification",
+          "when": "view == engineering-commons-explorer && viewItem == notificationItem",
+          "group": "inline@1"
+        },
+        {
+          "command": "engineeringCommons.deleteNotification",
+          "when": "view == engineering-commons-explorer && viewItem == notificationItem",
+          "group": "1_modification@1"
+        },
+        {
+          "command": "engineeringCommons.install",
+          "when": "view == engineering-commons-explorer && viewItem == artifactItem",
+          "group": "inline@1"
+        },
+        {
+          "command": "engineeringCommons.showArtifactDetails",
+          "when": "view == engineering-commons-explorer && viewItem == artifactItem",
+          "group": "inline@2"
+        },
+        {
+          "command": "engineeringCommons.install",
+          "when": "view == engineering-commons-explorer && viewItem == artifactItem",
+          "group": "1_modification@1"
+        },
+        {
+          "command": "engineeringCommons.downloadZip",
+          "when": "view == engineering-commons-explorer && viewItem == artifactItem",
+          "group": "1_modification@1.5"
+        },
+        {
+          "command": "engineeringCommons.update",
+          "when": "view == engineering-commons-explorer && viewItem == artifactItem",
+          "group": "1_modification@2"
+        },
+        {
+          "command": "engineeringCommons.showArtifactDetails",
+          "when": "view == engineering-commons-explorer && viewItem == artifactItem",
+          "group": "1_modification@3"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Engineering Commons",
+      "properties": {
+        "engineeringCommons.cliPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional custom path or command to invoke the Engineering Commons CLI."
+        },
+        "engineeringCommons.backendUrl": {
+          "type": "string",
+          "default": "https://ecommerce-app-chi-wine.vercel.app",
+          "description": "Base URL of the Engineering Commons Backend for usage tracking."
+        },
+        "engineeringCommons.notificationPollingIntervalMinutes": {
+          "type": "number",
+          "default": 5,
+          "description": "Interval in minutes for checking marketplace review notifications."
+        },
+        "engineeringCommons.notifications.pollingInterval": {
+          "type": "number",
+          "default": 5,
+          "description": "Interval in minutes for checking marketplace review notifications."
+        },
+        "engineeringCommons.ssoClientId": {
+          "type": "string",
+          "default": "a5f3ba81-4c95-4c74-afd9-38b72cf39156",
+          "description": "Microsoft Entra ID Application (Client) ID for Engineering Commons SSO."
+        },
+        "engineeringCommons.ssoTenantId": {
+          "type": "string",
+          "default": "e4d98dd2-9199-42e5-ba8b-da3e763ede2e",
+          "description": "Microsoft Entra ID Directory (Tenant) ID for Engineering Commons SSO."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "echo prepublish done",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --no-dependencies",
+    "test": "npm run compile && mocha --timeout 10000 -r ./out/test/setup.js \"out/test/**/*.test.js\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^4.0.0",
+    "chai": "^4.4.1",
+    "mocha": "^12.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "overrides": {
+    "@azure/msal-node": "^7.1.1",
+    "braces": "^3.0.3",
+    "serialize-javascript": "^7.1.3"
+  }
+}

@@ -1,0 +1,69 @@
+# ============================================
+# CIP Package Configuration for AI Artifacts
+# ============================================
+# This template shows how to structure your AI artifact package
+# for submission to the marketplace via CIP
+
+# Package Metadata
+name: ai-chatbot-agent  # Change to your artifact name
+version: 1.0.0
+description: "AI-powered chatbot agent for customer support with multi-model support"
+author: "Your Name"
+license: MIT
+
+# Target platforms
+targets:
+  - copilot
+  - claude
+  - vscode
+
+# Package dependencies (if using other CIP packages)
+dependencies:
+  cip: []
+  mcp: []
+
+# Auto-include all files in this directory
+includes: auto
+
+# Development dependencies
+devDependencies:
+  cip: []
+
+# Scripts for build/test
+scripts:
+  build: "echo Building AI artifact package"
+  test: "echo Testing AI artifact package"
+
+# Marketplace configuration
+marketplace:
+  # Owner/repository info
+  owner:
+    name: harshpratapsinghrana1  # Your GitHub username
+    url: https://github.com/harshpratapsinghrana1
+
+  # Build settings
+  build:
+    tagPattern: "v{version}"
+
+  # Output targets and formats
+  outputs:
+    claude: {}    # Publish to Claude marketplace
+    # codex: {}    # Uncomment to publish to Codex
+
+  # Main package definition
+  packages:
+    - name: ai-chatbot-agent
+      source: ./
+      version: 1.0.0
+      # Optional: custom output path
+      # path: dist/
+
+# ============================================
+# How to use this template:
+# ============================================
+# 1. Copy this file to your AI artifact directory: your-ai-artifact/cip.yml
+# 2. Update: name, version, description, author
+# 3. Add your artifact content (.md files, manifest, etc.) to same directory
+# 4. Build: cip pack --marketplace=claude
+# 5. Publish: git push && cip publish
+# ============================================

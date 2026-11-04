@@ -1,0 +1,10 @@
+**/.git
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/scratch
+**/*.db
+**/*.db-shm
+**/*.db-wal
+.env

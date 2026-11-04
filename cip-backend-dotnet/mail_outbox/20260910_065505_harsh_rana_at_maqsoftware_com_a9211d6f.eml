@@ -1,0 +1,30 @@
+﻿X-Unsent: 1
+Date: Thu, 10 Sep 2026 06:55:05 GMT
+From: Engineering Commons <notifications@engineering-commons.internal>
+To: <harsh.rana@maqsoftware.com>
+Subject: [Engineering Commons] Action Required: Reviewer Access Request from harsh.rana@maqsoftware.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hello Admin,
+
+A user has requested elevated role access in Engineering Commons:
+
+  User:           harsh.rana@maqsoftware.com
+  Requested Role: REVIEWER
+  Request ID:     c99aa985-fff2-4384-8f20-936b97aa2e85
+  Timestamp:      2026-09-10 06:55:05Z
+  Reason:         myself
+
+To approve this request via CLI:
+  engineering-commons approve-access c99aa985-fff2-4384-8f20-936b97aa2e85
+
+Or reject:
+  engineering-commons reject-access c99aa985-fff2-4384-8f20-936b97aa2e85
+
+Or manage via VS Code:
+  Open Engineering Commons Explorer -> Admin Access Governance
+
+Best regards,
+Engineering Commons System

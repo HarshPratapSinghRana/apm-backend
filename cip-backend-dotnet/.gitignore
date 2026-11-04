@@ -1,0 +1,7 @@
+# Ignore local secrets and build output
+secrets.json
+*.usersecrets
+bin/
+obj/
+#.env local environment file
+.env

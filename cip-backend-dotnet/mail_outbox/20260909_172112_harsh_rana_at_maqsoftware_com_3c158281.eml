@@ -1,0 +1,30 @@
+﻿X-Unsent: 1
+Date: Wed, 09 Sep 2026 17:21:12 GMT
+From: Engineering Commons <notifications@engineering-commons.internal>
+To: <harsh.rana@maqsoftware.com>
+Subject: [Engineering Commons] Action Required: Reviewer Access Request from consumer@company.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Hello Admin,
+
+A user has requested elevated role access in Engineering Commons:
+
+  User:           consumer@company.com
+  Requested Role: REVIEWER
+  Request ID:     eae37b33-5c69-42f3-9e9a-828e615bfaba
+  Timestamp:      2026-09-09 17:21:12Z
+  Reason:         Need reviewer access to inspect AI artifacts and prompts
+
+To approve this request via CLI:
+  engineering-commons approve-access eae37b33-5c69-42f3-9e9a-828e615bfaba
+
+Or reject:
+  engineering-commons reject-access eae37b33-5c69-42f3-9e9a-828e615bfaba
+
+Or manage via VS Code:
+  Open Engineering Commons Explorer -> Admin Access Governance
+
+Best regards,
+Engineering Commons System
