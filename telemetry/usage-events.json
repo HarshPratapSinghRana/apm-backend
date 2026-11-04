@@ -12274,5 +12274,19 @@
     "metadata": "Triggered: IDE (from 1-Antigravity LS.log)",
     "workspace": "ecommerce-app",
     "timestamp": "2026-11-04T04:03:47.320Z"
+  },
+  {
+    "artifactId": "antigravity_guide",
+    "artifactName": "antigravity_guide",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "INVOKE",
+    "action": "INVOKE",
+    "source": "ANTIGRAVITY",
+    "platform": "Antigravity",
+    "sessionId": "agent-1793765033324",
+    "metadata": "Triggered: IDE (from 1-Antigravity LS.log)",
+    "workspace": "ecommerce-app",
+    "timestamp": "2026-11-04T04:03:53.324Z"
   }
 ]
