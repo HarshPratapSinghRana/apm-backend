@@ -584,7 +584,12 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
         }
 
         var projectPart = !string.IsNullOrEmpty(_opts.Project) ? $"{_opts.Project}/" : "";
-        var path = $"/artifacts/{artifactId}.md";
+        var cleanArtifactId = System.Text.RegularExpressions.Regex.Replace(artifactId ?? string.Empty, @"[^a-zA-Z0-9_\-\.]", "_");
+        if (string.IsNullOrWhiteSpace(cleanArtifactId) || cleanArtifactId.Contains(".."))
+        {
+            cleanArtifactId = "artifact-" + Guid.NewGuid().ToString("N").Substring(0, 8);
+        }
+        var path = $"/artifacts/{cleanArtifactId}.md";
         var branchName = _opts.Branch ?? "main";
 
         // Determine if file exists to choose add vs edit changeType

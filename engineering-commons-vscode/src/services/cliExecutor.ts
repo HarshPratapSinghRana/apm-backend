@@ -103,11 +103,12 @@ export class DefaultCliExecutor implements ICliExecutor {
             const rawBackendUrl = config?.get<string>('backendUrl') || process.env.ENGINEERING_COMMONS_BACKEND_URL;
             const backendUrl = (rawBackendUrl && !rawBackendUrl.includes('localhost'))
                 ? rawBackendUrl.trim().replace(/\/+$/, '')
-                : 'https://ecommerce-app-chi-wine.vercel.app';
+                : 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
 
+            const isBatch = executable.toLowerCase().endsWith('.cmd') || executable.toLowerCase().endsWith('.bat');
             const proc = spawn(executable, fullArgs, {
                 cwd: effectiveCwd,
-                shell: true,
+                shell: isBatch,
                 env: {
                     ...process.env,
                     ENGINEERING_COMMONS_BACKEND_URL: backendUrl

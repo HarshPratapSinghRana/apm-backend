@@ -473,8 +473,8 @@ export async function executeDownloadZipCommand(
             try {
                 progress.report({ message: `Fetching '${target}' files from Backend API...` });
                 const rawConfig = vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || process.env.ENGINEERING_COMMONS_BACKEND_URL;
-                const configBackend = (rawConfig && !rawConfig.includes('localhost')) ? rawConfig.trim() : 'https://ecommerce-app-chi-wine.vercel.app';
-                const endpoints = [configBackend, 'https://ecommerce-app-chi-wine.vercel.app'];
+                const configBackend = (rawConfig && !rawConfig.includes('localhost')) ? rawConfig.trim() : 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
+                const endpoints = [configBackend, 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io'];
 
                 for (const bUrl of endpoints) {
                     try {
@@ -733,11 +733,11 @@ export async function executeInstallCommand(
         if (installedFiles.length === 0) {
             try {
                 const rawConfig = vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || process.env.ENGINEERING_COMMONS_BACKEND_URL;
-                const configBackend = (rawConfig && !rawConfig.includes('localhost')) ? rawConfig.trim() : 'https://ecommerce-app-chi-wine.vercel.app';
+                const configBackend = (rawConfig && !rawConfig.includes('localhost')) ? rawConfig.trim() : 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
                 progress.report({ message: `Fetching '${target}' from Engineering Commons Backend / AI Leap...` });
                 const backendEndpoints = [
                     configBackend,
-                    'https://ecommerce-app-chi-wine.vercel.app'
+                    'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io'
                 ];
 
                 for (const bUrl of backendEndpoints) {

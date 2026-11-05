@@ -1,0 +1,55 @@
+{
+  "id": "playbook-design-14",
+  "name": "playbook-design-14",
+  "title": "Create model documentation (tables, relationships, measures, KPIs, RLS)",
+  "type": "prompt",
+  "version": "1.0.0",
+  "category": "Prompt Playbook",
+  "subcategory": "Detailed Design",
+  "stage": "Design",
+  "domain": "Data Engineering",
+  "author": "harsh.rana@maqsoftware.com",
+  "source": "Azure BI & Data Engineering Playbook",
+  "sourceUrl": "https://aisdlcplaybook.azurewebsites.net/prompt-library",
+  "description": "Based on the model provided, it will document all the metadata by section.",
+  "task": "Create model documentation (tables, relationships, measures, KPIs, RLS)",
+  "copilotPrompt": "Generate detailed documentation for the data model including:\r\nTables, their relationships, measures, KPIs, and Row-Level Security (RLS) settings\r\nFormat documentation as markdown or HTML for easy consumption.",
+  "output": "Based on the model provided, it will document all the metadata by section.",
+  "tags": [
+    "azure-bi",
+    "playbook",
+    "prompt",
+    "design",
+    "data-modeling",
+    "security"
+  ],
+  "isCertified": true,
+  "keyFeatures": [
+    "Verbatim prompt from Azure BI & Data Engineering Playbook",
+    "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
+    "Ready to run directly in GitHub Copilot & Antigravity"
+  ],
+  "useCases": [
+    "Detailed Design",
+    "Azure BI & Data Engineering Playbook"
+  ],
+  "installCommand": "engineering-commons install playbook-design-14",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Create model documentation (tables, relationships, measures, KPIs, RLS) (`playbook-design-14`)\n\nBased on the model provided, it will document all the metadata by section.\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Data Engineering • Prompt Playbook\n- **Usability Tier**: PRODUCTION READY\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install playbook-design-14\n```\n\n*(Alternatively, search for **`playbook-design-14`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use in GitHub Copilot Chat & Antigravity\n1. Open **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) or the Antigravity chat panel.\n2. Copy the **Verbatim Prompt** below.\n3. Replace any bracketed placeholders (such as `{Dimension Name}`, `{Source Tables}`, or `{Context}`) with your specific project details.\n4. Press Enter to generate SME-ready architecture documents, schemas, or pipelines.\n\n### 2. Verbatim Prompt Template\n```markdown\nGenerate detailed documentation for the data model including:\r\nTables, their relationships, measures, KPIs, and Row-Level Security (RLS) settings\r\nFormat documentation as markdown or HTML for easy consumption.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Verbatim prompt from Azure BI & Data Engineering Playbook**\n- **Certified for Microsoft Fabric, Synapse, Power BI & Databricks**\n- **Ready to run directly in GitHub Copilot & Antigravity**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `GitHub Copilot`\n- `Antigravity IDE`\n- `Enterprise CIP`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`playbook-design-14`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/prompts/playbook/playbook-design-14.md",
+      "content": "---\nname: playbook-design-14\ntitle: \"Create model documentation (tables, relationships, measures, KPIs, RLS)\"\ntype: prompt\ncategory: \"Prompt Playbook\"\nsubcategory: \"Detailed Design\"\nstage: \"Design\"\nauthor: harsh.rana@maqsoftware.com\nsource: \"Azure BI & Data Engineering Playbook\"\nsource_url: \"https://aisdlcplaybook.azurewebsites.net/prompt-library\"\ntags: [\"azure-bi\", \"playbook\", \"prompt\", \"design\", \"data-modeling\", \"security\"]\ndescription: \"Based on the model provided, it will document all the metadata by section.\"\n---\n\n# Create model documentation (tables, relationships, measures, KPIs, RLS)\n\nGenerate detailed documentation for the data model including:\r\nTables, their relationships, measures, KPIs, and Row-Level Security (RLS) settings\r\nFormat documentation as markdown or HTML for easy consumption.\n"
+    },
+    {
+      "path": ".github/prompts/playbook/playbook-design-14.prompt.md",
+      "content": "---\nname: playbook-design-14\ndescription: \"Based on the model provided, it will document all the metadata by section.\"\n---\n\nGenerate detailed documentation for the data model including:\r\nTables, their relationships, measures, KPIs, and Row-Level Security (RLS) settings\r\nFormat documentation as markdown or HTML for easy consumption.\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: playbook-design-14\nversion: 1.0.0\ntype: prompt\ncategory: \"Prompt Playbook\"\nauthor: harsh.rana@maqsoftware.com\ndescription: \"Based on the model provided, it will document all the metadata by section.\"\nmain: .agents/prompts/playbook/playbook-design-14.md\n"
+    }
+  ]
+}

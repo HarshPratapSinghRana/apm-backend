@@ -1,0 +1,2442 @@
+{
+    "domains": [
+        {
+            "domain": "Retail",
+            "id": "retail",
+            "description": "Intelligent AI agents designed to streamline retail operations and elevate customer experiences. From inventory optimization to personalized shopping, these solutions drive efficiency and boost sales.",
+            "icon": "ShoppingCart",
+            "use_cases": [
+                {
+                    "id": "automated-customer-service",
+                    "title": "Automated Customer Service",
+                    "description": "Virtual assistant that answers customer queries and resolves common service requests (order status, return policy, store hours) automatically.",
+                    "key_features": [
+                        "24/7 customer query resolution",
+                        "Order tracking and status updates",
+                        "Policy information automation",
+                        "Multi-channel support integration"
+                    ],
+                    "impact": "Reduces customer service costs by 60%, improves response times, and increases customer satisfaction.",
+                    "icon": "headphones",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "60%",
+                            "label": "Cost Reduction",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "<5s",
+                            "label": "Response Time",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "92%",
+                            "label": "Satisfaction",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Production",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "consumer-intelligence-agent",
+                    "title": "Consumer Intelligence Agent",
+                    "description": "Production-grade AI platform for continuous monitoring, analysis, and autonomous response to consumer feedback across digital channels. The system currently ingests product reviews through SerpAPI (Google Shopping reviews), leverages RAG-based knowledge retrieval for deep feedback analysis, and enables natural-language-to-SQL querying over structured consumer and product datasets to generate actionable business insights.",
+                    "key_features": [
+                        "Continuous collection of consumer feedback from online sources",
+                        "SerpAPI integration for Google Shopping review monitoring",
+                        "RAG-powered semantic analysis of customer feedback",
+                        "Natural-language querying over structured databases",
+                        "Sentiment analysis and trend identification",
+                        "Automated insight generation and feedback summarization",
+                        "Unified search across unstructured reviews and structured data",
+                        "Scalable architecture for multi-channel feedback expansion"
+                    ],
+                    "impact": "Enables retailers and product teams to understand customer sentiment in real time, identify emerging product issues, uncover market trends, and make data-driven decisions faster. By combining RAG-based review intelligence with natural-language analytics, the platform reduces manual analysis effort and accelerates customer-centric product improvements.",
+                    "impact_metrics": [
+                        {
+                            "value": "80%",
+                            "label": "Analysis Effort Reduced",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "10x",
+                            "label": "Faster Insight Discovery",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "24/7",
+                            "label": "Feedback Monitoring",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "shopping-cart",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "Retail",
+                        "Consumer Intelligence",
+                        "RAG",
+                        "NL2SQL",
+                        "Customer Feedback",
+                        "Analytics"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "monday-morning-agent",
+                    "title": "Monday Morning Agent",
+                    "description": "Intelligent business intelligence agent that delivers automated weekly metric reports and real-time data insights to user inboxes. Enables executives and teams to subscribe to custom business questions, receive schedulable reports (daily, weekly, monthly) with professional formatting, and query metrics on-demand in plain English. Integrates with Microsoft 365 Copilot, Teams, and Outlook to provide instant data-driven insights without manual report preparation.",
+                    "key_features": [
+                        "Metric subscription and custom question configuration",
+                        "Flexible scheduling (daily, weekly, monthly reporting)",
+                        "Automated email report delivery with professional formatting",
+                        "Plain English query interface for instant metrics",
+                        "Data visualization with charts, graphs, and tables",
+                        "Microsoft 365 Copilot and Teams integration",
+                        "Cross-platform support (desktop, web, and mobile)",
+                        "No manual report generation or data compilation required",
+                        "Real-time metric retrieval and aggregation",
+                        "Customizable business intelligence dashboards"
+                    ],
+                    "impact": "Eliminates manual reporting overhead, ensures executives receive critical metrics automatically on schedule, enables data-driven decision-making, reduces time spent gathering business intelligence, provides instant answers to ad-hoc queries, improves visibility into key performance indicators, and streamlines business intelligence distribution across teams.",
+                    "icon": "BarChart3",
+                    "architecture": "Pro Code",
+                    "featured": true,
+                    "maturity": "Production",
+                    "tags": [
+                        "BI",
+                        "reporting",
+                        "automation",
+                        "Teams"
+                    ],
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "90%",
+                            "label": "Less Manual Work",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "3x",
+                            "label": "Faster Insights",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Schedule Reliability",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "ai-personal-stylist-shopping-agent",
+                    "title": "Style Crew Agent",
+                    "description": "AI agent that provides personalized fashion recommendations and curated outfit suggestions by understanding user preferences, seasonal trends, and product catalog data. It enables conversational shopping experiences by guiding users through categories, suggesting complete looks, and facilitating seamless product discovery and purchase.",
+                    "key_features": [
+                        "Conversational product discovery based on user intent (e.g., season, occasion, gender)",
+                        "Personalized outfit recommendations combining multiple products into complete looks",
+                        "Dynamic category suggestions (e.g., summer essentials, accessories, casual/formal wear)",
+                        "Real-time product recommendations with pricing and add-to-cart actions",
+                        "Multi-step interaction flow for refining style preferences and options",
+                        "Cross-selling and upselling through complementary product suggestions",
+                        "Visual product browsing integrated within chat interface",
+                        "Context-aware memory of previous queries and styling preferences"
+                    ],
+                    "impact": "Enhances customer engagement through interactive shopping experiences, increases conversion rates via personalized recommendations, boosts average order value through outfit bundling and cross-selling, reduces decision fatigue for users, and delivers a seamless blend of conversational AI with e-commerce navigation.",
+                    "icon": "shopping-bag",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "35%",
+                            "label": "Higher Conversion",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "2x",
+                            "label": "Avg Order Value",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "80%",
+                            "label": "Engagement Rate",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Pilot",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "smart-store-supplychain-agent",
+                    "title": "Smart Store Agent",
+                    "description": "Multi-stage supply chain intelligence platform orchestrating shipment tracking, driver location intelligence, route optimization, and supplier performance analysis. Combines classification, data retrieval, and conversational response generation in a specialized graph architecture. Monitors real-time logistics operations, predicts delivery risks, and optimizes fleet efficiency.",
+                    "key_features": [
+                        "Shipment status tracking and visibility",
+                        "Driver location and route optimization",
+                        "Real-time disruption detection and risk prediction",
+                        "Supplier performance rating and reliability analysis",
+                        "Multi-leg shipment journey tracking",
+                        "Context-pruned data delivery to prevent prompt bloat",
+                        "Count-only query optimization",
+                        "Professional narrative generation from structured logistics data"
+                    ],
+                    "impact": "Enables proactive logistics management, reduces delivery delays through real-time visibility, optimizes driver routes for cost savings, identifies at-risk shipments before failures, improves supplier relationships through performance transparency, and reduces customer escalations.",
+                    "icon": "truck",
+                    "architecture": "Pro Code",
+                    "featured": true,
+                    "maturity": "Pilot",
+                    "tags": [
+                        "supply-chain",
+                        "logistics",
+                        "tracking",
+                        "optimization"
+                    ],
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "40%",
+                            "label": "Fewer Delays",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "25%",
+                            "label": "Route Savings",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "95%",
+                            "label": "Visibility",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "wpp-pricing-optimizer-agent",
+                    "title": "WPP Pricing Optimizer & Market Intelligence Agent",
+                    "description": "AI agent that generates optimal product pricing recommendations by analyzing demand elasticity, competitive market dynamics, and scenario-based pricing strategies. Uses game-theoretic modeling to predict competitor responses and balance revenue, margin, and volume objectives.",
+                    "key_features": [
+                        "Multi-scenario demand forecasting with price elasticity modeling",
+                        "Competitive price intelligence and market positioning analysis",
+                        "Game-theoretic competitor response prediction",
+                        "Optimal price recommendation with margin/volume tradeoff analysis",
+                        "Inventory feasibility and stock constraint optimization",
+                        "Anomaly detection in demand patterns and pricing outliers",
+                        "Cross-product performance correlation analysis",
+                        "Governance compliance and contract rule enforcement"
+                    ],
+                    "impact": "Maximizes revenue and margin through AI-driven pricing, reduces pricing errors and margin erosion, enables rapid what-if scenario analysis, identifies cross-sell opportunities, minimizes inventory risk, and provides executive-grade competitive intelligence for strategic pricing decisions.",
+                    "icon": "trending-up",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "15%",
+                            "label": "Revenue Lift",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "8%",
+                            "label": "Margin Gain",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "10x",
+                            "label": "Faster Analysis",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Pilot",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "automated-product-tag-generator",
+                    "title": "Automated Product Tag Generator",
+                    "description": "AI agent that auto-generates meaningful product tags (e.g., Organic, Gluten-Free, Vegan) from product descriptions to improve discoverability.",
+                    "key_features": [
+                        "Intelligent tag extraction",
+                        "Nutritional information analysis",
+                        "Category-based tagging",
+                        "Search optimization enhancement"
+                    ],
+                    "impact": "Improves product discoverability by 45%, reduces manual tagging effort, and enhances customer search experience.",
+                    "icon": "tag",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "45%",
+                            "label": "Better Discovery",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "70%",
+                            "label": "Less Manual Work",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "3x",
+                            "label": "Tag Speed",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Production",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "fraud-anomaly-detection-agent",
+                    "title": "Fraud & Anomaly Detection Agent",
+                    "description": "AI-powered retail fraud and anomaly detection platform that analyzes transaction data to identify suspicious activities, operational irregularities, and risk patterns. Built using Microsoft Agent Framework, Azure OpenAI, FastAPI, React, and embedding-based document intelligence to combine transactional analysis with business context for explainable fraud detection.",
+                    "key_features": [
+                        "Automated fraud and anomaly detection across retail transaction datasets",
+                        "AI-powered retail analytics agent for investigative querying and root-cause analysis",
+                        "Document intelligence pipeline for incorporating business policies and operational context",
+                        "Embedding-based semantic search for contextual anomaly explanations",
+                        "Real-time analysis of suspicious transactions and operational deviations",
+                        "Interactive dashboard for anomaly exploration and risk monitoring",
+                        "Chat-based investigation workflow powered by Azure OpenAI"
+                    ],
+                    "impact": "Improves retail risk management by proactively identifying fraudulent activities, uncovering operational anomalies, accelerating investigations, and providing explainable AI-driven insights that help teams reduce losses and improve decision-making.",
+                    "impact_metrics": [
+                        {
+                            "value": "90%",
+                            "label": "Faster Fraud Investigation",
+                            "icon": "Search"
+                        },
+                        {
+                            "value": "Real-Time",
+                            "label": "Anomaly Detection",
+                            "icon": "Activity"
+                        },
+                        {
+                            "value": "AI",
+                            "label": "Root Cause Analysis",
+                            "icon": "ShieldAlert"
+                        }
+                    ],
+                    "icon": "shield-alert",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "fraud-detection",
+                        "anomaly-detection",
+                        "retail-analytics",
+                        "Azure OpenAI",
+                        "Microsoft Agent Framework",
+                        "FastAPI",
+                        "React",
+                        "risk-management"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "loyalty-newsletter-enrollment-agent",
+                    "title": "Loyalty & Newsletter Enrollment Agent",
+                    "description": "Conversational AI agent that guides customers through loyalty program and newsletter enrollment using Google Gemini 1.5 Flash and a RAG-based knowledge retrieval system. Detects enrollment intent from natural language, manages a multi-step enrollment flow (intent detection → detail collection → confirmation → completion), and surfaces a contextual enrollment form mid-conversation. Backed by a FastAPI backend with session management, real-time analytics tracking, and a vanilla JS frontend.",
+                    "key_features": [
+                        "Google Gemini 1.5 Flash with chain-of-thought reasoning and RAG knowledge base retrieval for accurate, context-aware responses",
+                        "Dual enrollment support — loyalty program (points, discounts, birthday rewards) and newsletter (weekly deals, early access) — individually or together",
+                        "Multi-step enrollment state machine: initial request → collecting details → confirming → completed, with session persistence",
+                        "Keyword-scored RAG search across a prioritized knowledge base with category-tagged FAQ items and fallback handling",
+                        "Real-time analytics dashboard tracking conversations, enrollments, conversion funnel, response times, and estimated ROI",
+                        "Enrollment intent detection from natural language with confirmation handling mid-conversation and contextual form injection",
+                        "Pydantic-validated enrollment with email, phone, and name validation plus welcome bonus and next-steps in the response payload"
+                    ],
+                    "impact": "Automates customer enrollment conversations end-to-end — from first question to signed-up member — reducing manual agent effort, improving enrollment conversion rates, and providing live analytics visibility into funnel performance.",
+                    "impact_metrics": [
+                        {
+                            "value": "2",
+                            "label": "Programs Supported",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "4-Step",
+                            "label": "Enrollment Flow",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Live",
+                            "label": "Conversion Analytics",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "gift",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "loyalty",
+                        "enrollment",
+                        "conversational AI",
+                        "Google Gemini",
+                        "RAG",
+                        "newsletter",
+                        "customer engagement"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "personalization-engine",
+                    "title": "Personalization Engine",
+                    "description": "AI agent that personalizes a shopper's online experience by recommending products based on browsing or purchase history.",
+                    "key_features": [
+                        "Behavioral pattern analysis",
+                        "Purchase history insights",
+                        "Real-time recommendation engine",
+                        "Cross-selling optimization"
+                    ],
+                    "impact": "Increases conversion rates by 35%, improves average order value, and enhances customer experience.",
+                    "icon": "heart",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "35%",
+                            "label": "Higher Conversion",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "25%",
+                            "label": "Order Value Lift",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "3x",
+                            "label": "Engagement",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Pilot",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "product-discovery-bot",
+                    "title": "Product Discovery Bot",
+                    "description": "Website chatbot that helps customers explore products (ratings, reviews, launch dates, trending items).",
+                    "key_features": [
+                        "Interactive product exploration",
+                        "Review and rating integration",
+                        "Trending product identification",
+                        "Personalized discovery assistance"
+                    ],
+                    "impact": "Improves product discovery, increases time on site, and boosts sales conversion rates.",
+                    "icon": "search",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "50%",
+                            "label": "Better Discovery",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "40%",
+                            "label": "More Time on Site",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "28%",
+                            "label": "Conversion Lift",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Production",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "planogram-compliance-agent",
+                    "title": "Planogram Compliance Agent",
+                    "description": "AI agent that uses image recognition to check shelf layouts against planograms and flags misplaced or missing SKUs for store associates.",
+                    "key_features": [
+                        "Image recognition technology",
+                        "Planogram compliance checking",
+                        "Misplacement detection",
+                        "Real-time store associate alerts"
+                    ],
+                    "impact": "Improves planogram compliance by 80%, optimizes product visibility, and increases sales effectiveness.",
+                    "icon": "image",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "80%",
+                            "label": "Compliance Rate",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "20%",
+                            "label": "Sales Lift",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "60%",
+                            "label": "Fewer SKU Errors",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Pilot",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "title": "Voice FAQ Agent",
+                    "id": "voice-faq-agent",
+                    "description": "Voice agent that answers common FAQs (policy, HR, IT) using RAG over a provided document set.",
+                    "key_features": [
+                        "Voice-enabled query processing",
+                        "RAG-based knowledge retrieval",
+                        "Multi-domain FAQ coverage",
+                        "Natural language response generation"
+                    ],
+                    "impact": "Reduces support ticket volume, provides 24/7 assistance, and improves employee self-service capabilities.",
+                    "impact_metrics": [
+                        {
+                            "value": "60%",
+                            "label": "Fewer Tickets",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "24/7",
+                            "label": "Availability",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "85%",
+                            "label": "Self-Service Rate",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "component": "<FAQVoiceAgent />",
+                    "architecture": "Pro Code",
+                    "featured": true,
+                    "maturity": "Pilot",
+                    "tags": [
+                        "voice",
+                        "RAG",
+                        "FAQ",
+                        "self-service"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "hiring-support-agent",
+                    "title": "Hiring Support Agent",
+                    "description": "AI-powered hiring assistant built on the Microsoft Agentic Framework (MAF) and Azure OpenAI. Orchestrates three specialized agents — an InterviewQuestionGenerator, a ResumeScreener, and a HiringSupportOrchestrator — to automate the full recruitment workflow: from parsing job descriptions and generating structured interview questions, to objectively scoring and ranking candidate resumes (PDF, DOCX, TXT) across five weighted criteria. Exposed via a FastAPI backend and Streamlit frontend.",
+                    "key_features": [
+                        "InterviewQuestionGenerator agent produces categorized questions (Technical, Behavioral, Competency, Cultural Fit) tailored to role seniority",
+                        "ResumeScreener agent scores candidates 0–100 across 5 weighted criteria: Skills Match, Experience Relevance, Education, Achievements, and Role Fit",
+                        "Structured JSON output per candidate with score breakdown, top 3 strengths, top 3 gaps, and a fit recommendation (STRONG / GOOD / PARTIAL / NOT A FIT)",
+                        "Multi-format resume ingestion: PDF (PyPDF2), DOCX (python-docx), and plain text in a single batch API call",
+                        "HiringSupportOrchestrator for open-ended role analysis and conversational hiring Q&A",
+                        "Full-workflow endpoint combining question generation and resume screening in one API call",
+                        "MAF Agent framework with Azure OpenAI GPT-4o — all three agents share a single client factory with no direct OpenAI SDK calls"
+                    ],
+                    "impact": "Eliminates hours of manual resume screening and ad-hoc interview preparation. Delivers consistent, bias-reduced candidate evaluations with structured scoring and ranked shortlists — enabling hiring teams to focus on high-value interviews rather than administrative triage.",
+                    "impact_metrics": [
+                        {
+                            "value": "5",
+                            "label": "Scoring Criteria",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "3",
+                            "label": "Specialized Agents",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Zero",
+                            "label": "Manual Screening",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "users",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "hiring",
+                        "HR automation",
+                        "resume screening",
+                        "MAF",
+                        "Azure OpenAI",
+                        "interview",
+                        "recruitment"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "enterprise-knowledge-bot",
+                    "title": "Enterprise Knowledge Bot",
+                    "description": "A Flask-based Retrieval-Augmented Generation (RAG) chatbot that unifies enterprise knowledge across multiple data sources. Uses a dual-agent architecture — a local FAISS agent for uploaded documents and an Azure AI Search agent for external knowledge bases — orchestrated via Semantic Kernel. Supports 7 document formats, three LLM providers (OpenAI, Azure OpenAI, Gemini), and optional integrations with Microsoft Fabric and Excel data, all surfaced through a modern web chat UI with citations and confidence scores.",
+                    "key_features": [
+                        "Dual RAG agents: local FAISS vector index for uploaded docs + Azure AI Search for external knowledge bases",
+                        "Semantic Kernel orchestrator that merges, ranks, and synthesises results from all active agents",
+                        "Multi-format document ingestion: PDF, DOCX, PPTX, CSV, XLSX, Markdown, and plain text",
+                        "Multi-LLM flexibility: OpenAI, Azure OpenAI (GPT-4o), and Google Gemini — switchable from the UI",
+                        "Microsoft Fabric agent for live data warehouse and lakehouse querying via OAuth2 client credentials",
+                        "Excel/CSV agent with TF-IDF similarity search for structured tabular data queries",
+                        "Citation support with confidence scores, background indexing progress tracking, and conversation memory"
+                    ],
+                    "impact": "Gives enterprise teams a single conversational interface to query across all their document repositories, structured data, and cloud knowledge bases — eliminating manual document search and reducing time-to-insight for knowledge workers dealing with large, multi-format information stores.",
+                    "impact_metrics": [
+                        {
+                            "value": "4",
+                            "label": "Pluggable Data Agents",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "7",
+                            "label": "Document Formats",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "3",
+                            "label": "LLM Providers",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "brain",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "RAG",
+                        "FAISS",
+                        "Azure AI Search",
+                        "Semantic Kernel",
+                        "Microsoft Fabric",
+                        "knowledge management",
+                        "enterprise"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "agent-mart",
+                    "title": "AgentMart",
+                    "description": "Agentic AI platform for e-commerce that optimizes product recommendations, stock forecasting, and customer interactions. Leverages AI to drive conversions through dynamic recommendations, proactive cart recovery, and autonomous marketing campaigns.",
+                    "key_features": [
+                        "AI-driven personalized product recommendations",
+                        "Proactive cart abandonment recovery",
+                        "Predictive inventory and stock forecasting",
+                        "Autonomous campaign recommendations and promotions",
+                        "Real-time order delay notifications",
+                        "AI-powered review summaries"
+                    ],
+                    "impact": "Increases purchase rates through proactive engagement, reduces manual workload for inventory and marketing teams, and improves shopping satisfaction through real-time updates and personalized experiences.",
+                    "impact_metrics": [
+                        {
+                            "value": "35%",
+                            "label": "More Conversions",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "25%",
+                            "label": "Less Cart Abandonment",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "2x",
+                            "label": "Engagement",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "shopping-cart",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "e-commerce",
+                        "recommendations",
+                        "inventory",
+                        "marketing",
+                        "agentic"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                }
+            ]
+        },
+        {
+            "domain": "Healthcare",
+            "id": "healthcare",
+            "description": "AI-powered agents built to enhance patient care and optimize clinical workflows. These solutions support healthcare teams in delivering safer, more efficient operations.",
+            "icon": "HeartPulse",
+            "use_cases": []
+        },
+        {
+            "domain": "Finance",
+            "id": "finance",
+            "icon": "DollarSign",
+            "description": "AI agents that automate financial processes and strengthen compliance controls. They help teams manage risk, reduce errors, and accelerate document-heavy workflows.",
+            "use_cases": [
+                {
+                    "id": "invoice-extraction-agent",
+                    "title": "Invoice Extraction Agent",
+                    "description": "AI-powered agentic pipeline that extracts structured invoice data from PDFs and converts it into LEDES 98B and LEDES XML 2.1 legal billing formats. Uses Microsoft AutoGen (MAF) multi-agent framework with Azure OpenAI — an ExtractorAgent, ValidatorAgent, and LEDESMapperAgent — backed by a FastAPI backend and React frontend for upload, review, editing, and download.",
+                    "key_features": [
+                        "Multi-agent pipeline: Extractor → Validator → LEDESMapper agents via Microsoft AutoGen",
+                        "PDF text extraction using pdfplumber and PyPDF2 with OCR fallback",
+                        "Structured invoice field extraction with AI-based validation and correction",
+                        "Automatic LEDES code mapping (L-codes, A-codes, E-codes) from line item descriptions",
+                        "LEDES 98B (pipe-delimited) and LEDES XML 2.1 output generation",
+                        "React + Vite frontend for upload, agent log monitoring, inline editing, and download",
+                        "FastAPI REST backend with async job store and full Swagger UI"
+                    ],
+                    "impact": "Eliminates manual data entry and LEDES code assignment in legal billing workflows. Automates extraction of invoice fields, validates totals and dates, and produces audit-ready LEDES outputs in seconds — reducing turnaround time for e-billing submissions and minimizing compliance errors.",
+                    "impact_metrics": [
+                        {
+                            "value": "3x",
+                            "label": "Faster LEDES Generation",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "LEDES Code Mapping",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Zero",
+                            "label": "Manual Data Entry",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "file-text",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "invoice",
+                        "LEDES",
+                        "legal-billing",
+                        "AutoGen",
+                        "Azure OpenAI",
+                        "PDF extraction",
+                        "multi-agent"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "vendor-invoice-reconciliation-agent",
+                    "title": "Vendor Invoice Reconciliation Agent (VIRA)",
+                    "description": "AI-powered accounts payable platform that extracts invoice, purchase order, and contract data, performs intelligent 3-way reconciliation, detects fraud risks, and ensures contract compliance through AI-driven validation and workflow automation.",
+                    "key_features": [
+                        "Automated data extraction from invoices, purchase orders, and contracts",
+                        "Intelligent 3-way reconciliation (Invoice ↔ PO ↔ Contract)",
+                        "AI-powered discrepancy detection and explanations",
+                        "Contract compliance validation using RAG",
+                        "Duplicate invoice and fraud risk detection",
+                        "Human-in-the-loop approval workflow",
+                        "Role-based access control and audit trails",
+                        "Real-time dashboard with reconciliation insights"
+                    ],
+                    "impact": "VIRA reduces manual invoice reconciliation effort by over 90%, improves compliance through contract-aware validation, accelerates accounts payable processing, minimizes fraud risks, and provides a complete audit trail for finance operations.",
+                    "impact_metrics": [
+                        {
+                            "value": "90%",
+                            "label": "Less Manual Effort",
+                            "icon": "TrendingDown"
+                        }
+                    ],
+                    "icon": "receipt",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "Accounts Payable",
+                        "Invoice Processing",
+                        "Reconciliation",
+                        "Finance",
+                        "RAG",
+                        "Fraud Detection",
+                        "Contract Compliance",
+                        "AI Agents",
+                        "Workflow Automation",
+                        "OCR"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "invoice-po-matching-agent",
+                    "title": "Invoice PO Matching Agent",
+                    "description": "AI-powered procurement validation solution that automatically matches supplier invoices against purchase orders to identify discrepancies, assess financial risk, and generate actionable recommendations. Built using a multi-agent workflow with Microsoft Agent Framework and Azure OpenAI, with a deterministic fallback engine for offline execution.",
+                    "key_features": [
+                        "Automated invoice-to-purchase-order matching",
+                        "Header-level validation for invoice number, dates, and totals",
+                        "Line-item comparison for quantity, unit price, and total amount mismatches",
+                        "Detection of missing, extra, or inconsistent invoice lines",
+                        "Procurement risk scoring based on discrepancy severity",
+                        "AI-generated narratives explaining identified issues",
+                        "Business-focused recommendations for corrective actions",
+                        "Multi-agent workflow using Extraction, Comparison, and Report agents",
+                        "CSV and Excel document processing support",
+                        "Interactive Streamlit dashboard for review and analysis"
+                    ],
+                    "impact": "Reduces manual invoice auditing effort by automatically identifying discrepancies between invoices and purchase orders. Improves procurement accuracy, accelerates invoice validation, minimizes payment errors, and provides risk-based recommendations for finance and procurement teams.",
+                    "impact_metrics": [
+                        {
+                            "value": "3",
+                            "label": "Specialized AI Agents",
+                            "icon": "Users"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Automated Invoice Validation",
+                            "icon": "CheckCircle"
+                        },
+                        {
+                            "value": "Header + Line",
+                            "label": "Multi-Level Matching",
+                            "icon": "FileSearch"
+                        }
+                    ],
+                    "icon": "receipt",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "procurement",
+                        "invoice-matching",
+                        "purchase-orders",
+                        "Microsoft-Agent-Framework",
+                        "Azure-OpenAI",
+                        "risk-analysis",
+                        "finance-automation",
+                        "Streamlit"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "loan-underwriting-agent",
+                    "title": "Loan Underwriting Agent",
+                    "description": "AI-powered loan underwriting platform built with Microsoft Agent Framework and Azure OpenAI. Uses a coordinated team of specialized underwriting agents to evaluate creditworthiness, verify income, assess collateral risk, enforce lending policies, calculate financial ratios, and generate final loan approval recommendations through an auditable multi-step workflow.",
+                    "key_features": [
+                        "End-to-end automated loan underwriting workflow",
+                        "Policy gate with fail-fast underwriting rule validation",
+                        "Credit profile analysis and risk tier classification",
+                        "Income verification and affordability assessment",
+                        "Property appraisal and collateral risk evaluation",
+                        "Debt-to-Income (DTI) and Loan-to-Value (LTV) calculations",
+                        "Composite risk scoring and regulatory compliance checks",
+                        "AI-generated underwriting rationale and decision reports",
+                        "FastAPI backend with React-based frontend",
+                        "Azure OpenAI powered multi-agent decision framework"
+                    ],
+                    "impact": "Accelerates loan approval processes by automating underwriting analysis across credit, income, and property dimensions. Improves consistency of lending decisions, reduces manual review effort, enforces policy compliance, and provides transparent decision explanations for financial institutions.",
+                    "impact_metrics": [
+                        {
+                            "value": "5",
+                            "label": "Specialized AI Agents",
+                            "icon": "Users"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Automated Risk Assessment",
+                            "icon": "ShieldCheck"
+                        },
+                        {
+                            "value": "3",
+                            "label": "Decision Outcomes",
+                            "icon": "CheckCircle"
+                        }
+                    ],
+                    "icon": "landmark",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "loan-underwriting",
+                        "financial-services",
+                        "Microsoft-Agent-Framework",
+                        "Azure-OpenAI",
+                        "risk-assessment",
+                        "credit-analysis",
+                        "mortgage-lending",
+                        "compliance"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "poe-scanner",
+                    "title": "POE Scanner",
+                    "description": "AI-powered Proof of Expense (POE) document processor that automates receipt data extraction, validation, and categorization using a multi-agent Semantic Kernel pipeline. Accepts PDF uploads, file paths, or raw receipt text — running them through a configurable sequence of DocumentProcessor, FieldExtractor, DataValidator, and ResultFormatter agents backed by FAISS vector search for intelligent vendor recognition and expense categorization.",
+                    "key_features": [
+                        "Multi-agent pipeline orchestrated via Semantic Kernel AgentGroupChat with YAML-configurable agents",
+                        "FAISS vector index with 200+ vendors for AI-powered vendor recognition and smart expense categorization",
+                        "Multi-format input support: PDF upload, local file path, or direct receipt text",
+                        "Multi-language and multi-currency detection (English, German, Indian formats; $, €, Rs)",
+                        "Onboarding Copilot agent for guided, conversational expense submission flows",
+                        "Streamlit frontend with Flask REST API backend for real-time processing and ERP integration",
+                        "Semantic Kernel plugins for PDF processing, field extraction, and AI-driven data enrichment"
+                    ],
+                    "impact": "Eliminates manual receipt data entry and categorization errors in enterprise expense workflows. Cuts per-receipt processing time from ~10 minutes to under 1 minute, improves extraction accuracy from 80% to 95%, and delivers a RESTful API that plugs directly into ERP and finance systems.",
+                    "impact_metrics": [
+                        {
+                            "value": "90%",
+                            "label": "Time Reduction",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "95%",
+                            "label": "Extraction Accuracy",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "<2s",
+                            "label": "Per Receipt",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "receipt",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "expense",
+                        "OCR",
+                        "Semantic Kernel",
+                        "FAISS",
+                        "multi-agent",
+                        "PDF",
+                        "finance automation"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "title": "Market Intelligence & Pricing Agent",
+                    "id": "market-intelligence-pricing-agent",
+                    "description": "AI agent that benchmarks insurance rates, predicts claim trends, and monitors competitor/regulatory filings to guide smarter pricing strategies.",
+                    "key_features": [
+                        "Competitive rate benchmarking",
+                        "Predictive trend analysis",
+                        "Regulatory filing monitoring",
+                        "Dynamic pricing recommendations"
+                    ],
+                    "impact": "Improves pricing competitiveness, reduces risk exposure, and increases profitability through data-driven decisions.",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "20%",
+                            "label": "Better Pricing",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "15%",
+                            "label": "Less Risk",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "3x",
+                            "label": "Analysis Speed",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Pilot",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "title": "Expense Forecaster",
+                    "id": "expense-forecaster",
+                    "description": "AI agent that predicts next quarter/month expenses using historical data and seasonal patterns.",
+                    "key_features": [
+                        "Predictive expense modeling",
+                        "Seasonal pattern recognition",
+                        "Budget variance analysis",
+                        "Automated forecasting reports"
+                    ],
+                    "impact": "Improves budget accuracy by 30%, enables proactive cost management, and supports strategic planning decisions.",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "30%",
+                            "label": "More Accurate",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "50%",
+                            "label": "Less Planning Time",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "4 Qtr",
+                            "label": "Forecast Range",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Pilot",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "title": "Executive Copilot Agent",
+                    "id": "executive-copilot-agent",
+                    "description": "Intelligent Business Intelligence Platform - a FastAPI app that combines a frontend with agent-powered Executive Q&A, Document analysis, and Board Narrative generation.",
+                    "key_features": [
+                        "Executive-level query processing",
+                        "Cross-functional report summarization",
+                        "Board presentation generation",
+                        "Data-driven narrative creation"
+                    ],
+                    "impact": "Reduces executive reporting preparation time, improves strategic insights, and enhances board communication.",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "75%",
+                            "label": "Less Prep Time",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Board",
+                            "label": "Ready Output",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Cross",
+                            "label": "Functional",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "maturity": "Concept",
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "code-standards-reviewer-agent",
+                    "title": "Code Standards Reviewer Agent",
+                    "description": "AI-powered code review platform that runs a three-stage multi-agent pipeline — Static Analyst, Remediation Specialist, and Senior Architect — to automatically detect issues, generate actionable fixes, and deliver architectural feedback on Python source code. Static analysis (ruff, bandit, radon) feeds findings to the Remediation and Senior Architect agents running in parallel via asyncio, with results surfaced through a React + Vite frontend featuring a real-time agent activity feed, health score ring, and tabbed results view.",
+                    "key_features": [
+                        "Three-agent pipeline: StaticAnalyst → RemediationSpecialist + SeniorArchitect (parallel asyncio.gather) → FinalReport",
+                        "Static analysis via ruff (linting), bandit (security), and radon (cyclomatic complexity + maintainability index)",
+                        "LLM-powered RemediationSpecialist generates per-finding fix code, explanation, and fix description for every static issue",
+                        "SeniorArchitect agent reads project-specific coding standards (async patterns, error handling, FastAPI, type hinting, naming) and produces holistic suggestions that avoid duplicating static findings",
+                        "Structured Pydantic models across every agent boundary — Finding, EnrichedFinding, Metrics, FinalReport — with letter grades and an overall health score (0–100)",
+                        "Real-time AgentActivityFeed, circular HealthScoreRing gauge, syntax-highlighted CodeBlock, and tabbed results (Overview / Findings / Metrics / Senior Review) in the React frontend",
+                        "FastAPI backend with versioned API, async subprocess runner for tool execution, and structured logging"
+                    ],
+                    "impact": "Gives development teams an automated senior reviewer that catches linting issues, security vulnerabilities, and complexity hotspots — and immediately provides fix suggestions and architectural guidance — reducing manual code review time and raising baseline code quality consistently across every submission.",
+                    "icon": "code-2",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "3",
+                            "label": "Specialized Agents",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "3",
+                            "label": "Static Analysis Tools",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "A–F",
+                            "label": "Health Score Grading",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "maturity": "Pilot",
+                    "tags": [
+                        "code review",
+                        "static analysis",
+                        "Azure OpenAI",
+                        "autogen",
+                        "ruff",
+                        "bandit",
+                        "developer tools"
+                    ],
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "expense-trend-analyzer",
+                    "title": "Expense Trend Analyzer",
+                    "description": "AI-powered expense analytics platform built on Microsoft Agent Framework (MAF). Uses specialized agents for financial metrics computation, spending trend analysis, anomaly detection, category breakdowns, and recommendation generation. Combines statistical analysis with Azure OpenAI-powered insights through an interactive Streamlit dashboard.",
+                    "key_features": [
+                        "Multi-agent architecture using Microsoft Agent Framework (MAF)",
+                        "Automated expense metrics calculation (total, average, median, spend count)",
+                        "Spending trend detection using linear regression analysis",
+                        "Anomaly detection with Z-score statistical modeling",
+                        "Category-wise expense breakdown and distribution analysis",
+                        "AI-generated financial insights and spending recommendations",
+                        "Interactive Streamlit dashboard with filters and visualizations",
+                        "CSV upload support with configurable date, category, and granularity filters",
+                        "Azure OpenAI GPT-4o integration for narrative analysis",
+                        "Expense trend monitoring across daily, weekly, and monthly periods"
+                    ],
+                    "impact": "Enables users to understand spending behavior, identify unusual transactions, monitor expense trends, and receive AI-generated financial recommendations. Reduces manual analysis effort by combining statistical techniques with intelligent insights generation in a single dashboard experience.",
+                    "impact_metrics": [
+                        {
+                            "value": "3",
+                            "label": "Specialized AI Agents",
+                            "icon": "Users"
+                        },
+                        {
+                            "value": "5",
+                            "label": "Analysis Tools",
+                            "icon": "BarChart3"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Automated Expense Analysis",
+                            "icon": "TrendingUp"
+                        }
+                    ],
+                    "icon": "wallet",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "expense-analytics",
+                        "Microsoft-Agent-Framework",
+                        "Azure-OpenAI",
+                        "financial-insights",
+                        "anomaly-detection",
+                        "Streamlit",
+                        "trend-analysis",
+                        "multi-agent-ai"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                }
+            ]
+        },
+        {
+            "domain": "Manufacturing",
+            "id": "manufacturing",
+            "description": "AI agents focused on optimizing production lines and maintaining quality standards. These solutions improve operational visibility and workforce efficiency across the factory floor.",
+            "icon": "Factory",
+            "use_cases": [
+                {
+                    "id": "cip-active-production-monitoring",
+                    "title": "CIP — Active Production Monitoring",
+                    "description": "Supervisor-facing production monitoring and decision-support platform that combines a deterministic KPI engine with an agent narration layer to turn shop-floor signals into ranked actions, auditable decisions, and role-based operational dashboards.",
+                    "key_features": [
+                        "Deterministic engine for snapshot, daily output, risk, monitoring, OT, level loading, and coordination",
+                        "Human-in-the-loop decision gate with confirm / override / reject flow and full audit trail",
+                        "Smart Work List that merges multiple operational views into one ranked action feed",
+                        "Role-based production dashboard with supervisor, planner, line lead, ME, and admin access",
+                        "AI narration layer that explains risks and recommendations without changing the underlying scoring",
+                        "Dual database mode with cloud Supabase/PostgreSQL or embedded DuckDB for offline runs",
+                        "Graceful fallback to mock LLM and offline fixtures when external services are unavailable"
+                    ],
+                    "impact": "Reduces context switching by consolidating production health, prediction, and decision workflows into one auditable cockpit. The deterministic core keeps scoring consistent, while the human gate ensures every applied action is reviewed before execution.",
+                    "impact_metrics": [
+                        {
+                            "value": "61/61",
+                            "label": "Functional Requirements",
+                            "icon": "CheckCircle2"
+                        },
+                        {
+                            "value": "8",
+                            "label": "Phased Slices",
+                            "icon": "Layers3"
+                        },
+                        {
+                            "value": "0",
+                            "label": "Unapproved Writes",
+                            "icon": "ShieldCheck"
+                        }
+                    ],
+                    "icon": "factory",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "production-monitoring",
+                        "decision-support",
+                        "FastAPI",
+                        "React",
+                        "human-in-the-loop",
+                        "agentic",
+                        "audit-trail"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "inventory-overview-agent",
+                    "title": "Inventory Overview Agent (IOA)",
+                    "description": "AI-powered multi-agent inventory management system built on the Microsoft Agent Framework (MAF). A top-level InventoryOrchestrator routes natural language queries to three specialized sub-agents — StockAgent, ProcurementAgent, and AnalyticsAgent — each equipped with @tool-decorated functions that query a live Supabase PostgreSQL backend. Surfaced through a Streamlit chat UI with persistent in-session conversation memory.",
+                    "key_features": [
+                        "MAF agent-as-tool pattern: sub-agents registered as callable tools on the orchestrator — no manual routing logic",
+                        "StockAgent for real-time low-stock detection, stockout prediction, and shipment delay monitoring",
+                        "ProcurementAgent for supplier lookup with lead times and automated purchase order creation",
+                        "AnalyticsAgent for warehouse utilisation summaries, trend analysis, and stock health scoring",
+                        "Supabase PostgreSQL backend with 7 normalized tables covering products, warehouses, suppliers, POs, and stock movements",
+                        "Persistent in-session conversation memory with context builder for multi-turn natural language queries",
+                        "Streamlit chat UI with dark theme, sidebar critical alerts, and one-command local setup"
+                    ],
+                    "impact": "Transforms manual inventory monitoring into a conversational AI experience. Enables warehouse and procurement teams to instantly detect low-stock risks, predict stockouts, and raise purchase orders through plain English — eliminating context-switching across spreadsheets and ERP screens.",
+                    "impact_metrics": [
+                        {
+                            "value": "3",
+                            "label": "Specialized Sub-Agents",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "7",
+                            "label": "Inventory DB Tables",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Real-time",
+                            "label": "Stock Risk Detection",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "package",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "inventory",
+                        "MAF",
+                        "multi-agent",
+                        "Azure OpenAI",
+                        "Supabase",
+                        "procurement",
+                        "warehouse"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "vendor-receipt-scanner",
+                    "title": "Vendor Receipt Scanner",
+                    "description": "AI-powered invoice and receipt processing pipeline built on the Microsoft Agent Framework. Implements a four-node typed workflow — ExtractNode, ParseNode, ValidateNode, StorageNode — where each node is a dedicated MAF agent with registered tools. Processed receipts are persisted in SQLite and indexed in a FAISS vector store for semantic search, with a separate ProcurementValidationAgent cross-checking invoices against purchase order data. Surfaced through a FastAPI backend and a React + Vite frontend.",
+                    "key_features": [
+                        "Four-node MAF workflow: Extract (PDF/OCR) → Parse → Validate → Storage, each node backed by a dedicated agent with registered tools",
+                        "ProcurementValidationAgent cross-references extracted invoice fields against PO CSV data with multi-currency and fuzzy vendor name matching",
+                        "FAISS vector index with configurable embedding providers (Sentence Transformers or Azure OpenAI) for semantic receipt search",
+                        "SQLite persistence with duplicate detection and structured JSON receipt storage",
+                        "Tesseract OCR fallback for image-based receipts alongside native PDF text extraction",
+                        "Graceful degradation: every MAF node falls back to direct Python execution if the framework or env vars are unavailable",
+                        "React + Vite frontend with FastAPI backend, supporting upload, listing, detail view, and semantic search over stored receipts"
+                    ],
+                    "impact": "Automates end-to-end vendor invoice intake — from raw PDF or image upload through field extraction, PO reconciliation, and searchable storage — eliminating manual data entry and mismatch errors in procurement workflows.",
+                    "impact_metrics": [
+                        {
+                            "value": "4",
+                            "label": "Pipeline Nodes",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "PO Reconciliation",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "Semantic",
+                            "label": "Receipt Search",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "scan",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "invoice",
+                        "OCR",
+                        "MAF",
+                        "FAISS",
+                        "procurement",
+                        "receipt processing",
+                        "Azure OpenAI"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                }
+            ]
+        },
+        {
+            "domain": "Legal",
+            "id": "legal",
+            "icon": "Scale",
+            "description": "AI agents that streamline contract management, legal research, and compliance tracking. They help legal teams work faster while reducing risk and improving accuracy.",
+            "use_cases": [
+                {
+                    "id": "gdpr-compliance-agent",
+                    "title": "GDPR Compliance Agent",
+                    "description": "AI-powered GDPR Right-to-Be-Forgotten compliance platform that automates identity verification, PII discovery, data processing, audit reporting, and compliance monitoring. Built using Microsoft Agent Framework (MAF), Azure OpenAI, FAISS vector search, FastAPI, and Streamlit to orchestrate end-to-end privacy workflows across structured and unstructured data sources.",
+                    "key_features": [
+                        "End-to-end GDPR Right-to-Be-Forgotten workflow automation",
+                        "Multi-agent architecture using Microsoft Agent Framework",
+                        "AI-driven identity verification and compliance validation",
+                        "PII discovery across SQL, CSV, JSON, and document repositories",
+                        "FAISS vector search for semantic PII retrieval",
+                        "Automated mask, delete, and flag processing actions",
+                        "Audit trail generation and compliance reporting dashboard"
+                    ],
+                    "impact": "Accelerates GDPR compliance operations by automating data subject request handling, reducing manual review effort, improving audit readiness, and ensuring consistent enforcement of privacy regulations across enterprise data sources.",
+                    "impact_metrics": [
+                        {
+                            "value": "80%",
+                            "label": "Reduced Manual Effort",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Audit Traceability",
+                            "icon": "ShieldCheck"
+                        },
+                        {
+                            "value": "7",
+                            "label": "Specialized AI Agents",
+                            "icon": "Bot"
+                        }
+                    ],
+                    "icon": "shield",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "GDPR",
+                        "privacy",
+                        "compliance",
+                        "Azure OpenAI",
+                        "FAISS",
+                        "MAF",
+                        "data-governance"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "title": "Legal Intake & Routing Agent",
+                    "id": "legal-intake-routing",
+                    "description": "AI agent that chats with new clients, extracts structured case details, prioritizes based on urgency/value, and routes them to the right legal team for faster response.",
+                    "key_features": [
+                        "Automated client intake interviews",
+                        "Case detail structuring and extraction",
+                        "Priority scoring and routing",
+                        "Team specialization matching"
+                    ],
+                    "impact": "Reduces client intake time, improves case routing accuracy, and enhances client satisfaction.",
+                    "featured": true,
+                    "maturity": "Pilot",
+                    "tags": [
+                        "legal",
+                        "intake",
+                        "routing",
+                        "conversational"
+                    ],
+                    "component": "<LegalIntakeChat />",
+                    "architecture": "Pro Code",
+                    "has_video": true,
+                    "impact_metrics": [
+                        {
+                            "value": "60%",
+                            "label": "Faster Intake",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "95%",
+                            "label": "Routing Accuracy",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "40%",
+                            "label": "Better Satisfaction",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "ai-biller-timekeeper-agent",
+                    "title": "AI Biller & Timekeeper Agent",
+                    "description": "AI-powered billing and time-tracking platform that transforms natural language work logs into validated time entries, automated billing calculations, invoice generation, and business analytics. Built using Microsoft Agent Framework, Azure OpenAI, FastAPI, and React with a multi-agent workflow for end-to-end financial operations automation.",
+                    "key_features": [
+                        "Natural language to structured time-entry conversion",
+                        "Multi-agent workflow orchestration using Microsoft Agent Framework",
+                        "Automated time validation and billable-hours classification",
+                        "Real-time billing calculations with tax and discount handling",
+                        "Professional invoice generation with automated numbering and payment terms",
+                        "Revenue analytics, utilization tracking, and performance insights",
+                        "Modern React dashboard with FastAPI backend integration"
+                    ],
+                    "impact": "Streamlines billing and timekeeping operations by eliminating manual timesheet entry, automating invoice creation, improving billing accuracy, and providing actionable business insights through AI-driven workflow automation.",
+                    "impact_metrics": [
+                        {
+                            "value": "75%",
+                            "label": "Reduced Admin Effort",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "4",
+                            "label": "Specialized AI Agents",
+                            "icon": "Bot"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Invoice Automation",
+                            "icon": "FileText"
+                        }
+                    ],
+                    "icon": "receipt",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "billing",
+                        "time-tracking",
+                        "invoice-automation",
+                        "Azure OpenAI",
+                        "Microsoft Agent Framework",
+                        "FastAPI",
+                        "React"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                }
+            ]
+        },
+        {
+            "domain": "Engineering",
+            "id": "engineering",
+            "icon": "Code2",
+            "description": "AI-powered tools that accelerate software engineering workflows — from code migration and generation to automated testing, DevOps, and synthetic data. These solutions boost developer productivity and streamline the entire SDLC.",
+            "use_cases": [
+                {
+                    "id": "certyfast",
+                    "title": "CertyFAST",
+                    "description": "Streamlining Power BI model development with automated error detection, DAX measure formatting, and simplified documentation, ensuring top-notch quality and adherence to best practices in enterprises.",
+                    "key_features": [
+                        "Insights: automated standards scanning flags gaps in size, performance, and usability",
+                        "Insights: custom organization-specific rules, exportable as shareable JSON",
+                        "Insights: suppress items with a documented rationale that persists in exports",
+                        "Insights: per-rule guidance with description, resolution steps, and impact area",
+                        "Lineage: dependency mapping from raw tables through to report visuals, in graph or grid view",
+                        "Lineage: unused-field detection for every column and measure not used anywhere in the model",
+                        "Lineage: node properties pane with full metadata for any selected node",
+                        "Documentation: one-click auto-generated docs for the semantic model and visuals",
+                        "Documentation: deep coverage of measures, conditional-formatting rules, and upstream sources",
+                        "Documentation: shareable output exported to Excel or PDF",
+                        "CPU Statistics: bottleneck detection for visuals and pages consuming the most Server Engine CPU",
+                        "CPU Statistics: capacity-impact analysis on premium capacity utilization",
+                        "Scorecard: consolidated compliance score grouped by category or impact area",
+                        "Scorecard: custom absolute or relative scoring with a configurable maximum per rule",
+                        "Accessibility: automated checks for tab order, alt text, data labels, titles, tooltips, color blindness, and contrast",
+                        "Accessibility: coverage aligned to WCAG, AA, and ADA standards with severity grouping",
+                        "Copilot Readiness: detects schema issues, ambiguous definitions, filter misuse, and missing descriptions",
+                        "Copilot Readiness: flags unused fields, hierarchy gaps, and naming inconsistencies for prioritized remediation"
+                    ],
+                    "impact": "CertyFAST brings measurable governance to enterprise Power BI development. Automated, shareable rule scanning enforces consistent quality and standards across the portfolio, while CPU and capacity analysis pinpoints performance bottlenecks and controls premium capacity cost. Instant impact analysis and lineage produce leaner models, one-click documentation saves hours of manual effort with shareable Excel/PDF output, and accessibility audits keep reports aligned to WCAG, AA, and ADA. Copilot-readiness checks prepare semantic models for AI by surfacing schema and naming issues with prioritized remediation.",
+                    "impact_metrics": [
+                        {
+                            "value": "7+",
+                            "label": "Governance Areas",
+                            "icon": "TrendingUp"
+                        },
+                        {
+                            "value": "1-Click",
+                            "label": "Auto Documentation",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Standards Coverage",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "gauge",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "Power BI",
+                        "DAX",
+                        "Governance",
+                        "Accessibility",
+                        "Documentation",
+                        "Data Lineage",
+                        "Copilot Readiness",
+                        "Performance"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "Kirtik Patel | MAQ Software",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "migratefast",
+                    "title": "MigrateFAST",
+                    "description": "MigrateFAST is an enterprise-grade desktop application engineered to automate the end-to-end migration of Business Intelligence (BI) reports from legacy platforms (Tableau, SAP BO, SAP Crystal etc.) to modern Power BI.",
+                    "key_features": [
+                        "Metadata extraction from legacy BI reports",
+                        "AI-assisted DAX conversion",
+                        "Semantic similarity scoring",
+                        "Automated model and report creation (PBIP)"
+                    ],
+                    "impact": "The platform reduces manual, error-prone migration workflows by combining intelligent metadata extraction, AI-assisted DAX conversion, semantic similarity scoring, and automated model and report creation.",
+                    "impact_metrics": [
+                        {
+                            "value": "10x",
+                            "label": "Faster Migration",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Multi",
+                            "label": "Source Platforms",
+                            "icon": "TrendingUp"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "PBIP Generation",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "git-branch",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "Power BI",
+                        "Migration",
+                        "Tableau",
+                        "SAP BO",
+                        "SAP Crystal",
+                        "DAX",
+                        "PBIP",
+                        "Modernization"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "Digant Doshi | MAQ Software",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "embedfast",
+                    "title": "EmbedFAST",
+                    "description": "A secure and scalable solution for seamlessly embedding Power BI into applications, enabling faster analytics adoption with simplified management and customization.",
+                    "key_features": [
+                        "Power BI embedding",
+                        "Bookmarks",
+                        "Exports",
+                        "Excel exports up to 1 million rows",
+                        "Subscriptions",
+                        "Edit semantic model",
+                        "Create paginated reports",
+                        "Tenant isolation",
+                        "Folder structure",
+                        "Access management",
+                        "Branding customizations",
+                        "Report themes",
+                        "Report templates"
+                    ],
+                    "impact": "Enables organizations to seamlessly embed Power BI into their applications with a secure, scalable, and customizable solution, reducing implementation effort, simplifying license management, and accelerating analytics adoption for end users.",
+                    "impact_metrics": [
+                        {
+                            "value": "1M",
+                            "label": "Rows per Excel Export",
+                            "icon": "TrendingUp"
+                        },
+                        {
+                            "value": "Secure",
+                            "label": "Tenant Isolation",
+                            "icon": "UserCheck"
+                        },
+                        {
+                            "value": "Faster",
+                            "label": "Analytics Adoption",
+                            "icon": "Clock"
+                        }
+                    ],
+                    "icon": "layout-dashboard",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "Power BI",
+                        "Embedded Analytics",
+                        "Multi-Tenant",
+                        "Access Management",
+                        "Customization",
+                        "Paginated Reports",
+                        "Enterprise"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "Pooja Ghagare | MAQ Software",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "loadfast",
+                    "title": "LoadFAST",
+                    "description": "LoadFAST provides an automated solution to capture, analyze, and optimize the page load time (PLT) of your reports, including monitoring the impact of modifications and ensuring efficient PLT measures.",
+                    "key_features": [
+                        "Power BI report PLT calculation",
+                        "User action tracking and PLT impact of the same",
+                        "PLT analysis for each load count",
+                        "Multi-report PLT analysis",
+                        "RLS and multi-model report PLT calculation",
+                        "Stress testing to measure capacity utilization"
+                    ],
+                    "impact": "LoadFAST provides an entirely automated process ensuring accuracy in capturing PLT and minimizing human error in calculating PLT manually. It also allows multiple reports to be analyzed together, letting users experience scale in one go.",
+                    "impact_metrics": [
+                        {
+                            "value": "Auto",
+                            "label": "PLT Capture",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Multi",
+                            "label": "Report Analysis",
+                            "icon": "TrendingUp"
+                        },
+                        {
+                            "value": "Stress",
+                            "label": "Capacity Testing",
+                            "icon": "TrendingDown"
+                        }
+                    ],
+                    "icon": "gauge",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "Power BI",
+                        "Performance",
+                        "Page Load Time",
+                        "Stress Testing",
+                        "RLS",
+                        "Capacity",
+                        "Enterprise"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "Digant Doshi | MAQ Software",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "angular-migration-tool",
+                    "title": "Angular Migration Tool",
+                    "description": "AI-powered end-to-end migration pipeline that converts legacy WPF/WinForms desktop applications to modern Angular web applications. Uses LangGraph LLM agents for dependency analysis, component detection, vector store embeddings for reuse, and separate processing of UI, logic, and styles to produce clean, modular Angular components.",
+                    "key_features": [
+                        "End-to-end legacy-to-Angular migration pipeline",
+                        "Dependency analysis with graph-based techniques",
+                        "Intelligent component detection from monoliths",
+                        "Vector store embeddings for similarity search and reuse",
+                        "LangGraph LLM agents for HTML, logic, and style separation",
+                        "Dashboard UI for migration progress monitoring",
+                        "Extensible to other paths (WinForms to React, AngularJS to Angular)"
+                    ],
+                    "impact": "Accelerates time-to-web transformation by automating WPF/WinForms to Angular migration. Eliminates manual rewriting of business logic, reduces refactoring errors through dependency mapping, and enables enterprise frontend modernization at scale.",
+                    "impact_metrics": [
+                        {
+                            "value": "10x",
+                            "label": "Faster Migration",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "90%",
+                            "label": "Code Reuse",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Zero",
+                            "label": "Logic Loss",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "code",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "migration",
+                        "Angular",
+                        "WPF",
+                        "LangGraph",
+                        "modernization"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "pre-sales-agent",
+                    "title": "Pre-Sales Agent",
+                    "description": "Pre-Sales Agent is an AI-powered RFP workspace for pre-sales and bid teams. It ingests client RFPs and RFIs (PDF, text, markdown), parses and indexes them for retrieval, and runs a structured analysis",
+                    "key_features": [
+                        "Document intake & analysis",
+                        "Upload RFPs/RFIs (PDF, TXT, Markdown); smart chunking and vector indexing",
+                        "Modular initial analysis: company profile, problem/objectives, scope, requirements, timeline, commercial risks, capability gaps",
+                        "Collaboration & refinement",
+                        "AI-generated clarifying questions; export to Excel or Word for clients",
+                        "Upload client FAQ/clarification answers (PDF, spreadsheet, etc.)",
+                        "Reiterate any section with custom instructions; manual edit with version history",
+                        "Interactive RAG chat to query the document and generated sections",
+                        "Knowledge & drafting",
+                        "Proposal Knowledge Repository for winning/approved proposals with keyword matching and word clouds",
+                        "MAQ capability/reference document upload during sessions",
+                        "Final structured proposal draft (20-section format) from RFP + clarifications + credentials + repository context",
+                        "Workflow & visibility",
+                        "4-stage sequential workflow: Document Intake → Initial Analysis → Client Clarifications → Final Output",
+                        "Session activity timeline with timestamps and status labels (ongoing/completed)",
+                        "Resumable sessions across days; sidebar status for all past analyses"
+                    ],
+                    "impact": "For pre-sales teams: Cuts time from raw RFP to first structured draft by automating parsing, section-wise analysis, and draft generation instead of starting from a blank page.\n\nFor managers: Session timeline and status labels give visibility into multi-day deals — who is waiting on client clarifications, what stage each RFP is in, and a full audit trail of edits and uploads.\n\nFor the organization: The Proposal Repository builds reusable institutional knowledge; keyword matching reuses patterns from winning proposals without copying content.\n\nBusiness outcome: Faster, more consistent RFP responses, fewer missed requirements or deadlines, and clearer handoffs when work spans days or people — aligned with how real pre-sales work actually runs.",
+                    "impact_metrics": [],
+                    "icon": "file-search",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "Pre-Sales",
+                        "RFP",
+                        "RFI",
+                        "Proposal Generation",
+                        "RAG",
+                        "Knowledge Repository",
+                        "Document Analysis",
+                        "Bid Management",
+                        "AI Workspace",
+                        "Enterprise"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "new-hire-experience-and-onboarding-orchestration-agent",
+                    "title": "New Hire Experience and Onboarding Orchestration Agent",
+                    "description": "AI-powered onboarding platform that automates employee onboarding through OCR-based document verification, multi-agent workflows, asset provisioning, training assignment, and role-based orchestration.",
+                    "key_features": [
+                        "Multi-agent onboarding orchestration. (HR, Finance, IT, Education, Admin)",
+                        "AI-powered OCR for Aadhaar, PAN, bank, and educational document verification.",
+                        "Deterministic workflow state machine with audit logging.",
+                        "Automated asset provisioning and workplace assignment.",
+                        "JWT-based authentication and role-based access control.",
+                        "Employee, HR, Finance, IT, and Admin dashboards.",
+                        "Notification system with in-app and email support.",
+                        "RAG-powered onboarding handbook chatbot.",
+                        "Document validation using AI and regex-based checks.",
+                        "Employee lifecycle tracking and workflow monitoring.",
+                        "Scalable architecture using FastAPI, React, SQLAlchemy, and Groq AI."
+                    ],
+                    "impact": "This solution makes employee onboarding faster, easier, and more organized by automating document verification, approvals, asset allocation, and training assignments. It reduces manual work for HR, Finance, IT, and Admin teams, minimizes errors, improves compliance, and provides a smooth onboarding experience for new employees.",
+                    "impact_metrics": [],
+                    "icon": "user-plus",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "Employee Onboarding",
+                        "OCR",
+                        "AI Agents",
+                        "Workflow Automation",
+                        "Document Verification",
+                        "HR",
+                        "FastAPI",
+                        "React",
+                        "RAG",
+                        "Enterprise"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "codeguardian",
+                    "title": "CodeGuardian",
+                    "description": "AI-powered pull request reviewer for Azure DevOps, built on Microsoft Agent Framework. Multi-agent pipeline reviews logic, security, and tests, then posts inline comments, scores, and pass/fail status.",
+                    "key_features": [
+                        "Multi-agent review pipeline — parallel logic, security, and testing agents built on Microsoft Agent Framework (MAF)",
+                        "Runs natively as an Azure Pipelines PR stage with inline comments and pass/fail status checks",
+                        "Flexible LLM backends — GitHub Copilot, Azure OpenAI, or any OpenAI-compatible SLM, switched via one environment variable",
+                        "Real static analysis tooling — mypy, flake8, pytest, sqlfluff, yamllint, shellcheck, and hadolint",
+                        "Weighted 10-metric scoring (0-100) with per-metric quality gates that automatically fail risky pull requests",
+                        "Anti-gaming controls — reopens prematurely resolved AI comment threads and tracks review iterations",
+                        "Organization and repository-level preference layers with persistent project memory for context-aware reviews",
+                        "Sparse checkout support for large repositories and changes-only review scope"
+                    ],
+                    "impact": "CodeGuardian automates first-pass PR review across Azure DevOps, cutting manual reviewer effort and turnaround time while enforcing consistent security, testing, and code-quality standards. It catches logic flaws, vulnerabilities, and missing tests before merge, raising baseline code quality and freeing senior engineers to focus on high-value design feedback instead of routine checks.",
+                    "impact_metrics": [],
+                    "icon": "shield",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "Azure DevOps",
+                        "Microsoft Agent Framework",
+                        "Code Review",
+                        "Pull Requests",
+                        "DevOps",
+                        "Security",
+                        "Static Analysis",
+                        "GitHub Copilot",
+                        "Azure OpenAI",
+                        "AI Agents"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "rai-agent",
+                    "title": "RAI Agent",
+                    "description": "An automated solution designed to help teams implement Responsible AI standards across their AI systems.",
+                    "key_features": [
+                        "Multi-agent orchestration using CrewAI",
+                        "Specialized reviewer, updater, and test case generator agents",
+                        "Support for OpenAI-compatible LLM backends",
+                        "Automated code review and quality assessment",
+                        "AI-driven code modification and refactoring assistance",
+                        "Automated unit and integration test generation",
+                        "Extensible framework for custom engineering agents",
+                        "Lightweight and modular architecture for easy integration"
+                    ],
+                    "impact": "RAI-Agent helps you review, and update prompts for AI models with a focus on Responsible AI compliance. It automates the process of ensuring that prompts are designed to prevent manipulation, bias, and unsafe outputs, while also providing structured feedback and updates to enhance prompt quality and safety. It is designed to assist developers in maintaining AI prompts that adhere to Responsible AI principles. By automating the review and update processes, it helps ensure that AI interactions are safe, ethical, and aligned with best practices, ultimately enhancing the reliability and trustworthiness of AI systems.",
+                    "impact_metrics": [],
+                    "icon": "bot",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "AI Agents",
+                        "CrewAI",
+                        "Code Review",
+                        "Test Generation",
+                        "Engineering Productivity"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "recruiter-copilot",
+                    "title": "Recruiter Copilot",
+                    "description": "Recruiter Copilot is a multi-agentic AI hiring assistant that runs an end-to-end recruitment workflow on a single platform, supporting both Lateral and On-Campus hiring with minimal manual effort. The platform combines AI-powered candidate screening, automated outreach, secure assessments, and interview intelligence to streamline and scale hiring operations.",
+                    "key_features": [
+                        "AI resume screening",
+                        "JD intelligence with weighted skill extraction",
+                        "Internet footprint assistance",
+                        "Bulk resume upload and parsing",
+                        "Explainable, adjustable candidate scoring",
+                        "Agentic Recruiter Copilot assistant",
+                        "Automated campus outreach and intake",
+                        "AI-generated per-candidate exam papers",
+                        "Secure proctored desktop exam application",
+                        "AI-powered identity verification and liveness detection",
+                        "Interview transcript evaluation and hiring recommendations"
+                    ],
+                    "impact": "MAQ Recruiter Copilot transforms hiring from a slow, manual, multi-tool process into a unified AI-driven platform spanning lateral hiring, campus recruitment, and secure proctored assessments. By automating resume parsing, semantic AI matching, and explainable candidate scoring, it dramatically reduces screening effort while improving hiring consistency and transparency. Campus drives operate end-to-end with automated outreach, personalized assessments, and AI-powered shortlisting. Five specialized AI agents collaborate to deliver explainable and bias-reduced hiring decisions, while a secure desktop-based proctoring solution ensures exam integrity beyond browser-based alternatives. The result is a faster, fairer, and highly scalable recruitment platform designed for enterprise hiring teams.",
+                    "impact_metrics": [
+                        {
+                            "value": "95%",
+                            "label": "Faster Screening",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "763+",
+                            "label": "Candidates Processed",
+                            "icon": "Users"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Explainable Scores",
+                            "icon": "CheckCircle"
+                        },
+                        {
+                            "value": "80%",
+                            "label": "Less Manual Effort",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "5",
+                            "label": "Specialized AI Agents",
+                            "icon": "Bot"
+                        },
+                        {
+                            "value": "0",
+                            "label": "Cheating Tolerance",
+                            "icon": "Shield"
+                        },
+                        {
+                            "value": "3-in-1",
+                            "label": "Hiring Platform",
+                            "icon": "Layers"
+                        },
+                        {
+                            "value": "24/7",
+                            "label": "Automated Outreach",
+                            "icon": "Send"
+                        }
+                    ],
+                    "icon": "users",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "Recruitment",
+                        "HR Tech",
+                        "AI Agents",
+                        "Resume Screening",
+                        "Campus Hiring",
+                        "Lateral Hiring",
+                        "Proctoring",
+                        "Interview Intelligence",
+                        "Talent Acquisition",
+                        "Automation"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "launch-fast",
+                    "title": "LaunchFAST",
+                    "description": "A centralized platform for discovering, sharing, and executing agentic artifacts across the organization. LaunchFAST provides a unified catalog experience for agents, skills, MCP servers, prompts, workflows, plugins, and other AI-driven assets, enabling teams to collaborate, reuse, and operationalize agentic solutions efficiently.",
+                    "key_features": [
+                        "Centralized catalog for agentic artifacts across multiple categories",
+                        "Artifact upload, download, and sharing capabilities",
+                        "Full-text search with relevance-based discovery",
+                        "Agent Playground for in-browser testing and execution",
+                        "Microsoft Agent Framework integration for agent runtime support",
+                        "Hybrid storage model with downloadable artifact packages",
+                        "Community-driven ratings and reviews for quality assessment",
+                        "Professional dashboard for browsing and managing AI assets"
+                    ],
+                    "impact": "Accelerates the adoption and reuse of AI capabilities by providing a single platform for managing agentic artifacts. Reduces duplication of effort, improves discoverability of existing solutions, and enables faster experimentation and deployment of AI-powered workflows across teams.",
+                    "impact_metrics": [
+                        {
+                            "value": "14+",
+                            "label": "Artifact Categories",
+                            "icon": "Grid"
+                        },
+                        {
+                            "value": "1",
+                            "label": "Unified Platform",
+                            "icon": "Layers"
+                        },
+                        {
+                            "value": "50MB",
+                            "label": "Artifact Package Support",
+                            "icon": "Package"
+                        }
+                    ],
+                    "icon": "rocket",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "AI",
+                        "agentic-ai",
+                        "catalog",
+                        "Microsoft Agent Framework",
+                        "artifact-management",
+                        "FastAPI",
+                        "React"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "pdf-extraction-utility",
+                    "title": "PDF Extraction Utility",
+                    "description": "Automated content extraction solution for complex PDFs including tables, scanned images, and multilingual text. Leverages advanced OCR technology with PySpark, Azure OpenAI, and Python libraries (pytesseract, pymupdf) for high-accuracy extraction. Structures data for seamless retrieval while OpenAI generates contextual summaries.",
+                    "key_features": [
+                        "Multi-format extraction (tables, images, text)",
+                        "Multilingual document support",
+                        "OCR with PySpark, pytesseract, and pymupdf",
+                        "Azure OpenAI contextual summarization",
+                        "Structured data storage for intelligent search",
+                        "Scanned document processing"
+                    ],
+                    "impact": "Eliminates manual data extraction from complex PDFs, reduces processing errors in multilingual documents, and improves operational efficiency through structured storage and intelligent search.",
+                    "impact_metrics": [
+                        {
+                            "value": "95%",
+                            "label": "Extraction Accuracy",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "80%",
+                            "label": "Less Manual Work",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "10x",
+                            "label": "Faster Processing",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "file-text",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "OCR",
+                        "PDF",
+                        "multilingual",
+                        "PySpark",
+                        "extraction"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "video-generator-agent",
+                    "title": "Video Generator Agent",
+                    "description": "Multi-agent system that automates creation of marketing demo videos from user-provided scripts. Executes application workflows via Playwright, records the session, generates context-aware narration using vision models and TTS, and produces finalized synchronized video.",
+                    "key_features": [
+                        "Test Agent: Parses scripts into structured workflows",
+                        "Playwright Agent: Automates app interaction and screen recording",
+                        "Transcript Agent: Vision model analysis for context-aware transcripts",
+                        "Audio Agent: TTS narration generation",
+                        "Stitching Agent: Synchronizes narration with screen recording"
+                    ],
+                    "impact": "Automates end-to-end demo video creation, eliminates manual screen recording and narration, and enables rapid marketing content generation at scale.",
+                    "impact_metrics": [
+                        {
+                            "value": "5x",
+                            "label": "Faster Production",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Zero",
+                            "label": "Manual Recording",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "Narration",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "video",
+                    "architecture": "Pro Code",
+                    "maturity": "Concept",
+                    "tags": [
+                        "multi-agent",
+                        "Playwright",
+                        "video",
+                        "TTS",
+                        "marketing"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "develop-fast",
+                    "title": "DevelopFAST",
+                    "description": "SDLC accelerator that combines Azure OpenAI with Azure Search Services to intelligently interpret requirements and generate complete development artifacts. Fetches project context, code context, and wiki documentation to produce user stories, architecture recommendations, best practices, test cases, multiple approaches, pseudocode, and code files.",
+                    "key_features": [
+                        "Automated user story generation from requirements",
+                        "Architecture change detection and recommendations",
+                        "Multiple approach comparison and brainstorming",
+                        "Code generation with review and optimization",
+                        "Test case and acceptance criteria generation",
+                        "Open question drafting for requirement clarity",
+                        "Code annotation and pseudocode generation",
+                        "Project wiki and code repo context integration"
+                    ],
+                    "impact": "Generates structured user stories instantly, streamlines technical approach documentation, and reduces cognitive load on developers while cutting time-to-first-commit significantly.",
+                    "impact_metrics": [
+                        {
+                            "value": "70%",
+                            "label": "Faster Stories",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "3x",
+                            "label": "Dev Speed",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "Test Cases",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "rocket",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "SDLC",
+                        "code-gen",
+                        "user-stories",
+                        "Azure-OpenAI",
+                        "architecture"
+                    ],
+                    "featured": true,
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "synthetic-data-generation",
+                    "title": "Synthetic Data Generation",
+                    "description": "Generates representative synthetic datasets that retain the statistical properties of original data using SDV (Synthetic Data Vault). Enables testing, fine-tuning, and load testing on lower environments without exposing sensitive production data.",
+                    "key_features": [
+                        "Statistical property preservation from original data",
+                        "SDV-based synthetic data generation",
+                        "Secure alternative to production data sharing",
+                        "Support for load testing and environment setup",
+                        "PII-free dataset creation for compliance"
+                    ],
+                    "impact": "Eliminates security risks from sharing production data, enables comprehensive testing with statistically accurate datasets, and supports regulatory compliance for data privacy.",
+                    "impact_metrics": [
+                        {
+                            "value": "100%",
+                            "label": "PII-Free",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "95%",
+                            "label": "Statistical Match",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Zero",
+                            "label": "Data Risk",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "database",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "synthetic-data",
+                        "SDV",
+                        "privacy",
+                        "testing",
+                        "compliance"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "mcp-chat-application",
+                    "title": "MCP Chat Application",
+                    "description": "Chat application built on the Model Context Protocol (MCP) for contextual AI-powered conversations.",
+                    "key_features": [
+                        "MCP-based conversational flow",
+                        "Contextual AI responses"
+                    ],
+                    "impact": "",
+                    "impact_metrics": [],
+                    "icon": "message-circle",
+                    "architecture": "Pro Code",
+                    "maturity": "Concept",
+                    "tags": [
+                        "MCP",
+                        "chat",
+                        "conversational"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "agent-eval",
+                    "title": "Agent Evaluation",
+                    "description": "Automated, judge-model quality evaluation for AI agents built on the Microsoft Agent Framework — turn built-in OpenTelemetry traces into continuous scoring across 17 quality, behavior, tool-use, and safety dimensions.",
+                    "key_features": [
+                        "Built-in OpenTelemetry instrumentation",
+                        "Server-side scoring via Foundry evaluate_traces()",
+                        "17 built-in evaluators across 4 categories",
+                        "Continuous, scheduled quality monitoring",
+                        "Copilot skills for fast adoption"
+                    ],
+                    "impact": "Replaces manual review with continuous, data-driven evaluation across all agent traffic — catching regressions before users feel them.",
+                    "impact_metrics": [],
+                    "icon": "FlaskConical",
+                    "architecture": "Pro Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "evaluation",
+                        "observability",
+                        "agent-framework",
+                        "foundry"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                }
+            ]
+        },
+        {
+            "domain": "Feature Showcase",
+            "id": "feature-showcase",
+            "icon": "Sparkles",
+            "description": "Real-world demonstrations of AI-assisted development using GitHub Copilot and DevOps tooling. These showcases highlight how AI augments developer workflows across coding, testing, accessibility, and deployment pipelines.",
+            "use_cases": [
+                {
+                    "id": "copilot-code-upgrade",
+                    "title": "GitHub Copilot – Code Upgrade",
+                    "description": "Demonstrates using GitHub Copilot to generate methods and components for new features during the development phase, significantly reducing time spent writing boilerplate code.",
+                    "key_features": [
+                        "AI-assisted method and component generation",
+                        "Context-aware code suggestions for new features",
+                        "Reduced boilerplate coding time",
+                        "Web-based prompt interface"
+                    ],
+                    "impact": "Reduced time in writing code for components.",
+                    "impact_metrics": [
+                        {
+                            "value": "50%",
+                            "label": "Faster Coding",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "Components",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Zero",
+                            "label": "Boilerplate",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "code",
+                    "architecture": "Low Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "GitHub-Copilot",
+                        "code-gen",
+                        "development",
+                        "AI-assisted"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "copilot-ui-testing",
+                    "title": "GitHub Copilot – UI Testing",
+                    "description": "Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.",
+                    "key_features": [
+                        "Automated UI test case generation from scenarios",
+                        "Edge case identification for UI components",
+                        "Interaction and data input coverage analysis",
+                        "Rendering condition validation"
+                    ],
+                    "impact": "Enhanced the reliability and stability of the component.",
+                    "impact_metrics": [
+                        {
+                            "value": "3x",
+                            "label": "Test Coverage",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "Edge Cases",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Higher",
+                            "label": "Stability",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "monitor-check",
+                    "architecture": "Low Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "GitHub-Copilot",
+                        "UI-testing",
+                        "edge-cases",
+                        "QA"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "copilot-accessibility-testing",
+                    "title": "GitHub Copilot – Accessibility Testing",
+                    "description": "Leverages GitHub Copilot to perform accessibility testing of websites, automatically identifying and listing accessibility issues to ensure WCAG compliance and inclusive user experiences.",
+                    "key_features": [
+                        "Automated website accessibility scanning",
+                        "WCAG compliance issue detection",
+                        "Structured accessibility issue reporting",
+                        "Reduced manual accessibility analysis time"
+                    ],
+                    "impact": "Reduced analysis time and enhanced overall efficiency.",
+                    "impact_metrics": [
+                        {
+                            "value": "80%",
+                            "label": "Faster Audits",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "WCAG",
+                            "label": "Compliant",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "Issue List",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "accessibility",
+                    "architecture": "Low Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "GitHub-Copilot",
+                        "accessibility",
+                        "WCAG",
+                        "testing"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "copilot-unit-testing",
+                    "title": "GitHub Copilot – Unit Testing",
+                    "description": "Uses GitHub Copilot to generate unit test cases from identified scenarios and detect edge cases affecting UI component behavior across interactions, data inputs, and rendering conditions.",
+                    "key_features": [
+                        "Automated unit test case generation",
+                        "Edge case detection for component behavior",
+                        "Data input and interaction scenario coverage",
+                        "Rendering condition edge case identification"
+                    ],
+                    "impact": "Enhanced the reliability and stability of the component.",
+                    "impact_metrics": [
+                        {
+                            "value": "4x",
+                            "label": "Test Speed",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "90%",
+                            "label": "Coverage",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "Edge Cases",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "test-tube",
+                    "architecture": "Low Code",
+                    "maturity": "Production",
+                    "tags": [
+                        "GitHub-Copilot",
+                        "unit-testing",
+                        "edge-cases",
+                        "QA"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "copilot-mcp-server",
+                    "title": "GitHub Copilot – MCP Server",
+                    "description": "MCP server created using GitHub Copilot to help testing teams and clients generate Matter data and retrieve details via APIs, enabling faster testing and better application context understanding.",
+                    "key_features": [
+                        "On-demand mock Matter data generation",
+                        "API-based data retrieval for testing",
+                        "Faster test environment setup",
+                        "Improved application context for teams and clients"
+                    ],
+                    "impact": "Enabled faster testing and improved user understanding by providing on-demand mock Matter data through the MCP server.",
+                    "impact_metrics": [
+                        {
+                            "value": "5x",
+                            "label": "Faster Testing",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Auto",
+                            "label": "Mock Data",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "API",
+                            "label": "First",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "server",
+                    "architecture": "Pro Code",
+                    "maturity": "Pilot",
+                    "tags": [
+                        "GitHub-Copilot",
+                        "MCP",
+                        "mock-data",
+                        "testing",
+                        "API"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                },
+                {
+                    "id": "devops-powerbi-semantic-model",
+                    "title": "Enhanced DevOps for Power BI Semantic Model",
+                    "description": "AI-enhanced DevOps pipeline for Power BI Semantic Models, streamlining deployment, version control, and model management within enterprise BI workflows.",
+                    "key_features": [
+                        "Automated Power BI Semantic Model deployment",
+                        "Version control integration for BI models",
+                        "CI/CD pipeline for Power BI artifacts",
+                        "Model change tracking and validation"
+                    ],
+                    "impact": "",
+                    "impact_metrics": [
+                        {
+                            "value": "Auto",
+                            "label": "Deployments",
+                            "icon": "TrendingDown"
+                        },
+                        {
+                            "value": "Full",
+                            "label": "Version Control",
+                            "icon": "Clock"
+                        },
+                        {
+                            "value": "CI/CD",
+                            "label": "Ready",
+                            "icon": "UserCheck"
+                        }
+                    ],
+                    "icon": "bar-chart",
+                    "architecture": "Low Code",
+                    "maturity": "Concept",
+                    "tags": [
+                        "Power-BI",
+                        "DevOps",
+                        "semantic-model",
+                        "CI-CD"
+                    ],
+                    "has_video": true,
+                    "contributed_by": "NA",
+                    "contributed_date": "NA"
+                }
+            ]
+        },
+        {
+            "domain": "Automotive",
+            "id": "automotive",
+            "description": "AI agents powering smarter vehicle intelligence and fleet operations. These solutions enhance mobility services, route planning, and operational decision-making.",
+            "icon": "Car",
+            "use_cases": []
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "playbook-development-36",
+  "name": "playbook-development-36",
+  "title": "Publish Delta tables to Databricks Unity Catalog (catalog/schema/table)",
+  "type": "prompt",
+  "version": "1.0.0",
+  "category": "Prompt Playbook",
+  "subcategory": "Development & Implementation",
+  "stage": "Development",
+  "domain": "Data Engineering",
+  "author": "harsh.rana@maqsoftware.com",
+  "source": "Azure BI & Data Engineering Playbook",
+  "sourceUrl": "https://aisdlcplaybook.azurewebsites.net/prompt-library",
+  "description": "It will generate a production-ready script that validates whether the specified catalog and schema exist in Unity Catalog and creates them if they do not exist, and publishes Delta tables to Unity Catalog according to the given mapping",
+  "task": "Publish Delta tables to Databricks Unity Catalog (catalog/schema/table)",
+  "copilotPrompt": "Create a production-ready module for Databricks that publishes Delta tables to Databricks Unity Catalog.\r\nSystem Context:\r\n**Provide system context here**\r\ncatalog_name, schema_name, Table, source, publish mode.\r\n\r\nRequirements:\r\nCreate script to publish the data in databricks unity catalog as per the above system context provided.\r\n\r\nValidate that:\r\nCatalog exists (create if not exists optional flag)\r\nSchema exists (create if not exists optional flag)\r\nHandle schema evolution if merge_schema=True\r\nReturn success/failure status",
+  "output": "It will generate a production-ready script that validates whether the specified catalog and schema exist in Unity Catalog and creates them if they do not exist, and publishes Delta tables to Unity Catalog according to the given mapping",
+  "tags": [
+    "azure-bi",
+    "playbook",
+    "prompt",
+    "development",
+    "databricks",
+    "lakehouse"
+  ],
+  "isCertified": true,
+  "keyFeatures": [
+    "Verbatim prompt from Azure BI & Data Engineering Playbook",
+    "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
+    "Ready to run directly in GitHub Copilot & Antigravity"
+  ],
+  "useCases": [
+    "Development & Implementation",
+    "Azure BI & Data Engineering Playbook"
+  ],
+  "installCommand": "engineering-commons install playbook-development-36",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Publish Delta tables to Databricks Unity Catalog (catalog/schema/table) (`playbook-development-36`)\n\nIt will generate a production-ready script that validates whether the specified catalog and schema exist in Unity Catalog and creates them if they do not exist, and publishes Delta tables to Unity Catalog according to the given mapping\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Data Engineering • Prompt Playbook\n- **Usability Tier**: PRODUCTION READY\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install playbook-development-36\n```\n\n*(Alternatively, search for **`playbook-development-36`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use in GitHub Copilot Chat & Antigravity\n1. Open **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) or the Antigravity chat panel.\n2. Copy the **Verbatim Prompt** below.\n3. Replace any bracketed placeholders (such as `{Dimension Name}`, `{Source Tables}`, or `{Context}`) with your specific project details.\n4. Press Enter to generate SME-ready architecture documents, schemas, or pipelines.\n\n### 2. Verbatim Prompt Template\n```markdown\nCreate a production-ready module for Databricks that publishes Delta tables to Databricks Unity Catalog.\r\nSystem Context:\r\n**Provide system context here**\r\ncatalog_name, schema_name, Table, source, publish mode.\r\n\r\nRequirements:\r\nCreate script to publish the data in databricks unity catalog as per the above system context provided.\r\n\r\nValidate that:\r\nCatalog exists (create if not exists optional flag)\r\nSchema exists (create if not exists optional flag)\r\nHandle schema evolution if merge_schema=True\r\nReturn success/failure status\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Verbatim prompt from Azure BI & Data Engineering Playbook**\n- **Certified for Microsoft Fabric, Synapse, Power BI & Databricks**\n- **Ready to run directly in GitHub Copilot & Antigravity**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `GitHub Copilot`\n- `Antigravity IDE`\n- `Enterprise CIP`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`playbook-development-36`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/prompts/playbook/playbook-development-36.md",
+      "content": "---\nname: playbook-development-36\ntitle: \"Publish Delta tables to Databricks Unity Catalog (catalog/schema/table)\"\ntype: prompt\ncategory: \"Prompt Playbook\"\nsubcategory: \"Development & Implementation\"\nstage: \"Development\"\nauthor: harsh.rana@maqsoftware.com\nsource: \"Azure BI & Data Engineering Playbook\"\nsource_url: \"https://aisdlcplaybook.azurewebsites.net/prompt-library\"\ntags: [\"azure-bi\", \"playbook\", \"prompt\", \"development\", \"databricks\", \"lakehouse\"]\ndescription: \"It will generate a production-ready script that validates whether the specified catalog and schema exist in Unity Catalog and creates them if they do not exist, and publishes Delta tables to Unity Catalog according to the given mapping\"\n---\n\n# Publish Delta tables to Databricks Unity Catalog (catalog/schema/table)\n\nCreate a production-ready module for Databricks that publishes Delta tables to Databricks Unity Catalog.\r\nSystem Context:\r\n**Provide system context here**\r\ncatalog_name, schema_name, Table, source, publish mode.\r\n\r\nRequirements:\r\nCreate script to publish the data in databricks unity catalog as per the above system context provided.\r\n\r\nValidate that:\r\nCatalog exists (create if not exists optional flag)\r\nSchema exists (create if not exists optional flag)\r\nHandle schema evolution if merge_schema=True\r\nReturn success/failure status\n"
+    },
+    {
+      "path": ".github/prompts/playbook/playbook-development-36.prompt.md",
+      "content": "---\nname: playbook-development-36\ndescription: \"It will generate a production-ready script that validates whether the specified catalog and schema exist in Unity Catalog and creates them if they do not exist,\"\n---\n\nCreate a production-ready module for Databricks that publishes Delta tables to Databricks Unity Catalog.\r\nSystem Context:\r\n**Provide system context here**\r\ncatalog_name, schema_name, Table, source, publish mode.\r\n\r\nRequirements:\r\nCreate script to publish the data in databricks unity catalog as per the above system context provided.\r\n\r\nValidate that:\r\nCatalog exists (create if not exists optional flag)\r\nSchema exists (create if not exists optional flag)\r\nHandle schema evolution if merge_schema=True\r\nReturn success/failure status\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: playbook-development-36\nversion: 1.0.0\ntype: prompt\ncategory: \"Prompt Playbook\"\nauthor: harsh.rana@maqsoftware.com\ndescription: \"It will generate a production-ready script that validates whether the specified catalog and schema exist in Unity Catalog and creates them if they do not exist, and publishes Delta tables to Unity Catalog according to the given mapping\"\nmain: .agents/prompts/playbook/playbook-development-36.md\n"
+    }
+  ]
+}

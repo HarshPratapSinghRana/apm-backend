@@ -145,7 +145,7 @@ export class UsageDashboardWebviewProvider {
     }
 
     public setBackendUrl(url: string) {
-        this._backendUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this._backendUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.loadAndRender().catch(() => {});
     }
 
@@ -1204,6 +1204,16 @@ export class UsageDashboardWebviewProvider {
     <script>
         const vscode = acquireVsCodeApi();
 
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
         function setPeriod(period) {
             vscode.postMessage({ command: 'changeFilter', period: period });
         }
@@ -1244,13 +1254,15 @@ export class UsageDashboardWebviewProvider {
             const bodyContent = document.getElementById('modal-body-content');
 
             if (artNameSpan) {
-                artNameSpan.innerHTML = artifactId + ' <span class="badge ' + (artifactType || 'agent') + '">' + (artifactType || 'agent') + '</span>';
+                const safeName = escapeHtml(artifactId);
+                const safeType = escapeHtml(artifactType || 'agent');
+                artNameSpan.innerHTML = safeName + ' <span class="badge ' + safeType + '">' + safeType + '</span>';
             }
 
             const activeUsers = (users || []).filter(u => ((u.totalDownloads || u.downloads || 0) > 0 || (u.totalUses || u.uses || 0) > 0));
 
             if (!activeUsers || activeUsers.length === 0) {
-                bodyContent.innerHTML = '<div class="empty-state">No individual developer usage events recorded yet for <strong>' + artifactId + '</strong>.</div>';
+                bodyContent.innerHTML = '<div class="empty-state">No individual developer usage events recorded yet for <strong>' + escapeHtml(artifactId) + '</strong>.</div>';
             } else {
                 const totalDownloads = activeUsers.reduce((s, u) => s + (u.totalDownloads || u.downloads || 0), 0);
                 const totalUses = activeUsers.reduce((s, u) => s + (u.totalUses || u.uses || 0), 0);
@@ -1279,7 +1291,7 @@ export class UsageDashboardWebviewProvider {
                     return (
                         '<div class="user-card-item">' +
                             '<div class="user-info-col">' +
-                                '<span class="user-email-text">👤 ' + (u.userEmail || u.userId || 'User') + '</span>' +
+                                '<span class="user-email-text">👤 ' + escapeHtml(u.userEmail || u.userId || 'User') + '</span>' +
                                 '<span class="user-time-text">🕒 Last active: ' + timeStr + '</span>' +
                             '</div>' +
                             '<div class="user-stats-col">' +

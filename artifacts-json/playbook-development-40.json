@@ -1,0 +1,53 @@
+{
+  "id": "playbook-development-40",
+  "name": "playbook-development-40",
+  "title": "Implement purge process for outdated or expired data",
+  "type": "prompt",
+  "version": "1.0.0",
+  "category": "Prompt Playbook",
+  "subcategory": "Development & Implementation",
+  "stage": "Development",
+  "domain": "Data Engineering",
+  "author": "harsh.rana@maqsoftware.com",
+  "source": "Azure BI & Data Engineering Playbook",
+  "sourceUrl": "https://aisdlcplaybook.azurewebsites.net/prompt-library",
+  "description": "It will provide a scalable, auditable, and configurable script for purging.",
+  "task": "Implement purge process for outdated or expired data",
+  "copilotPrompt": "You are an experienced data engineer who wants to clean up the workspaces by implementing a data purge process for outdated or expired records.\r\nCreate a script for the below: \r\nRequirements:\r\n1. Identify records eligible for purge based on:\r\n• Retention policy (e.g., older than X days/months/years)\r\n• Expiration date column\r\n• Status flag (e.g., IsActive = false)\r\n2. Parameterize retention period (config-driven, not hardcoded)\r\n3. Support soft delete (flag update) OR hard delete (physical removal)\r\n4. Log purge activity including:\r\n• Table name\r\n• Number of records deleted\r\n• Execution timestamp\r\n5. Handle large tables efficiently (batch deletes if needed)\r\n6. Include error handling and transaction control\r\n7. Make the process reusable for multiple tables\r\nFollow best practices for performance, auditability, and recoverability.",
+  "output": "It will provide a scalable, auditable, and configurable script for purging.",
+  "tags": [
+    "azure-bi",
+    "playbook",
+    "prompt",
+    "development"
+  ],
+  "isCertified": true,
+  "keyFeatures": [
+    "Verbatim prompt from Azure BI & Data Engineering Playbook",
+    "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
+    "Ready to run directly in GitHub Copilot & Antigravity"
+  ],
+  "useCases": [
+    "Development & Implementation",
+    "Azure BI & Data Engineering Playbook"
+  ],
+  "installCommand": "engineering-commons install playbook-development-40",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Implement purge process for outdated or expired data (`playbook-development-40`)\n\nIt will provide a scalable, auditable, and configurable script for purging.\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Data Engineering • Prompt Playbook\n- **Usability Tier**: PRODUCTION READY\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install playbook-development-40\n```\n\n*(Alternatively, search for **`playbook-development-40`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use in GitHub Copilot Chat & Antigravity\n1. Open **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) or the Antigravity chat panel.\n2. Copy the **Verbatim Prompt** below.\n3. Replace any bracketed placeholders (such as `{Dimension Name}`, `{Source Tables}`, or `{Context}`) with your specific project details.\n4. Press Enter to generate SME-ready architecture documents, schemas, or pipelines.\n\n### 2. Verbatim Prompt Template\n```markdown\nYou are an experienced data engineer who wants to clean up the workspaces by implementing a data purge process for outdated or expired records.\r\nCreate a script for the below: \r\nRequirements:\r\n1. Identify records eligible for purge based on:\r\n• Retention policy (e.g., older than X days/months/years)\r\n• Expiration date column\r\n• Status flag (e.g., IsActive = false)\r\n2. Parameterize retention period (config-driven, not hardcoded)\r\n3. Support soft delete (flag update) OR hard delete (physical removal)\r\n4. Log purge activity including:\r\n• Table name\r\n• Number of records deleted\r\n• Execution timestamp\r\n5. Handle large tables efficiently (batch deletes if needed)\r\n6. Include error handling and transaction control\r\n7. Make the process reusable for multiple tables\r\nFollow best practices for performance, auditability, and recoverability.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Verbatim prompt from Azure BI & Data Engineering Playbook**\n- **Certified for Microsoft Fabric, Synapse, Power BI & Databricks**\n- **Ready to run directly in GitHub Copilot & Antigravity**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `GitHub Copilot`\n- `Antigravity IDE`\n- `Enterprise CIP`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`playbook-development-40`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/prompts/playbook/playbook-development-40.md",
+      "content": "---\nname: playbook-development-40\ntitle: \"Implement purge process for outdated or expired data\"\ntype: prompt\ncategory: \"Prompt Playbook\"\nsubcategory: \"Development & Implementation\"\nstage: \"Development\"\nauthor: harsh.rana@maqsoftware.com\nsource: \"Azure BI & Data Engineering Playbook\"\nsource_url: \"https://aisdlcplaybook.azurewebsites.net/prompt-library\"\ntags: [\"azure-bi\", \"playbook\", \"prompt\", \"development\"]\ndescription: \"It will provide a scalable, auditable, and configurable script for purging.\"\n---\n\n# Implement purge process for outdated or expired data\n\nYou are an experienced data engineer who wants to clean up the workspaces by implementing a data purge process for outdated or expired records.\r\nCreate a script for the below: \r\nRequirements:\r\n1. Identify records eligible for purge based on:\r\n• Retention policy (e.g., older than X days/months/years)\r\n• Expiration date column\r\n• Status flag (e.g., IsActive = false)\r\n2. Parameterize retention period (config-driven, not hardcoded)\r\n3. Support soft delete (flag update) OR hard delete (physical removal)\r\n4. Log purge activity including:\r\n• Table name\r\n• Number of records deleted\r\n• Execution timestamp\r\n5. Handle large tables efficiently (batch deletes if needed)\r\n6. Include error handling and transaction control\r\n7. Make the process reusable for multiple tables\r\nFollow best practices for performance, auditability, and recoverability.\n"
+    },
+    {
+      "path": ".github/prompts/playbook/playbook-development-40.prompt.md",
+      "content": "---\nname: playbook-development-40\ndescription: \"It will provide a scalable, auditable, and configurable script for purging.\"\n---\n\nYou are an experienced data engineer who wants to clean up the workspaces by implementing a data purge process for outdated or expired records.\r\nCreate a script for the below: \r\nRequirements:\r\n1. Identify records eligible for purge based on:\r\n• Retention policy (e.g., older than X days/months/years)\r\n• Expiration date column\r\n• Status flag (e.g., IsActive = false)\r\n2. Parameterize retention period (config-driven, not hardcoded)\r\n3. Support soft delete (flag update) OR hard delete (physical removal)\r\n4. Log purge activity including:\r\n• Table name\r\n• Number of records deleted\r\n• Execution timestamp\r\n5. Handle large tables efficiently (batch deletes if needed)\r\n6. Include error handling and transaction control\r\n7. Make the process reusable for multiple tables\r\nFollow best practices for performance, auditability, and recoverability.\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: playbook-development-40\nversion: 1.0.0\ntype: prompt\ncategory: \"Prompt Playbook\"\nauthor: harsh.rana@maqsoftware.com\ndescription: \"It will provide a scalable, auditable, and configurable script for purging.\"\nmain: .agents/prompts/playbook/playbook-development-40.md\n"
+    }
+  ]
+}

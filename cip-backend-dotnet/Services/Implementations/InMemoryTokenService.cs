@@ -11,6 +11,8 @@ namespace CipBackend.Services.Implementations;
 public class InMemoryTokenService : ITokenService
 {
     private readonly ConcurrentDictionary<string, User> _tokens = new(StringComparer.OrdinalIgnoreCase);
+    private readonly ConcurrentDictionary<string, DateTime> _tokenExpirations = new(StringComparer.OrdinalIgnoreCase);
+    private static readonly TimeSpan DefaultTokenLifetime = TimeSpan.FromHours(24);
     private readonly string _tokenCachePath;
 
     public InMemoryTokenService()
@@ -63,17 +65,39 @@ public class InMemoryTokenService : ITokenService
     {
         if (string.IsNullOrWhiteSpace(token) || user == null) return;
         _tokens[token] = user;
+        _tokenExpirations[token] = DateTime.UtcNow.Add(DefaultTokenLifetime);
         SaveTokens();
     }
 
     public User? ValidateToken(string token)
     {
         if (string.IsNullOrWhiteSpace(token)) return null;
-        if (_tokens.TryGetValue(token, out var user)) return user;
+
+        if (_tokens.TryGetValue(token, out var user))
+        {
+            if (_tokenExpirations.TryGetValue(token, out var exp) && DateTime.UtcNow > exp)
+            {
+                _tokens.TryRemove(token, out _);
+                _tokenExpirations.TryRemove(token, out _);
+                SaveTokens();
+                return null;
+            }
+            return user;
+        }
 
         // Try reloading token cache from disk if not found in memory
         LoadTokens();
-        if (_tokens.TryGetValue(token, out user)) return user;
+        if (_tokens.TryGetValue(token, out user))
+        {
+            if (_tokenExpirations.TryGetValue(token, out var exp) && DateTime.UtcNow > exp)
+            {
+                _tokens.TryRemove(token, out _);
+                _tokenExpirations.TryRemove(token, out _);
+                SaveTokens();
+                return null;
+            }
+            return user;
+        }
 
         // Also check ~/.engineering-commons/session.json directly as fallback if explicitly valid
         try
@@ -91,8 +115,17 @@ public class InMemoryTokenService : ITokenService
 
                     if (!string.IsNullOrWhiteSpace(email))
                     {
-                        var recoveredUser = new User { Email = email.Trim(), Role = (!string.IsNullOrWhiteSpace(role) ? role.Trim() : "CONSUMER") };
+                        var normEmail = email.Trim();
+                        var normRole = !string.IsNullOrWhiteSpace(role) ? role.Trim() : "CONSUMER";
+                        // Prevent unverified privilege escalation via local file tampering
+                        if (string.Equals(normRole, "ADMIN", StringComparison.OrdinalIgnoreCase) && 
+                            !string.Equals(normEmail, "harsh.rana@maqsoftware.com", StringComparison.OrdinalIgnoreCase))
+                        {
+                            normRole = "CONSUMER";
+                        }
+                        var recoveredUser = new User { Email = normEmail, Role = normRole };
                         _tokens[token] = recoveredUser;
+                        _tokenExpirations[token] = DateTime.UtcNow.Add(DefaultTokenLifetime);
                         SaveTokens();
                         return recoveredUser;
                     }

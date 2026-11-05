@@ -500,7 +500,7 @@ Engineering Commons System";
             DeliveryMode: deliveryMode,
             ActiveSender: activeSender,
             AdminEmail: smtpStatus.AdminEmail,
-            PickupDirectoryPath: _pickupDirectory,
+            PickupDirectoryPath: string.IsNullOrEmpty(_pickupDirectory) ? "mail_outbox" : Path.GetFileName(_pickupDirectory.TrimEnd('\\', '/')),
             TotalDispatchedCount: _outbox.Count,
             Graph: graphStatus,
             Smtp: smtpStatus
@@ -573,7 +573,8 @@ Engineering Commons System";
                 Directory.CreateDirectory(_pickupDirectory);
             }
 
-            var safeRecipient = toEmail.Replace("@", "_at_").Replace(".", "_");
+            var safeRecipient = System.Text.RegularExpressions.Regex.Replace(toEmail ?? string.Empty, @"[^a-zA-Z0-9_\-]", "_");
+            var cleanSubject = (subject ?? string.Empty).Replace("\r", "").Replace("\n", " ").Trim();
             var filename = $"{DateTime.UtcNow:yyyyMMdd_HHmmss}_{safeRecipient}_{emailId.Substring(0, 8)}.eml";
             emlPath = Path.Combine(_pickupDirectory, filename);
 
@@ -582,7 +583,7 @@ Engineering Commons System";
             emlBuilder.AppendLine($"Date: {DateTime.UtcNow:R}");
             emlBuilder.AppendLine($"From: Engineering Commons <{fromEmail}>");
             emlBuilder.AppendLine($"To: <{toEmail}>");
-            emlBuilder.AppendLine($"Subject: {subject}");
+            emlBuilder.AppendLine($"Subject: {cleanSubject}");
             emlBuilder.AppendLine($"MIME-Version: 1.0");
             emlBuilder.AppendLine($"Content-Type: text/html; charset=utf-8");
             emlBuilder.AppendLine($"Content-Transfer-Encoding: 8bit");

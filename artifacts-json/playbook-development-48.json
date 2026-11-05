@@ -1,0 +1,55 @@
+{
+  "id": "playbook-development-48",
+  "name": "playbook-development-48",
+  "title": "Implement Row-Level Security (RLS) rules",
+  "type": "prompt",
+  "version": "1.0.0",
+  "category": "Prompt Playbook",
+  "subcategory": "Development & Implementation",
+  "stage": "Development",
+  "domain": "Data Engineering",
+  "author": "harsh.rana@maqsoftware.com",
+  "source": "Azure BI & Data Engineering Playbook",
+  "sourceUrl": "https://aisdlcplaybook.azurewebsites.net/prompt-library",
+  "description": "Prompt using Power BI MCP:\r\nConnect to Power BI Desktop with name 'Billed Reporting'.\r\nCreate a role PartnerOneRole in Test_excel with PartnerOne = USERPRINCIPALNAME()\r\nOutput:\r\nIt creates the role in Power BI with the provided DAX.",
+  "task": "Implement Row-Level Security (RLS) rules",
+  "copilotPrompt": "Connect to Power BI Desktop with name **Provide name here**.\r\nCreate a role for RLS as **Provide RLS logic**",
+  "output": "Prompt using Power BI MCP:\r\nConnect to Power BI Desktop with name 'Billed Reporting'.\r\nCreate a role PartnerOneRole in Test_excel with PartnerOne = USERPRINCIPALNAME()\r\nOutput:\r\nIt creates the role in Power BI with the provided DAX.",
+  "tags": [
+    "azure-bi",
+    "playbook",
+    "prompt",
+    "development",
+    "power-bi",
+    "security"
+  ],
+  "isCertified": true,
+  "keyFeatures": [
+    "Verbatim prompt from Azure BI & Data Engineering Playbook",
+    "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
+    "Ready to run directly in GitHub Copilot & Antigravity"
+  ],
+  "useCases": [
+    "Development & Implementation",
+    "Azure BI & Data Engineering Playbook"
+  ],
+  "installCommand": "engineering-commons install playbook-development-48",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Implement Row-Level Security (RLS) rules (`playbook-development-48`)\n\nPrompt using Power BI MCP:\r\nConnect to Power BI Desktop with name 'Billed Reporting'.\r\nCreate a role PartnerOneRole in Test_excel with PartnerOne = USERPRINCIPALNAME()\r\nOutput:\r\nIt creates the role in Power BI with the provided DAX.\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Data Engineering • Prompt Playbook\n- **Usability Tier**: PRODUCTION READY\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install playbook-development-48\n```\n\n*(Alternatively, search for **`playbook-development-48`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use in GitHub Copilot Chat & Antigravity\n1. Open **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) or the Antigravity chat panel.\n2. Copy the **Verbatim Prompt** below.\n3. Replace any bracketed placeholders (such as `{Dimension Name}`, `{Source Tables}`, or `{Context}`) with your specific project details.\n4. Press Enter to generate SME-ready architecture documents, schemas, or pipelines.\n\n### 2. Verbatim Prompt Template\n```markdown\nConnect to Power BI Desktop with name **Provide name here**.\r\nCreate a role for RLS as **Provide RLS logic**\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Verbatim prompt from Azure BI & Data Engineering Playbook**\n- **Certified for Microsoft Fabric, Synapse, Power BI & Databricks**\n- **Ready to run directly in GitHub Copilot & Antigravity**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `GitHub Copilot`\n- `Antigravity IDE`\n- `Enterprise CIP`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`playbook-development-48`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/prompts/playbook/playbook-development-48.md",
+      "content": "---\nname: playbook-development-48\ntitle: \"Implement Row-Level Security (RLS) rules\"\ntype: prompt\ncategory: \"Prompt Playbook\"\nsubcategory: \"Development & Implementation\"\nstage: \"Development\"\nauthor: harsh.rana@maqsoftware.com\nsource: \"Azure BI & Data Engineering Playbook\"\nsource_url: \"https://aisdlcplaybook.azurewebsites.net/prompt-library\"\ntags: [\"azure-bi\", \"playbook\", \"prompt\", \"development\", \"power-bi\", \"security\"]\ndescription: \"Prompt using Power BI MCP: Connect to Power BI Desktop with name 'Billed Reporting'. Create a role PartnerOneRole in Test_excel with PartnerOne = USERPRINCIPALNAME() Output: It creates the role in Power BI with the provided DAX.\"\n---\n\n# Implement Row-Level Security (RLS) rules\n\nConnect to Power BI Desktop with name **Provide name here**.\r\nCreate a role for RLS as **Provide RLS logic**\n"
+    },
+    {
+      "path": ".github/prompts/playbook/playbook-development-48.prompt.md",
+      "content": "---\nname: playbook-development-48\ndescription: \"Prompt using Power BI MCP: Connect to Power BI Desktop with name 'Billed Reporting'. Create a role PartnerOneRole in Test_excel with PartnerOne = USERPRINCIPALN\"\n---\n\nConnect to Power BI Desktop with name **Provide name here**.\r\nCreate a role for RLS as **Provide RLS logic**\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: playbook-development-48\nversion: 1.0.0\ntype: prompt\ncategory: \"Prompt Playbook\"\nauthor: harsh.rana@maqsoftware.com\ndescription: \"Prompt using Power BI MCP: Connect to Power BI Desktop with name 'Billed Reporting'. Create a role PartnerOneRole in Test_excel with PartnerOne = USERPRINCIPALNAME() Output: It creates the role in Power BI with the provided DAX.\"\nmain: .agents/prompts/playbook/playbook-development-48.md\n"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "github-assistant",
+  "version": "1.0.0",
+  "type": "plugin",
+  "category": "DevOps & CI/CD",
+  "description": "GitHub workflows, PR templates, and issue tracking integration plugin.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 67,
+  "rating": 4.7,
+  "techStack": [
+    "GitHub Actions",
+    "YAML",
+    "Git"
+  ],
+  "keyFeatures": [
+    "PR templates",
+    "Action workflow generator",
+    "Release notes generator"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# github-assistant (`github-assistant`)\n\nGitHub workflows, PR templates, and issue tracking integration plugin.\n\n- **Artifact Type**: `PLUGIN`\n- **Domain / Category**: Engineering • DevOps & CI/CD\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install github-assistant\n```\n\n*(Alternatively, search for **`github-assistant`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. VS Code Command Palette Invocation\nOpen the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run:\n```text\n> Engineering Commons: Run github-assistant\n```\n\n### 2. Copilot Chat Example Prompt\n```markdown\nRun the github-assistant plugin to automate GitHub workflows, PR templates, and issue tracking integration plugin across the repository.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **PR templates**\n- **Action workflow generator**\n- **Release notes generator**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `GitHub Actions`\n- `YAML`\n- `Git`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`github-assistant`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".github/plugins/github-assistant/plugin.json",
+      "content": "{\n  \"name\": \"github-assistant\",\n  \"type\": \"plugin\",\n  \"version\": \"1.0.0\",\n  \"description\": \"GitHub Assistant plugin providing PR, issue, and workflow automation.\",\n  \"author\": \"Company AI Platform Team\",\n  \"entrypoint\": \"index.js\",\n  \"permissions\": [\"repo\", \"workflow\", \"pull_requests\"]\n}\n"
+    },
+    {
+      "path": ".github/plugins/github-assistant/README.md",
+      "content": "# GitHub Assistant Plugin\n\nA modular AI plugin that automates pull requests, code summaries, and repository actions.\n\n## Configuration\nSee `plugin.json` for capabilities and permissions.\n"
+    },
+    {
+      "path": ".github/plugins/github-assistant/plugin.json",
+      "content": "{\n  \"name\": \"github-assistant\",\n  \"type\": \"plugin\",\n  \"version\": \"1.0.0\",\n  \"description\": \"GitHub Assistant plugin providing PR, issue, and workflow automation.\",\n  \"author\": \"Company AI Platform Team\",\n  \"entrypoint\": \"index.js\",\n  \"permissions\": [\"repo\", \"workflow\", \"pull_requests\"]\n}\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "Run the github-assistant plugin to automate GitHub workflows, PR templates, and issue tracking integration plugin across the repository."
+}

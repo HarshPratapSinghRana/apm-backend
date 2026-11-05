@@ -154,7 +154,7 @@ describe('AdvisorHookProvisioner & GitHub Copilot Discovery Tests', () => {
         (https as any).request = customHttpsRequest;
 
         try {
-            const sub = AdvisorHookProvisioner.registerAuthSync(mockAuth, 'https://ecommerce-app-chi-wine.vercel.app', () => tmpDir);
+            const sub = AdvisorHookProvisioner.registerAuthSync(mockAuth, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', () => tmpDir);
 
             // Initially unauthenticated: 0 network calls dispatched
             expect(networkRequestCount).to.equal(0);

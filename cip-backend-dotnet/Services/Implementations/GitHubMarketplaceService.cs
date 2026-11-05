@@ -560,8 +560,13 @@ public class GitHubMarketplaceService : IMarketplaceService
             throw new InvalidOperationException("GitHub owner or repository not configured");
         }
 
-        // Determine path in repo for the artifact. Use a safe subfolder.
-        var path = $"artifacts/{artifactId}.md";
+        // Determine path in repo for the artifact. Use a safe sanitized name.
+        var cleanArtifactId = System.Text.RegularExpressions.Regex.Replace(artifactId ?? string.Empty, @"[^a-zA-Z0-9_\-\.]", "_");
+        if (string.IsNullOrWhiteSpace(cleanArtifactId) || cleanArtifactId.Contains(".."))
+        {
+            cleanArtifactId = "artifact-" + Guid.NewGuid().ToString("N").Substring(0, 8);
+        }
+        var path = $"artifacts/{cleanArtifactId}.md";
         var baseUrl = "https://api.github.com";
         var contentsUrl = $"{baseUrl}/repos/{_opts.Owner}/{_opts.Repository}/contents/{path}";
 

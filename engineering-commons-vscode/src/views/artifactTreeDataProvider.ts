@@ -54,13 +54,13 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
         cliExecutor: ICliExecutor,
         authProvider: IAuthenticationStatusProvider,
         cliExecutable = 'engineering-commons',
-        backendUrl = 'https://ecommerce-app-chi-wine.vercel.app',
+        backendUrl = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
         notificationService?: INotificationService
     ) {
         this.cliExecutor = cliExecutor;
         this.authProvider = authProvider;
         this.cliExecutable = cliExecutable;
-        this.backendUrl = (backendUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.notificationService = notificationService;
         this.spArtifactService = new SharePointArtifactService();
 
@@ -75,7 +75,7 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
     }
 
     public setBackendUrl(url: string): void {
-        this.backendUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.refresh(true);
     }
 
@@ -352,7 +352,7 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                 const rawConfig = vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || process.env.ENGINEERING_COMMONS_BACKEND_URL;
                 const isLocalhost = (this.backendUrl && this.backendUrl.includes('localhost')) || (rawConfig && rawConfig.includes('localhost'));
                 if (!isLocalhost || items.length === 0) {
-                    const backendUrl = (rawConfig && !rawConfig.includes('localhost')) ? rawConfig.trim() : (this.backendUrl || 'https://ecommerce-app-chi-wine.vercel.app');
+                    const backendUrl = (rawConfig && !rawConfig.includes('localhost')) ? rawConfig.trim() : (this.backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
                     const res = await this.makeRequest(`${backendUrl}/api/artifacts`);
                     if (res.status === 200 && Array.isArray(res.data) && res.data.length > 0) {
                         for (const item of res.data) {

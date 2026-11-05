@@ -1,0 +1,35 @@
+{
+  "name": "enterprise-coding-standards",
+  "version": "1.0.0",
+  "type": "prompt",
+  "category": "Prompts",
+  "description": "Corporate engineering coding standards and prompt constraints.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 91,
+  "rating": 4.9,
+  "techStack": [
+    "Markdown",
+    "Instructions"
+  ],
+  "keyFeatures": [
+    "Naming conventions",
+    "Error handling patterns",
+    "SOLID principles"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# enterprise-coding-standards (`enterprise-coding-standards`)\n\nCorporate engineering coding standards and prompt constraints.\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Engineering • Prompts\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install enterprise-coding-standards\n```\n\n*(Alternatively, search for **`enterprise-coding-standards`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. Prompt Execution Instructions\nCopy the prompt template below and paste it into GitHub Copilot Chat or Antigravity:\n\n```markdown\nYou are an enterprise AI specialist specializing in Prompts.\n\nTask: Corporate engineering coding standards and prompt constraints\n\nRequirements:\n1. Adhere strictly to enterprise architectural, security, and data governance standards.\n2. Provide production-ready, clean, well-documented implementation code.\n3. Include comprehensive error handling, boundary validation, and verification checks.\n```\n\n### 2. Refinement & Optimization Follow-Up\n```markdown\nReview the generated implementation against enterprise scalability and cost-efficiency guidelines.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Naming conventions**\n- **Error handling patterns**\n- **SOLID principles**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `Markdown`\n- `Instructions`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`enterprise-coding-standards`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": "prompts/enterprise-coding-standards.prompt.md",
+      "content": "---\nname: enterprise-coding-standards\ntype: prompt\nversion: 1.0.0\ndescription: Corporate engineering coding standards and prompt constraints.\n---\n\nAdhere to corporate engineering standards:\n- Strict TypeScript mode with no `any`\n- Async/await everywhere\n- Parameter validation and null guards"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "You are an enterprise AI specialist specializing in Prompts.\n\nTask: Corporate engineering coding standards and prompt constraints\n\nRequirements:\n1. Adhere strictly to enterprise architectural, security, and data governance standards.\n2. Provide production-ready, clean, well-documented implementation code.\n3. Include comprehensive error handling, boundary validation, and verification checks."
+}

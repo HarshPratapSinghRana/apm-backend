@@ -1,0 +1,54 @@
+{
+  "id": "playbook-support-1",
+  "name": "playbook-support-1",
+  "title": "Create Databricks Runbook (execution, restart logic, troubleshooting)",
+  "type": "prompt",
+  "version": "1.0.0",
+  "category": "Prompt Playbook",
+  "subcategory": "Support & Maintenance",
+  "stage": "Support",
+  "domain": "Data Engineering",
+  "author": "harsh.rana@maqsoftware.com",
+  "source": "Azure BI & Data Engineering Playbook",
+  "sourceUrl": "https://aisdlcplaybook.azurewebsites.net/prompt-library",
+  "description": "In the attached workspace, I have two folders.\r\nIn Synapse, I have all the notebooks, and in Pipelines I have orchestration pipelines.Based on the system context, it will generate the runbook for engineers.",
+  "task": "Create Databricks Runbook (execution, restart logic, troubleshooting)",
+  "copilotPrompt": "I need to create a runbook for engineers working on the attached system. Draft one that includes sections for execution, restart logic, and troubleshooting.\r\n\r\n**Provide context here**",
+  "output": "In the attached workspace, I have two folders.\r\nIn Synapse, I have all the notebooks, and in Pipelines I have orchestration pipelines.Based on the system context, it will generate the runbook for engineers.",
+  "tags": [
+    "azure-bi",
+    "playbook",
+    "prompt",
+    "support",
+    "databricks"
+  ],
+  "isCertified": true,
+  "keyFeatures": [
+    "Verbatim prompt from Azure BI & Data Engineering Playbook",
+    "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
+    "Ready to run directly in GitHub Copilot & Antigravity"
+  ],
+  "useCases": [
+    "Support & Maintenance",
+    "Azure BI & Data Engineering Playbook"
+  ],
+  "installCommand": "engineering-commons install playbook-support-1",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Create Databricks Runbook (execution, restart logic, troubleshooting) (`playbook-support-1`)\n\nIn the attached workspace, I have two folders.\r\nIn Synapse, I have all the notebooks, and in Pipelines I have orchestration pipelines.Based on the system context, it will generate the runbook for engineers.\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Data Engineering • Prompt Playbook\n- **Usability Tier**: PRODUCTION READY\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install playbook-support-1\n```\n\n*(Alternatively, search for **`playbook-support-1`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use in GitHub Copilot Chat & Antigravity\n1. Open **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) or the Antigravity chat panel.\n2. Copy the **Verbatim Prompt** below.\n3. Replace any bracketed placeholders (such as `{Dimension Name}`, `{Source Tables}`, or `{Context}`) with your specific project details.\n4. Press Enter to generate SME-ready architecture documents, schemas, or pipelines.\n\n### 2. Verbatim Prompt Template\n```markdown\nI need to create a runbook for engineers working on the attached system. Draft one that includes sections for execution, restart logic, and troubleshooting.\r\n\r\n**Provide context here**\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Verbatim prompt from Azure BI & Data Engineering Playbook**\n- **Certified for Microsoft Fabric, Synapse, Power BI & Databricks**\n- **Ready to run directly in GitHub Copilot & Antigravity**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `GitHub Copilot`\n- `Antigravity IDE`\n- `Enterprise CIP`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`playbook-support-1`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/prompts/playbook/playbook-support-1.md",
+      "content": "---\nname: playbook-support-1\ntitle: \"Create Databricks Runbook (execution, restart logic, troubleshooting)\"\ntype: prompt\ncategory: \"Prompt Playbook\"\nsubcategory: \"Support & Maintenance\"\nstage: \"Support\"\nauthor: harsh.rana@maqsoftware.com\nsource: \"Azure BI & Data Engineering Playbook\"\nsource_url: \"https://aisdlcplaybook.azurewebsites.net/prompt-library\"\ntags: [\"azure-bi\", \"playbook\", \"prompt\", \"support\", \"databricks\"]\ndescription: \"In the attached workspace, I have two folders. In Synapse, I have all the notebooks, and in Pipelines I have orchestration pipelines.Based on the system context, it will generate the runbook for engineers.\"\n---\n\n# Create Databricks Runbook (execution, restart logic, troubleshooting)\n\nI need to create a runbook for engineers working on the attached system. Draft one that includes sections for execution, restart logic, and troubleshooting.\r\n\r\n**Provide context here**\n"
+    },
+    {
+      "path": ".github/prompts/playbook/playbook-support-1.prompt.md",
+      "content": "---\nname: playbook-support-1\ndescription: \"In the attached workspace, I have two folders. In Synapse, I have all the notebooks, and in Pipelines I have orchestration pipelines.Based on the system context\"\n---\n\nI need to create a runbook for engineers working on the attached system. Draft one that includes sections for execution, restart logic, and troubleshooting.\r\n\r\n**Provide context here**\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: playbook-support-1\nversion: 1.0.0\ntype: prompt\ncategory: \"Prompt Playbook\"\nauthor: harsh.rana@maqsoftware.com\ndescription: \"In the attached workspace, I have two folders. In Synapse, I have all the notebooks, and in Pipelines I have orchestration pipelines.Based on the system context, it will generate the runbook for engineers.\"\nmain: .agents/prompts/playbook/playbook-support-1.md\n"
+    }
+  ]
+}

@@ -22,6 +22,10 @@
   ],
   "files": [
     {
+      "path": "README.md",
+      "content": "# git-smart-commit (`git-smart-commit`)\n\nConventional Commits enforcement and semantic changelog generator command. Enforces standardized commit formats with zero external dependencies.\n\n- **Artifact Type**: `COMMAND`\n- **Domain / Category**: Engineering • Developer Tools\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `conventional-changelog`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install git-smart-commit\n```\n\n*(Alternatively, search for **`git-smart-commit`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. CLI Execution\nExecute this command in your project terminal:\n\n```bash\nengineering-commons run git-smart-commit\n```\n\n### 2. Copilot Chat Invocation\n```markdown\nExecute git-smart-commit across staged files and export structured results to audit.log.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Conventional Commits 1.0.0 validation**\n- **Header length and format linting**\n- **CI/CD Git hook integration**\n- **Zero external npm runtime dependencies**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `Node.js`\n- `Git`\n- `Commitlint`\n- `CLI`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`git-smart-commit`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **conventional-changelog** • Engineering Commons Ecosystem*"
+    },
+    {
       "path": ".github/commands/git-smart-commit/index.js",
       "content": "#!/usr/bin/env node\n// Conventional commit validation script\n"
     },
@@ -33,5 +37,6 @@
   "usability": "copilot-ready",
   "usabilityLabel": "Copilot & Claude Ready Prompt",
   "usabilityBadge": "🤖 Copilot & Claude Ready",
-  "isCopilotReady": true
+  "isCopilotReady": true,
+  "copilotPrompt": "engineering-commons run git-smart-commit"
 }

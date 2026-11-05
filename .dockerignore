@@ -1,0 +1,16 @@
+node_modules
+.git
+.github
+.vscode
+.agents
+engineering-commons-vscode
+tmp
+dist
+build
+*.vsix
+*.log
+*.zip
+.vercel
+skills
+resources
+

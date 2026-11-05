@@ -17,12 +17,12 @@ export class HttpBackendUsageClient implements IBackendUsageClient {
     private readonly batchThreshold = 25; // Efficient batching to minimize backend HTTP traffic
     private readonly flushIntervalMs = 60000; // 60-second telemetry aggregation window
 
-    constructor(baseUrl = 'https://ecommerce-app-chi-wine.vercel.app') {
-        this.baseUrl = (baseUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+    constructor(baseUrl = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io') {
+        this.baseUrl = (baseUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     public setBackendUrl(url: string): void {
-        this.baseUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.baseUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     public getBackendUrl(): string {

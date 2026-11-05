@@ -15,8 +15,11 @@ function computeContentHash(files) {
     const hash = crypto.createHash('sha256');
     const sorted = [...files].sort((a, b) => (a.path || a.name || '').localeCompare(b.path || b.name || ''));
     for (const f of sorted) {
-        hash.update(f.path || f.name || '');
-        hash.update(typeof f.content === 'string' ? f.content : JSON.stringify(f.content || ''));
+        const filePath = f.path || f.name || '';
+        const fileContent = typeof f.content === 'string' ? f.content : JSON.stringify(f.content || '');
+        // Length-prefixed framing prevents delimiter collision vulnerabilities
+        hash.update(`${Buffer.byteLength(filePath, 'utf8')}:${filePath}\0`);
+        hash.update(`${Buffer.byteLength(fileContent, 'utf8')}:${fileContent}\0`);
     }
     return hash.digest('hex');
 }
@@ -81,8 +84,7 @@ function evaluateAdoptionScore(telemetryEvents, authorId, windowDays = 30) {
  */
 function evaluateFeedbackScore(reviews, authorId) {
     const authorNorm = (authorId || '').toLowerCase().trim();
-    const validReviews = [];
-    const reviewerSet = new Set();
+    const userRatingsMap = new Map(); // Deduplicate: keep one vote per user
 
     for (const r of reviews) {
         const userId = (r.userId || r.userEmail || '').toLowerCase().trim();
@@ -91,24 +93,23 @@ function evaluateFeedbackScore(reviews, authorId) {
 
         const rating = Number(r.rating || r.stars);
         if (rating >= 1 && rating <= 5) {
-            validReviews.push(rating);
-            reviewerSet.add(userId);
+            userRatingsMap.set(userId, rating);
         }
     }
 
-    const nReviews = reviewerSet.size;
+    const nReviews = userRatingsMap.size;
     let avgRating = 0.0;
     let score = 80.0;
     let isProvisional = true;
 
     if (nReviews >= 3) {
-        const sum = validReviews.reduce((acc, v) => acc + v, 0);
-        avgRating = Math.round((sum / validReviews.length) * 10) / 10;
+        const sum = Array.from(userRatingsMap.values()).reduce((acc, v) => acc + v, 0);
+        avgRating = Math.round((sum / nReviews) * 10) / 10;
         score = Math.min(100.0, Math.round(((avgRating / 5.0) * 100.0) * 10) / 10);
         isProvisional = false;
-    } else if (validReviews.length > 0) {
-        const sum = validReviews.reduce((acc, v) => acc + v, 0);
-        avgRating = Math.round((sum / validReviews.length) * 10) / 10;
+    } else if (nReviews > 0) {
+        const sum = Array.from(userRatingsMap.values()).reduce((acc, v) => acc + v, 0);
+        avgRating = Math.round((sum / nReviews) * 10) / 10;
     }
 
     return {
@@ -263,7 +264,7 @@ function evaluateHealthScore(telemetryEvents, artifactType = 'agent', authorId =
         }
 
         const lat = Number(evt.latencyMs || evt.durationMs);
-        if (!isNaN(lat) && lat > 0) {
+        if (Number.isFinite(lat) && lat > 0 && lat < 86400000) {
             latencySum += lat;
             latencyCount++;
         }
@@ -275,7 +276,7 @@ function evaluateHealthScore(telemetryEvents, artifactType = 'agent', authorId =
             score: null,
             weight: 0.25,
             weightedScore: null,
-            fer: totalInvocations > 0 ? Math.round((fatalCrashes / totalInvocations) * 1000) / 10 : 0.0,
+            fer: totalInvocations > 0 ? Math.round((Math.min(fatalCrashes, totalInvocations) / totalInvocations) * 1000) / 10 : 0.0,
             fatalCrashes,
             totalInvocations,
             avgLatencyMs: latencyCount > 0 ? Math.round(latencySum / latencyCount) : 0,
@@ -287,8 +288,8 @@ function evaluateHealthScore(telemetryEvents, artifactType = 'agent', authorId =
         };
     }
 
-    const fer = Math.round((fatalCrashes / totalInvocations) * 1000) / 10;
-    const crashSafetyScore = Math.max(0, 100.0 - fer);
+    const fer = Math.round((Math.min(fatalCrashes, totalInvocations) / totalInvocations) * 1000) / 10;
+    const crashSafetyScore = Math.min(100.0, Math.max(0.0, 100.0 - fer));
     const avgLatencyMs = latencyCount > 0 ? Math.round(latencySum / latencyCount) : 1000;
 
     let score = crashSafetyScore;
@@ -299,7 +300,7 @@ function evaluateHealthScore(telemetryEvents, artifactType = 'agent', authorId =
         if (avgLatencyMs <= 3000) {
             sLatency = 100.0;
         } else {
-            sLatency = Math.max(0.0, 100.0 - ((avgLatencyMs - 3000) / 50.0));
+            sLatency = Math.min(100.0, Math.max(0.0, 100.0 - ((avgLatencyMs - 3000) / 50.0)));
         }
         score = Math.round((0.70 * crashSafetyScore + 0.30 * sLatency) * 10) / 10;
     } else {

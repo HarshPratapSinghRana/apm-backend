@@ -1,0 +1,9 @@
+{
+  "name": "design",
+  "version": "1.0.0",
+  "description": "CIP project for design",
+  "author": {
+    "name": "Developer"
+  },
+  "license": "MIT"
+}

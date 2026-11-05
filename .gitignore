@@ -32,6 +32,7 @@ TestResults/
 
 # Scratch and temporary directories
 scratch/
+.apm/
 
 # Logs, test execution traces, and scanner outputs
 *.log
@@ -53,4 +54,9 @@ render-diagram.html
 *.db
 *.db-shm
 *.db-wal
+
+# Mail outbox and email messages
+mail_outbox/
+**/mail_outbox/
+*.eml
 

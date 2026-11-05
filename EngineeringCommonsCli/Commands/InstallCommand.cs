@@ -119,6 +119,10 @@ public class InstallCommand
                     var parsedObj = JObject.Parse(jsonStr);
                     var artType = parsedObj["type"]?.ToString() ?? "agent";
                     var artVer = parsedObj["version"]?.ToString() ?? "1.0.0";
+                    if (!string.IsNullOrWhiteSpace(requestedVersion) && !string.Equals(requestedVersion, artVer, StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
                     var desc = parsedObj["description"]?.ToString() ?? "";
                     var artName = parsedObj["name"]?.ToString() ?? parsedObj["rawId"]?.ToString() ?? name;
                     download = new ArtifactDownloadResult(

@@ -1,0 +1,49 @@
+{
+  "name": "accessibility-audit",
+  "version": "1.0.0",
+  "type": "skill",
+  "category": "Frontend & UI",
+  "description": "Comprehensive WCAG 2.1 AA accessibility auditing and automated inspection skill for React, Angular, and HTML5 components.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 85,
+  "rating": 4.9,
+  "techStack": [
+    "WCAG 2.1 AA",
+    "axe-core",
+    "Playwright a11y",
+    "ARIA 1.2",
+    "React",
+    "TypeScript"
+  ],
+  "keyFeatures": [
+    "Comprehensive Color Contrast & Luminance Audit",
+    "ARIA Role, State, and Property Validation",
+    "Keyboard Focus Order & Tabindex Analysis",
+    "Screen Reader Semantic Landmark Verification",
+    "Automated Remediation Diff Recommendation"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# accessibility-audit (`accessibility-audit`)\n\nComprehensive WCAG 2.1 AA accessibility auditing and automated inspection skill for React, Angular, and HTML5 components.\n\n- **Artifact Type**: `SKILL`\n- **Domain / Category**: Engineering • Frontend & UI\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install accessibility-audit\n```\n\n*(Alternatively, search for **`accessibility-audit`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat / Antigravity (Slash Command)\nTrigger the skill directly using the slash command:\n\n```markdown\n/accessibility-audit Execute automated workflow to comprehensive color contrast & luminance audit on the active project files.\n```\n\n### 2. Verification / Detailed Execution Prompt Example\n```markdown\n/accessibility-audit Run comprehensive verification and generate a detailed audit summary report.\n```\n\n### 3. Natural Language Invocation\n```markdown\nRun the \"accessibility-audit\" skill on our current repository files to validate standards and report any anomalies.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Comprehensive Color Contrast & Luminance Audit**\n- **ARIA Role, State, and Property Validation**\n- **Keyboard Focus Order & Tabindex Analysis**\n- **Screen Reader Semantic Landmark Verification**\n- **Automated Remediation Diff Recommendation**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `WCAG 2.1 AA`\n- `axe-core`\n- `Playwright a11y`\n- `ARIA 1.2`\n- `React`\n- `TypeScript`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`accessibility-audit`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": "skills/accessibility-audit/SKILL.md",
+      "content": "---\nname: accessibility-audit\nversion: 1.0.0\ndescription: Comprehensive WCAG 2.1 AA compliance audit and inspection workflow\nauthor: harsh.rana@maqsoftware.com\ncategory: Frontend & UI\n---\n\n# Accessibility Audit Skill (`accessibility-audit`)\n\nThis skill performs an automated, multi-layer accessibility audit across web codebases against WCAG 2.1 Level AA criteria.\n\n## Inspection Checklist\n\n1. **Semantic Structure & Landmarks**:\n   - Verify header, nav, main, aside, and footer semantic tag placement.\n   - Ensure single `<h1>` hierarchy per logical page view.\n\n2. **Color Contrast & Visual Indicators**:\n   - Assert minimum 4.5:1 contrast ratio for regular body text.\n   - Assert minimum 3.0:1 contrast ratio for large text and UI components.\n   - Check visible focus rings on all interactive elements.\n\n3. **Keyboard Navigation & Traps**:\n   - Verify all buttons, links, and form inputs are reachable via `Tab` key.\n   - Ensure modal dialogs implement focus trapping and `Escape` key listeners.\n\n4. **ARIA & Accessible Names**:\n   - Assert all icon buttons and image links contain `aria-label` or descriptive text.\n   - Check appropriate use of `aria-expanded`, `aria-controls`, and `aria-hidden`.\n\n## Output Format\n\n```markdown\n## 🔍 Accessibility Audit Report\n- **Total Elements Scanned**: 142\n- **WCAG AA Compliance**: 96.4%\n- **Violations Identified**: 2 (Minor)\n\n| Severity | Rule | Component | Remediation |\n| :--- | :--- | :--- | :--- |\n| Minor | `color-contrast` | `Header.tsx:42` | Increase text brightness to `#f4f4f6` |\n| Minor | `button-name` | `IconButton.tsx:18` | Add `aria-label=\"Close dialog\"` |\n```\n"
+    },
+    {
+      "path": ".github/prompts/accessibility-audit.prompt.md",
+      "content": "---\nmode: agent\ndescription: Audit code for accessibility compliance against WCAG 2.1 AA\n---\n\n# Accessibility Audit Prompt\n\nAudit the current codebase for accessibility violations:\n1. Check semantic HTML elements and ARIA roles.\n2. Verify keyboard navigation and focus management.\n3. Validate color contrast ratios.\n4. Check alt text on images and accessible names on buttons.\n\nGenerate a prioritized list of violations with exact file paths and suggested code patches.\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: accessibility-audit\nversion: 1.0.0\ntype: skill\ncategory: Frontend & UI\nauthor: harsh.rana@maqsoftware.com\ndescription: Comprehensive WCAG 2.1 AA accessibility auditing and inspection skill.\nmain: skills/accessibility-audit/SKILL.md\nkeywords:\n  - wcag\n  - accessibility\n  - a11y-audit\n  - aria-compliance\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "/accessibility-audit Execute automated workflow to comprehensive color contrast & luminance audit on the active project files."
+}

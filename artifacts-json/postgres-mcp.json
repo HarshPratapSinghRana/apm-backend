@@ -20,6 +20,10 @@
   ],
   "files": [
     {
+      "path": "README.md",
+      "content": "# postgres-mcp (`postgres-mcp`)\n\nPostgreSQL Model Context Protocol (MCP) server connector.\n\n- **Artifact Type**: `MCPSERVER`\n- **Domain / Category**: Engineering • Database & Storage\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install postgres-mcp\n```\n\n*(Alternatively, search for **`postgres-mcp`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. MCP Server Configuration\nAdd this configuration snippet to your workspace `.vscode/mcp.json` or Claude Code config:\n\n```json\n{\n  \"mcpServers\": {\n    \"postgres-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\"dist/index.js\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n### 2. Copilot Chat & Claude Example Prompt\n```markdown\nUsing the postgres-mcp server, inspect the schema of the \"orders\" table, check existing indexes, and explain the query plan for our slowest join query.\n```\n\n### 3. Advanced Tool Operations\n```markdown\nUsing postgres-mcp, run an EXPLAIN (ANALYZE, BUFFERS) on SELECT * FROM users WHERE email = $1 to verify index usage.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Schema introspection: Tables, columns, foreign keys, triggers, and indices**\n- **Read-only SQL execution with parameterized query protection**\n- **Query plan analysis (EXPLAIN ANALYZE) with execution bottleneck identification**\n- **Connection pooling and SSL transport enforcement**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `PostgreSQL`\n- `Node.js`\n- `pg-promise`\n- `Model Context Protocol (MCP)`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`postgres-mcp`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
       "path": ".github/mcp/postgres-mcp/README.md",
       "content": "# PostgreSQL MCP Server\n\nProvides database schema inspection, query generation, and execution capabilities through the Model Context Protocol (MCP).\n"
     },
@@ -30,6 +34,7 @@
   ],
   "usability": "copilot-ready",
   "usabilityLabel": "Copilot & Claude Ready Prompt",
-  "usabilityBadge": "?? Copilot & Claude Ready",
-  "isCopilotReady": true
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "Using the postgres-mcp server, inspect the schema of the \"orders\" table, check existing indexes, and explain the query plan for our slowest join query."
 }

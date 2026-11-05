@@ -1,0 +1,41 @@
+{
+  "name": "api-test-generator",
+  "version": "1.0.0",
+  "type": "skill",
+  "category": "Testing & QA",
+  "description": "Automatically generates comprehensive xUnit and integration tests for REST API endpoints.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 142,
+  "rating": 4.8,
+  "techStack": [
+    "xUnit",
+    "Moq",
+    "C#",
+    "ASP.NET Core"
+  ],
+  "keyFeatures": [
+    "Contract testing",
+    "Mock generation",
+    "Edge case coverage"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# api-test-generator (`api-test-generator`)\n\nAutomatically generates comprehensive xUnit and integration tests for REST API endpoints.\n\n- **Artifact Type**: `SKILL`\n- **Domain / Category**: Engineering • Testing & QA\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install api-test-generator\n```\n\n*(Alternatively, search for **`api-test-generator`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat / Antigravity (Slash Command)\nTrigger the skill directly using the slash command:\n\n```markdown\n/api-test-generator Parse our swagger.json specification and generate comprehensive integration test suites with edge cases, happy paths, and error scenarios.\n```\n\n### 2. Verification / Detailed Execution Prompt Example\n```markdown\n/api-test-generator Generate automated boundary value tests and 400/401/403/404/500 negative test assertions for the /api/orders endpoint.\n```\n\n### 3. Natural Language Invocation\n```markdown\nRun the \"api-test-generator\" skill on our current repository files to validate standards and report any anomalies.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Automated parsing of OpenAPI 2.0 / 3.0 specifications**\n- **Comprehensive test case synthesis: Happy path, parameter boundary, authentication failure, and server error scenarios**\n- **Multi-framework code generation: TypeScript (Jest/Mocha), C# (xUnit/NUnit), Python (Pytest)**\n- **Automated mock request payload generation using realistic synthetic test data**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `OpenAPI 3.0 / Swagger`\n- `REST`\n- `xUnit / NUnit`\n- `Mocha / Jest`\n- `Pytest`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`api-test-generator`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": "skills/api-test-generator/SKILL.md",
+      "content": "---\nname: api-test-generator\ntype: skill\nversion: 1.0.0\ndescription: Automatically generates comprehensive xUnit and integration tests for REST API endpoints\n---\n\n# API Test Generator Skill\n\nWhen requested to generate API tests:\n1. Inspect controller action routes, HTTP methods, and input validation.\n2. Produce mock data scenarios:\n   - Happy path (200/201 response with correct payload)\n   - Validation failure (400 Bad Request)\n   - Unauthorized access (401/403)\n   - Not found (404)\n3. Use xUnit and Moq or TestWebApplicationFactory."
+    },
+    {
+      "path": "skills/api-test-generator/SKILL.md",
+      "content": "---\nname: api-test-generator\ntype: skill\nversion: 1.0.0\ndescription: Automatically generates comprehensive xUnit and integration tests for REST API endpoints\n---\n\n# API Test Generator Skill\n\nWhen requested to generate API tests:\n1. Inspect controller action routes, HTTP methods, and input validation.\n2. Produce mock data scenarios:\n   - Happy path (200/201 response with correct payload)\n   - Validation failure (400 Bad Request)\n   - Unauthorized access (401/403)\n   - Not found (404)\n3. Use xUnit and Moq or TestWebApplicationFactory.\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "/api-test-generator Parse our swagger.json specification and generate comprehensive integration test suites with edge cases, happy paths, and error scenarios."
+}

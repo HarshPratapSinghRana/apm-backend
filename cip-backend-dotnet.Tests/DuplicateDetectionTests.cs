@@ -100,6 +100,7 @@ public class DuplicateDetectionTests
         public Review? Reject(string reviewId, string reviewerEmail, string? feedback = null) => throw new NotImplementedException();
         public Review? CancelReview(string reviewId, string reviewerEmail, string? reason = null) => throw new NotImplementedException();
         public Review? GetReview(string reviewId) => CreatedReviews.FirstOrDefault(r => r.Id == reviewId);
+        public IEnumerable<Review> GetAllReviews() => CreatedReviews.ToList();
         public IEnumerable<Review> GetPendingReviews() => CreatedReviews.Where(r => r.Status == ReviewStatus.Submitted);
         public IEnumerable<Review> GetByProducer(string producerEmail) => CreatedReviews.Where(r => r.ProducerEmail == producerEmail);
         public Review UpdateSlaTarget(string reviewId, int slaTargetMinutes) => throw new NotImplementedException();

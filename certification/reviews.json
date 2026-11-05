@@ -1,5 +1,24 @@
 {
-  "updatedAt": "2026-10-16T09:39:51.949Z",
-  "totalReviews": 0,
-  "reviews": []
+  "updatedAt": "2026-10-15T10:54:48.069Z",
+  "totalReviews": 2,
+  "reviews": [
+    {
+      "id": "rev-1792061688069-11",
+      "artifactId": "api-test-generator",
+      "version": "1.0.0",
+      "userId": "harsh.rana@maqsoftware.com",
+      "rating": 5,
+      "comment": "",
+      "createdAt": "2026-10-15T10:54:48.069Z"
+    },
+    {
+      "id": "rev-1792061661716-753",
+      "artifactId": "api-test-generator",
+      "version": "1.0.0",
+      "userId": "harsh.rana@maqsoftware.com",
+      "rating": 5,
+      "comment": "",
+      "createdAt": "2026-10-15T10:54:21.716Z"
+    }
+  ]
 }

@@ -17,6 +17,7 @@ public class AuthController : ControllerBase
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IConfiguration _config;
     private readonly IUserRoleService? _userRoleService;
+    private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment? _env;
 
     public AuthController(
         IAuthenticationService auth,
@@ -24,7 +25,8 @@ public class AuthController : ControllerBase
         IUsageService usage,
         IHttpClientFactory httpClientFactory,
         IConfiguration config,
-        IUserRoleService? userRoleService = null)
+        IUserRoleService? userRoleService = null,
+        Microsoft.AspNetCore.Hosting.IWebHostEnvironment? env = null)
     {
         _auth = auth;
         _tokens = tokens;
@@ -32,6 +34,7 @@ public class AuthController : ControllerBase
         _httpClientFactory = httpClientFactory;
         _config = config;
         _userRoleService = userRoleService;
+        _env = env;
     }
 
     public class LoginRequest { public string Email { get; set; } = string.Empty; public string Password { get; set; } = string.Empty; }
@@ -109,42 +112,51 @@ public class AuthController : ControllerBase
             // Fallback continues if network / offline dev
         }
 
-        // Step 2: Fallback for mock/offline testing or decoded JWT claims
+        // Step 2: Fallback for mock/offline testing or decoded JWT claims ONLY in development/test/mock environments
         if (string.IsNullOrWhiteSpace(verifiedEmail))
         {
-            if (req.Token.Contains('.'))
+            // Unverified token parsing and client email fallback permitted ONLY in non-production test/development environments
+            bool isDevOrTest = (_env != null && _env.EnvironmentName.Equals("Development", StringComparison.OrdinalIgnoreCase)) ||
+                               string.Equals(_config["EnableMockAuth"], "true", StringComparison.OrdinalIgnoreCase) ||
+                               string.Equals(_config["ASPNETCORE_ENVIRONMENT"], "Development", StringComparison.OrdinalIgnoreCase) ||
+                               string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "Development", StringComparison.OrdinalIgnoreCase) ||
+                               string.Equals(Environment.GetEnvironmentVariable("ENABLE_MOCK_AUTH"), "true", StringComparison.OrdinalIgnoreCase);
+
+            if (isDevOrTest)
             {
-                try
+                if (req.Token.Contains('.'))
                 {
-                    var parts = req.Token.Split('.');
-                    if (parts.Length >= 2)
+                    try
                     {
-                        var base64 = parts[1].Replace('-', '+').Replace('_', '/');
-                        while (base64.Length % 4 != 0) base64 += "=";
-                        var payloadBytes = Convert.FromBase64String(base64);
-                        using var jwtDoc = JsonDocument.Parse(payloadBytes);
-                        var root = jwtDoc.RootElement;
+                        var parts = req.Token.Split('.');
+                        if (parts.Length >= 2)
+                        {
+                            var base64 = parts[1].Replace('-', '+').Replace('_', '/');
+                            while (base64.Length % 4 != 0) base64 += "=";
+                            var payloadBytes = Convert.FromBase64String(base64);
+                            using var jwtDoc = JsonDocument.Parse(payloadBytes);
+                            var root = jwtDoc.RootElement;
 
-                        if (root.TryGetProperty("preferred_username", out var pu) && !string.IsNullOrWhiteSpace(pu.GetString()))
-                            verifiedEmail = pu.GetString();
-                        else if (root.TryGetProperty("upn", out var upn) && !string.IsNullOrWhiteSpace(upn.GetString()))
-                            verifiedEmail = upn.GetString();
-                        else if (root.TryGetProperty("email", out var em) && !string.IsNullOrWhiteSpace(em.GetString()))
-                            verifiedEmail = em.GetString();
-                        else if (root.TryGetProperty("unique_name", out var un) && !string.IsNullOrWhiteSpace(un.GetString()))
-                            verifiedEmail = un.GetString();
+                            if (root.TryGetProperty("preferred_username", out var pu) && !string.IsNullOrWhiteSpace(pu.GetString()))
+                                verifiedEmail = pu.GetString();
+                            else if (root.TryGetProperty("upn", out var upn) && !string.IsNullOrWhiteSpace(upn.GetString()))
+                                verifiedEmail = upn.GetString();
+                            else if (root.TryGetProperty("email", out var em) && !string.IsNullOrWhiteSpace(em.GetString()))
+                                verifiedEmail = em.GetString();
+                            else if (root.TryGetProperty("unique_name", out var un) && !string.IsNullOrWhiteSpace(un.GetString()))
+                                verifiedEmail = un.GetString();
 
-                        if (string.IsNullOrWhiteSpace(verifiedName) && root.TryGetProperty("name", out var nm))
-                            verifiedName = nm.GetString();
+                            if (string.IsNullOrWhiteSpace(verifiedName) && root.TryGetProperty("name", out var nm))
+                                verifiedName = nm.GetString();
+                        }
                     }
+                    catch { }
                 }
-                catch { }
-            }
 
-            // Client-supplied email fallback if graph unavailable in test environment
-            if (string.IsNullOrWhiteSpace(verifiedEmail) && !string.IsNullOrWhiteSpace(req.Email))
-            {
-                verifiedEmail = req.Email.Trim();
+                if (string.IsNullOrWhiteSpace(verifiedEmail) && !string.IsNullOrWhiteSpace(req.Email))
+                {
+                    verifiedEmail = req.Email.Trim();
+                }
             }
         }
 

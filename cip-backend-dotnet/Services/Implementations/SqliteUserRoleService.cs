@@ -88,8 +88,17 @@ public class SqliteUserRoleService : IUserRoleService
             return assignment.Role.ToUpperInvariant();
         }
 
-        // Standard corporate MAQ users default strictly to CONSUMER unless email contains test producer/reviewer alias
-        var defaultRole = await IsAdminAsync(norm) ? "ADMIN" : (norm.Contains("reviewer") ? "REVIEWER" : ((norm.Contains("producer") || norm.Contains("contributor")) ? "CONTRIBUTOR" : "CONSUMER"));
+        // Standard corporate MAQ users default strictly to CONSUMER unless email matches designated test producer/reviewer alias
+        bool isTestDomain = norm.EndsWith("@company.com", StringComparison.OrdinalIgnoreCase) || norm.EndsWith("@test.com", StringComparison.OrdinalIgnoreCase);
+        bool isReviewerAlias = norm.StartsWith("reviewer@", StringComparison.OrdinalIgnoreCase) || 
+                               norm.StartsWith("designated-rev@", StringComparison.OrdinalIgnoreCase) ||
+                               (isTestDomain && norm.Contains("reviewer", StringComparison.OrdinalIgnoreCase));
+        bool isProducerAlias = norm.StartsWith("producer@", StringComparison.OrdinalIgnoreCase) || 
+                               norm.StartsWith("contrib@", StringComparison.OrdinalIgnoreCase) ||
+                               norm.StartsWith("contributor@", StringComparison.OrdinalIgnoreCase) ||
+                               (isTestDomain && (norm.Contains("producer", StringComparison.OrdinalIgnoreCase) || norm.Contains("contributor", StringComparison.OrdinalIgnoreCase)));
+
+        var defaultRole = await IsAdminAsync(norm) ? "ADMIN" : (isReviewerAlias ? "REVIEWER" : (isProducerAlias ? "CONTRIBUTOR" : "CONSUMER"));
         try
         {
             db.UserRoleAssignments.Add(new UserRoleAssignment
@@ -642,7 +651,8 @@ public class SqliteUserRoleService : IUserRoleService
         else
         {
             var err = await pushResp.Content.ReadAsStringAsync();
-            _logger.LogWarning("Failed to push governance update to Azure DevOps: {StatusCode} {Error}", pushResp.StatusCode, err);
+            var sanitizedErr = err.Length > 200 ? err.Substring(0, 200) + "..." : err;
+            _logger.LogWarning("Failed to push governance update to Azure DevOps: {StatusCode} {Error}", pushResp.StatusCode, sanitizedErr);
             return false;
         }
     }

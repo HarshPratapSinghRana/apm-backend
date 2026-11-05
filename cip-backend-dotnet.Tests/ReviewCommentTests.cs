@@ -27,6 +27,7 @@ public class ReviewCommentTests
         public Review? Reject(string reviewId, string reviewerEmail, string? feedback = null) => throw new NotImplementedException();
         public Review? CancelReview(string reviewId, string reviewerEmail, string? reason = null) => throw new NotImplementedException();
         public Review? GetReview(string reviewId) => _reviews.TryGetValue(reviewId, out var r) ? r : null;
+        public IEnumerable<Review> GetAllReviews() => _reviews.Values.ToList();
         public IEnumerable<Review> GetPendingReviews() => _reviews.Values.ToList();
         public IEnumerable<Review> GetByProducer(string producerEmail) => _reviews.Values.Where(r => r.ProducerEmail == producerEmail).ToList();
         public Review UpdateSlaTarget(string reviewId, int slaTargetMinutes) => throw new NotImplementedException();

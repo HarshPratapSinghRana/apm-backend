@@ -149,13 +149,13 @@ export class CertificationService {
         private authProvider: IAuthenticationStatusProvider,
         private cliExecutor: ICliExecutor,
         private cliExecutable: string,
-        private backendUrl: string = 'https://ecommerce-app-chi-wine.vercel.app'
+        private backendUrl: string = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io'
     ) {
-        this.backendUrl = (backendUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     public setBackendUrl(url: string): void {
-        this.backendUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     private getLocalAdoCertificationFile(filename: string): string | null {

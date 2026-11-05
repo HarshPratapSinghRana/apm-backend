@@ -244,7 +244,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         this.authProvider = authProvider;
         this.cliExecutor = cliExecutor;
         this.cliExecutable = cliExecutable;
-        this.backendUrl = (backendUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.notificationService = notificationService;
         this.reviewCommentService = reviewCommentService;
         this.usageTracker = usageTracker;
@@ -371,7 +371,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
     }
 
     public setBackendUrl(url: string): void {
-        this.backendUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.bountyService.setBackendUrl(this.backendUrl);
     }
 
@@ -5720,6 +5720,7 @@ function formatNotificationLabel(type: string): string {
         case 'Resubmitted': return 'Artifact Resubmitted';
         case 'ReviewApproved': return 'Review Approved';
         case 'ReviewRejected': return 'Review Rejected';
+        case 'ReviewCancelled': return 'Review Cancelled';
         case 'ReviewCompleted': return 'Review Completed';
         default: return type || 'Notification';
     }

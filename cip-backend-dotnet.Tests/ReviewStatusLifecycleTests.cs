@@ -247,4 +247,66 @@ public class ReviewStatusLifecycleTests
         Assert.Throws<InvalidOperationException>(() =>
             _service.CancelReview("rev-cancel-2", "reviewer@company.com", "Cancel"));
     }
+
+    private class FakeNotificationService : INotificationService
+    {
+        public List<Notification> Notifications { get; } = new();
+        public Task<Notification> CreateNotificationAsync(Notification notification)
+        {
+            if (string.IsNullOrEmpty(notification.Id)) notification.Id = Guid.NewGuid().ToString();
+            notification.CreatedAt = DateTime.UtcNow;
+            Notifications.Add(notification);
+            return Task.FromResult(notification);
+        }
+        public Task<Notification?> GetNotificationAsync(string id, string recipientEmail) => Task.FromResult(Notifications.FirstOrDefault(n => n.Id == id && n.RecipientEmail == recipientEmail));
+        public Task<IEnumerable<Notification>> GetUserNotificationsAsync(string recipientEmail, bool unreadOnly = false) => Task.FromResult(Notifications.Where(n => n.RecipientEmail == recipientEmail));
+        public Task<bool> MarkAsReadAsync(string id, string recipientEmail) => Task.FromResult(true);
+        public Task<bool> DeleteNotificationAsync(string notificationId, string recipientEmail) => Task.FromResult(true);
+        public Task<int> ClearNotificationsAsync(string recipientEmail) => Task.FromResult(1);
+    }
+
+    private class FakeEmailNotificationService : IEmailNotificationService
+    {
+        public Task<bool> SendAccessRequestNotificationAsync(string adminEmail, string userEmail, string requestedRole, string? reason, string requestId) => Task.FromResult(true);
+        public Task<bool> SendAccessDecisionNotificationAsync(string userEmail, string decision, string role, string? notes) => Task.FromResult(true);
+        public Task<bool> SendBountyAssignedNotificationAsync(string bountyTitle, string recipientEmail, int credits, string bountyId, int dueInDays) => Task.FromResult(true);
+        public Task<bool> SendBountyIssueReportedNotificationAsync(string bountyTitle, string reporterEmail, string issueDescription, string severity, string bountyId) => Task.FromResult(true);
+        public Task<bool> SendBountyResolvedNotificationAsync(string bountyTitle, string resolverEmail, int credits, string bountyId) => Task.FromResult(true);
+        public Task<bool> SendArtifactCertifiedNotificationAsync(string artifactId, string version, string producerEmail, string certifiedBy, string? badge) => Task.FromResult(true);
+        public Task<bool> SendArtifactCertificationRejectedNotificationAsync(string artifactId, string producerEmail, string reason, string rejectedBy) => Task.FromResult(true);
+        public Task<bool> SendArtifactPublishedNotificationAsync(string artifactName, string version, string producerEmail, string approvedBy) => Task.FromResult(true);
+        public Task<bool> SendAdminAlertNotificationAsync(string alertType, string message, string? details) => Task.FromResult(true);
+        public Task<DispatchedEmailRecord> SendTestEmailAsync(string toEmail, string? customSubject = null, string? customBody = null) => Task.FromResult(new DispatchedEmailRecord("test", toEmail, "Sub", "Body", "PickupDirectory", true, true, null, null, DateTime.UtcNow));
+        public EmailServiceStatusDto GetStatus() => new(true, "PickupDirectory", "admin@company.com", "admin@company.com", "./outbox", 0, new GraphStatusDto(false, false, "", "", "", null, false, null), new SmtpStatusDto(true, "localhost", 25, false, "admin@company.com", "PickupDirectory", "./outbox", 0, "admin@company.com"));
+        public SmtpStatusDto GetSmtpStatus() => new(true, "localhost", 25, false, "admin@company.com", "PickupDirectory", "./outbox", 0, "admin@company.com");
+        public IEnumerable<DispatchedEmailRecord> GetOutboxHistory(int limit = 20) => Enumerable.Empty<DispatchedEmailRecord>();
+    }
+
+    [Fact]
+    public async Task ReviewNotificationEventHandler_ImplementsAndHandles_ReviewCancelledEvent()
+    {
+        var notifService = new FakeNotificationService();
+        var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<ReviewNotificationEventHandler>.Instance;
+        var emailService = new FakeEmailNotificationService();
+        IReviewEventHandler<ReviewCancelledEvent> handler = new ReviewNotificationEventHandler(notifService, logger, emailService);
+
+        var cancelEvent = new ReviewCancelledEvent
+        {
+            SubmissionId = "sub-cancel-100",
+            ArtifactId = "design-reviewer",
+            ArtifactName = "design-reviewer",
+            Version = "1.0.0",
+            ProducerEmail = "producer@company.com",
+            ReviewerEmail = "reviewer@company.com",
+            Reason = "No longer needed."
+        };
+
+        await handler.HandleAsync(cancelEvent);
+
+        Assert.Single(notifService.Notifications);
+        var notif = notifService.Notifications[0];
+        Assert.Equal("producer@company.com", notif.RecipientEmail);
+        Assert.Equal(NotificationType.ReviewCancelled, notif.Type);
+        Assert.Contains("No longer needed.", notif.Message);
+    }
 }

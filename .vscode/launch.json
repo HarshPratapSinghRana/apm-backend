@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Engineering Commons Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/engineering-commons-vscode"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/engineering-commons-vscode/out/**/*.js"
+      ],
+      "preLaunchTask": "npm: compile - engineering-commons-vscode"
+    },
+    {
+      "name": "Extension Tests",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/engineering-commons-vscode",
+        "--extensionTestsPath=${workspaceFolder}/engineering-commons-vscode/out/test/index"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/engineering-commons-vscode/out/**/*.js"
+      ],
+      "preLaunchTask": "npm: compile - engineering-commons-vscode"
+    }
+  ]
+}

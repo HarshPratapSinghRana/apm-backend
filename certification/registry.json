@@ -1,10 +1,11 @@
 {
-  "updatedAt": "2026-10-16T09:39:51.947Z",
+  "updatedAt": "2026-10-15T07:44:29.481Z",
   "organization": "MAQ Software - Engineering Commons",
   "totalArtifacts": 81,
   "certifiedCount": 11,
   "verifiedCount": 0,
   "communityCount": 70,
+  "dataSource": "Authoritative Azure DevOps Git (/governance/usage-events.json)",
   "artifacts": {
     "accessibility-audit": {
       "artifactId": "accessibility-audit",
@@ -644,9 +645,9 @@
       },
       "reason": "Officially Gold Certified: Composite score 94.6/100, 0 fatal crashes, verified developer adoption."
     },
-    "leap-apm-active-production-monitoring": {
-      "artifactId": "leap-apm-active-production-monitoring",
-      "name": "apm-active-production-monitoring",
+    "leap-cip-active-production-monitoring": {
+      "artifactId": "leap-cip-active-production-monitoring",
+      "name": "cip-active-production-monitoring",
       "version": "1.0.0",
       "artifactType": "agent",
       "authorId": "AI Leap Platform",
@@ -724,9 +725,9 @@
       },
       "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
     },
-    "apm-db-explorer": {
-      "artifactId": "apm-db-explorer",
-      "name": "apm-db-explorer",
+    "cip-db-explorer": {
+      "artifactId": "cip-db-explorer",
+      "name": "cip-db-explorer",
       "version": "1.0.0",
       "artifactType": "plugin",
       "authorId": "harsh.rana@maqsoftware.com",
@@ -803,9 +804,9 @@
       },
       "reason": "Officially Gold Certified: Composite score 91.4/100, 0 fatal crashes, verified developer adoption."
     },
-    "apm": {
-      "artifactId": "apm",
-      "name": "apm",
+    "cip": {
+      "artifactId": "cip",
+      "name": "cip",
       "version": "1.0.0",
       "artifactType": "skill",
       "authorId": "producer@test.com",

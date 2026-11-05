@@ -339,7 +339,7 @@ public class ReviewService : IReviewService
             ProducerEmail = r.ProducerEmail,
             ReviewerEmail = reviewerEmail,
             Feedback = feedback
-        });
+        }).GetAwaiter().GetResult();
 
         return r;
     }
@@ -370,12 +370,14 @@ public class ReviewService : IReviewService
             ProducerEmail = r.ProducerEmail,
             ReviewerEmail = reviewerEmail,
             Reason = reason
-        });
+        }).GetAwaiter().GetResult();
 
         return r;
     }
 
     public Review? GetReview(string reviewId) => _repo.Get(reviewId);
+
+    public IEnumerable<Review> GetAllReviews() => _repo.List();
 
     public IEnumerable<Review> GetPendingReviews() => _repo.List()
         .Where(r => r.Status == ReviewStatus.Submitted || r.Status == ReviewStatus.Resubmitted || r.Status == ReviewStatus.UnderReview);

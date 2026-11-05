@@ -49,7 +49,7 @@ public class ArtifactDiffService : IArtifactDiffService
     {
         if (files == null || files.Count == 0) return string.Empty;
         var sorted = files
-            .Select(kvp => $"{GetCanonicalPath(kvp.Key).ToLowerInvariant()}:{ComputeSha256(kvp.Value)}")
+            .Select(kvp => $"{GetCanonicalPath(kvp.Key).ToLowerInvariant()}:{ComputeSha256(NormalizeLineEndings(kvp.Value ?? string.Empty))}")
             .OrderBy(s => s, StringComparer.Ordinal)
             .ToList();
 
@@ -159,7 +159,9 @@ public class ArtifactDiffService : IArtifactDiffService
             }
             else if (inCurrent && inSubmitted)
             {
-                if (string.Equals(oldContent, newContent, StringComparison.Ordinal))
+                var normOld = NormalizeLineEndings(oldContent ?? string.Empty);
+                var normNew = NormalizeLineEndings(newContent ?? string.Empty);
+                if (string.Equals(normOld, normNew, StringComparison.Ordinal))
                 {
                     unchanged++;
                 }

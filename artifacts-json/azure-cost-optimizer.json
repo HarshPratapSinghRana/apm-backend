@@ -1,0 +1,36 @@
+{
+  "name": "azure-cost-optimizer",
+  "version": "1.0.0",
+  "type": "skill",
+  "category": "Cloud & Infrastructure",
+  "description": "Analyzes Azure resource allocations and identifies unused reservations across subscriptions.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 78,
+  "rating": 4.7,
+  "techStack": [
+    "Azure CLI",
+    "Bicep",
+    "ARM Templates"
+  ],
+  "keyFeatures": [
+    "Cost right-sizing",
+    "Orphaned disk cleanup",
+    "Reservation recommendations"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# azure-cost-optimizer (`azure-cost-optimizer`)\n\nAnalyzes Azure resource allocations and identifies unused reservations across subscriptions.\n\n- **Artifact Type**: `SKILL`\n- **Domain / Category**: Engineering • Cloud & Infrastructure\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install azure-cost-optimizer\n```\n\n*(Alternatively, search for **`azure-cost-optimizer`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat / Antigravity (Slash Command)\nTrigger the skill directly using the slash command:\n\n```markdown\n/azure-cost-optimizer Analyze our cloud infrastructure deployment and suggest actionable rightsizing, reserved instances, and storage tiering to reduce monthly cloud spend.\n```\n\n### 2. Verification / Detailed Execution Prompt Example\n```markdown\n/azure-cost-optimizer Check for unattached managed disks, idle App Service Plans, and expensive multi-region cross-egress traffic.\n```\n\n### 3. Natural Language Invocation\n```markdown\nRun the \"azure-cost-optimizer\" skill on our current repository files to validate standards and report any anomalies.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Compute rightsizing: Identifying underutilized VMs and over-provisioned App Service tiers**\n- **Storage lifecycle optimization: Hot to Cool/Archive tier transitions and unattached disk cleanup**\n- **Reservation & Savings Plan analysis: 1-year vs 3-year commitment trade-off evaluation**\n- **Serverless auto-pause and consumption tier recommendations for dev/test workloads**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `Azure Cost Management`\n- `FinOps`\n- `Azure Advisor`\n- `Azure Resource Graph`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`azure-cost-optimizer`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": "skills/azure-cost-optimizer/SKILL.md",
+      "content": "---\nname: azure-cost-optimizer\ntype: skill\nversion: 1.0.0\ndescription: Analyzes Azure resource allocations and identifies unused reservations across subscriptions.\n---\n\n# Azure Cost Optimizer\n\nScans ARM/Bicep templates and resource tags to find right-sizing opportunities and unattached disks."
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "/azure-cost-optimizer Analyze our cloud infrastructure deployment and suggest actionable rightsizing, reserved instances, and storage tiering to reduce monthly cloud spend."
+}

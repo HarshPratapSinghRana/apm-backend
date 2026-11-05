@@ -33,7 +33,7 @@ import { AutoCliProvisioner } from './services/cliProvisioner';
 import { AdvisorHookProvisioner, ADVISOR_SKILL_NAME } from './services/advisorHookProvisioner';
 
 export function activate(context: vscode.ExtensionContext) {
-    const DEFAULT_VERCEL_BACKEND = 'https://ecommerce-app-chi-wine.vercel.app';
+    const DEFAULT_AZURE_BACKEND = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
 
     // 0. Silently auto-provision / verify global CIP CLI in background
     AutoCliProvisioner.ensureInstalled(context).catch(() => {});
@@ -63,13 +63,13 @@ export function activate(context: vscode.ExtensionContext) {
     const config = vscode.workspace.getConfiguration('engineeringCommons');
     const customCliPath = config.get<string>('cliPath') || '';
     const rawBackend = (config.get<string>('backendUrl') || '').trim();
-    const backendUrl = (!rawBackend || rawBackend.includes('localhost'))
-        ? DEFAULT_VERCEL_BACKEND
+    const backendUrl = (!rawBackend || rawBackend.includes('localhost') || rawBackend.includes('vercel.app'))
+        ? DEFAULT_AZURE_BACKEND
         : rawBackend.replace(/\/+$/, '');
 
-    // Ensure the setting is permanently aligned to the Vercel backend if unconfigured or stale
-    if (!rawBackend || rawBackend.includes('localhost')) {
-        config.update('backendUrl', DEFAULT_VERCEL_BACKEND, vscode.ConfigurationTarget.Global).then(undefined, () => {});
+    // Ensure the setting is permanently aligned to the Azure Container Apps backend if unconfigured or stale
+    if (!rawBackend || rawBackend.includes('localhost') || rawBackend.includes('vercel.app')) {
+        config.update('backendUrl', DEFAULT_AZURE_BACKEND, vscode.ConfigurationTarget.Global).then(undefined, () => {});
     }
 
     const pollingMinutes = config.get<number>('notificationPollingIntervalMinutes') || 5;
@@ -210,7 +210,7 @@ export function activate(context: vscode.ExtensionContext) {
     const configListener = vscode.workspace.onDidChangeConfiguration(async (e) => {
         if (e.affectsConfiguration('engineeringCommons.backendUrl')) {
             const rawUrl = (vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || '').trim();
-            const newUrl = (!rawUrl || rawUrl.includes('localhost')) ? DEFAULT_VERCEL_BACKEND : rawUrl.replace(/\/+$/, '');
+            const newUrl = (!rawUrl || rawUrl.includes('localhost') || rawUrl.includes('vercel.app')) ? DEFAULT_AZURE_BACKEND : rawUrl.replace(/\/+$/, '');
             AutoCliProvisioner.seedUserBackendConfig(newUrl);
             backendUsageClient.setBackendUrl(newUrl);
             reviewThreadService.setBackendUrl(newUrl);
@@ -229,10 +229,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     // 3. Register Commands
     const setBackendUrlDisposable = vscode.commands.registerCommand('engineeringCommons.setBackendUrl', async () => {
-        const currentUrl = vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || DEFAULT_VERCEL_BACKEND;
+        const currentUrl = vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || DEFAULT_AZURE_BACKEND;
         const newUrl = await vscode.window.showInputBox({
-            prompt: 'Enter Engineering Commons Backend Server or Cloudflare Tunnel URL',
-            placeHolder: `e.g. ${DEFAULT_VERCEL_BACKEND}`,
+            prompt: 'Enter Engineering Commons Backend Server or Azure Container Apps URL',
+            placeHolder: `e.g. ${DEFAULT_AZURE_BACKEND}`,
             value: currentUrl,
             validateInput: (val) => {
                 if (!val || !val.trim()) return 'Backend URL cannot be empty';

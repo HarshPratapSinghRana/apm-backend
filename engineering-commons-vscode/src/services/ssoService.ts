@@ -159,7 +159,7 @@ export async function executeMicrosoftDeviceCodeSsoLogin(
 
         // Step 6: Notify Backend if available (graceful fallback)
         const config = vscode.workspace.getConfiguration('engineeringCommons');
-        const backendUrl = (backendUrlOverride || config.get<string>('backendUrl') || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/$/, '');
+        const backendUrl = (backendUrlOverride || config.get<string>('backendUrl') || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/$/, '');
         try {
             const ssoResponse = await callBackendSsoAsync(backendUrl, tokenResult.access_token, email, displayName);
             if (ssoResponse && ssoResponse.token) {
@@ -232,7 +232,7 @@ export async function executeMicrosoftNativeSsoLogin(
         let cipToken = session.accessToken;
 
         const config = vscode.workspace.getConfiguration('engineeringCommons');
-        const backendUrl = (backendUrlOverride || config.get<string>('backendUrl') || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/$/, '');
+        const backendUrl = (backendUrlOverride || config.get<string>('backendUrl') || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/$/, '');
         try {
             const ssoResponse = await callBackendSsoAsync(backendUrl, session.accessToken, email, displayName);
             if (ssoResponse && ssoResponse.token) {

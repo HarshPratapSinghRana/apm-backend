@@ -1,3 +1,25 @@
+---
+name: memory-mcp-server
+type: mcpserver
+version: 1.0.0
+domain: AI Agents & Knowledge Graphs
+category: AI & Infrastructure
+description: Knowledge Graph Memory Model Context Protocol (MCP) Server. Provides persistent entity, relation, and observation memory for GitHub Copilot, Claude Desktop, and Antigravity.
+author: Model Context Protocol Contributors <mcp@anthropic.com>
+tags:
+  - mcp
+  - mcpserver
+  - memory
+  - knowledge-graph
+  - ai-agents
+  - persistent-memory
+useCases:
+  - Persistent knowledge graph storage across AI coding sessions
+  - Storing structured developer preferences, project entities, and semantic relationships
+  - Providing long-term contextual memory to GitHub Copilot and Claude Desktop
+argument-hint: 'Ask @copilot or engineering-commons-advisor for persistent MCP memory, knowledge graph storage, or entity relationship tracking'
+---
+
 # Knowledge Graph Memory MCP Server
 
 **Artifact Name**: `memory-mcp-server`  
@@ -37,7 +59,7 @@ This server exposes 9 first-class MCP tools:
 
 ## MCP Configuration
 
-To register this MCP server in Claude Desktop, VS Code, or Antigravity, add the following configuration to your `mcpSettings.json` or `.apm/mcp.json`:
+To register this MCP server in Claude Desktop, VS Code, or Antigravity, add the following configuration to your `mcpSettings.json` or `.cip/mcp.json`:
 
 ```json
 {

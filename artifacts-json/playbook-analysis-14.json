@@ -1,0 +1,54 @@
+{
+  "id": "playbook-analysis-14",
+  "name": "playbook-analysis-14",
+  "title": "Identify M:M relationships and decide bridge table strategy (grain, keys, handling duplicates)",
+  "type": "prompt",
+  "version": "1.0.0",
+  "category": "Prompt Playbook",
+  "subcategory": "Analysis & Planning",
+  "stage": "Analysis",
+  "domain": "Data Engineering",
+  "author": "harsh.rana@maqsoftware.com",
+  "source": "Azure BI & Data Engineering Playbook",
+  "sourceUrl": "https://aisdlcplaybook.azurewebsites.net/prompt-library",
+  "description": "It will generate strategies for creating the bridge table and how can we fit in current modelling along with some started code.",
+  "task": "Identify M:M relationships and decide bridge table strategy (grain, keys, handling duplicates)",
+  "copilotPrompt": "**Provide System Context here:**\r\n\r\nSchema type: Star Schema\r\nBusiness domain: sales\r\nFact table(s): Sales, Orders, Claims\r\nDimension tables: Product, Customer, Promotion, Category\r\n\r\nKnown or suspected M:M relationships:\r\n\r\nProduct ↔ Category\r\nOrders ↔ Promotion\r\nCustomer ↔ Account\r\nAct as a senior data architect working on the system described above.\r\n\r\nBased on the schema type and relationships provided, identify all many-to-many (M:M) relationships between fact and dimension tables or between dimensions.\r\n\r\nDesign an appropriate bridge table strategy that includes:\r\n\r\nClearly defining the grain of each bridge table\r\nIdentifying primary keys and foreign keys\r\nDeciding whether surrogate keys are required\r\nHandling duplicate relationships and ensuring data integrity",
+  "output": "It will generate strategies for creating the bridge table and how can we fit in current modelling along with some started code.",
+  "tags": [
+    "azure-bi",
+    "playbook",
+    "prompt",
+    "analysis",
+    "data-modeling"
+  ],
+  "isCertified": true,
+  "keyFeatures": [
+    "Verbatim prompt from Azure BI & Data Engineering Playbook",
+    "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
+    "Ready to run directly in GitHub Copilot & Antigravity"
+  ],
+  "useCases": [
+    "Analysis & Planning",
+    "Azure BI & Data Engineering Playbook"
+  ],
+  "installCommand": "engineering-commons install playbook-analysis-14",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Identify M:M relationships and decide bridge table strategy (grain, keys, handling duplicates) (`playbook-analysis-14`)\n\nIt will generate strategies for creating the bridge table and how can we fit in current modelling along with some started code.\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Data Engineering • Prompt Playbook\n- **Usability Tier**: PRODUCTION READY\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install playbook-analysis-14\n```\n\n*(Alternatively, search for **`playbook-analysis-14`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use in GitHub Copilot Chat & Antigravity\n1. Open **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) or the Antigravity chat panel.\n2. Copy the **Verbatim Prompt** below.\n3. Replace any bracketed placeholders (such as `{Dimension Name}`, `{Source Tables}`, or `{Context}`) with your specific project details.\n4. Press Enter to generate SME-ready architecture documents, schemas, or pipelines.\n\n### 2. Verbatim Prompt Template\n```markdown\n**Provide System Context here:**\r\n\r\nSchema type: Star Schema\r\nBusiness domain: sales\r\nFact table(s): Sales, Orders, Claims\r\nDimension tables: Product, Customer, Promotion, Category\r\n\r\nKnown or suspected M:M relationships:\r\n\r\nProduct ↔ Category\r\nOrders ↔ Promotion\r\nCustomer ↔ Account\r\nAct as a senior data architect working on the system described above.\r\n\r\nBased on the schema type and relationships provided, identify all many-to-many (M:M) relationships between fact and dimension tables or between dimensions.\r\n\r\nDesign an appropriate bridge table strategy that includes:\r\n\r\nClearly defining the grain of each bridge table\r\nIdentifying primary keys and foreign keys\r\nDeciding whether surrogate keys are required\r\nHandling duplicate relationships and ensuring data integrity\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Verbatim prompt from Azure BI & Data Engineering Playbook**\n- **Certified for Microsoft Fabric, Synapse, Power BI & Databricks**\n- **Ready to run directly in GitHub Copilot & Antigravity**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `GitHub Copilot`\n- `Antigravity IDE`\n- `Enterprise CIP`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`playbook-analysis-14`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/prompts/playbook/playbook-analysis-14.md",
+      "content": "---\nname: playbook-analysis-14\ntitle: \"Identify M:M relationships and decide bridge table strategy (grain, keys, handling duplicates)\"\ntype: prompt\ncategory: \"Prompt Playbook\"\nsubcategory: \"Analysis & Planning\"\nstage: \"Analysis\"\nauthor: harsh.rana@maqsoftware.com\nsource: \"Azure BI & Data Engineering Playbook\"\nsource_url: \"https://aisdlcplaybook.azurewebsites.net/prompt-library\"\ntags: [\"azure-bi\", \"playbook\", \"prompt\", \"analysis\", \"data-modeling\"]\ndescription: \"It will generate strategies for creating the bridge table and how can we fit in current modelling along with some started code.\"\n---\n\n# Identify M:M relationships and decide bridge table strategy (grain, keys, handling duplicates)\n\n**Provide System Context here:**\r\n\r\nSchema type: Star Schema\r\nBusiness domain: sales\r\nFact table(s): Sales, Orders, Claims\r\nDimension tables: Product, Customer, Promotion, Category\r\n\r\nKnown or suspected M:M relationships:\r\n\r\nProduct ↔ Category\r\nOrders ↔ Promotion\r\nCustomer ↔ Account\r\nAct as a senior data architect working on the system described above.\r\n\r\nBased on the schema type and relationships provided, identify all many-to-many (M:M) relationships between fact and dimension tables or between dimensions.\r\n\r\nDesign an appropriate bridge table strategy that includes:\r\n\r\nClearly defining the grain of each bridge table\r\nIdentifying primary keys and foreign keys\r\nDeciding whether surrogate keys are required\r\nHandling duplicate relationships and ensuring data integrity\n"
+    },
+    {
+      "path": ".github/prompts/playbook/playbook-analysis-14.prompt.md",
+      "content": "---\nname: playbook-analysis-14\ndescription: \"It will generate strategies for creating the bridge table and how can we fit in current modelling along with some started code.\"\n---\n\n**Provide System Context here:**\r\n\r\nSchema type: Star Schema\r\nBusiness domain: sales\r\nFact table(s): Sales, Orders, Claims\r\nDimension tables: Product, Customer, Promotion, Category\r\n\r\nKnown or suspected M:M relationships:\r\n\r\nProduct ↔ Category\r\nOrders ↔ Promotion\r\nCustomer ↔ Account\r\nAct as a senior data architect working on the system described above.\r\n\r\nBased on the schema type and relationships provided, identify all many-to-many (M:M) relationships between fact and dimension tables or between dimensions.\r\n\r\nDesign an appropriate bridge table strategy that includes:\r\n\r\nClearly defining the grain of each bridge table\r\nIdentifying primary keys and foreign keys\r\nDeciding whether surrogate keys are required\r\nHandling duplicate relationships and ensuring data integrity\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: playbook-analysis-14\nversion: 1.0.0\ntype: prompt\ncategory: \"Prompt Playbook\"\nauthor: harsh.rana@maqsoftware.com\ndescription: \"It will generate strategies for creating the bridge table and how can we fit in current modelling along with some started code.\"\nmain: .agents/prompts/playbook/playbook-analysis-14.md\n"
+    }
+  ]
+}

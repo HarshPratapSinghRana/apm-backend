@@ -214,6 +214,7 @@ public class AccessRequestsController : ControllerBase
     [HttpGet("api/admin/roles")]
     public async Task<IActionResult> GetAllRoles()
     {
+        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var roles = await _userRoleService.GetAllRolesAsync();
         return Ok(roles);
     }
@@ -224,7 +225,7 @@ public class AccessRequestsController : ControllerBase
         var email = User.Identity?.Name ?? string.Empty;
         var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
-        if (role == "ADMIN") return true;
+        if (string.Equals(role, "ADMIN", StringComparison.OrdinalIgnoreCase)) return true;
         return await _userRoleService.IsAdminAsync(email);
     }
 }

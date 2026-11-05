@@ -1,0 +1,38 @@
+{
+  "name": "cip",
+  "version": "1.0.0",
+  "type": "skill",
+  "category": "General",
+  "description": "Enterprise artifact package for cip.",
+  "author": "producer@test.com",
+  "isCertified": true,
+  "downloads": 25,
+  "rating": 4.8,
+  "techStack": [
+    "C#",
+    "TypeScript"
+  ],
+  "keyFeatures": [
+    "Enterprise artifact",
+    "Versioned package"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# cip (`cip`)\n\nEnterprise artifact package for cip.\n\n- **Artifact Type**: `SKILL`\n- **Domain / Category**: Engineering • General\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `producer@test.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install cip\n```\n\n*(Alternatively, search for **`cip`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat / Antigravity (Slash Command)\nTrigger the skill directly using the slash command:\n\n```markdown\n/cip Run enterprise governance audit on all installed artifacts in the workspace and verify compliance with certification standards.\n```\n\n### 2. Verification / Detailed Execution Prompt Example\n```markdown\n/cip Verify local workspace certification level and submit updated telemetry event records to the federated registry.\n```\n\n### 3. Natural Language Invocation\n```markdown\nRun the \"cip\" skill on our current repository files to validate standards and report any anomalies.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Workspace artifact discovery and validation across all active projects**\n- **Automated installation and version synchronization of enterprise AI artifacts**\n- **5-Pillar certification health verification and integrity checking**\n- **Federated Azure DevOps and SharePoint Online governance synchronization**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `CIP CLI`\n- `Node.js`\n- `TypeScript`\n- `Azure DevOps`\n- `SharePoint Online`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`cip`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **producer@test.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": "cip/cip.yml",
+      "content": "name: cip\r\nversion: 1.0.0\r\ndescription: CIP project for cip\r\nauthor: Developer\r\n# Which agent platforms to deploy to (uncomment to pin):\r\n# targets:\r\n#   - copilot\r\n#   - claude\r\n\r\ndependencies:\r\n  cip: []\r\n  mcp: []\r\nincludes: auto\r\ndevDependencies:\r\n  cip: []\r\nscripts: {}\r\n"
+    },
+    {
+      "path": "cip/plugin.json",
+      "content": "{\r\n  \"name\": \"cip\",\r\n  \"version\": \"1.0.0\",\r\n  \"description\": \"CIP project for cip\",\r\n  \"author\": {\r\n    \"name\": \"Developer\"\r\n  },\r\n  \"license\": \"MIT\"\r\n}\r\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "/cip Run enterprise governance audit on all installed artifacts in the workspace and verify compliance with certification standards."
+}

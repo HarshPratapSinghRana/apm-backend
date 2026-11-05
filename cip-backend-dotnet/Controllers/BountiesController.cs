@@ -19,10 +19,36 @@ public class BountiesController : ControllerBase
         _bountyService = bountyService;
     }
 
+    private string? GetAuthenticatedEmail()
+    {
+        if (User.Identity?.IsAuthenticated == true && !string.IsNullOrWhiteSpace(User.Identity.Name))
+        {
+            return User.Identity.Name.Trim();
+        }
+        return null;
+    }
+
+    private static bool IsReviewerOrAdmin(string? role, string? email = null)
+    {
+        if (!string.IsNullOrWhiteSpace(role))
+        {
+            var r = role.Trim().ToUpperInvariant();
+            if (r == "REVIEWER" || r == "ADMIN" || r == "CERTIFIED_REVIEWER") return true;
+        }
+        if (!string.IsNullOrWhiteSpace(email))
+        {
+            var e = email.Trim().ToLowerInvariant();
+            if (e == "harsh.rana@maqsoftware.com" || e == "admin@company.com" || e == "admin@test.com" ||
+                e == "reviewer@company.com" || e == "reviewer@test.com" || e.StartsWith("designated-rev@")) return true;
+        }
+        return false;
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateBounty([FromBody] CreateBountyRequest req)
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to create a bounty." });
         try
         {
             var created = await _bountyService.CreateBountyAsync(req, email);
@@ -37,7 +63,7 @@ public class BountiesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetBounties([FromQuery] string? category = null, [FromQuery] string? stage = null)
     {
-        var email = User.Identity?.Name ?? string.Empty;
+        var email = GetAuthenticatedEmail() ?? string.Empty;
         var list = await _bountyService.GetBountiesAsync(email, category, stage);
         return Ok(list);
     }
@@ -45,7 +71,7 @@ public class BountiesController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetBounty(string id)
     {
-        var email = User.Identity?.Name ?? string.Empty;
+        var email = GetAuthenticatedEmail() ?? string.Empty;
         var bounty = await _bountyService.GetBountyByIdAsync(id, email);
         if (bounty == null) return NotFound(new { error = $"Bounty '{id}' not found." });
         return Ok(bounty);
@@ -54,7 +80,8 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/claim")]
     public async Task<IActionResult> ClaimBounty(string id)
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to claim a bounty." });
         try
         {
             var claimed = await _bountyService.ClaimBountyAsync(id, email);
@@ -69,7 +96,8 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/release")]
     public async Task<IActionResult> ReleaseBounty(string id)
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to release a bounty." });
         try
         {
             var released = await _bountyService.ReleaseBountyAsync(id, email);
@@ -87,7 +115,8 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/submit-code")]
     public async Task<IActionResult> SubmitCode(string id, [FromBody] BountySubmissionRequest req)
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to submit bounty solution code." });
         try
         {
             var updated = await _bountyService.SubmitCodeAsync(id, email, req);
@@ -105,7 +134,15 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/review")]
     public async Task<IActionResult> ReviewCode(string id, [FromBody] BountyReviewRequest req)
     {
-        var email = User.Identity?.Name ?? "reviewer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to review bounty solutions." });
+
+        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+        if (req.IsApproved && !IsReviewerOrAdmin(role, email))
+        {
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required to approve code submissions." });
+        }
+
         try
         {
             var updated = await _bountyService.ReviewCodeAsync(id, email, req);
@@ -115,6 +152,10 @@ public class BountiesController : ControllerBase
         {
             return BadRequest(new { error = ex.Message });
         }
+        catch (UnauthorizedAccessException ex)
+        {
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = ex.Message });
+        }
     }
 
     /// <summary>
@@ -123,7 +164,8 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/run-tests")]
     public async Task<IActionResult> RunTests(string id, [FromBody] BountyTestRunRequest req)
     {
-        var email = User.Identity?.Name ?? "tester@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to execute bounty tests." });
         try
         {
             var updated = await _bountyService.RunTestsAsync(id, email, req);
@@ -141,7 +183,8 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/feedback-choice")]
     public async Task<IActionResult> SetFeedbackChoice(string id, [FromBody] BountyFeedbackChoiceRequest req)
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to update bounty feedback choice." });
         try
         {
             var updated = await _bountyService.SetFeedbackChoiceAsync(id, email, req.Choice);
@@ -156,7 +199,13 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/complete")]
     public async Task<IActionResult> CompleteBounty(string id)
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to complete a bounty." });
+        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+        if (!IsReviewerOrAdmin(role, email))
+        {
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer or Admin role required to manually complete a bounty." });
+        }
         try
         {
             var completed = await _bountyService.CompleteBountyAsync(id, email);
@@ -178,7 +227,8 @@ public class BountiesController : ControllerBase
     [HttpGet("my-work")]
     public async Task<IActionResult> GetMyWork()
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to view assigned tasks." });
         var summary = await _bountyService.GetMyWorkSummaryAsync(email);
         return Ok(summary);
     }
@@ -188,7 +238,8 @@ public class BountiesController : ControllerBase
     [HttpPost("{id}/issues")]
     public async Task<IActionResult> ReportIssue(string id, [FromBody] ReportBountyIssueRequest req)
     {
-        var email = User.Identity?.Name ?? "producer@company.com";
+        var email = GetAuthenticatedEmail();
+        if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to report an issue on a bounty." });
         if (string.IsNullOrWhiteSpace(req?.Description))
         {
             return BadRequest(new { error = "Issue description is required." });

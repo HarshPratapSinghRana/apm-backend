@@ -1,0 +1,255 @@
+{
+    "certyfast": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/CertyFast.mp4?sp=r&st=2026-07-07T11:40:38Z&se=2027-10-31T19:55:38Z&spr=https&sv=2026-02-06&sr=b&sig=ZJZR9tp0bIG0c4jsvlJe0z%2BM5E4%2B%2BhIb8ahpPEphDno%3D",
+        "github_repo": "",
+        "architecture_image": "/images/CertyFast.png",
+        "artifact_deck": {
+            "site_path": "sites/MAQSoftwareAllEmployees",
+            "library": "AILEAPDocumentLibrary",
+            "folder": "FastSolutions",
+            "file": "CertyFAST by MAQ Software.pptx"
+        }
+    },
+    "migratefast": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Simplify%20data%20and%20report%20migration%20with%20MigrateFAST.mp4?sp=r&st=2026-07-08T03:51:20Z&se=2027-08-01T12:06:20Z&spr=https&sv=2026-02-06&sr=b&sig=URn%2FNR9zDwB1Phh1awKuGkxbx0gX7t%2FxJ6nnKFOTEqg%3D",
+        "github_repo": "",
+        "architecture_image": "/images/MigrateFAST_Architecture.jpg",
+        "artifact_deck": {
+            "site_path": "sites/MAQSoftwareAllEmployees",
+            "library": "AILEAPDocumentLibrary",
+            "folder": "FastSolutions",
+            "file": "MigrateFAST by MAQ Software.pptx"
+        }
+    },
+    "embedfast": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/EmbedFast%20Demo.mp4?sp=r&st=2026-07-07T11:41:32Z&se=2028-04-30T19:56:32Z&spr=https&sv=2026-02-06&sr=b&sig=rcvyGHChj8L2kgrnd9VtXSFGz52bjGyeT0T3vHs5CmE%3D",
+        "github_repo": "",
+        "architecture_image": "/images/EmbedFAST Architecture.png",
+        "artifact_deck": {
+            "site_path": "sites/MAQSoftwareAllEmployees",
+            "library": "AILEAPDocumentLibrary",
+            "folder": "FastSolutions",
+            "file": "EmbedFAST by MAQ Software.pptx"
+        }
+    },
+    "loadfast": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Boost%20Power%20BI%20performance%20using%20LoadFAST.mp4?sp=r&st=2026-07-08T03:48:36Z&se=2028-01-01T12:03:36Z&spr=https&sv=2026-02-06&sr=b&sig=2M4sO11xwG8wwjVsxCd2jiB8j%2FSl66h5GAwlXlBrOt0%3D",
+        "github_repo": "",
+        "architecture_image": "/images/LoadFAST-Architecture.png",
+        "artifact_deck": {
+            "site_path": "sites/MAQSoftwareAllEmployees",
+            "library": "AILEAPDocumentLibrary",
+            "folder": "FastSolutions",
+            "file": "LoadFAST.pptx"
+        }
+    },
+    "automated-customer-service": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Customer%20service%20Agent.mp4?sp=r&st=2026-03-03T12:14:34Z&se=2027-12-30T20:29:34Z&spr=https&sv=2024-11-04&sr=b&sig=Hp8Gh6F2SNYTWhIiUsnOAsrOxb4PaVKH%2BnVpjxYvcXw%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Automated-Customer-Service",
+        "architecture_image": "/images/automated customer service agent.png"
+    },
+    "monday-morning-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/MondayMorningAgent-Updated.mp4?sp=r&st=2026-03-18T11:47:49Z&se=2028-12-30T20:02:49Z&spr=https&sv=2024-11-04&sr=b&sig=ayUDEinGXQ9BwYE0bDWQaOM7oxSa2oqFm25m0wjOYWM%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Monday-Morning-Agent",
+        "architecture_image": "/images/Mondaymorning.png"
+    },
+    "ai-personal-stylist-shopping-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/StyleCrew.mp4?sp=r&st=2026-03-18T12:33:06Z&se=2028-06-24T20:48:06Z&spr=https&sv=2024-11-04&sr=b&sig=M9tSO3SgVOc5pl9PHmlBpKeE2nNuCcwsq1BGV5Ni0Zs%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Style-Crew-Assistant",
+        "architecture_image": "/images/Stylecrew.jpg"
+    },
+    "smart-store-supplychain-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/SmartStore12MarchStoreManager1.mp4?sp=r&st=2026-03-18T11:46:38Z&se=2028-04-26T20:01:38Z&spr=https&sv=2024-11-04&sr=b&sig=8e8RtXOb96qBYsJTRI%2B6YNoaC2KIVvfzZYJqosZGnzY%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Smart-Store-Agent",
+        "architecture_image": "/images/smartstore_architecture.png"
+    },
+    "wpp-pricing-optimizer-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/WhatIfProductPricing-Updated.mp4?sp=r&st=2026-03-18T11:45:18Z&se=2028-12-04T20:00:18Z&spr=https&sv=2024-11-04&sr=b&sig=6uNofJAijHtru%2Foy1javzZWwCXnsYC7v3oFHAD8da9I%3D",
+        "github_repo": "https://github.com/MAQ-Retail/What-if-product-pricing-Multi-Agent",
+        "architecture_image": "/images/WPP_Architecture.jpg"
+    },
+    "automated-product-tag-generator": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Product%20Tag%20Agent.mp4?sp=r&st=2026-03-03T12:16:35Z&se=2027-12-30T20:31:35Z&spr=https&sv=2024-11-04&sr=b&sig=9Tr6L7yrEnF8QJplBQXqr%2B6mhLGrVsM4ugaFba3COfo%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Product-Tagging-Agent",
+        "architecture_image": "/images/automatic_product_tag_generator.png"
+    },
+    "fraud-anomaly-detection-agent": {
+        "video_url": "https://kbbottest.blob.core.windows.net/ai-hackathon-videos/fraud-anomaly-detection.mp4?se=2027-05-20T14%3A55%3A08Z&sp=r&sv=2023-11-03&sr=b&sig=JX0p0FbbFJp0px/lqpfFGmG%2BRWHdr%2B44syiJvQmYWQY%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Retail-Fraud-Anomaly-Detection-Agent",
+        "architecture_image": "/images/Retail_Anomaly_Detection.png"
+    },
+    "loyalty-newsletter-enrollment-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Retail/Loyalty-Newsletter-Enrollment-Agent",
+        "architecture_image": "/images/Loyalty&newsletter.png"
+    },
+    "personalization-engine": {
+        "video_url": "https://kbbottest.blob.core.windows.net/ai-hackathon-videos/personalization-agent.mp4?se=2027-05-20T14%3A58%3A10Z&sp=r&sv=2023-11-03&sr=b&sig=CNvnj7ZKnd0/Lrwvsvv610z4w3g1j/1Hey1WO4HkFbA%3D",
+        "github_repo": "",
+        "architecture_image": ""
+    },
+    "product-discovery-bot": {
+        "video_url": "https://kbbottest.blob.core.windows.net/ai-hackathon-videos/product-discovery-bot.mp4?se=2027-05-20T14%3A54%3A11Z&sp=r&sv=2023-11-03&sr=b&sig=2GUiU6qUxfkxEjOLV8BeZy72uT0P%2BlfRs9xiHCnH2Bo%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Product-Discovery-Chatbot",
+        "architecture_image": "/images/Product Discovery Bot.png"
+    },
+    "planogram-compliance-agent": {
+        "video_url": "https://kbbottest.blob.core.windows.net/ai-hackathon-videos/planogram-compliance-agent.mp4?se=2027-05-20T14%3A56%3A12Z&sp=r&sv=2023-11-03&sr=b&sig=mYOoODgTrXr8CbIbmaz8kH5ZYe0qqVFd1eUBaTZ84nk%3D",
+        "github_repo": "",
+        "architecture_image": ""
+    },
+    "voice-faq-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Voice%20FAQ%20Agent.mp4?sp=r&st=2026-03-03T11:58:48Z&se=2027-12-30T20:13:48Z&spr=https&sv=2024-11-04&sr=b&sig=9rYbXHUZbhHUJWGiqoKLOxDkARhBVftLcyuYiWQsqDw%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Voice-FAQ-Agent",
+        "architecture_image": "/images/voicefaq_architecture.png"
+    },
+    "hiring-support-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Retail/Hiring-Support-Agent",
+        "architecture_image": "/images/hiring_support_agent.png"
+    },
+    "enterprise-knowledge-bot": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Enterprice%20Knowledge%20Bot.mp4?sp=r&st=2026-03-03T11:28:26Z&se=2027-12-30T19:43:26Z&spr=https&sv=2024-11-04&sr=b&sig=z%2B8Da8wiiW8jggG7gJqh4fTfx9NyCWd226ABvPrVSqE%3D",
+        "github_repo": "https://github.com/MAQ-Retail/Enterprise-Knowledge-Bot",
+        "architecture_image": "/images/Enterprise_KBot.png"
+    },
+    "invoice-extraction-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Finance/Invoice-Extraction-Agent/",
+        "architecture_image": "/images/Invoice Extraction Agent.png"
+    },
+    "invoice-po-matching-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Finance/Invoice-PO-Matching-Agent",
+        "architecture_image": "/images/invoice_po_matching_agent.png"
+    },
+    "loan-underwriting-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Finance/Loan-Underwriting-Agent/",
+        "architecture_image": "/images/loanunderwriting.drawio.png"
+    },
+    "poe-scanner": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Finance/Proof-of-Expense-Scanner-Agent",
+        "architecture_image": "/images/POE_scanner.png"
+    },
+    "market-intelligence-pricing-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/market-intelligence-agent.mp4?sp=r&st=2026-03-03T11:34:09Z&se=2027-12-30T19:49:09Z&spr=https&sv=2024-11-04&sr=b&sig=lPQwlw3gyMWn%2F2MUTjoP5af53ZWAQd%2BkWhBkIb2nglE%3D",
+        "github_repo": "https://github.com/MAQ-Finance/Market-Intelligence-and-Pricing-Agent",
+        "architecture_image": "/images/Market Intelligence and Pricing Agent.png"
+    },
+    "expense-forecaster": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Expense%20Forecaster_EMPN1717_Amol%20Wadhone.mp4.mp4?sp=r&st=2026-03-03T11:29:03Z&se=2027-12-30T19:44:03Z&spr=https&sv=2024-11-04&sr=b&sig=FQgSUfW5Ch6JvbJCt%2F7zLh%2FpXEtzutvoC3DpgE2%2Fevw%3D",
+        "github_repo": "https://github.com/MAQ-Finance/Expense-forecaster-Agent",
+        "architecture_image": "/images/expenseforecaster.drawio.png"
+    },
+    "executive-copilot-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Exec%20Copilot.mp4?sp=r&st=2026-03-03T12:07:59Z&se=2027-12-30T20:22:59Z&spr=https&sv=2024-11-04&sr=b&sig=MHpz77rvyZUEFU6LTcRANpval%2FVsT93E%2BL3V4ocdSLk%3D",
+        "github_repo": "https://github.com/MAQ-Finance/Executive-Copilot-Agent",
+        "architecture_image": "/images/EXECUTIVE COPILOT AGENT.png"
+    },
+    "code-standards-reviewer-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Code%20Standards%20Reviewer%20Agent_EMPN0689_AbhishekSingh.mp4?sp=r&st=2026-03-03T11:27:45Z&se=2027-12-30T19:42:45Z&spr=https&sv=2024-11-04&sr=b&sig=UnNP9S4OtCNMJzgnju9Z8aUFZfLNHUeoDh3WQasrP5Q%3D",
+        "github_repo": "https://github.com/MAQ-Engineering/Code-Standards-Review-Agent",
+        "architecture_image": "/images/code_review_agent.drawio.png"
+    },
+    "expense-trend-analyzer": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Finance/Expense-Trend-Analyzer",
+        "architecture_image": "/images/expense_trend_analyser_agent.png"
+    },
+    "security-risk-analyzer-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Security%20Smell%20Detector.mp4?sp=r&st=2026-03-03T11:44:42Z&se=2027-12-30T19:59:42Z&spr=https&sv=2024-11-04&sr=b&sig=stjhW5GlmoyzMengQgRKLs%2BeweybJ3wrJ4Uo1d6fs1k%3D",
+        "code_base": "https://kbbottest.blob.core.windows.net/ai-hackathon-code-base/security-smell-detector-Agent.zip",
+        "github_repo": "",
+        "architecture_image": ""
+    },
+    "inventory-overview-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Manufacturing/Inventory-Overview-Agent",
+        "architecture_image": "/images/IOA.drawio.png"
+    },
+    "codeguardian": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/CodeGuardian%20Skill%20Setup.mp4?sp=r&st=2026-06-19T08:53:53Z&se=2027-12-01T17:08:53Z&spr=https&sv=2026-02-06&sr=b&sig=SaF77kMrxob7R%2FTj5Q7fqnoYL%2BQSqg9NoPIIEtM6q6c%3D",
+        "github_repo": "https://github.com/MAQ-Engineering/CodeGuardian",
+        "architecture_image": "/images/code_guardian.png"
+    },
+    "vendor-receipt-scanner": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/vendor-receipt-scanner.mp4?sp=r&st=2026-03-03T11:35:22Z&se=2027-12-30T19:50:22Z&spr=https&sv=2024-11-04&sr=b&sig=eZrew2ZhQy%2BoDkJI%2BJZpal9hDKbFV7T8vXkedPGlJW4%3D",
+        "github_repo": "https://github.com/MAQ-Manufacturing/Vendor-Receipt-Scanner",
+        "architecture_image": "/images/Vendor Receipt Scanner Agent.png"
+    },
+    "legal-intake-routing": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Legal_Intake_Routing_agent_Demo%201.mp4?sp=r&st=2026-03-03T11:29:47Z&se=2027-12-30T19:44:47Z&spr=https&sv=2024-11-04&sr=b&sig=B8D10Adi2yCjs0t3XDOn%2FkxgERJBjRYomQE5Z4nZN8w%3D",
+        "code_base": "",
+        "github_repo": "",
+        "architecture_image": ""
+    },
+    "ai-biller-timekeeper-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Legal/AI-Billing-Timekeeper-Agent",
+        "architecture_image": "/images/ai_biling_timekeeper_agent.png"
+    },
+    "gdpr-compliance-agent": {
+        "video_url": "",
+        "github_repo": "https://github.com/MAQ-Legal/GDPR-Compliance-Agent",
+        "architecture_image": "/images/GDPR_compilance_agent.png"
+    },
+    "agent-mart": {
+        "github_repo": "https://github.com/MAQ-Retail/AgentMart",
+        "architecture_image": "/images/agentmart_architecture.png",
+        "video_url": ""
+    },
+    "launch-fast": {
+        "github_repo": "https://github.com/MAQ-Engineering/LaunchFAST",
+        "video_url": "",
+        "architecture_image": ""
+    },
+    "consumer-intelligence-agent": {
+        "github_repo": "https://github.com/MAQ-Retail/Consumer-Intelligence-System",
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Final%20merged.mp4?sp=r&st=2026-06-19T10:20:29Z&se=2028-01-31T18:35:29Z&spr=https&sv=2026-02-06&sr=b&sig=sb8H7JZC6JClT%2BawyLMyL%2BQKIhC5dQWFXyNQ30iKLVg%3D",
+        "architecture_image": "/images/Consumer_intelligence.png"
+    },
+    "rai-agent": {
+        "github_repo": "https://github.com/MAQ-Engineering/RAI-Agent",
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/RAI%20Agent%20Demo.mp4?sp=r&st=2026-06-19T08:54:39Z&se=2026-06-19T17:09:39Z&spr=https&sv=2026-02-06&sr=b&sig=ZzJR4ktbis4RJclm9fksIv50kCC49ESxBdHyVynfs5M%3D",
+        "architecture_image": "/images/rai_architecture.png"
+    },
+    "recruiter-copilot": {
+        "github_repo": "https://github.com/MAQ-Engineering/MAQ-Recruiter-Copilot/",
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/MAQ%20Software%20-%20Recruiter%20Copilot%20Agent%20Video%20.mp4?sp=r&st=2026-06-19T09:40:39Z&se=2028-03-01T17:55:39Z&spr=https&sv=2026-02-06&sr=b&sig=yfaihuGJbV24s7YEcmpgFBlq68QV5s%2FVdKZ6kzrk5tk%3D",
+        "architecture_image": "/images/recruiter_copilot_architecture.png"
+    },
+    "cip-active-production-monitoring": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/cip%20v2.mp4?sp=r&st=2026-06-19T09:38:56Z&se=2028-05-01T17:53:56Z&spr=https&sv=2026-02-06&sr=b&sig=wHkU0KCgcvrGLAckdnU8DoPE2g01wtjbCllsTuHh%2BTw%3D",
+        "github_repo": "https://github.com/MAQ-Manufacturing/Active-Production-Monitoring",
+        "architecture_image": "/images/Automatic_production_management.png"
+    },
+    "vendor-invoice-reconciliation-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Vendor%20Invoice%20Reconciliation%20Agent%20Demo%20(2).mp4?sp=r&st=2026-06-22T04:54:46Z&se=2028-03-01T13:09:46Z&spr=https&sv=2026-02-06&sr=b&sig=zth0JjJVJilKjuo3SRAA9chaaSs7dagQ%2BTNUlNlbio8%3D",
+        "github_repo": "https://github.com/MAQ-Finance/Vendor-Invoice-Reconciliation-Assistant",
+        "architecture_image": "/images/vira_architecture.png"
+    },
+    "new-hire-experience-and-onboarding-orchestration-agent": {
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Pod_2_New_Hire_Experience_Orchestration_Agent_Demo.mp4?sp=r&st=2026-06-23T04:49:05Z&se=2028-09-01T13:04:05Z&spr=https&sv=2026-02-06&sr=b&sig=1RqMQy%2FFZ93mWJdquY%2Fha9fM%2Bobze5K6kFxVqT9zXsU%3D",
+        "github_repo": "https://github.com/MAQ-Engineering/New-Hire-Experience-and-Onboarding-Orchestration-Agent",
+        "architecture_image": "/images/new_hire_experience_architecture.png"
+    },
+    "agent-eval": {
+        "video_url": "",
+        "demo_embed_url": "https://testmaq-my.sharepoint.com/:v:/g/personal/mananm_maqsoftware_com/IQCSJ3IIyCFBR6-Ro-vnLMOeARj5auqlPIbPRBt7VjQtH5Q?e=jdOgat&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D",
+        "deck_embed_url": "https://testmaq-my.sharepoint.com/:p:/g/personal/mananm_maqsoftware_com/IQDt1l3VoOpFTaJO69RZoOsiAYZy03Vp08qsgZklavO_L0o?e=St9aNh&action=embedview",
+        "github_repo": "https://github.com/MAQ-Engineering/Foundry-Agents-Eval",
+        "architecture_image": ""
+    },
+    "pre-sales-agent":{
+        "video_url": "https://adlsaimlinitiativedev.blob.core.windows.net/ai-agents-hackathon/Pre-SalesAgent_V2.mp4?sp=r&st=2026-06-25T11:23:52Z&se=2027-12-31T19:38:52Z&spr=https&sv=2026-02-06&sr=b&sig=x2jkxWOYhLQ%2BDhrZp9JJ%2BJFC88GzF0j9ckmUcbfTxWw%3D",
+        "github_repo": "https://github.com/MAQ-Engineering/Pre-Sales-Agent",
+        "architecture_image": "/images/pre-sales-architechture-dig.png"
+    },
+    "develop-fast":{
+        "video_url": "",
+        "github_repo": "",
+        "architecture_image": "/images/developfast_architecture.png"
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "design-reviewer",
+  "version": "1.0.0",
+  "type": "agent",
+  "category": "Frontend & UI",
+  "description": "Official AI Design Reviewer Subagent for automated UI consistency and WCAG accessibility audit.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 135,
+  "rating": 4.9,
+  "techStack": [
+    "WCAG 2.1 AA",
+    "HTML5",
+    "CSS3",
+    "Design Tokens"
+  ],
+  "keyFeatures": [
+    "Design system compliance",
+    "Contrast check",
+    "Responsive validation"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# design-reviewer (`design-reviewer`)\n\nOfficial AI Design Reviewer Subagent for automated UI consistency and WCAG accessibility audit.\n\n- **Artifact Type**: `AGENT`\n- **Domain / Category**: Engineering • Frontend & UI\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install design-reviewer\n```\n\n*(Alternatively, search for **`design-reviewer`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat (Agent Mode)\nOpen **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) in VS Code and invoke the agent with the **`@`** mention:\n\n```markdown\n@design-reviewer Please analyze our active codebase and design system compliance. Identify architectural violations, security risks, and optimization opportunities.\n```\n\n### 2. Follow-Up / Deep Analysis Prompt Example\n```markdown\n@design-reviewer Propose drop-in code diffs and concrete implementation steps adhering to enterprise standards.\n```\n\n### 3. In Antigravity IDE\nOpen the Antigravity Chat panel and run:\n```text\nPlease summon @design-reviewer to inspect the active workspace and execute its automated review pipeline.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Design system compliance**\n- **Contrast check**\n- **Responsive validation**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `WCAG 2.1 AA`\n- `HTML5`\n- `CSS3`\n- `Design Tokens`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`design-reviewer`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".github/prompts/design-review.prompt.md",
+      "content": "---\nmode: agent\ndescription: \"Review code for design system compliance and visual consistency\"\n---\n\n# Design Review\n\nReview the current codebase for design system compliance. Check for:\n\n1. **Color Usage** — Are colors from the design token palette? Flag any hardcoded hex values.\n2. **Typography** — Do headings and body text follow the typography scale?\n3. **Spacing** — Is spacing consistent with the defined spacing scale?\n4. **Responsive Design** — Are layouts mobile-first and responsive?\n5. **Accessibility** — Do interactive elements meet minimum size and contrast requirements?\n\nProvide a summary of findings with specific file locations and suggested fixes.\n"
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "@design-reviewer Please analyze our active codebase and design system compliance. Identify architectural violations, security risks, and optimization opportunities."
+}

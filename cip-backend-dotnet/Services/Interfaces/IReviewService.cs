@@ -14,6 +14,7 @@ public interface IReviewService
     Review? Reject(string reviewId, string reviewerEmail, string? feedback = null);
     Review? CancelReview(string reviewId, string reviewerEmail, string? reason = null);
     Review? GetReview(string reviewId);
+    IEnumerable<Review> GetAllReviews();
     IEnumerable<Review> GetPendingReviews();
     IEnumerable<Review> GetByProducer(string producerEmail);
     Review UpdateSlaTarget(string reviewId, int slaTargetMinutes);

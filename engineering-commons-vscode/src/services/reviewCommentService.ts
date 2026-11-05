@@ -52,13 +52,13 @@ export class ReviewCommentService implements IReviewCommentService {
     private authProvider: IAuthenticationStatusProvider;
     private baseUrl: string;
 
-    constructor(authProvider: IAuthenticationStatusProvider, baseUrl = 'https://ecommerce-app-chi-wine.vercel.app') {
+    constructor(authProvider: IAuthenticationStatusProvider, baseUrl = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io') {
         this.authProvider = authProvider;
-        this.baseUrl = (baseUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.baseUrl = (baseUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     public setBackendUrl(url: string): void {
-        this.baseUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.baseUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     public async getDiffAsync(reviewId: string): Promise<any | null> {

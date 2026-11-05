@@ -575,6 +575,13 @@ public class BountyService : IBountyService
 
         string submitterEmail = b.Submissions.LastOrDefault()?.SubmittedByEmail ?? b.ClaimedByEmail ?? "producer@company.com";
 
+        // 4-Eyes Principle / Separation of Duties: Submitter cannot approve their own code submission
+        if (req.IsApproved && !string.IsNullOrWhiteSpace(submitterEmail) &&
+            string.Equals(submitterEmail.Trim(), reviewerEmail.Trim(), StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException("Separation of duties violation: Submitter cannot approve their own bounty submission.");
+        }
+
         if (req.IsApproved)
         {
             // Sequential transition: Review -> InTesting (Testing Phase)

@@ -31,7 +31,7 @@ public class BackendClient : IBackendClient, IDisposable
         return string.Concat(name.Select(c => invalids.Contains(c) ? '_' : c));
     }
 
-    public const string DefaultBackendUrl = "https://ecommerce-app-chi-wine.vercel.app";
+    public const string DefaultBackendUrl = "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io";
 
     public static void EnsureConfigSeeded()
     {

@@ -14,7 +14,8 @@ public class ReviewNotificationEventHandler :
     IReviewEventHandler<ChangesRequestedEvent>,
     IReviewEventHandler<ResubmittedEvent>,
     IReviewEventHandler<ReviewApprovedEvent>,
-    IReviewEventHandler<ReviewRejectedEvent>
+    IReviewEventHandler<ReviewRejectedEvent>,
+    IReviewEventHandler<ReviewCancelledEvent>
 {
     private readonly INotificationService _notifications;
     private readonly ILogger<ReviewNotificationEventHandler> _logger;

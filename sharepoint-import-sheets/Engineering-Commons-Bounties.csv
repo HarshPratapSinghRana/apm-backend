@@ -1,0 +1,7 @@
+Title,Category,Description,RewardCredits,Status,ClaimedBy,Stage
+Build Accessibility Audit Agent,Frontend,Create an AI subagent that audits WCAG 2.1 AA compliance in web components and outputs report.,250,Open,,
+Implement Semantic Search Skill,Search,Semantic indexing and cosine similarity search skill for vector embeddings and document lookups.,400,InProgress,harsh.rana@maqsoftware.com,CodeGeneration
+Security Token Guard MCP Plugin,Security,Prevent secret leaks in prompts and local environment variables using Model Context Protocol.,300,Open,,
+Databricks Cost Auditor Agent,Cloud & Data,Subagent that analyzes cluster utilization and recommends cost-cutting configurations.,500,Open,,
+C# Code Modernizer to .NET 10,Backend,Skill that converts legacy C# patterns to modern C# 14 / .NET 10 idioms automatically.,350,Open,,
+Automate SharePoint Graph API List Provisioner,Cloud & Microsoft 365,Lightweight client utility for automated zero-cost SharePoint sync and batch operations.,300,Completed,harsh.rana@maqsoftware.com,Certified

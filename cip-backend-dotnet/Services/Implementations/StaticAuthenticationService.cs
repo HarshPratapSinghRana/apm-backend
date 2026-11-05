@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using CipBackend.Models;
 using CipBackend.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace CipBackend.Services.Implementations;
@@ -9,8 +13,11 @@ public class StaticAuthOptions { public List<User> Users { get; set; } = new(); 
 public class StaticAuthenticationService : IAuthenticationService
 {
     private readonly List<User> _users;
-    public StaticAuthenticationService(IOptions<StaticAuthOptions> opts)
+    private readonly IConfiguration? _config;
+
+    public StaticAuthenticationService(IOptions<StaticAuthOptions> opts, IConfiguration? config = null)
     {
+        _config = config;
         _users = opts.Value.Users ?? new List<User>();
         var defaultUsers = new List<User>() {
             new User { Email = "producer@company.com", Password = "password", Role = "PRODUCER" },
@@ -35,10 +42,13 @@ public class StaticAuthenticationService : IAuthenticationService
         var existing = _users.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && u.Password == password);
         if (existing != null) return existing;
 
-        // In test & dev environments, allow any company.com or test.com user with "password"
-        if (!string.IsNullOrEmpty(email) && email.Contains("@") && (password == "password" || password == "Producer@123" || password == "Reviewer@123" || password == "Consumer@123"))
+        // In test & dev environments, allow designated test domains (company.com, test.com)
+        if (!string.IsNullOrEmpty(email) && (email.EndsWith("@company.com", StringComparison.OrdinalIgnoreCase) || email.EndsWith("@test.com", StringComparison.OrdinalIgnoreCase)) && 
+            (password == "password" || password == "Producer@123" || password == "Reviewer@123" || password == "Consumer@123"))
         {
-            var role = email.Contains("reviewer") ? "REVIEWER" : (email.Contains("producer") || email.Contains("contrib") ? "PRODUCER" : "CONSUMER");
+            // Strict role assignment: Do not grant REVIEWER/ADMIN to arbitrary emails containing substrings
+            var role = (email.StartsWith("reviewer@", StringComparison.OrdinalIgnoreCase) || email.StartsWith("designated-rev@", StringComparison.OrdinalIgnoreCase)) ? "REVIEWER" : 
+                       (email.StartsWith("producer", StringComparison.OrdinalIgnoreCase) || email.StartsWith("contrib@", StringComparison.OrdinalIgnoreCase)) ? "PRODUCER" : "CONSUMER";
             var newUser = new User { Email = email, Password = password, Role = role };
             _users.Add(newUser);
             return newUser;

@@ -451,11 +451,11 @@ describe('Engineering Commons VS Code Extension Tests', () => {
 
             const adoGov = new AdoGovernanceService(unauthProvider);
             const adoTel = new AdoTelemetryService(undefined, unauthProvider);
-            const httpUsage = new HttpBackendUsageClient('https://ecommerce-app-chi-wine.vercel.app');
-            const notifService = new HttpNotificationService('https://ecommerce-app-chi-wine.vercel.app', unauthProvider);
+            const httpUsage = new HttpBackendUsageClient('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
+            const notifService = new HttpNotificationService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', unauthProvider);
             const pollingClient = new PollingNotificationClient(notifService, unauthProvider, 5000);
-            const reviewThread = new HttpReviewThreadService('https://ecommerce-app-chi-wine.vercel.app', unauthProvider);
-            const reviewComment = new ReviewCommentService(unauthProvider, 'https://ecommerce-app-chi-wine.vercel.app');
+            const reviewThread = new HttpReviewThreadService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', unauthProvider);
+            const reviewComment = new ReviewCommentService(unauthProvider, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
             const certService = new CertificationService(unauthProvider, { executeAsync: async () => ({ success: true, stdout: '', stderr: '', exitCode: 0 }) } as any, 'engineering-commons');
 
             // 1. AdoGovernanceService calls
@@ -541,7 +541,7 @@ describe('Engineering Commons VS Code Extension Tests', () => {
         try {
             // Initially unauthenticated
             const authProvider = new MockAuthStatusProvider(false, undefined, undefined, 'CONSUMER');
-            const notifService = new HttpNotificationService('https://ecommerce-app-chi-wine.vercel.app', authProvider);
+            const notifService = new HttpNotificationService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', authProvider);
             const client = new PollingNotificationClient(notifService, authProvider, 60000);
 
             client.start();

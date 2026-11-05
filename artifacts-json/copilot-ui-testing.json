@@ -1,0 +1,87 @@
+{
+  "id": "leap-copilot-ui-testing",
+  "rawId": "copilot-ui-testing",
+  "name": "copilot-ui-testing",
+  "title": "GitHub Copilot – UI Testing",
+  "type": "solution",
+  "version": "1.0.0",
+  "category": "Feature Showcase",
+  "domain": "Feature Showcase",
+  "domainId": "feature-showcase",
+  "architecture": "Low Code",
+  "maturity": "Production",
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "description": "Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.",
+  "keyFeatures": [
+    "Automated UI test case generation from scenarios",
+    "Edge case identification for UI components",
+    "Interaction and data input coverage analysis",
+    "Rendering condition validation"
+  ],
+  "impact": "Enhanced the reliability and stability of the component.",
+  "impactMetrics": [
+    {
+      "value": "3x",
+      "label": "Test Coverage",
+      "icon": "TrendingDown"
+    },
+    {
+      "value": "Auto",
+      "label": "Edge Cases",
+      "icon": "Clock"
+    },
+    {
+      "value": "Higher",
+      "label": "Stability",
+      "icon": "UserCheck"
+    }
+  ],
+  "githubRepo": "",
+  "videoUrl": "",
+  "architectureImage": "",
+  "artifactDeck": null,
+  "author": "AI Leap Platform",
+  "producerEmail": "ai-leap@maqsoftware.com",
+  "source": "AI_LEAP",
+  "isCertified": true,
+  "certificationStatus": "CERTIFIED",
+  "downloads": 166,
+  "rating": 4.9,
+  "techStack": [
+    "Python",
+    "FastAPI",
+    "Azure OpenAI",
+    "GitHub Copilot Agent",
+    "Markdown"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# GitHub Copilot – UI Testing (`copilot-ui-testing`)\n\nUses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.\n\n- **Artifact Type**: `SOLUTION`\n- **Domain / Category**: Feature Showcase • Feature Showcase\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `AI Leap Platform`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install copilot-ui-testing\n```\n\n*(Alternatively, search for **`copilot-ui-testing`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use This Artifact\n```markdown\nIntegrate copilot-ui-testing into the workspace and run standard execution for Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.\n```\n\n### 2. Verification Prompt\n```markdown\nVerify copilot-ui-testing installation status and monitor runtime execution telemetry.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Automated UI test case generation from scenarios**\n- **Edge case identification for UI components**\n- **Interaction and data input coverage analysis**\n- **Rendering condition validation**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `Python`\n- `FastAPI`\n- `Azure OpenAI`\n- `GitHub Copilot Agent`\n- `Markdown`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`copilot-ui-testing`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **AI Leap Platform** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/agents/copilot-ui-testing.md",
+      "content": "---\nname: 'GitHub Copilot – UI Testing Agent'\nid: 'copilot-ui-testing'\ndescription: 'Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.'\ntype: 'agent'\ndomain: 'Feature Showcase'\narchitecture: 'Low Code'\nsource: 'AI_LEAP'\nmaturity: 'Production'\nusability: 'copilot-ready'\nversion: '1.0.0'\ntools: ['codebase', 'search', 'editFiles', 'runCommands', 'problems']\nargument-hint: 'Ask @copilot-ui-testing for feature showcase directives, code assistance, or workflow execution'\n---\n\n# GitHub Copilot – UI Testing Agent\n\n> **Domain**: Feature Showcase | **Architecture**: Low Code | **Source**: AI Leap Federated Registry | **Certification**: Verified Enterprise Certified (Level 3)  \n> **Usability Classification**: `🤖 Copilot & Claude Ready` (Interactive AI Agent Prompt directly executable by GitHub Copilot & Claude)\n\n---\n\n## 🎯 Role & Persona Directives\nYou are the **GitHub Copilot – UI Testing Agent**, an autonomous enterprise AI agent designed specifically for the **Feature Showcase** domain.\nYour mission is to provide expert guidance, domain-aware code modifications, structured problem diagnosis, and automated workflow execution adhering strictly to enterprise engineering standards.\n\n### System Instructions & Operational Constraints\n1. **Domain Context Grounding**: Evaluate all user requests and workspace files through the lens of Feature Showcase best practices, business constraints, and data integrity.\n2. **Context-Driven Reasoning**: Inspect existing workspace patterns, schemas, and configurations before generating code modifications.\n3. **No Hallucinations**: If schemas, API endpoints, or database tables are undefined in the active workspace, request clarification or inspect related files rather than fabricating structures.\n4. **Enterprise Security & Compliance**: Enforce zero credential leakage, principle of least privilege, audit logging, and Responsible AI guidelines at all times.\n5. **Auditable Outputs**: Keep code changes modular, documented, and fully testable with corresponding unit or integration tests.\n\n---\n\n## ⚡ Core Capabilities & Features\n- **Automated UI test case generation from scenarios**: Automated UI test case generation from scenarios\n- **Edge case identification for UI components**: Edge case identification for UI components\n- **Interaction and data input coverage analysis**: Interaction and data input coverage analysis\n- **Rendering condition validation**: Rendering condition validation\n\n---\n\n## 📊 Business Impact & Target KPIs\n- **Primary Business Impact**: Enhanced the reliability and stability of the component.\n- **Test Coverage**: `3x`\n- **Edge Cases**: `Auto`\n- **Stability**: `Higher`\n\n---\n\n## 🔄 Execution Pipeline & Reasoning Flow\nWhen the user mentions `@copilot-ui-testing` in GitHub Copilot Chat or Claude:\n\n1. **Step 1: Perception & Workspace Analysis**\n   - Ingest user intent, parameters, and open file buffers.\n   - Use the `codebase` and `search` tools to locate relevant project files, models, and controllers.\n2. **Step 2: Domain-Driven Solution Design**\n   - Formulate a stepwise execution plan tailored to the requirements of Feature Showcase.\n   - Identify potential edge cases, data validation rules, and error handling paths.\n3. **Step 3: Implementation & Synthesis**\n   - Generate production-quality code, configuration diffs, or structured JSON responses.\n   - Apply company naming conventions, type safety, and inline documentation.\n4. **Step 4: Verification & Next Steps**\n   - Verify that generated code compiles and passes linting (`problems` tool).\n   - Provide clear, actionable instructions on how to test, deploy, or run the changes.\n\n---\n\n## 💡 GitHub Copilot & Claude Invocation Examples\n\n```markdown\n# Example 1: Domain-specific analysis\n@copilot-ui-testing Analyze our workspace configurations and evaluate compatibility with Feature Showcase standards.\n\n# Example 2: Interactive workflow execution\n@copilot-ui-testing /run Execute the standard GitHub Copilot – UI Testing pipeline for the currently selected file.\n\n# Example 3: Edge case and validation review\n@copilot-ui-testing /review Check our validation logic and suggest domain-level security enhancements.\n```\n\n---\n\n\n"
+    },
+    {
+      "path": ".github/agents/copilot-ui-testing.agent.md",
+      "content": "---\nname: 'GitHub Copilot – UI Testing Agent'\nid: 'copilot-ui-testing'\ndescription: 'Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.'\ntype: 'agent'\ndomain: 'Feature Showcase'\narchitecture: 'Low Code'\nsource: 'AI_LEAP'\nmaturity: 'Production'\nusability: 'copilot-ready'\nversion: '1.0.0'\ntools: ['codebase', 'search', 'editFiles', 'runCommands', 'problems']\nargument-hint: 'Ask @copilot-ui-testing for feature showcase directives, code assistance, or workflow execution'\n---\n\n# GitHub Copilot – UI Testing Agent\n\n> **Domain**: Feature Showcase | **Architecture**: Low Code | **Source**: AI Leap Federated Registry | **Certification**: Verified Enterprise Certified (Level 3)  \n> **Usability Classification**: `🤖 Copilot & Claude Ready` (Interactive AI Agent Prompt directly executable by GitHub Copilot & Claude)\n\n---\n\n## 🎯 Role & Persona Directives\nYou are the **GitHub Copilot – UI Testing Agent**, an autonomous enterprise AI agent designed specifically for the **Feature Showcase** domain.\nYour mission is to provide expert guidance, domain-aware code modifications, structured problem diagnosis, and automated workflow execution adhering strictly to enterprise engineering standards.\n\n### System Instructions & Operational Constraints\n1. **Domain Context Grounding**: Evaluate all user requests and workspace files through the lens of Feature Showcase best practices, business constraints, and data integrity.\n2. **Context-Driven Reasoning**: Inspect existing workspace patterns, schemas, and configurations before generating code modifications.\n3. **No Hallucinations**: If schemas, API endpoints, or database tables are undefined in the active workspace, request clarification or inspect related files rather than fabricating structures.\n4. **Enterprise Security & Compliance**: Enforce zero credential leakage, principle of least privilege, audit logging, and Responsible AI guidelines at all times.\n5. **Auditable Outputs**: Keep code changes modular, documented, and fully testable with corresponding unit or integration tests.\n\n---\n\n## ⚡ Core Capabilities & Features\n- **Automated UI test case generation from scenarios**: Automated UI test case generation from scenarios\n- **Edge case identification for UI components**: Edge case identification for UI components\n- **Interaction and data input coverage analysis**: Interaction and data input coverage analysis\n- **Rendering condition validation**: Rendering condition validation\n\n---\n\n## 📊 Business Impact & Target KPIs\n- **Primary Business Impact**: Enhanced the reliability and stability of the component.\n- **Test Coverage**: `3x`\n- **Edge Cases**: `Auto`\n- **Stability**: `Higher`\n\n---\n\n## 🔄 Execution Pipeline & Reasoning Flow\nWhen the user mentions `@copilot-ui-testing` in GitHub Copilot Chat or Claude:\n\n1. **Step 1: Perception & Workspace Analysis**\n   - Ingest user intent, parameters, and open file buffers.\n   - Use the `codebase` and `search` tools to locate relevant project files, models, and controllers.\n2. **Step 2: Domain-Driven Solution Design**\n   - Formulate a stepwise execution plan tailored to the requirements of Feature Showcase.\n   - Identify potential edge cases, data validation rules, and error handling paths.\n3. **Step 3: Implementation & Synthesis**\n   - Generate production-quality code, configuration diffs, or structured JSON responses.\n   - Apply company naming conventions, type safety, and inline documentation.\n4. **Step 4: Verification & Next Steps**\n   - Verify that generated code compiles and passes linting (`problems` tool).\n   - Provide clear, actionable instructions on how to test, deploy, or run the changes.\n\n---\n\n## 💡 GitHub Copilot & Claude Invocation Examples\n\n```markdown\n# Example 1: Domain-specific analysis\n@copilot-ui-testing Analyze our workspace configurations and evaluate compatibility with Feature Showcase standards.\n\n# Example 2: Interactive workflow execution\n@copilot-ui-testing /run Execute the standard GitHub Copilot – UI Testing pipeline for the currently selected file.\n\n# Example 3: Edge case and validation review\n@copilot-ui-testing /review Check our validation logic and suggest domain-level security enhancements.\n```\n\n---\n\n\n"
+    },
+    {
+      "path": ".agents/skills/copilot-ui-testing/SKILL.md",
+      "content": "---\nname: 'copilot-ui-testing'\ndescription: 'Workflow skill instructions for GitHub Copilot – UI Testing Agent'\ntype: 'skill'\ndomain: 'Feature Showcase'\nsource: 'AI_LEAP'\nusability: 'copilot-ready'\nversion: '1.0.0'\n---\n\n# GitHub Copilot – UI Testing Agent — Execution Skill\n\n## Overview\nAutomated execution directives for the **GitHub Copilot – UI Testing** skill within the **Feature Showcase** domain.\nUsability classification: **🤖 Copilot & Claude Ready**.\n\n## Key Capabilities\n- Automated UI test case generation from scenarios\n- Edge case identification for UI components\n- Interaction and data input coverage analysis\n- Rendering condition validation\n\n## Target Performance Benchmarks\n- **Test Coverage**: 3x\n- **Edge Cases**: Auto\n- **Stability**: Higher\n\n## Step-by-Step Skill Workflow\n1. **Prerequisites Check**:\n   - Verify workspace readiness and configuration files for Feature Showcase.\n2. **Domain Execution**:\n   - Apply verified domain rules and execution patterns.\n3. **Quality Assurance**:\n   - Check against target benchmarks: Test Coverage (3x), Edge Cases (Auto), Stability (Higher).\n4. **Telemetry & Audit**:\n   - Log execution output to the enterprise CIP tracking ledger.\n"
+    },
+    {
+      "path": "skills/copilot-ui-testing/SKILL.md",
+      "content": "---\nname: 'copilot-ui-testing'\ndescription: 'Workflow skill instructions for GitHub Copilot – UI Testing Agent'\ntype: 'skill'\ndomain: 'Feature Showcase'\nsource: 'AI_LEAP'\nusability: 'copilot-ready'\nversion: '1.0.0'\n---\n\n# GitHub Copilot – UI Testing Agent — Execution Skill\n\n## Overview\nAutomated execution directives for the **GitHub Copilot – UI Testing** skill within the **Feature Showcase** domain.\nUsability classification: **🤖 Copilot & Claude Ready**.\n\n## Key Capabilities\n- Automated UI test case generation from scenarios\n- Edge case identification for UI components\n- Interaction and data input coverage analysis\n- Rendering condition validation\n\n## Target Performance Benchmarks\n- **Test Coverage**: 3x\n- **Edge Cases**: Auto\n- **Stability**: Higher\n\n## Step-by-Step Skill Workflow\n1. **Prerequisites Check**:\n   - Verify workspace readiness and configuration files for Feature Showcase.\n2. **Domain Execution**:\n   - Apply verified domain rules and execution patterns.\n3. **Quality Assurance**:\n   - Check against target benchmarks: Test Coverage (3x), Edge Cases (Auto), Stability (Higher).\n4. **Telemetry & Audit**:\n   - Log execution output to the enterprise CIP tracking ledger.\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: copilot-ui-testing\nversion: 1.0.0\ntype: agent\ncategory: Feature Showcase\ndomain: Feature Showcase\narchitecture: Low Code\nusability: copilot-ready\nsource: AI_LEAP\nauthor: AI Leap Platform\ndescription: Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.\nmain: .github/agents/copilot-ui-testing.agent.md\nskills:\n  - .agents/skills/copilot-ui-testing/SKILL.md\nkeywords:\n  - ai-leap\n  - copilot-ready\n  - feature-showcase\n  - copilot-ui-testing\n"
+    }
+  ],
+  "copilotPrompt": "Integrate copilot-ui-testing into the workspace and run standard execution for Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions."
+}

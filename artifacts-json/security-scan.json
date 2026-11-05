@@ -1,0 +1,44 @@
+{
+  "name": "security-scan",
+  "version": "1.0.0",
+  "type": "agent",
+  "category": "Security",
+  "description": "Scans workspace files, prompts, and config files for leaked secrets and vulnerabilities.",
+  "author": "harsh.rana@maqsoftware.com",
+  "isCertified": true,
+  "downloads": 156,
+  "rating": 5,
+  "techStack": [
+    "Secret Detection",
+    "OWASP",
+    "Regex"
+  ],
+  "keyFeatures": [
+    "API Key leak detection",
+    "Password scanner",
+    "Pre-commit hook"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# security-scan (`security-scan`)\n\nScans workspace files, prompts, and config files for leaked secrets and vulnerabilities.\n\n- **Artifact Type**: `AGENT`\n- **Domain / Category**: Engineering • Security\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install security-scan\n```\n\n*(Alternatively, search for **`security-scan`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat (Agent Mode)\nOpen **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) in VS Code and invoke the agent with the **`@`** mention:\n\n```markdown\n@security-scan Please analyze our active codebase and api key leak detection. Identify architectural violations, security risks, and optimization opportunities.\n```\n\n### 2. Follow-Up / Deep Analysis Prompt Example\n```markdown\n@security-scan Propose drop-in code diffs and concrete implementation steps adhering to enterprise standards.\n```\n\n### 3. In Antigravity IDE\nOpen the Antigravity Chat panel and run:\n```text\nPlease summon @security-scan to inspect the active workspace and execute its automated review pipeline.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **API Key leak detection**\n- **Password scanner**\n- **Pre-commit hook**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `Secret Detection`\n- `OWASP`\n- `Regex`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`security-scan`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".github/commands/security-scan.command.md",
+      "content": "---\nname: security-scan\ntype: command\nversion: 1.0.0\ndescription: AI Command to analyze workspace security, detect leaked credentials, and check OWASP Top 10 vulnerabilities\n---\n\n# Security Scan Command\n\nPerform an automated security analysis across the current workspace.\n\n## Audit Workflow\n1. Scan source files for hardcoded API keys, JWT secrets, database connection strings, and private credentials.\n2. Analyze code for OWASP Top 10 security vulnerabilities (SQL injection, XSS, insecure deserialization, path traversal).\n3. Check package manifests for vulnerable or deprecated dependencies.\n4. Output findings in a prioritized severity table (Critical, High, Medium, Low) with concrete remediation recommendations.\n"
+    },
+    {
+      "path": ".github/prompts/security-scan.prompt.md",
+      "content": "---\nname: security-scan\ntype: command\nversion: 1.0.0\ndescription: AI Command to analyze workspace security, detect leaked credentials, and check OWASP Top 10 vulnerabilities\n---\n\n# Security Scan Command\n\nPerform an automated security analysis across the current workspace.\n\n## Audit Workflow\n1. Scan source files for hardcoded API keys, JWT secrets, database connection strings, and private credentials.\n2. Analyze code for OWASP Top 10 security vulnerabilities (SQL injection, XSS, insecure deserialization, path traversal).\n3. Check package manifests for vulnerable or deprecated dependencies.\n4. Output findings in a prioritized severity table (Critical, High, Medium, Low) with concrete remediation recommendations.\n"
+    },
+    {
+      "path": "skills/security-scan/SKILL.md",
+      "content": "---\nname: security-scan\ntype: skill\nversion: 1.0.0\ndescription: Scans workspace files, prompts, and config files for leaked secrets, tokens, and keys.\n---\n\n# Security Scanner Skill\n\nDetects high-entropy strings, AWS/Azure access keys, JWT tokens, and private RSA keys before commit."
+    }
+  ],
+  "usability": "copilot-ready",
+  "usabilityLabel": "Copilot & Claude Ready Prompt",
+  "usabilityBadge": "🤖 Copilot & Claude Ready",
+  "isCopilotReady": true,
+  "copilotPrompt": "@security-scan Please analyze our active codebase and api key leak detection. Identify architectural violations, security risks, and optimization opportunities."
+}

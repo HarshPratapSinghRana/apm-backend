@@ -40,8 +40,9 @@ public class CertificationsController : ControllerBase
         var role = User.FindFirst(ClaimTypes.Role)?.Value;
         if (!string.IsNullOrEmpty(role)) return role.ToUpperInvariant();
         var email = GetUserEmail().ToLowerInvariant();
-        if (email.Contains("reviewer") || email.Contains("admin")) return "REVIEWER";
-        if (email.Contains("producer")) return "PRODUCER";
+        if (email == "harsh.rana@maqsoftware.com" || email == "admin@company.com" || email == "admin@test.com" ||
+            email == "reviewer@company.com" || email == "reviewer@test.com" || email.StartsWith("designated-rev@")) return "REVIEWER";
+        if (email.StartsWith("producer@") || email.StartsWith("contrib@")) return "PRODUCER";
         return "CONSUMER";
     }
 
@@ -108,9 +109,9 @@ public class CertificationsController : ControllerBase
         var email = GetUserEmail();
         var role = GetUserRole();
 
-        if (role != "REVIEWER" && role != "ADMIN")
+        if (role != "REVIEWER" && role != "ADMIN" && role != "CERTIFIED_REVIEWER")
         {
-            return StatusCode(403, new { error = "Access Denied: Only users with the Reviewer or Admin role have permission to certify artifacts (artifact.certify)." });
+            return StatusCode(403, new { error = "Access Denied: Only users with the Reviewer, Certified Reviewer, or Admin role have permission to certify artifacts (artifact.certify)." });
         }
 
         var result = await _certificationService.CertifyArtifactAsync(artifactId, email, payload?.Version, payload?.Reason);
@@ -138,9 +139,9 @@ public class CertificationsController : ControllerBase
         var email = GetUserEmail();
         var role = GetUserRole();
 
-        if (role != "REVIEWER" && role != "ADMIN")
+        if (role != "REVIEWER" && role != "ADMIN" && role != "CERTIFIED_REVIEWER")
         {
-            return StatusCode(403, new { error = "Access Denied: Only users with the Reviewer or Admin role have permission to revoke certification (artifact.revoke_certification)." });
+            return StatusCode(403, new { error = "Access Denied: Only users with the Reviewer, Certified Reviewer, or Admin role have permission to revoke certification (artifact.revoke_certification)." });
         }
 
         if (string.IsNullOrWhiteSpace(payload?.Reason))

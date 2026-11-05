@@ -1,3 +1,24 @@
+---
+name: git-smart-commit
+type: command
+version: 1.0.0
+domain: Developer Productivity & Tooling
+category: Developer Tools
+description: Conventional Commits enforcement and semantic changelog generator command. Enforces standardized commit formats with zero external dependencies.
+author: Developer Experience Guild <dx@maqsoftware.com>
+tags:
+  - git
+  - conventional-commits
+  - commitlint
+  - developer-tools
+  - cli
+useCases:
+  - Enforcing Conventional Commits specification locally and in CI/CD pull request gates
+  - Automating semantic version bumping (SemVer) and release changelog generation
+  - Standardizing git commit message headers and body syntax across engineering teams
+argument-hint: 'Ask @copilot or engineering-commons-advisor for Conventional Commits enforcement, commit message linting, or Git hook setup'
+---
+
 # Git Smart Commit CLI Command
 
 **Artifact Name**: `git-smart-commit`  

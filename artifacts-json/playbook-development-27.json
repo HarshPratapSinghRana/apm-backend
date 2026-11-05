@@ -1,0 +1,54 @@
+{
+  "id": "playbook-development-27",
+  "name": "playbook-development-27",
+  "title": "Implement control tables (pipeline config, watermark, audit, status)",
+  "type": "prompt",
+  "version": "1.0.0",
+  "category": "Prompt Playbook",
+  "subcategory": "Development & Implementation",
+  "stage": "Development",
+  "domain": "Data Engineering",
+  "author": "harsh.rana@maqsoftware.com",
+  "source": "Azure BI & Data Engineering Playbook",
+  "sourceUrl": "https://aisdlcplaybook.azurewebsites.net/prompt-library",
+  "description": "AuditLogger",
+  "task": "Implement control tables (pipeline config, watermark, audit, status)",
+  "copilotPrompt": "You are a senior data engineer\r\nCreate a notebook that implements control tables and also generates schemas for each table.\r\n\r\nControl Tables to Implement with Schema:\r\nPipeline Configuration Table: stores pipeline id, name, source/target locations, schedule, is_active\r\nWatermark Table: pipeline id, entity name, last_processed_ts, last_record_id\r\nAudit Table: stores run metadata including pipeline name, start time, end time, records processed, errors, etc., with correct types.\r\nStatus Table: stores pipeline name, current status (running, success, failed), last updated timestamp\r\n\r\nGenerate the template code for the above",
+  "output": "AuditLogger",
+  "tags": [
+    "azure-bi",
+    "playbook",
+    "prompt",
+    "development",
+    "etl"
+  ],
+  "isCertified": true,
+  "keyFeatures": [
+    "Verbatim prompt from Azure BI & Data Engineering Playbook",
+    "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
+    "Ready to run directly in GitHub Copilot & Antigravity"
+  ],
+  "useCases": [
+    "Development & Implementation",
+    "Azure BI & Data Engineering Playbook"
+  ],
+  "installCommand": "engineering-commons install playbook-development-27",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Implement control tables (pipeline config, watermark, audit, status) (`playbook-development-27`)\n\nAuditLogger\n\n- **Artifact Type**: `PROMPT`\n- **Domain / Category**: Data Engineering • Prompt Playbook\n- **Usability Tier**: PRODUCTION READY\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `harsh.rana@maqsoftware.com`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install playbook-development-27\n```\n\n*(Alternatively, search for **`playbook-development-27`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. How to Use in GitHub Copilot Chat & Antigravity\n1. Open **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) or the Antigravity chat panel.\n2. Copy the **Verbatim Prompt** below.\n3. Replace any bracketed placeholders (such as `{Dimension Name}`, `{Source Tables}`, or `{Context}`) with your specific project details.\n4. Press Enter to generate SME-ready architecture documents, schemas, or pipelines.\n\n### 2. Verbatim Prompt Template\n```markdown\nYou are a senior data engineer\r\nCreate a notebook that implements control tables and also generates schemas for each table.\r\n\r\nControl Tables to Implement with Schema:\r\nPipeline Configuration Table: stores pipeline id, name, source/target locations, schedule, is_active\r\nWatermark Table: pipeline id, entity name, last_processed_ts, last_record_id\r\nAudit Table: stores run metadata including pipeline name, start time, end time, records processed, errors, etc., with correct types.\r\nStatus Table: stores pipeline name, current status (running, success, failed), last updated timestamp\r\n\r\nGenerate the template code for the above\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Verbatim prompt from Azure BI & Data Engineering Playbook**\n- **Certified for Microsoft Fabric, Synapse, Power BI & Databricks**\n- **Ready to run directly in GitHub Copilot & Antigravity**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `GitHub Copilot`\n- `Antigravity IDE`\n- `Enterprise CIP`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`playbook-development-27`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **harsh.rana@maqsoftware.com** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".agents/prompts/playbook/playbook-development-27.md",
+      "content": "---\nname: playbook-development-27\ntitle: \"Implement control tables (pipeline config, watermark, audit, status)\"\ntype: prompt\ncategory: \"Prompt Playbook\"\nsubcategory: \"Development & Implementation\"\nstage: \"Development\"\nauthor: harsh.rana@maqsoftware.com\nsource: \"Azure BI & Data Engineering Playbook\"\nsource_url: \"https://aisdlcplaybook.azurewebsites.net/prompt-library\"\ntags: [\"azure-bi\", \"playbook\", \"prompt\", \"development\", \"etl\"]\ndescription: \"AuditLogger\"\n---\n\n# Implement control tables (pipeline config, watermark, audit, status)\n\nYou are a senior data engineer\r\nCreate a notebook that implements control tables and also generates schemas for each table.\r\n\r\nControl Tables to Implement with Schema:\r\nPipeline Configuration Table: stores pipeline id, name, source/target locations, schedule, is_active\r\nWatermark Table: pipeline id, entity name, last_processed_ts, last_record_id\r\nAudit Table: stores run metadata including pipeline name, start time, end time, records processed, errors, etc., with correct types.\r\nStatus Table: stores pipeline name, current status (running, success, failed), last updated timestamp\r\n\r\nGenerate the template code for the above\n"
+    },
+    {
+      "path": ".github/prompts/playbook/playbook-development-27.prompt.md",
+      "content": "---\nname: playbook-development-27\ndescription: \"AuditLogger\"\n---\n\nYou are a senior data engineer\r\nCreate a notebook that implements control tables and also generates schemas for each table.\r\n\r\nControl Tables to Implement with Schema:\r\nPipeline Configuration Table: stores pipeline id, name, source/target locations, schedule, is_active\r\nWatermark Table: pipeline id, entity name, last_processed_ts, last_record_id\r\nAudit Table: stores run metadata including pipeline name, start time, end time, records processed, errors, etc., with correct types.\r\nStatus Table: stores pipeline name, current status (running, success, failed), last updated timestamp\r\n\r\nGenerate the template code for the above\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: playbook-development-27\nversion: 1.0.0\ntype: prompt\ncategory: \"Prompt Playbook\"\nauthor: harsh.rana@maqsoftware.com\ndescription: \"AuditLogger\"\nmain: .agents/prompts/playbook/playbook-development-27.md\n"
+    }
+  ]
+}

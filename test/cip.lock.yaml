@@ -1,0 +1,28 @@
+lockfile_version: '1'
+generated_at: '2026-08-14T09:33:46.136368+00:00'
+cip_version: 0.28.0
+dependencies:
+- repo_url: harshpratapsinghrana1/design-reviewer
+  name: design-reviewer
+  host: github.com
+  resolved_commit: a3e82ef8b5b302842c4371cabdaa690e28c4badc
+  version: 1.0.0
+  package_type: marketplace_plugin
+  deployed_files:
+  - .github/agents/design-reviewer.agent.md
+  deployed_file_hashes:
+    .github/agents/design-reviewer.agent.md: sha256:616988766ebc7d42cc6f599a17d1ad3ab8164e139fad82e111af5441fe3986cb
+  content_hash: sha256:74a0f88e49b9140ae1afadd77040780fcea0de443156aa2cd2d5b11dd1677ba4
+  discovered_via: design-reviewer
+  marketplace_plugin_name: design-reviewer
+  declared_license: MIT
+deployments:
+- kind: project-relative
+  target: copilot
+  value: .github/agents/design-reviewer.agent.md
+  runtime: null
+  scope: project
+  owners:
+  - harshpratapsinghrana1/design-reviewer
+  active_owner: harshpratapsinghrana1/design-reviewer
+  content_hash: sha256:616988766ebc7d42cc6f599a17d1ad3ab8164e139fad82e111af5441fe3986cb

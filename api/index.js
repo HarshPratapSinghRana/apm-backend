@@ -9,6 +9,15 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
+// Enterprise HTTP security response headers
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    next();
+});
+
 // High-performance gzip response compression middleware (reduces payload by 85-92%)
 app.use((req, res, next) => {
     const acceptEncoding = req.headers['accept-encoding'] || '';
@@ -26,24 +35,29 @@ app.use((req, res, next) => {
         const buffer = Buffer.isBuffer(body) ? body : Buffer.from(typeof body === 'string' ? body : JSON.stringify(body));
 
         if (buffer.length >= 1024 && !res.getHeader('Content-Encoding')) {
-            try {
-                const gzipped = zlib.gzipSync(buffer, { level: 6 });
-                res.setHeader('Content-Encoding', 'gzip');
-                if (isJson && !res.getHeader('Content-Type')) {
-                    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            zlib.gzip(buffer, { level: 6 }, (err, gzipped) => {
+                if (err || !gzipped || res.headersSent) {
+                    return originalSend.call(this, body);
                 }
-                res.setHeader('Content-Length', gzipped.length);
-                return originalSend.call(this, gzipped);
-            } catch {
-                return originalSend.call(this, body);
-            }
+                try {
+                    res.setHeader('Content-Encoding', 'gzip');
+                    if (isJson && !res.getHeader('Content-Type')) {
+                        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+                    }
+                    res.setHeader('Content-Length', gzipped.length);
+                    return originalSend.call(this, gzipped);
+                } catch {
+                    return originalSend.call(this, body);
+                }
+            });
+            return;
         }
         return originalSend.call(this, body);
     };
     next();
 });
 
-// Live request logger for Vercel Runtime Logs
+// Live request logger for Azure Container Apps Runtime Logs
 app.use((req, res, next) => {
     const start = Date.now();
     const rawIp = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown';
@@ -57,11 +71,38 @@ app.use((req, res, next) => {
     next();
 });
 
+// Safely load environment variables from .env candidates if present
+const envCandidates = [
+    path.join(__dirname, '.env'),
+    path.join(__dirname, '..', '.env'),
+    path.join(process.cwd(), '.env'),
+    path.join(process.cwd(), 'cip-backend-dotnet', '.env')
+];
+for (const envPath of envCandidates) {
+    if (fs.existsSync(envPath)) {
+        try {
+            const envLines = fs.readFileSync(envPath, 'utf8').split('\n');
+            for (const line of envLines) {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('#')) continue;
+                const eqIdx = trimmed.indexOf('=');
+                if (eqIdx > 0) {
+                    const key = trimmed.slice(0, eqIdx).trim();
+                    const val = trimmed.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, '');
+                    if (!process.env[key]) {
+                        process.env[key] = val;
+                    }
+                }
+            }
+        } catch {}
+    }
+}
+
 // Load environment variables
 const ORG = (process.env.AZURE_DEVOPS_ORG || 'MAQInternalCIP-Engineering-Commons').trim();
 const PROJECT = (process.env.AZURE_DEVOPS_PROJECT || 'Engineering Commons').trim();
 const REPO = (process.env.AZURE_DEVOPS_REPO || 'Engineering Commons').trim();
-const PAT = (process.env.AZURE_DEVOPS_PAT || 'A2RW5UcHDolfE7HztH9l9Ktj2kDF7Rzka3azqA39eTJR6EGFU9lbJQQJ99CJACAAAAAqDT5DAAASAZDO2Izl').trim();
+const PAT = (process.env.AZURE_DEVOPS_PAT || process.env.ADO_PAT || '').trim();
 const BRANCH = (process.env.AZURE_DEVOPS_BRANCH || 'main').trim();
 const DEFAULT_SUPER_ADMIN = 'harsh.rana@maqsoftware.com';
 
@@ -660,17 +701,17 @@ function pushGovernanceToAdo() {
 function resolveUserRole(email) {
     if (!email) return 'CONSUMER';
     const norm = email.trim().toLowerCase();
-    if (norm === DEFAULT_SUPER_ADMIN.toLowerCase() || norm.includes('admin')) {
+    if (norm === DEFAULT_SUPER_ADMIN.toLowerCase() || norm === 'admin@company.com' || norm === 'admin@test.com' || norm === 'admin@maqsoftware.com') {
         return 'ADMIN';
     }
     const found = userRolesCache.find(r => r.userEmail && r.userEmail.toLowerCase() === norm);
     if (found && found.role) {
         return found.role.toUpperCase();
     }
-    if (norm.includes('reviewer')) return 'REVIEWER';
-    if (norm.includes('producer') || norm.includes('contributor')) return 'CONTRIBUTOR';
+    if (norm.startsWith('reviewer@') || norm.startsWith('designated-rev@')) return 'REVIEWER';
+    if (norm.startsWith('producer@') || norm.startsWith('contrib@') || norm.startsWith('contributor@')) return 'CONTRIBUTOR';
     // Mechanism: When any user logs in with MAQ SSO (@maqsoftware.com), they automatically have CONTRIBUTOR role
-    if (norm.includes('@maqsoftware.com') || (norm.includes('@') && norm !== 'consumer@test.com')) {
+    if (norm.endsWith('@maqsoftware.com') || (norm.includes('@') && norm !== 'consumer@test.com' && norm !== 'consumer@company.com')) {
         return 'CONTRIBUTOR';
     }
     return 'CONSUMER';
@@ -681,18 +722,12 @@ function isCertifiedReviewer(email) {
     const norm = email.trim().toLowerCase();
     if (norm === DEFAULT_SUPER_ADMIN.toLowerCase()) return true;
     const found = userRolesCache.find(r => r.userEmail && r.userEmail.toLowerCase() === norm);
-    if (found && found.isCertifiedReviewer) return true;
-    if (norm.includes('reviewer') || norm.includes('admin')) return true;
+    if (found && (found.isCertifiedReviewer || found.role === 'ADMIN' || found.role === 'REVIEWER')) return true;
+    if (norm.endsWith('@maqsoftware.com') && (norm.startsWith('reviewer') || norm.startsWith('admin'))) return true;
     return false;
 }
 
 function extractUserEmail(req) {
-    if (req.headers['x-user-email']) return String(req.headers['x-user-email']).trim().toLowerCase();
-    if (req.query?.userEmail) return String(req.query.userEmail).trim().toLowerCase();
-    if (req.body?.userEmail) return String(req.body.userEmail).trim().toLowerCase();
-    if (req.body?.email) return String(req.body.email).trim().toLowerCase();
-    if (req.body?.producerEmail) return String(req.body.producerEmail).trim().toLowerCase();
-
     const auth = req.headers.authorization;
     if (auth && auth.startsWith('Bearer ')) {
         const token = auth.substring(7);
@@ -708,7 +743,27 @@ function extractUserEmail(req) {
             } catch {}
         }
     }
-    return DEFAULT_SUPER_ADMIN;
+
+    // Client-supplied headers/query for non-privileged consumer operations only
+    const clientCandidate = req.headers['x-user-email'] || req.query?.userEmail || req.body?.userEmail || req.body?.email || req.body?.producerEmail;
+    if (clientCandidate) {
+        const norm = String(clientCandidate).trim().toLowerCase();
+        // Prevent unauthenticated privilege escalation: reject administrative and reviewer impersonation without Bearer auth
+        if (norm !== DEFAULT_SUPER_ADMIN.toLowerCase() && !norm.startsWith('admin@') && !norm.includes('.admin@') && !norm.startsWith('reviewer@')) {
+            return norm;
+        }
+    }
+
+    return 'consumer@maqsoftware.com';
+}
+
+function isAdminUser(req) {
+    const email = extractUserEmail(req);
+    const auth = req.headers.authorization;
+    // Admin access strictly requires an Authorization Bearer token matching admin identity or admin role
+    if (!auth || !auth.startsWith('Bearer ')) return false;
+    const role = resolveUserRole(email);
+    return role === 'ADMIN' || email.toLowerCase() === DEFAULT_SUPER_ADMIN.toLowerCase();
 }
 
 function populateSlaFields(b) {
@@ -854,7 +909,7 @@ function getLiveAiLeapArtifacts() {
             }
         } catch {}
     }
-    // Reliable fallback for Vercel Serverless runtime:
+    // Reliable fallback for container runtime:
     return bundledCatalogArtifacts.filter(a => (a.source === 'AI_LEAP' || (a.id && String(a.id).startsWith('leap-'))) && a.category !== 'Token Optimization' && a.domain !== 'Token Optimization');
 }
 
@@ -997,7 +1052,7 @@ app.get('/api/artifacts', async (req, res) => {
                 }).filter(Boolean);
             }
 
-            // Fallback for Vercel Serverless environment where process.cwd() may not contain artifacts-json:
+            // Fallback for container environment where process.cwd() may not contain artifacts-json:
             if (artifacts.length === 0 && Array.isArray(bundledCatalogArtifacts) && bundledCatalogArtifacts.length > 0) {
                 artifacts = JSON.parse(JSON.stringify(bundledCatalogArtifacts));
             }
@@ -1188,7 +1243,7 @@ function resolveArtifactDetail(rawId) {
         }
     }
 
-    // 2b. Check embedded catalog (Vercel Serverless)
+    // 2b. Check embedded catalog
     const catalogMatch = bundledCatalogArtifacts.find(a => 
         (a.name || a.rawId || a.id || '').replace(/^leap-/, '').toLowerCase() === cleanId || 
         (a.id || '').toLowerCase() === safeId.toLowerCase() ||
@@ -1455,7 +1510,12 @@ function createZipArchive(files) {
 
     for (const f of files) {
         if (!f.path) continue;
-        const cleanPath = f.path.replace(/\\/g, '/').replace(/^\/+/, '');
+        // Sanitize path against directory traversal (Zip Slip protection)
+        const cleanPath = f.path
+            .replace(/\\/g, '/')
+            .split('/')
+            .filter(seg => seg && seg !== '.' && seg !== '..')
+            .join('/');
         if (!cleanPath) continue;
 
         const nameBuf = Buffer.from(cleanPath, 'utf8');
@@ -1607,7 +1667,7 @@ app.get(['/api/artifacts/:id/download', '/api/artifacts/:id/zip', '/api/artifact
         }
     }
 
-    // 2b. Check embedded catalog (Vercel Serverless)
+    // 2b. Check embedded catalog
     const catalogMatch = bundledCatalogArtifacts.find(a => 
         (a.name || a.rawId || a.id || '').replace(/^leap-/, '').toLowerCase() === cleanId || 
         (a.id || '').toLowerCase() === id.toLowerCase() ||
@@ -2187,22 +2247,22 @@ app.delete(['/api/admin/artifacts/:artifactId', '/api/artifacts/:artifactId'], a
     await loadGovernanceFromAdo();
     const { artifactId } = req.params;
     const email = extractUserEmail(req);
-    const userRole = resolveUserRole(email);
 
-    if (userRole !== 'ADMIN') {
+    if (!isAdminUser(req)) {
         return res.status(403).json({
             error: 'admin_role_required',
-            detail: 'Access Denied: Only administrators can permanently delete AI artifacts.'
+            detail: 'Access Denied: Only authenticated administrators can permanently delete AI artifacts.'
         });
     }
 
-    const success = await deleteArtifactFromAdo(artifactId);
+    const result = await deleteArtifactFromAdo(artifactId);
+    const success = Boolean(result && (result === true || result.success));
     res.json({
         success,
         artifactId,
         message: success 
             ? `Artifact '${artifactId}' has been permanently deleted from Azure DevOps and catalog.`
-            : `Failed to delete artifact '${artifactId}' from Azure DevOps.`
+            : `Failed to delete artifact '${artifactId}' from Azure DevOps: ${result?.error || 'Deletion failed'}`
     });
 });
 
@@ -2508,6 +2568,11 @@ app.post('/api/bounties/:id/run-tests', async (req, res) => {
 
 app.post('/api/bounties/:id/complete', async (req, res) => {
     await loadGovernanceFromAdo();
+    const caller = extractUserEmail(req);
+    const isAuth = isCertifiedReviewer(caller) || resolveUserRole(caller) === 'ADMIN' || resolveUserRole(caller) === 'REVIEWER';
+    if (!isAuth) {
+        return res.status(403).json({ error: 'reviewer_role_required', detail: 'Reviewer or Admin role required to complete bounties.' });
+    }
     const { id } = req.params;
     const cleanId = String(id || '').trim().toLowerCase();
     const match = bountiesDb.find(b => 
@@ -2814,6 +2879,17 @@ app.post('/api/reviews/:id/approve', async (req, res) => {
     const reviewer = extractUserEmail(req);
     const { submission, bounty, artifactName } = findSubmissionAndBounty(id);
 
+    // Enforce Reviewer role
+    if (!isCertifiedReviewer(reviewer) && resolveUserRole(reviewer) !== 'ADMIN' && resolveUserRole(reviewer) !== 'REVIEWER') {
+        return res.status(403).json({ error: 'reviewer_role_required', detail: 'Reviewer or Admin role required to approve code submissions.' });
+    }
+
+    // 4-Eyes Principle / Separation of Duties: Submitter cannot approve their own submission
+    const submitterEmail = (submission?.producerEmail || submission?.userEmail || bounty?.claimedByEmail || '').toLowerCase();
+    if (submitterEmail && reviewer.toLowerCase() === submitterEmail) {
+        return res.status(400).json({ error: 'separation_of_duties', detail: 'Separation of duties violation: Submitter cannot approve their own submission.' });
+    }
+
     if (submission) {
         submission.status = 'Approved';
         submission.feedback = feedback || 'Code review approved.';
@@ -2851,6 +2927,17 @@ app.post('/api/reviews/:id/reject', async (req, res) => {
     const reviewer = extractUserEmail(req);
     const { submission, bounty, artifactName } = findSubmissionAndBounty(id);
 
+    // Enforce Reviewer role
+    if (!isCertifiedReviewer(reviewer) && resolveUserRole(reviewer) !== 'ADMIN' && resolveUserRole(reviewer) !== 'REVIEWER') {
+        return res.status(403).json({ error: 'reviewer_role_required', detail: 'Reviewer or Admin role required to reject reviews.' });
+    }
+
+    // 4-Eyes Principle / Separation of Duties: Submitter cannot reject their own submission
+    const submitterEmail = (submission?.producerEmail || submission?.userEmail || bounty?.claimedByEmail || '').toLowerCase();
+    if (submitterEmail && reviewer && submitterEmail === reviewer && resolveUserRole(reviewer) !== 'ADMIN') {
+        return res.status(403).json({ error: 'separation_of_duties_violation', detail: 'Separation of duties violation: The artifact producer cannot reject their own submission.' });
+    }
+
     if (submission) {
         submission.status = 'Rejected';
         submission.feedback = feedback || 'Rejected by reviewer';
@@ -2883,6 +2970,17 @@ app.post('/api/reviews/:id/request-changes', async (req, res) => {
     const { feedback } = req.body || {};
     const reviewer = extractUserEmail(req);
     const { submission, bounty, artifactName } = findSubmissionAndBounty(id);
+
+    // Enforce Reviewer role
+    if (!isCertifiedReviewer(reviewer) && resolveUserRole(reviewer) !== 'ADMIN' && resolveUserRole(reviewer) !== 'REVIEWER') {
+        return res.status(403).json({ error: 'reviewer_role_required', detail: 'Reviewer or Admin role required to request review changes.' });
+    }
+
+    // 4-Eyes Principle / Separation of Duties: Submitter cannot review their own submission
+    const submitterEmail = (submission?.producerEmail || submission?.userEmail || bounty?.claimedByEmail || '').toLowerCase();
+    if (submitterEmail && reviewer && submitterEmail === reviewer && resolveUserRole(reviewer) !== 'ADMIN') {
+        return res.status(403).json({ error: 'separation_of_duties_violation', detail: 'Separation of duties violation: The artifact producer cannot review their own submission.' });
+    }
 
     if (submission) {
         submission.status = 'ChangesRequested';
@@ -2917,6 +3015,14 @@ app.post(['/api/reviews/:id/cancel', '/api/reviews/:id/close'], async (req, res)
     const reviewer = extractUserEmail(req);
     const { submission, bounty, artifactName } = findSubmissionAndBounty(id);
 
+    const submitterEmail = (submission?.producerEmail || submission?.userEmail || bounty?.claimedByEmail || '').toLowerCase();
+    const isOwner = submitterEmail && reviewer && submitterEmail === reviewer;
+    const isReviewerOrAdmin = isCertifiedReviewer(reviewer) || resolveUserRole(reviewer) === 'ADMIN' || resolveUserRole(reviewer) === 'REVIEWER';
+
+    if (!isOwner && !isReviewerOrAdmin) {
+        return res.status(403).json({ error: 'forbidden', detail: 'Only the author, a reviewer, or an administrator can cancel this review.' });
+    }
+
     if (submission) {
         submission.status = 'Cancelled';
         submission.feedback = feedback || reason || 'Review cancelled.';
@@ -2940,6 +3046,10 @@ app.post(['/api/reviews/:id/cancel', '/api/reviews/:id/close'], async (req, res)
 app.post('/api/reviews/:id/publish', async (req, res) => {
     await loadGovernanceFromAdo();
     const { id } = req.params;
+    const reviewer = extractUserEmail(req);
+    if (!isCertifiedReviewer(reviewer) && resolveUserRole(reviewer) !== 'ADMIN' && resolveUserRole(reviewer) !== 'REVIEWER') {
+        return res.status(403).json({ error: 'reviewer_role_required', detail: 'Reviewer or Admin role required to publish artifacts to the marketplace.' });
+    }
     const { submission, bounty } = findSubmissionAndBounty(id);
     if (submission) submission.status = 'Published';
     if (bounty) {
@@ -3374,34 +3484,40 @@ app.post('/api/certifications/request/:artifactId', (req, res) => {
 });
 
 app.post('/api/certifications/certify/:artifactId', (req, res) => {
+    const reviewer = extractUserEmail(req);
+    if (!isAdminUser(req) && !isCertifiedReviewer(reviewer)) {
+        return res.status(403).json({ error: 'certified_reviewer_required', detail: 'Only Certified Reviewers or Admins can certify artifacts.' });
+    }
     const { artifactId } = req.params;
     const clean = artifactId.toLowerCase().trim();
     const { version, reason } = req.body || {};
 
     const existing = certificationRegistryDb[clean] || {};
-    certificationRegistryDb[clean] = {
+    const updatedRecord = {
         ...existing,
         artifactId: clean,
         badge: 'Certified',
         status: 'Certified (Gold)',
         isCertified: true,
         certifiedAt: new Date().toISOString(),
+        certifiedByEmail: reviewer,
         certifiedVersion: version || existing.version || '1.0.0',
         reason: reason || 'Certified by Enterprise Reviewer/Admin'
     };
+    certificationRegistryDb[clean] = updatedRecord;
 
     certificationsDb[clean] = {
         isCertified: true,
         status: 'CERTIFIED',
-        certifiedAt: new Date().toISOString(),
-        certifiedVersion: version || '1.0.0',
-        reason: reason || 'Certified by Enterprise Reviewer/Admin'
+        certifiedAt: updatedRecord.certifiedAt,
+        certifiedVersion: updatedRecord.certifiedVersion,
+        reason: updatedRecord.reason
     };
 
     certificationAuditLogDb.unshift({
         id: `audit-${clean}-${Date.now()}`,
         artifactId: clean,
-        version: version || '1.0.0',
+        version: updatedRecord.certifiedVersion,
         oldBadge: existing.badge || 'Verified',
         newBadge: 'Certified',
         triggerReason: reason || 'Manual Admin/Reviewer Approval',
@@ -3411,23 +3527,35 @@ app.post('/api/certifications/certify/:artifactId', (req, res) => {
 
     pushGovernanceToAdo();
 
-    res.json({ success: true, status: 'CERTIFIED', certifiedVersion: version || '1.0.0' });
+    res.json({
+        success: true,
+        ...updatedRecord
+    });
 });
 
 app.post('/api/certifications/revoke/:artifactId', (req, res) => {
+    const reviewer = extractUserEmail(req);
+    if (!isAdminUser(req) && !isCertifiedReviewer(reviewer)) {
+        return res.status(403).json({ error: 'certified_reviewer_required', detail: 'Only Certified Reviewers or Admins can revoke artifact certification.' });
+    }
     const { artifactId } = req.params;
     const clean = artifactId.toLowerCase().trim();
     const { reason } = req.body || {};
+    if (!reason) return res.status(400).json({ error: 'Revocation reason is required' });
 
     const existing = certificationRegistryDb[clean] || {};
-    certificationRegistryDb[clean] = {
+    const updatedRecord = {
         ...existing,
         artifactId: clean,
         badge: 'Revoked',
         status: 'REVOKED',
         isCertified: false,
+        revokedAt: new Date().toISOString(),
+        revokedByEmail: reviewer,
+        revocationReason: reason,
         reason: reason || 'Certification revoked'
     };
+    certificationRegistryDb[clean] = updatedRecord;
 
     certificationsDb[clean] = {
         isCertified: false,
@@ -3450,7 +3578,10 @@ app.post('/api/certifications/revoke/:artifactId', (req, res) => {
 
     pushGovernanceToAdo();
 
-    res.json({ success: true, status: 'REVOKED' });
+    res.json({
+        success: true,
+        ...updatedRecord
+    });
 });
 
 // ---------------------------------------------------------
@@ -3475,19 +3606,35 @@ app.get('/api/notifications', (req, res) => {
 
 app.post('/api/notifications/:id/read', (req, res) => {
     const { id } = req.params;
+    const email = extractUserEmail(req);
     const notif = userNotificationsDb.find(n => n.id === id);
-    if (notif) notif.isRead = true;
+    if (notif && (!notif.targetUser || notif.targetUser.toLowerCase() === email || isAdminUser(req))) {
+        notif.isRead = true;
+    }
     res.json({ success: true });
 });
 
 app.delete('/api/notifications/:id', (req, res) => {
     const { id } = req.params;
+    const email = extractUserEmail(req);
+    const notif = userNotificationsDb.find(n => n.id === id);
+    if (!notif) {
+        return res.json({ success: true });
+    }
+    if (notif.targetUser && notif.targetUser.toLowerCase() !== email && !isAdminUser(req)) {
+        return res.status(403).json({ error: 'Access denied: You can only delete your own notifications.' });
+    }
     userNotificationsDb = userNotificationsDb.filter(n => n.id !== id);
     res.json({ success: true });
 });
 
 app.delete('/api/notifications', (req, res) => {
-    userNotificationsDb = [];
+    const email = extractUserEmail(req);
+    if (isAdminUser(req) && req.query.all === 'true') {
+        userNotificationsDb = [];
+    } else {
+        userNotificationsDb = userNotificationsDb.filter(n => n.targetUser && n.targetUser.toLowerCase() !== email);
+    }
     res.json({ success: true });
 });
 
@@ -3501,9 +3648,12 @@ app.delete('/api/notifications', (req, res) => {
 // ---------------------------------------------------------
 
 app.post('/api/auth/login', (req, res) => {
-    const { email } = req.body || {};
+    const { email, password } = req.body || {};
     const norm = (email || 'user@maqsoftware.com').toLowerCase();
-    const role = resolveUserRole(norm);
+    let role = resolveUserRole(norm);
+    if (role === 'ADMIN' && process.env.NODE_ENV === 'production' && !password) {
+        role = 'CONSUMER';
+    }
     res.json({
         token: 'mock-sso-jwt-token-cip-enterprise',
         user: {
@@ -3597,6 +3747,9 @@ app.post('/api/access-requests', async (req, res) => {
 
 app.get('/api/admin/access-requests', async (req, res) => {
     await loadGovernanceFromAdo();
+    if (!isAdminUser(req)) {
+        return res.status(403).json({ error: 'admin_role_required', detail: 'Admin privileges required to view access requests.' });
+    }
     const { status } = req.query;
     let list = accessRequestsCache;
     if (status) {
@@ -3608,6 +3761,9 @@ app.get('/api/admin/access-requests', async (req, res) => {
 
 app.post('/api/admin/access-requests/:id/approve', async (req, res) => {
     await loadGovernanceFromAdo();
+    if (!isAdminUser(req)) {
+        return res.status(403).json({ error: 'admin_role_required', detail: 'Admin privileges required to approve access requests.' });
+    }
     const { id } = req.params;
     const { notes } = req.body || {};
     const adminEmail = extractUserEmail(req);
@@ -3655,6 +3811,9 @@ app.post('/api/admin/access-requests/:id/approve', async (req, res) => {
 
 app.post('/api/admin/access-requests/:id/reject', async (req, res) => {
     await loadGovernanceFromAdo();
+    if (!isAdminUser(req)) {
+        return res.status(403).json({ error: 'admin_role_required', detail: 'Admin privileges required to reject access requests.' });
+    }
     const { id } = req.params;
     const { notes } = req.body || {};
     const adminEmail = extractUserEmail(req);
@@ -3684,6 +3843,9 @@ app.get(['/api/roles', '/api/admin/roles'], async (req, res) => {
 
 app.post('/api/admin/roles/revoke', async (req, res) => {
     await loadGovernanceFromAdo();
+    if (!isAdminUser(req)) {
+        return res.status(403).json({ error: 'admin_role_required', detail: 'Admin privileges required to revoke roles.' });
+    }
     const { targetEmail, userEmail, notes } = req.body || {};
     const email = (targetEmail || userEmail || '').trim().toLowerCase();
     const adminEmail = extractUserEmail(req);
@@ -3722,6 +3884,9 @@ app.post('/api/admin/roles/revoke', async (req, res) => {
 
 app.post('/api/admin/roles/certify-reviewer', async (req, res) => {
     await loadGovernanceFromAdo();
+    if (!isAdminUser(req)) {
+        return res.status(403).json({ error: 'admin_role_required', detail: 'Admin privileges required to certify reviewers.' });
+    }
     const { targetEmail, reviewerEmail, notes } = req.body || {};
     const email = (targetEmail || reviewerEmail || '').trim().toLowerCase();
     const adminEmail = extractUserEmail(req);
@@ -3951,26 +4116,6 @@ async function deleteArtifactFromAdo(artifactId) {
         return { success: false, error: e.message };
     }
 }
-
-app.delete(['/api/admin/artifacts/:artifactId', '/api/artifacts/:artifactId'], async (req, res) => {
-    const { artifactId } = req.params;
-    const email = extractUserEmail(req);
-    const role = resolveUserRole(email);
-    const isAdmin = role === 'ADMIN' || email.toLowerCase() === DEFAULT_SUPER_ADMIN || email.toLowerCase().includes('admin');
-
-    if (!isAdmin) {
-        return res.status(403).json({ success: false, error: 'Forbidden: Only Admins can delete artifacts.' });
-    }
-
-    const result = await deleteArtifactFromAdo(artifactId);
-    res.json({
-        success: result.success,
-        artifactId,
-        message: result.success 
-            ? `Artifact '${artifactId}' permanently deleted across Azure DevOps repository and governance logs.`
-            : `Failed to delete artifact: ${result.error}`
-    });
-});
 
 // ---------------------------------------------------------
 // Centralized Usage & Telemetry Analytics API Endpoints
@@ -4483,7 +4628,7 @@ async function fetchAdoCertificationItem(itemPath, force = false) {
         const resp = await fetch(url, {
             headers: {
                 'Authorization': `Basic ${Buffer.from(':' + PAT).toString('base64')}`,
-                'User-Agent': 'EngineeringCommons-Vercel-Backend/1.2.3'
+                'User-Agent': 'EngineeringCommons-Azure-Backend/1.2.3'
             },
             signal: AbortSignal.timeout(8000)
         });
@@ -4568,155 +4713,6 @@ function findArtifactInRegistry(registry, artifactId) {
     return null;
 }
 
-// 1. GET /api/certifications - List all certification records
-app.get('/api/certifications', async (req, res) => {
-    const reg = await fetchAdoCertificationItem('/certification/registry.json');
-    if (!reg) return res.status(500).json({ error: 'Failed to load certification registry from ADO' });
-    res.json(reg);
-});
-
-// 2. GET /api/certifications/:artifactId - Detailed 5-pillar record
-app.get('/api/certifications/:artifactId', async (req, res) => {
-    const { artifactId } = req.params;
-    const reg = await fetchAdoCertificationItem('/certification/registry.json');
-    const record = findArtifactInRegistry(reg, artifactId);
-    if (!record) {
-        return res.status(404).json({ error: `Artifact '${artifactId}' not found in certification registry` });
-    }
-    res.json(record);
-});
-
-// 3. GET / POST /api/certifications/evaluate/:artifactId - Dynamic evaluation
-async function handleEvaluate(req, res) {
-    const { artifactId } = req.params;
-    const reg = await fetchAdoCertificationItem('/certification/registry.json');
-    const record = findArtifactInRegistry(reg, artifactId);
-    if (!record) {
-        return res.status(404).json({ error: `Artifact '${artifactId}' not found in registry` });
-    }
-
-    res.json({
-        artifactId: record.artifactId,
-        eligible: record.isCertified,
-        badge: record.badge,
-        status: record.status,
-        currentVersion: record.version || '1.0.0',
-        compositeScore: record.compositeScore,
-        pillars: record.pillars,
-        hardGates: record.hardGates,
-        criteria: {
-            reviewHistory: true,
-            approvalHistory: true,
-            usage: true,
-            reliability: true,
-            qualityChecks: true,
-            userFeedback: true,
-            allPassed: true
-        },
-        metrics: {
-            downloads: record.pillars?.adoption?.totalInvocations || 0,
-            totalUsage: record.pillars?.adoption?.totalInvocations || 0,
-            activeUsers: record.pillars?.adoption?.activeUsers || 0,
-            approvedReviews: record.pillars?.feedback?.reviewCount || 0,
-            rejectedReviews: 0,
-            approvalRate: 100,
-            reliabilityRate: 100 - (record.pillars?.health?.fer || 0),
-            criticalIssues: record.pillars?.health?.fatalCrashes || 0
-        },
-        reason: record.reason,
-        evaluatedAt: new Date().toISOString()
-    });
-}
-app.get('/api/certifications/evaluate/:artifactId', handleEvaluate);
-app.post('/api/certifications/evaluate/:artifactId', handleEvaluate);
-app.post('/api/certifications/request/:artifactId', handleEvaluate);
-
-// 4. POST /api/certifications/recheck/:artifactId - Live ADO Telemetry Dynamic Re-Evaluation
-app.post('/api/certifications/recheck/:artifactId', async (req, res) => {
-    const { artifactId } = req.params;
-    const clean = (artifactId || '').trim().toLowerCase().replace(/^leap-/, '');
-
-    await loadGovernanceFromAdo(true);
-
-    const reg = (await fetchAdoCertificationItem('/certification/registry.json')) || { artifacts: {} };
-    const previousRecord = findArtifactInRegistry(reg, artifactId) || reg.artifacts?.[clean];
-
-    // Find artifact in catalog
-    const art = bundledCatalogArtifacts.find(a => (a.name || a.id || '').replace(/^leap-/, '').toLowerCase() === clean) || { id: artifactId, name: artifactId, type: 'agent' };
-
-    // Filter actual telemetry events for this artifact from ADO usage events
-    const artTelemetry = telemetryEventsDb.filter(e => {
-        const id = (e.artifactId || e.artifactName || e.name || '').toLowerCase().replace(/^leap-/, '');
-        return id === clean;
-    });
-
-    // Run deterministic 5-pillar evaluation engine on actual data
-    const evaluation = certEngine.evaluateCertification(art, artTelemetry, [], [], previousRecord);
-
-    const oldBadge = previousRecord?.badge || 'Community';
-    const newBadge = evaluation.badge;
-    const badgeChanged = oldBadge !== newBadge;
-
-    const auditEntry = {
-        id: require('crypto').randomBytes(16).toString('hex'),
-        artifactId: evaluation.artifactId,
-        version: evaluation.version || '1.0.0',
-        oldBadge,
-        newBadge,
-        triggerReason: badgeChanged
-            ? `Automatic Dynamic Certification: Badge transitioned from ${oldBadge} to ${newBadge} based on actual telemetry (${evaluation.pillars?.adoption?.totalInvocations || 0} runs, ${evaluation.pillars?.adoption?.activeUsers || 0} developers, FER ${evaluation.pillars?.health?.fer || 0}%).`
-            : `Routine Telemetry Evaluation: Score ${evaluation.compositeScore ?? 'N/A'}/100, Badge retained as ${newBadge}.`,
-        scoreSnapshot: {
-            compositeScore: evaluation.compositeScore,
-            adoption: evaluation.pillars?.adoption?.score,
-            feedback: evaluation.pillars?.feedback?.score,
-            dx: evaluation.pillars?.dx?.score,
-            technical: evaluation.pillars?.technical?.score,
-            health: evaluation.pillars?.health?.score,
-            fer: evaluation.pillars?.health?.fer
-        },
-        timestamp: new Date().toISOString()
-    };
-
-    // Update in registry
-    reg.artifacts = reg.artifacts || {};
-    reg.artifacts[clean] = evaluation;
-    reg.updatedAt = new Date().toISOString();
-    reg.certifiedCount = Object.values(reg.artifacts).filter(r => r.badge === 'Certified').length;
-    reg.communityCount = Object.values(reg.artifacts).filter(r => r.badge !== 'Certified').length;
-
-    // Push update to ADO Git
-    await pushAdoCertificationItem('/certification/registry.json', reg, `[Certification] Re-evaluated ${evaluation.artifactId} -> ${newBadge}`);
-
-    // Update audit log
-    const auditData = (await fetchAdoCertificationItem('/certification/audit-log.json')) || { entries: [] };
-    auditData.entries = auditData.entries || [];
-    auditData.entries.unshift(auditEntry);
-    auditData.totalEntries = auditData.entries.length;
-    auditData.updatedAt = new Date().toISOString();
-    await pushAdoCertificationItem('/certification/audit-log.json', auditData, `[Audit Log] Re-evaluated ${evaluation.artifactId}`);
-
-    // Update local in-memory state
-    certificationRegistryDb[clean] = evaluation;
-    certificationsDb[clean] = {
-        isCertified: evaluation.isCertified,
-        status: evaluation.status,
-        certifiedAt: evaluation.certifiedAt,
-        certifiedVersion: evaluation.version,
-        reason: evaluation.reason
-    };
-
-    res.json({
-        success: true,
-        artifactId: evaluation.artifactId,
-        badgeChanged,
-        oldBadge,
-        newBadge,
-        record: evaluation,
-        auditEntry
-    });
-});
-
 // Batch Automated Dynamic Recheck for All Artifacts (Cron / Scheduled Evaluation)
 app.all(['/api/certifications/cron/evaluate-all', '/api/cron/evaluate-certifications'], async (req, res) => {
     await loadGovernanceFromAdo(true);
@@ -4764,192 +4760,6 @@ app.all(['/api/certifications/cron/evaluate-all', '/api/cron/evaluate-certificat
     });
 });
 
-// 5. GET /api/certifications/:artifactId/history - Audit trail
-app.get('/api/certifications/:artifactId/history', async (req, res) => {
-    const { artifactId } = req.params;
-    const auditData = (await fetchAdoCertificationItem('/certification/audit-log.json')) || { entries: [] };
-    const clean = (artifactId || '').trim().toLowerCase();
-    const cleanWithoutLeap = clean.replace(/^leap-/, '');
-
-    const matched = (auditData.entries || [])
-        .filter(e => {
-            const id = (e.artifactId || '').trim().toLowerCase();
-            return id === clean || id.replace(/^leap-/, '') === cleanWithoutLeap || clean.endsWith(id);
-        })
-        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-
-    res.json({
-        artifactId,
-        totalEntries: matched.length,
-        entries: matched
-    });
-});
-
-// 6. GET /api/certifications/:artifactId/integrity - SHA-256 fingerprint
-app.get('/api/certifications/:artifactId/integrity', async (req, res) => {
-    const { artifactId } = req.params;
-    const reg = await fetchAdoCertificationItem('/certification/registry.json');
-    const record = findArtifactInRegistry(reg, artifactId);
-    const hash = record?.contentHash || '';
-
-    res.json({
-        artifactId,
-        version: record?.version || '1.0.0',
-        currentContentHash: hash,
-        registeredContentHash: hash,
-        isIntegrityVerified: !!hash,
-        tamperStatus: hash ? 'VERIFIED' : 'UNREGISTERED',
-        checkedAt: new Date().toISOString()
-    });
-});
-
-// 7. POST /api/certifications/telemetry - Ingest runtime telemetry
-app.post('/api/certifications/telemetry', async (req, res) => {
-    const { artifactId, version, userId, errorType, latencyMs } = req.body;
-    if (!artifactId) return res.status(400).json({ error: 'artifactId is required' });
-
-    const newEvt = {
-        id: `evt-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-        artifactId,
-        version: version || '1.0.0',
-        userId: userId || 'engineer@maqsoftware.com',
-        userEmail: userId || 'engineer@maqsoftware.com',
-        errorType: errorType || 'None',
-        fatal: errorType === 'UnhandledException' || errorType === 'FatalCrash',
-        latencyMs: latencyMs || 1000,
-        timestamp: new Date().toISOString()
-    };
-
-    const telData = (await fetchAdoCertificationItem('/certification/telemetry.json')) || { events: [] };
-    telData.events = telData.events || [];
-    telData.events.unshift(newEvt);
-    telData.totalEvents = telData.events.length;
-    telData.updatedAt = new Date().toISOString();
-
-    await pushAdoCertificationItem('/certification/telemetry.json', telData, `[Telemetry] Event for ${artifactId}`);
-    res.status(201).json({ success: true, event: newEvt });
-});
-
-// 8. POST /api/certifications/review - In-IDE star ratings
-app.post('/api/certifications/review', async (req, res) => {
-    const { artifactId, version, userId, userEmail, rating, feedbackText, comment } = req.body;
-    if (!artifactId || !rating) return res.status(400).json({ error: 'artifactId and rating are required' });
-
-    const email = userEmail || userId || extractUserEmail(req) || 'engineer@maqsoftware.com';
-    const text = feedbackText || comment || '';
-    const numericRating = Math.max(1, Math.min(5, Number(rating)));
-
-    const newRev = {
-        id: `rev-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-        reviewId: `rev-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-        artifactId,
-        version: version || '1.0.0',
-        userId: email,
-        userEmail: email,
-        rating: numericRating,
-        comment: text,
-        feedbackText: text,
-        createdAt: new Date().toISOString(),
-        timestamp: new Date().toISOString()
-    };
-
-    // 1. In-memory update
-    certificationReviewsDb.unshift(newRev);
-
-    // 2. ADO reviews.json update
-    const revData = (await fetchAdoCertificationItem('/certification/reviews.json')) || { reviews: [] };
-    revData.reviews = revData.reviews || [];
-    revData.reviews.unshift(newRev);
-    revData.totalReviews = revData.reviews.length;
-    revData.updatedAt = new Date().toISOString();
-
-    await pushAdoCertificationItem('/certification/reviews.json', revData, `[Reviews] Feedback & ${numericRating}-star rating for ${artifactId}`);
-
-    // 3. Immediately re-evaluate certification for this artifact so Certification Layer reflects reviews
-    let updatedEvaluation = null;
-    try {
-        const clean = (artifactId || '').trim().toLowerCase();
-        const cleanNoLeap = clean.replace(/^leap-/, '');
-        const reg = (await fetchAdoCertificationItem('/certification/registry.json')) || { artifacts: {} };
-        reg.artifacts = reg.artifacts || {};
-
-        let art = bundledCatalogArtifacts.find(a => {
-            const name = (a.name || a.id || '').toLowerCase();
-            return name === clean || name.replace(/^leap-/, '') === cleanNoLeap;
-        });
-        if (!art) {
-            art = { id: clean, name: artifactId, version: version || '1.0.0', type: 'agent' };
-        }
-
-        const artTelemetry = telemetryEventsDb.filter(e => {
-            const id = (e.artifactId || e.artifactName || e.name || '').toLowerCase().replace(/^leap-/, '');
-            return id === cleanNoLeap;
-        });
-
-        const artReviews = revData.reviews.filter(r => {
-            const id = (r.artifactId || '').toLowerCase().replace(/^leap-/, '');
-            return id === cleanNoLeap;
-        });
-
-        const prev = reg.artifacts[clean] || reg.artifacts[cleanNoLeap];
-        updatedEvaluation = certEngine.evaluateCertification(art, artTelemetry, artReviews, [], prev);
-        reg.artifacts[clean] = updatedEvaluation;
-        reg.updatedAt = new Date().toISOString();
-        reg.certifiedCount = Object.values(reg.artifacts).filter(r => r.badge === 'Certified').length;
-        reg.verifiedCount = Object.values(reg.artifacts).filter(r => r.badge === 'Verified').length;
-        reg.communityCount = Object.values(reg.artifacts).filter(r => r.badge === 'Community').length;
-
-        certificationRegistryDb[clean] = updatedEvaluation;
-        await pushAdoCertificationItem('/certification/registry.json', reg, `[Certification Layer] Recalculate scorecard for ${clean} following new user review`);
-        invalidateArtifactCache(artifactId);
-    } catch (evalErr) {
-        console.warn('[Certification Engine] Re-evaluation on review submission warning:', evalErr);
-    }
-
-    res.status(201).json({ success: true, review: newRev, updatedCertification: updatedEvaluation });
-});
-
-// 9. Administrative override: Certify
-app.post('/api/certifications/certify/:artifactId', async (req, res) => {
-    const { artifactId } = req.params;
-    const { reason, version } = req.body;
-    const reg = await fetchAdoCertificationItem('/certification/registry.json');
-    const record = findArtifactInRegistry(reg, artifactId);
-    if (!record) return res.status(404).json({ error: `Artifact '${artifactId}' not found` });
-
-    record.badge = 'Certified';
-    record.status = 'Certified (Gold)';
-    record.isCertified = true;
-    record.certifiedAt = new Date().toISOString();
-    record.certifiedByEmail = 'harsh.rana@maqsoftware.com';
-    record.reason = reason || 'Officially Certified by Enterprise Reviewer';
-
-    await pushAdoCertificationItem('/certification/registry.json', reg, `[Certify] Administrative certification for ${artifactId}`);
-    invalidateArtifactCache(artifactId);
-    res.json(record);
-});
-
-// 10. Administrative override: Revoke
-app.post('/api/certifications/revoke/:artifactId', async (req, res) => {
-    const { artifactId } = req.params;
-    const { reason } = req.body;
-    if (!reason) return res.status(400).json({ error: 'Revocation reason is required' });
-
-    const reg = await fetchAdoCertificationItem('/certification/registry.json');
-    const record = findArtifactInRegistry(reg, artifactId);
-    if (!record) return res.status(404).json({ error: `Artifact '${artifactId}' not found` });
-
-    record.badge = 'Revoked';
-    record.status = 'Revoked';
-    record.isCertified = false;
-    record.revokedAt = new Date().toISOString();
-    record.revocationReason = reason;
-
-    await pushAdoCertificationItem('/certification/registry.json', reg, `[Revoke] Administrative revocation for ${artifactId}`);
-    invalidateArtifactCache(artifactId);
-    res.json(record);
-});
-
 // 11. Live ADO Connection Diagnostic Endpoint
 const handleAdoStatus = async (req, res) => {
     try {
@@ -4957,7 +4767,7 @@ const handleAdoStatus = async (req, res) => {
         const resp = await fetch(url, {
             headers: {
                 'Authorization': `Basic ${Buffer.from(':' + PAT).toString('base64')}`,
-                'User-Agent': 'EngineeringCommons-Vercel-Backend/1.2.3'
+                'User-Agent': 'EngineeringCommons-Azure-Backend/1.2.3'
             }
         });
 
@@ -4972,7 +4782,6 @@ const handleAdoStatus = async (req, res) => {
                 repository: REPO,
                 branch: BRANCH,
                 patConfigured: !!PAT,
-                patPrefix: PAT ? PAT.substring(0, 8) + '...' : 'NONE',
                 totalArtifactsInAdo: content.totalArtifacts || Object.keys(content.artifacts || {}).length,
                 certifiedCount: content.certifiedCount,
                 verifiedCount: content.verifiedCount,
@@ -4990,7 +4799,7 @@ const handleAdoStatus = async (req, res) => {
                 project: PROJECT,
                 repo: REPO,
                 branch: BRANCH,
-                patLength: PAT ? PAT.length : 0,
+                patConfigured: !!PAT,
                 adoResponseBody: errBody.substring(0, 500),
                 error: `Azure DevOps API returned HTTP ${resp.status}`,
                 timestamp: new Date().toISOString()
@@ -5008,6 +4817,19 @@ const handleAdoStatus = async (req, res) => {
 
 app.get('/api/ado/status', handleAdoStatus);
 app.get('/api/certifications/ado/status', handleAdoStatus);
+
+// Centralized safe error handler: prevent stack trace leakage in production
+app.use((err, req, res, next) => {
+    console.error('[Error] Unhandled request exception:', err?.message || err);
+    if (res.headersSent) {
+        return next(err);
+    }
+    const isDev = process.env.NODE_ENV === 'development';
+    res.status(err.status || 500).json({
+        error: isDev ? (err.message || 'Internal server error') : 'Internal server error occurred.',
+        timestamp: new Date().toISOString()
+    });
+});
 
 if (require.main === module) {
     const PORT = process.env.PORT || 3000;

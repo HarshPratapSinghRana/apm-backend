@@ -44,13 +44,13 @@ export class HttpReviewThreadService implements IReviewThreadService {
     private backendUrl: string;
     private authProvider: IAuthenticationStatusProvider;
 
-    constructor(backendUrl = 'https://ecommerce-app-chi-wine.vercel.app', authProvider: IAuthenticationStatusProvider) {
+    constructor(backendUrl = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', authProvider: IAuthenticationStatusProvider) {
         this.backendUrl = backendUrl.replace(/\/+$/, '');
         this.authProvider = authProvider;
     }
 
     public setBackendUrl(url: string): void {
-        this.backendUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     private fetchJson<T>(path: string, method = 'GET', body?: any): Promise<{ status: number; data: T | null }> {

@@ -1,9 +1,32 @@
+---
+name: graphql-schema-guardian
+type: skill
+version: 1.0.0
+domain: API Design & Microservices
+category: API & Microservices
+description: Zero-Breaking-Change GraphQL Schema Verifier, Apollo Federation Subgraph Linter, and Query Complexity Cost Analyzer.
+author: Enterprise API Architecture <api-governance@maqsoftware.com>
+tags:
+  - graphql
+  - apollo-federation
+  - schema-linting
+  - breaking-changes
+  - query-complexity
+  - subgraphs
+useCases:
+  - Detecting breaking changes in GraphQL schema AST (removed fields, non-null additions)
+  - Validating Apollo Federation v2 directives (@key, @shareable, @external, @requires)
+  - Calculating and enforcing query depth limits and cyclomatic AST cost budgets
+  - Verifying Relay Cursor Connection pagination specs
+argument-hint: 'Ask @copilot or engineering-commons-advisor to verify GraphQL schema changes, check Apollo Federation directives, or analyze query complexity'
+---
+
 # GraphQL Schema Guardian Skill
 
 **Artifact Name**: `graphql-schema-guardian`  
 **Artifact Type**: `skill`  
 **Version**: `1.0.0`  
-**Category**: `Data Engineering`  
+**Category**: `API & Microservices`  
 **Author**: `Engineering Commons`  
 **License**: `MIT`  
 **Foundation**: [GraphQL-Inspector & Apollo Federation Specifications](https://github.com/kamilkisiela/graphql-inspector)
@@ -42,7 +65,7 @@ Changes are classified according to semantic risk:
 ## Installation & Usage
 
 ```bash
-company-apm install graphql-schema-guardian
+engineering-commons install graphql-schema-guardian
 ```
 
 Execute schema verification:

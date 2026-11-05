@@ -1,0 +1,283 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" width="100%" height="100%">
+  <defs>
+    <!-- Drop Shadows -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.10" />
+    </filter>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
+    </filter>
+
+    <!-- Marker Arrowheads -->
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284C7" />
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#059669" />
+    </marker>
+    <marker id="arr-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7C3AED" />
+    </marker>
+    <marker id="arr-dark" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0F172A" />
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="vercelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181B" />
+      <stop offset="100%" stop-color="#09090B" />
+    </linearGradient>
+    <linearGradient id="spGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078D4" />
+      <stop offset="100%" stop-color="#005A9E" />
+    </linearGradient>
+    <linearGradient id="adoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078D4" />
+      <stop offset="100%" stop-color="#004C87" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .mono { font-family: Consolas, "SF Mono", "Fira Code", monospace; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1600" height="920" fill="#F8FAFC" rx="16" />
+
+  <!-- =================================================== -->
+  <!-- TOP BANNER                                          -->
+  <!-- =================================================== -->
+  <g transform="translate(40, 24)">
+    <rect width="1520" height="74" rx="14" fill="url(#headerGrad)" filter="url(#shadow)" />
+    <text x="32" y="44" class="font-sans" font-size="22px" font-weight="800" fill="#FFFFFF">🏛️ Engineering Commons — Main Enterprise System Architecture</text>
+    <text x="1488" y="44" text-anchor="end" class="font-sans" font-size="13px" font-weight="600" fill="#38BDF8">Vercel Serverless Backend • Dual-Tier Zero-Cost Storage • Copilot Dual-Model Invocation</text>
+  </g>
+
+  <!-- =================================================== -->
+  <!-- LAYER 1: CLIENT TIER (VS Code & CLI)                -->
+  <!-- =================================================== -->
+  <g transform="translate(40, 120)">
+    <rect width="360" height="420" rx="14" fill="#FFFFFF" stroke="#0284C7" stroke-width="2" filter="url(#card-shadow)" />
+    
+    <!-- Header -->
+    <rect width="360" height="52" rx="14" fill="#E0F2FE" />
+    <rect y="38" width="360" height="14" fill="#E0F2FE" />
+    <text x="24" y="33" class="font-sans" font-size="16px" font-weight="800" fill="#0369A1">1. Developer Workspace Clients</text>
+
+    <!-- Developer Avatar Card -->
+    <g transform="translate(20, 68)">
+      <rect width="320" height="60" rx="8" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1.2" />
+      <circle cx="30" cy="30" r="18" fill="#0284C7" />
+      <text x="30" y="35" text-anchor="middle" class="font-sans" font-size="14px" fill="#FFFFFF">👤</text>
+      <text x="60" y="26" class="font-sans" font-size="13px" font-weight="700" fill="#0F172A">Enterprise Software Developer</text>
+      <text x="60" y="44" class="font-sans" font-size="11px" fill="#64748B">Authenticated via @maqsoftware.com SSO</text>
+    </g>
+
+    <!-- VS Code Extension Subsystem -->
+    <g transform="translate(20, 140)">
+      <rect width="320" height="135" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.4" />
+      <rect width="320" height="32" rx="10" fill="#F1F5F9" />
+      <rect y="20" width="320" height="12" fill="#F1F5F9" />
+      <text x="16" y="21" class="font-sans" font-size="12px" font-weight="700" fill="#1E293B">🧩 VS Code Extension (engineering-commons-vscode)</text>
+      
+      <text x="16" y="52" class="font-sans" font-size="11.5px" fill="#334155">• Glassmorphic Hover Popover Tooltips</text>
+      <text x="16" y="72" class="font-sans" font-size="11.5px" fill="#334155">• Side-by-Side Multi-File Pull Request Review Panel</text>
+      <text x="16" y="92" class="font-sans" font-size="11.5px" fill="#334155">• Interactive "How to Use" Step Guides (Agent vs Skill)</text>
+      <text x="16" y="112" class="font-sans" font-size="11px" font-weight="600" fill="#0284C7">⚡ 15-Min In-Memory Cache • 1-Hour Telemetry Buffer</text>
+    </g>
+
+    <!-- .NET 10 CLI Subsystem -->
+    <g transform="translate(20, 288)">
+      <rect width="320" height="114" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.4" />
+      <rect width="320" height="32" rx="10" fill="#F1F5F9" />
+      <rect y="20" width="320" height="12" fill="#F1F5F9" />
+      <text x="16" y="21" class="font-sans" font-size="12px" font-weight="700" fill="#1E293B">⌨️ Self-Contained CLI (EngineeringCommonsCli on .NET 10)</text>
+      
+      <text x="16" y="52" class="font-sans" font-size="11.5px" fill="#334155">• Zero-SDK requirement (Native bundled binaries)</text>
+      <text x="16" y="72" class="font-sans" font-size="11.5px" fill="#334155">• Commands: install, submit, review, diff, status</text>
+      <text x="16" y="94" class="font-sans" font-size="11.5px" font-weight="600" fill="#7C3AED">⏱️ .timeline/tracker.js (Start/Milestone/Standup)</text>
+    </g>
+  </g>
+
+  <!-- =================================================== -->
+  <!-- LAYER 2: IDENTITY & SSO TIER                        -->
+  <!-- =================================================== -->
+  <g transform="translate(40, 560)">
+    <rect width="360" height="150" rx="14" fill="#FFFFFF" stroke="#0078D4" stroke-width="2" filter="url(#card-shadow)" />
+    
+    <rect width="360" height="42" rx="14" fill="#EFF6FF" />
+    <rect y="28" width="360" height="14" fill="#EFF6FF" />
+    <text x="24" y="27" class="font-sans" font-size="15px" font-weight="800" fill="#1D4ED8">2. Identity &amp; Zero-Trust SSO</text>
+
+    <text x="24" y="66" class="font-sans" font-size="12.5px" font-weight="700" fill="#0F172A">Microsoft Entra ID (Corporate SSO)</text>
+    <text x="24" y="86" class="font-sans" font-size="11px" fill="#475569">• App Registration: a5f3ba81-4c95-4c74-afd9-38b72cf39156</text>
+    <text x="24" y="104" class="font-sans" font-size="11px" fill="#475569">• OAuth 2.0 PKCE Flow (Extension) &amp; Device Code (CLI)</text>
+    <text x="24" y="124" class="font-sans" font-size="11.5px" font-weight="700" fill="#059669">🔒 Strict @maqsoftware.com Corporate Domain Guard</text>
+  </g>
+
+  <!-- Connectors: Clients to Entra ID -->
+  <path d="M 220 540 L 220 560" stroke="#0078D4" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arr-blue)" />
+
+  <!-- =================================================== -->
+  <!-- LAYER 3: VERCEL SERVERLESS BACKEND (ACTIVE)         -->
+  <!-- =================================================== -->
+  <g transform="translate(470, 120)">
+    <!-- Container -->
+    <rect width="490" height="590" rx="16" fill="#FFFFFF" stroke="#18181B" stroke-width="2.5" filter="url(#card-shadow)" />
+    
+    <!-- Dark Header (Vercel Style) -->
+    <rect width="490" height="60" rx="16" fill="url(#vercelGrad)" />
+    <rect y="44" width="490" height="16" fill="url(#vercelGrad)" />
+    
+    <!-- Vercel Logo Triangle -->
+    <polygon points="26,40 36,22 46,40" fill="#FFFFFF" />
+    <text x="56" y="34" class="font-sans" font-size="16px" font-weight="800" fill="#FFFFFF">3. Vercel Serverless Backend API Gateway</text>
+    <text x="56" y="50" class="font-sans" font-size="11.5px" fill="#A1A1AA">Express Edge Runtime on Node.js • 100% Zero-Cost Tier ($0.00)</text>
+
+    <!-- Main Router Box -->
+    <g transform="translate(24, 76)">
+      <rect width="442" height="140" rx="10" fill="#FAFAFA" stroke="#E4E4E7" stroke-width="1.2" />
+      <text x="18" y="24" class="font-sans" font-size="13px" font-weight="800" fill="#18181B">api/index.js (Stateless Edge Engine)</text>
+      
+      <!-- API Endpoints Grid -->
+      <g transform="translate(18, 38)">
+        <rect width="195" height="40" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1" />
+        <text x="10" y="18" class="font-sans" font-size="11px" font-weight="700" fill="#0F172A">GET /api/artifacts</text>
+        <text x="10" y="32" class="font-sans" font-size="10px" fill="#71717A">121+ Catalog with Filter Pills</text>
+
+        <rect x="210" width="195" height="40" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1" />
+        <text x="220" y="18" class="font-sans" font-size="11px" font-weight="700" fill="#0F172A">GET /api/artifacts/:id/download</text>
+        <text x="220" y="32" class="font-sans" font-size="10px" fill="#71717A">Direct Package ZIP Streaming</text>
+
+        <rect y="48" width="195" height="40" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1" />
+        <text x="10" y="66" class="font-sans" font-size="11px" font-weight="700" fill="#0F172A">GET /api/reviews/:id/diff</text>
+        <text x="10" y="80" class="font-sans" font-size="10px" fill="#71717A">Side-by-Side Line Git Diff</text>
+
+        <rect x="210" y="48" width="195" height="40" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1" />
+        <text x="220" y="66" class="font-sans" font-size="11px" font-weight="700" fill="#0F172A">POST /api/reviews/:id/comments</text>
+        <text x="220" y="80" class="font-sans" font-size="10px" fill="#71717A">Inline Code Comments &amp; Votes</text>
+      </g>
+    </g>
+
+    <!-- Subsystem 2: Dynamic Certification Engine -->
+    <g transform="translate(24, 230)">
+      <rect width="442" height="150" rx="10" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2" />
+      <text x="18" y="24" class="font-sans" font-size="13px" font-weight="800" fill="#92400E">Continuous 5-Pillar DHS Certification Engine</text>
+      <text x="18" y="44" class="font-sans" font-size="11px" font-weight="700" fill="#B45309">DHS = 0.25*Adoption + 0.25*Feedback + 0.20*DX + 0.15*Security + 0.15*Reliability</text>
+      
+      <text x="18" y="68" class="font-sans" font-size="11px" fill="#78350F">• Anti-gaming velocity cap (max 5 counted runs/user/day)</text>
+      <text x="18" y="86" class="font-sans" font-size="11px" fill="#78350F">• Strict Author Excluded rule (author runs discarded)</text>
+      <text x="18" y="104" class="font-sans" font-size="11px" fill="#78350F">• Hard Zero-Tolerance Gates: 0 Leaks (Gitleaks), 0 Crash Loops</text>
+      <text x="18" y="128" class="font-sans" font-size="11.5px" font-weight="700" fill="#D97706">🏆 Dynamic Badging: Certified (>=85) • Silver (70-84) • Community (&lt;70)</text>
+    </g>
+
+    <!-- Subsystem 3: Encrypted Secret Git Proxy -->
+    <g transform="translate(24, 394)">
+      <rect width="442" height="170" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.2" />
+      <text x="18" y="24" class="font-sans" font-size="13px" font-weight="800" fill="#1D4ED8">Zero-Secret Git &amp; Storage Proxy</text>
+      <text x="18" y="44" class="font-sans" font-size="11.5px" fill="#1E3A8A">• Holds Server-Side Encrypted Secrets (ADO_PAT, GITHUB_PAT)</text>
+      <text x="18" y="64" class="font-sans" font-size="11.5px" fill="#1E3A8A">• Zero credentials or tokens distributed to client extensions</text>
+      <text x="18" y="84" class="font-sans" font-size="11.5px" fill="#1E3A8A">• Proxies raw Git tree diffs, commit trees, and binary zipballs</text>
+      
+      <!-- Safe Guard Badge -->
+      <rect x="18" y="105" width="406" height="45" rx="6" fill="#DBEAFE" />
+      <text x="28" y="124" class="font-sans" font-size="11px" font-weight="700" fill="#1E40AF">🛡️ ZERO-SECRET CLIENT GUARANTEE</text>
+      <text x="28" y="139" class="font-sans" font-size="10.5px" fill="#1D4ED8">Clients only carry ephemeral Bearer tokens; no repository PATs.</text>
+    </g>
+  </g>
+
+  <!-- Connectors: Clients to Vercel Gateway -->
+  <path d="M 400 300 L 470 300" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arr-blue)" />
+  <rect x="408" y="280" width="55" height="18" rx="4" fill="#0284C7" />
+  <text x="435" y="293" text-anchor="middle" class="font-sans" font-size="10px" font-weight="700" fill="#FFFFFF">HTTPS</text>
+
+  <!-- =================================================== -->
+  <!-- LAYER 4: DUAL-TIER ZERO-COST STORAGE                -->
+  <!-- =================================================== -->
+  <g transform="translate(1030, 120)">
+    <rect width="530" height="420" rx="16" fill="#FFFFFF" stroke="#059669" stroke-width="2" filter="url(#card-shadow)" />
+    
+    <!-- Header -->
+    <rect width="530" height="52" rx="16" fill="#ECFDF5" />
+    <rect y="38" width="530" height="14" fill="#ECFDF5" />
+    <text x="24" y="33" class="font-sans" font-size="16px" font-weight="800" fill="#065F46">4. Dual-Tier Zero-Cost Storage ($0.00/Mo)</text>
+
+    <!-- Sub-tier A: SharePoint CQRS Read Cache -->
+    <g transform="translate(24, 68)">
+      <rect width="482" height="155" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.2" />
+      <text x="18" y="24" class="font-sans" font-size="13px" font-weight="800" fill="#047857">Tier A: Microsoft 365 SharePoint Online (Read Cache)</text>
+      <text x="18" y="44" class="font-sans" font-size="11px" fill="#065F46">• Handled via Microsoft Graph API OData ($top=500 queries)</text>
+      <text x="18" y="62" class="font-sans" font-size="11px" fill="#065F46">• 4 Dedicated Lists: Artifacts • Reviews • Bounties • Notifications</text>
+      <text x="18" y="80" class="font-sans" font-size="11px" fill="#065F46">• Document Library: Pre-rendered release packages and binaries</text>
+      <text x="18" y="98" class="font-sans" font-size="11px" fill="#065F46">• High-speed reads for marketplace browsing with zero cloud DB cost</text>
+      
+      <rect x="18" y="112" width="130" height="26" rx="6" fill="#059669" />
+      <text x="83" y="129" text-anchor="middle" class="font-sans" font-size="11px" font-weight="700" fill="#FFFFFF">95% Read Traffic</text>
+      <text x="160" y="129" class="font-sans" font-size="11px" font-weight="700" fill="#059669">Included in Enterprise M365</text>
+    </g>
+
+    <!-- Sub-tier B: Azure DevOps Git Authoritative Store -->
+    <g transform="translate(24, 238)">
+      <rect width="482" height="162" rx="10" fill="#EFF6FF" stroke="#BAE6FD" stroke-width="1.2" />
+      <text x="18" y="24" class="font-sans" font-size="13px" font-weight="800" fill="#0369A1">Tier B: Azure DevOps Git (Authoritative Store)</text>
+      <text x="18" y="44" class="font-sans" font-size="11px" fill="#075985">• Repo: MAQInternalCIP-Engineering-Commons / Engineering Commons</text>
+      <text x="18" y="62" class="font-sans" font-size="11px" fill="#075985">• /artifacts-json/ (121+ Authoritative Artifact Manifests)</text>
+      <text x="18" y="80" class="font-sans" font-size="11px" fill="#075985">• /certification/registry.json &amp; reviews.json (Health &amp; Reviews)</text>
+      <text x="18" y="98" class="font-sans" font-size="11px" fill="#075985">• /governance/roles.json (Enterprise RBAC Roles)</text>
+      
+      <rect x="18" y="118" width="150" height="26" rx="6" fill="#0284C7" />
+      <text x="93" y="135" text-anchor="middle" class="font-sans" font-size="11px" font-weight="700" fill="#FFFFFF">5% Write/Sync Traffic</text>
+      <text x="180" y="135" class="font-sans" font-size="11px" font-weight="700" fill="#0284C7">Included in Enterprise ADO</text>
+    </g>
+  </g>
+
+  <!-- Connectors: Vercel Gateway to Storage -->
+  <path d="M 960 300 L 1030 300" stroke="#059669" stroke-width="2.5" marker-end="url(#arr-green)" />
+  <rect x="968" y="280" width="55" height="18" rx="4" fill="#059669" />
+  <text x="995" y="293" text-anchor="middle" class="font-sans" font-size="9.5px" font-weight="700" fill="#FFFFFF">REST API</text>
+
+  <!-- =================================================== -->
+  <!-- LAYER 5: WORKSPACE INSTALLATION TARGETS             -->
+  <!-- =================================================== -->
+  <g transform="translate(1030, 560)">
+    <rect width="530" height="150" rx="16" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2" filter="url(#card-shadow)" />
+    
+    <rect width="530" height="42" rx="16" fill="#F5F3FF" />
+    <rect y="28" width="530" height="14" fill="#F5F3FF" />
+    <text x="24" y="27" class="font-sans" font-size="15px" font-weight="800" fill="#6D28D9">5. Workspace Installation Targets (Dual-Model Execution)</text>
+
+    <!-- Sub-boxes -->
+    <g transform="translate(20, 52)">
+      <!-- Agent Target -->
+      <rect width="235" height="80" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.2" />
+      <text x="14" y="22" class="font-sans" font-size="12px" font-weight="800" fill="#1E40AF">📁 .github/agents/*.agent.md</text>
+      <text x="14" y="42" class="font-sans" font-size="11px" font-weight="700" fill="#2563EB">🤖 AI AGENTS</text>
+      <text x="14" y="60" class="font-sans" font-size="10.5px" fill="#1E3A8A">Invoked via @agent in GitHub Copilot Chat</text>
+
+      <!-- Skill Target -->
+      <rect x="250" width="235" height="80" rx="8" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1.2" />
+      <text x="264" y="22" class="font-sans" font-size="12px" font-weight="800" fill="#065F46">📁 skills/*/SKILL.md</text>
+      <text x="264" y="42" class="font-sans" font-size="11px" font-weight="700" fill="#059669">⚡ AI SKILLS</text>
+      <text x="264" y="60" class="font-sans" font-size="10.5px" fill="#047857">Invoked via /skill in Copilot &amp; Antigravity</text>
+    </g>
+  </g>
+
+  <!-- Connectors: Vercel to Workspace Targets (Streaming package) -->
+  <path d="M 960 635 L 1030 635" stroke="#7C3AED" stroke-width="2.5" stroke-dasharray="4,3" marker-end="url(#arr-purple)" />
+  <rect x="965" y="618" width="60" height="18" rx="4" fill="#7C3AED" />
+  <text x="995" y="631" text-anchor="middle" class="font-sans" font-size="9px" font-weight="700" fill="#FFFFFF">STREAM</text>
+
+  <!-- =================================================== -->
+  <!-- FOOTER NOTE                                         -->
+  <!-- =================================================== -->
+  <g transform="translate(40, 730)">
+    <rect width="1520" height="60" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" />
+    <text x="24" y="35" class="font-sans" font-size="12px" font-weight="700" fill="#0F172A">Enterprise Operational SLA:</text>
+    <text x="185" y="35" class="font-sans" font-size="12px" fill="#475569">100% Stateless Vercel Edge compute with zero cold-starts, zero cloud database licenses, zero client secrets, and 100% free corporate tier utilization ($0.00/month).</text>
+  </g>
+</svg>

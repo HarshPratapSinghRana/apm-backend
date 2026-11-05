@@ -573,7 +573,7 @@ public class ArtifactDiffServiceTests : IClassFixture<TestWebApplicationFactory>
         Assert.Equal(ArtifactChangeType.Modified, diff.ArtifactChangeType);
         var fileDiff = diff.Files.First(f => f.Path == "cip.yml");
         Assert.Equal(ChangeType.Modified, fileDiff.ChangeType);
-        Assert.True(fileDiff.LineChanges.Any(l => l.Type == LineChangeType.Deleted && l.Content.Contains("1.0.0")));
-        Assert.True(fileDiff.LineChanges.Any(l => l.Type == LineChangeType.Added && l.Content.Contains("1.1.0")));
+        Assert.Contains(fileDiff.LineChanges, l => l.Type == LineChangeType.Deleted && l.Content.Contains("1.0.0"));
+        Assert.Contains(fileDiff.LineChanges, l => l.Type == LineChangeType.Added && l.Content.Contains("1.1.0"));
     }
 }

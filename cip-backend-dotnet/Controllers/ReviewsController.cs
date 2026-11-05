@@ -63,14 +63,15 @@ public class ReviewsController : ControllerBase
         if (!string.IsNullOrWhiteSpace(role))
         {
             var r = role.Trim().ToUpperInvariant();
-            if (r == "REVIEWER" || r == "ADMIN" || r == "CERTIFIED_REVIEWER" || r == "PRODUCER") return true;
+            if (r == "REVIEWER" || r == "ADMIN" || r == "CERTIFIED_REVIEWER") return true;
         }
         if (!string.IsNullOrWhiteSpace(email))
         {
             var e = email.Trim().ToLowerInvariant();
-            if (e == "harsh.rana@maqsoftware.com" || e.Contains("admin") || e.Contains("reviewer") || e.Contains("producer") || e.Contains("company.com") || e.Contains("@")) return true;
+            if (e == "harsh.rana@maqsoftware.com" || e == "admin@company.com" || e == "admin@test.com" ||
+                e == "reviewer@company.com" || e == "reviewer@test.com" || e.StartsWith("designated-rev@")) return true;
         }
-        return true;
+        return false;
     }
 
     [HttpGet("pending")]
@@ -412,8 +413,9 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/request-changes")]
     public async Task<IActionResult> RequestChanges(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
+        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "REVIEWER";
-        var email = (User.Identity?.IsAuthenticated == true && !string.IsNullOrEmpty(User.Identity.Name)) ? User.Identity.Name : "reviewer@company.com";
+        var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
         try
@@ -472,7 +474,10 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/resubmit")]
     public IActionResult Resubmit(string reviewId, [FromBody] Newtonsoft.Json.Linq.JToken? rawBody)
     {
-        var email = (User.Identity?.IsAuthenticated == true && !string.IsNullOrEmpty(User.Identity.Name)) ? User.Identity.Name : "producer@company.com";
+        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
+        var email = User.Identity?.Name ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
+
         var review = _reviews.GetReview(reviewId);
         if (review == null) return NotFound(new { error = "Review not found." });
         if (!string.Equals(review.ProducerEmail, email, StringComparison.OrdinalIgnoreCase))
@@ -502,8 +507,9 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/approve")]
     public async Task<IActionResult> Approve(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
+        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "REVIEWER";
-        var email = (User.Identity?.IsAuthenticated == true && !string.IsNullOrEmpty(User.Identity.Name)) ? User.Identity.Name : "reviewer@company.com";
+        var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
         try
@@ -574,8 +580,9 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/reject")]
     public async Task<IActionResult> Reject(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
+        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "REVIEWER";
-        var email = (User.Identity?.IsAuthenticated == true && !string.IsNullOrEmpty(User.Identity.Name)) ? User.Identity.Name : "reviewer@company.com";
+        var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
         try

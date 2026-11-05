@@ -49,11 +49,11 @@ export class HttpNotificationService implements INotificationService {
         private backendUrl: string,
         private authProvider: IAuthenticationStatusProvider
     ) {
-        this.backendUrl = (backendUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
     }
 
     public setBackendUrl(url: string): void {
-        this.backendUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.lastNotificationsFetchMs = 0;
         this.lastEtag = null;
     }

@@ -22,6 +22,10 @@
   ],
   "files": [
     {
+      "path": "README.md",
+      "content": "# memory-mcp-server (`memory-mcp-server`)\n\nAnthropic Model Context Protocol (MCP) Knowledge Graph Memory Server with 9 tools for persistent cross-session graph memory.\n\n- **Artifact Type**: `MCPSERVER`\n- **Domain / Category**: Engineering • AI & Infrastructure\n- **Usability Tier**: 🤖 Copilot & Claude Ready\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `modelcontextprotocol`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install memory-mcp-server\n```\n\n*(Alternatively, search for **`memory-mcp-server`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. MCP Server Configuration\nAdd this configuration snippet to your workspace `.vscode/mcp.json` or Claude Code config:\n\n```json\n{\n  \"mcpServers\": {\n    \"memory-mcp-server\": {\n      \"command\": \"node\",\n      \"args\": [\"dist/index.js\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n### 2. Copilot Chat & Claude Example Prompt\n```markdown\nUsing the memory-mcp-server MCP server tools, inspect the environment, fetch relevant resources, and perform Anthropic Model Context Protocol (MCP) Knowledge Graph Memory Server with 9 tools for persistent cross-session graph memory.\n```\n\n### 3. Advanced Tool Operations\n```markdown\nUsing memory-mcp-server, execute operations and return a structured JSON report with status telemetry.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **9 MCP tools (create_entities, create_relations, read_graph, search_nodes)**\n- **Persistent local JSONL knowledge graph**\n- **Semantic entity relation mapping**\n- **Zero external cloud dependencies**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `TypeScript`\n- `Model Context Protocol`\n- `JSONL Graph`\n- `Node.js`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`memory-mcp-server`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **modelcontextprotocol** • Engineering Commons Ecosystem*"
+    },
+    {
       "path": ".github/mcp/memory-mcp-server/README.md",
       "content": "# Knowledge Graph Memory Server\n\nOfficial Anthropic Model Context Protocol persistent memory server."
     },
@@ -33,5 +37,6 @@
   "usability": "copilot-ready",
   "usabilityLabel": "Copilot & Claude Ready Prompt",
   "usabilityBadge": "🤖 Copilot & Claude Ready",
-  "isCopilotReady": true
+  "isCopilotReady": true,
+  "copilotPrompt": "Using the memory-mcp-server MCP server tools, inspect the environment, fetch relevant resources, and perform Anthropic Model Context Protocol (MCP) Knowledge Graph Memory Server with 9 tools for persistent cross-session graph memory."
 }

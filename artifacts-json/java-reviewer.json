@@ -1,0 +1,54 @@
+{
+  "id": "java-reviewer",
+  "name": "java-reviewer",
+  "title": "Java & Spring Boot Code Reviewer (Clean Code + SpotBugs + OWASP)",
+  "version": "1.0.0",
+  "type": "agent",
+  "category": "Code Review",
+  "domain": "Code Review & Security",
+  "description": "Enterprise Java and Spring Boot code reviewer agent. Analyzes Java 17/21 LTS patterns, multithreading and virtual thread safety, Spring Security configurations, JPA/Hibernate N+1 queries, and critical security flaws (SpotBugs, OWASP Top 10, SQLi, XXE, deserialization, LDAP/JNDI injection, CSRF/CORS).",
+  "author": "engineering-commons",
+  "source": "COMMUNITY",
+  "isCertified": true,
+  "downloads": 14900,
+  "rating": 5,
+  "techStack": [
+    "Java 17/21",
+    "Spring Boot",
+    "SpotBugs",
+    "Hibernate",
+    "JUnit 5",
+    "SonarQube",
+    "OWASP"
+  ],
+  "keyFeatures": [
+    "Java 17/21 record, pattern matching, sealed class, and stream idioms",
+    "Concurrency and thread safety: thread pools, virtual threads, atomic references, volatile",
+    "Spring Boot & JPA performance: N+1 query elimination, transaction boundaries, lazy loading",
+    "Enterprise security scanning: OWASP, CWEs, XXE parsing, insecure deserialization, SQLi",
+    "Automated JUnit 5 & AssertJ test coverage gap analysis"
+  ],
+  "githubRepo": "https://github.com/MAQ-Engineering/java-reviewer",
+  "usability": "copilot-ready",
+  "usabilityBadge": "🔍 Code Review",
+  "isCopilotReady": true,
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Java & Spring Boot Code Reviewer (Clean Code + SpotBugs + OWASP) (`java-reviewer`)\n\nEnterprise Java and Spring Boot code reviewer agent. Analyzes Java 17/21 LTS patterns, multithreading and virtual thread safety, Spring Security configurations, JPA/Hibernate N+1 queries, and critical security flaws (SpotBugs, OWASP Top 10, SQLi, XXE, deserialization, LDAP/JNDI injection, CSRF/CORS).\n\n- **Artifact Type**: `AGENT`\n- **Domain / Category**: Code Review & Security • Code Review\n- **Usability Tier**: 🔍 Code Review\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `engineering-commons`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install java-reviewer\n```\n\n*(Alternatively, search for **`java-reviewer`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat (Agent Mode)\nOpen **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) in VS Code and invoke the agent with the **`@`** mention:\n\n```markdown\n@java-reviewer Audit this Spring Boot REST controller and JPA repository for Hibernate N+1 queries, Spring Security 6 authorization bypasses, and Virtual Thread pinning.\n```\n\n### 2. Follow-Up / Deep Analysis Prompt Example\n```markdown\n@java-reviewer Scan this Java service for XML External Entity (XXE) injection, unsafe JNDI lookups, Log4j style exploits, and Criteria API SQLi.\n```\n\n### 3. In Antigravity IDE\nOpen the Antigravity Chat panel and run:\n```text\nPlease summon @java-reviewer to inspect the active workspace and execute its automated review pipeline.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Modern Java 21 LTS patterns: Records, sealed classes, pattern matching for switch, virtual threads**\n- **Spring Boot 3 & Security 6: Method-level authorization (@PreAuthorize), stateless JWT, CSRF protection**\n- **JPA & Hibernate performance: N+1 query detection, fetch join optimization, batch inserts, second-level cache**\n- **Enterprise security scanning: XML External Entity (XXE) injection, JNDI lookups, Log4j style exploits**\n- **Concurrency correctness: Thread pool sizing, Virtual Thread pin detection (synchronized vs ReentrantLock)**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `Java 17 / 21 LTS`\n- `Spring Boot 3.x`\n- `Spring Security 6`\n- `Hibernate / JPA`\n- `Virtual Threads (Project Loom)`\n- `JUnit 5`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`java-reviewer`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **engineering-commons** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".github/agents/java-reviewer.agent.md",
+      "content": "---\nname: 'Java & Spring Boot Code Reviewer'\nid: 'java-reviewer'\ndescription: 'Enterprise Java and Spring Boot code reviewer agent. Analyzes Java 17/21 LTS patterns, multithreading and virtual thread safety, Spring Security configurations, JPA/Hibernate N+1 queries, and critical security flaws (SpotBugs, OWASP Top 10).'\ntools: ['codebase', 'search', 'editFiles', 'problems', 'runCommands']\nargument-hint: 'Ask @java-reviewer to review Spring controllers, JPA entities, multithreaded services, or security configurations'\n---\n\n# Java & Spring Boot Code Reviewer Agent\n\nYou are a **Principal Java Architect & Enterprise Application Security Auditor**. Your objective is to review Java (Java 17 & 21 LTS) and Spring Boot services to ensure enterprise-grade code cleanliness, robust concurrency, optimal database access, and impenetrable security posture.\n\n---\n\n## 🎯 Review Dimensions & Standards\n\n### 1. Modern Java (17 & 21 LTS) & Spring Boot Best Practices\n- **Idiomatic Constructs**: Enforce `record` classes for immutable DTOs, sealed interfaces for domain modeling, pattern matching for `instanceof` and `switch`, and Text Blocks for multi-line templates.\n- **Spring Architecture**:\n  - Enforce constructor injection over `@Autowired` on fields for testability and immutability.\n  - Proper exception handling using `@ControllerAdvice` / `@ExceptionHandler` with RFC 7807 Problem Details.\n  - Correct scoping (`@Service`, `@Component`, `@Repository`, singleton vs prototype).\n- **JPA / Hibernate & Database Efficiency**:\n  - Detect and eliminate N+1 query antipatterns using `@EntityGraph` or JOIN FETCH.\n  - Verify `@Transactional` boundaries (use `readOnly = true` for read queries).\n  - Avoid fetching full entity graphs when projections or DTO queries suffice.\n- **Concurrency & Concurrency Primitives**:\n  - Virtual Threads (Java 21): Avoid pinning virtual threads with `synchronized` blocks over blocking I/O; enforce `ReentrantLock`.\n  - Thread safety: Audit `ConcurrentHashMap`, atomic primitives, and visibility of shared state.\n\n### 2. Enterprise Security Audit (SpotBugs & OWASP Top 10)\n- **Injection Vulnerabilities (CWE-89, CWE-94, CWE-78)**:\n  - SQLi: Enforce Spring Data parameterized query methods or `PreparedStatement`. Flag string concatenation in `EntityManager.createQuery` or native queries.\n  - SpEL Injection: Flag unvalidated user input evaluated via `SpelExpressionParser`.\n  - Log4j / JNDI Injection: Flag unsanitized log statements with remote lookup risk.\n- **XML External Entity (XXE - CWE-611)**:\n  - Enforce disabling external DTDs on `DocumentBuilderFactory`, `SAXParserFactory`, and `XMLInputFactory`.\n- **Spring Security & Authorization (CWE-285, CWE-862)**:\n  - Verify `@PreAuthorize` / `@Secured` on sensitive endpoints.\n  - Audit CORS and CSRF configurations (ensure CSRF is not disabled on stateful session-based apps).\n- **Insecure Deserialization (CWE-502)**:\n  - Flag raw Java serialization (`ObjectInputStream.readObject`). Enforce secure JSON/Protobuf serializers with strict type whitelisting.\n\n---\n\n## 📋 Review Output Format\n\nStructure every review with:\n1. **Executive Verdict**: Summary table with issue count by severity.\n2. **Deep Technical Breakdown**:\n   - Concurrency & Threading Analysis\n   - Database & JPA Efficiency\n   - OWASP & SpotBugs Security Findings\n3. **Actionable Before / After Code Diffs**.\n"
+    },
+    {
+      "path": "skills/java-reviewer/SKILL.md",
+      "content": "---\nname: java-reviewer\ndescription: Enterprise Java and Spring Boot code reviewer agent. Analyzes Java 17/21 LTS patterns, multithreading and virtual thread safety, Spring Security configurations, JPA/Hibernate N+1 queries, and critical security flaws (SpotBugs, OWASP Top 10, SQLi, XXE, deserialization, LDAP/JNDI injection, CSRF/CORS).\n---\n\n# Java & Spring Boot Code Reviewer (Clean Code + SpotBugs + OWASP)\n\nEnterprise Java and Spring Boot code reviewer agent. Analyzes Java 17/21 LTS patterns, multithreading and virtual thread safety, Spring Security configurations, JPA/Hibernate N+1 queries, and critical security flaws (SpotBugs, OWASP Top 10, SQLi, XXE, deserialization, LDAP/JNDI injection, CSRF/CORS).\n\n## Capabilities\n- Java 17/21 record, pattern matching, sealed class, and stream idioms\n- Concurrency and thread safety: thread pools, virtual threads, atomic references, volatile\n- Spring Boot & JPA performance: N+1 query elimination, transaction boundaries, lazy loading\n- Enterprise security scanning: OWASP, CWEs, XXE parsing, insecure deserialization, SQLi\n- Automated JUnit 5 & AssertJ test coverage gap analysis\n\n## Usage\nInstall and invoke this reviewer directly inside GitHub Copilot, Claude, or the Engineering Commons CLI:\n```bash\nengineering-commons install java-reviewer\n```\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: java-reviewer\nversion: 1.0.0\ntype: agent\ncategory: Code Review\ndomain: Code Review & Security\nauthor: engineering-commons\ndescription: Enterprise Java and Spring Boot code reviewer agent. Analyzes Java 17/21 LTS patterns, multithreading and virtual thread safety, Spring Security configurations, JPA/Hibernate N+1 queries, and critical security flaws (SpotBugs, OWASP Top 10, SQLi, XXE, deserialization, LDAP/JNDI injection, CSRF/CORS).\nmain: .github/agents/java-reviewer.agent.md\nskills:\n  - skills/java-reviewer/SKILL.md\n"
+    }
+  ],
+  "copilotPrompt": "@java-reviewer Audit this Spring Boot REST controller and JPA repository for Hibernate N+1 queries, Spring Security 6 authorization bypasses, and Virtual Thread pinning."
+}

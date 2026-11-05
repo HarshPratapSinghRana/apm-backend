@@ -215,9 +215,9 @@ export class BountyService implements IBountyService {
     private cachedBounties: { data: BountyDto[]; timestamp: number } | null = null;
     private cachedMyWork: { data: MyWorkSummaryDto; timestamp: number } | null = null;
 
-    constructor(authProvider: IAuthenticationStatusProvider, baseUrl = 'https://ecommerce-app-chi-wine.vercel.app') {
+    constructor(authProvider: IAuthenticationStatusProvider, baseUrl = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io') {
         this.authProvider = authProvider;
-        this.baseUrl = (baseUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.baseUrl = (baseUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.spBountyService = new SharePointBountyService();
         this.adoGovernanceService = new AdoGovernanceService(authProvider);
     }
@@ -228,7 +228,7 @@ export class BountyService implements IBountyService {
     }
 
     public setBackendUrl(url: string): void {
-        this.baseUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.baseUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.invalidateCache();
     }
 

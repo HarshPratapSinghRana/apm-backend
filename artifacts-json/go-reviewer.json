@@ -1,0 +1,53 @@
+{
+  "id": "go-reviewer",
+  "name": "go-reviewer",
+  "title": "Go Systems & Security Reviewer (GoSec + Concurrency Audit)",
+  "version": "1.0.0",
+  "type": "agent",
+  "category": "Code Review",
+  "domain": "Code Review & Security",
+  "description": "Autonomous Go (Golang) code review and systems auditor agent. Performs deep static analysis for Go 1.22+ idioms, goroutine leaks, channel deadlock prevention, race condition detection, escape analysis/memory allocations, and comprehensive security vulnerability scanning (Gosec, command injection, unvalidated redirects, insecure crypto).",
+  "author": "engineering-commons",
+  "source": "COMMUNITY",
+  "isCertified": true,
+  "downloads": 12100,
+  "rating": 5,
+  "techStack": [
+    "Go 1.22+",
+    "Gosec",
+    "gRPC",
+    "Goroutines",
+    "GolangCI-Lint",
+    "OWASP"
+  ],
+  "keyFeatures": [
+    "Idiomatic Go standards: effective error handling, context cancellation, interface design",
+    "Concurrency audit: goroutine lifetime management, channel deadlocks, sync.Mutex contention",
+    "Escape analysis and heap allocation reduction for high-throughput services",
+    "Gosec security scanning: SQLi, path traversal, exec.Command injection, weak crypto",
+    "Benchmark and table-driven test review with coverage gap detection"
+  ],
+  "githubRepo": "https://github.com/MAQ-Engineering/go-reviewer",
+  "usability": "copilot-ready",
+  "usabilityBadge": "🔍 Code Review",
+  "isCopilotReady": true,
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Go Systems & Security Reviewer (GoSec + Concurrency Audit) (`go-reviewer`)\n\nAutonomous Go (Golang) code review and systems auditor agent. Performs deep static analysis for Go 1.22+ idioms, goroutine leaks, channel deadlock prevention, race condition detection, escape analysis/memory allocations, and comprehensive security vulnerability scanning (Gosec, command injection, unvalidated redirects, insecure crypto).\n\n- **Artifact Type**: `AGENT`\n- **Domain / Category**: Code Review & Security • Code Review\n- **Usability Tier**: 🔍 Code Review\n- **Certification Status**: 🏆 Enterprise Certified (Level 3)\n- **Author / Producer**: `engineering-commons`\n\n---\n\n## 🚀 Quick Start & Installation\n\nInstall directly into your local workspace via the Engineering Commons CLI or Engineering Commons Marketplace:\n\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install go-reviewer\n```\n\n*(Alternatively, search for **`go-reviewer`** in the **Engineering Commons VS Code Extension** and click **Install**).*\n\n---\n\n## 💡 How to Use & Example Prompts\n\n### 1. In GitHub Copilot Chat (Agent Mode)\nOpen **GitHub Copilot Chat** (`Ctrl+Alt+I` / `Cmd+Alt+I`) in VS Code and invoke the agent with the **`@`** mention:\n\n```markdown\n@go-reviewer Inspect this Go gRPC service and worker pool for goroutine leaks, unbuffered channel deadlocks, and race conditions.\n```\n\n### 2. Follow-Up / Deep Analysis Prompt Example\n```markdown\n@go-reviewer Audit this Go HTTP handler for memory allocation hotspots using escape analysis patterns and scan for Gosec vulnerabilities in os/exec.\n```\n\n### 3. In Antigravity IDE\nOpen the Antigravity Chat panel and run:\n```text\nPlease summon @go-reviewer to inspect the active workspace and execute its automated review pipeline.\n```\n\n---\n\n## 🌟 Key Capabilities & Features\n\n- **Go 1.22+ idioms: Range over integers/functions, loop variable scoping fixes, slices/maps packages**\n- **Concurrency audit: Goroutine leak detection, unbuffered channel deadlocks, context.WithTimeout propagation**\n- **Memory & escape analysis: Pointer escape to heap audit, sync.Pool buffer reuse, zero-allocation serialization**\n- **Security auditing (Gosec): Unsanitized os/exec.Command calls, path traversal in net/http, insecure TLS**\n- **Error handling governance: Structured error wrapping (fmt.Errorf with %w), errors.Is / errors.As patterns**\n\n---\n\n## 🛠️ Supported Technology Stack\n\n- `Go 1.22 / 1.23`\n- `Goroutines & Channels`\n- `gRPC & Protocol Buffers`\n- `Gin / Echo / Chi`\n- `Gorm / sqlx`\n- `Go Test / Testify`\n\n---\n\n## 📋 What's Included & Expected Deliverables\n\nWhen invoked, **`go-reviewer`** provides:\n1. **Automated Diagnostic & Health Assessment**: Structured evaluation of workspace files against enterprise best practices.\n2. **Actionable Remediation Diffs**: Line-level, unified diff proposals preserving existing business logic and code comments.\n3. **Telemetry & Audit Logging**: Continuous tracking of execution duration, token efficiency, and safety compliance.\n\n---\n\n## 🛡️ Enterprise Compliance & Quality Standards\n- **Zero Secret Leakage**: Enforced by git pre-commit hooks and automated CIP secret scans.\n- **Strict Typing & Soundness**: Validated against rigorous compilation and linting rules.\n- **Audited Telemetry**: Telemetry events recorded with Dynamic Health Score (DHS) governance.\n\n---\n*Maintained by **engineering-commons** • Engineering Commons Ecosystem*"
+    },
+    {
+      "path": ".github/agents/go-reviewer.agent.md",
+      "content": "---\nname: 'Go Systems & Security Reviewer'\nid: 'go-reviewer'\ndescription: 'Autonomous Go (Golang) code review and systems auditor agent. Performs deep static analysis for Go 1.22+ idioms, goroutine leaks, channel deadlock prevention, race condition detection, and Gosec security scanning.'\ntools: ['codebase', 'search', 'editFiles', 'problems', 'runCommands']\nargument-hint: 'Ask @go-reviewer to audit Go concurrency, examine goroutines/channels, or security scan Go microservices'\n---\n\n# Go Systems & Security Reviewer Agent\n\nYou are a **Principal Go Systems Engineer & Infrastructure Security Specialist**. Your mission is to review Go (Go 1.22+) microservices, CLI tools, and distributed infrastructure to enforce standard Go idioms, prevent catastrophic goroutine leaks, optimize memory allocations, and guarantee bulletproof security.\n\n---\n\n## 🎯 Review Dimensions & Standards\n\n### 1. Idiomatic Go & Systems Quality\n- **Go 1.22+ Idiomatic Patterns**: Proper loop variable scoping, standard library slicing utilities, clear interface design (accept interfaces, return structs).\n- **Error Handling**: Enforce explicit error checking, proper wrapping with `fmt.Errorf(\"...: %w\", err)`, and standard `errors.Is` / `errors.As` usage. Flag silently ignored errors (`_ = fn()`).\n- **Concurrency & Goroutines**:\n  - Detect goroutine leaks: every spawned goroutine must have a definitive exit path via `context.Context` or channel termination.\n  - Channel deadlocks: unbuffered vs buffered channel deadlocks, sender closing channels, select with timeout/cancellation.\n  - Race conditions: proper `sync.Mutex`, `sync.RWMutex`, or atomic operations for concurrent map/slice mutations.\n- **Memory & Allocation Efficiency**:\n  - Detect heap escapes in hot paths; evaluate whether pointers cause unnecessary GC overhead.\n  - Pre-allocate slice capacity with `make([]T, 0, expectedCount)` when length is known.\n\n### 2. Go Security Audit (Gosec & OWASP)\n- **Command Injection (Gosec G204 / CWE-78)**:\n  - Flag `exec.Command` or `exec.CommandContext` with user-controlled strings formatted through shell.\n- **SQL Injection (Gosec G201 / G202 / CWE-89)**:\n  - Flag `fmt.Sprintf` in SQL queries. Enforce parameterized query placeholders (`$1`, `?`).\n- **Path Traversal (Gosec G304 / CWE-22)**:\n  - Flag opening files via `os.Open(filepath.Join(base, userInput))` without `filepath.Clean` and path prefix containment checking.\n- **Cryptographic Weaknesses (Gosec G401 / G404 / G501)**:\n  - Flag `math/rand` for security-sensitive tokens (enforce `crypto/rand`).\n  - Flag deprecated hash algorithms (`md5`, `sha1`).\n\n---\n\n## 📋 Review Output Format\n\nStructure every review with:\n1. **Executive Verdict & Concurrency Health Score**.\n2. **Concurrency & Goroutine Lifetime Breakdown**.\n3. **Gosec Security Vulnerability Findings**.\n4. **Before vs. After Idiomatic Go Diffs**.\n"
+    },
+    {
+      "path": "skills/go-reviewer/SKILL.md",
+      "content": "---\nname: go-reviewer\ndescription: Autonomous Go (Golang) code review and systems auditor agent. Performs deep static analysis for Go 1.22+ idioms, goroutine leaks, channel deadlock prevention, race condition detection, escape analysis/memory allocations, and comprehensive security vulnerability scanning (Gosec, command injection, unvalidated redirects, insecure crypto).\n---\n\n# Go Systems & Security Reviewer (GoSec + Concurrency Audit)\n\nAutonomous Go (Golang) code review and systems auditor agent. Performs deep static analysis for Go 1.22+ idioms, goroutine leaks, channel deadlock prevention, race condition detection, escape analysis/memory allocations, and comprehensive security vulnerability scanning (Gosec, command injection, unvalidated redirects, insecure crypto).\n\n## Capabilities\n- Idiomatic Go standards: effective error handling, context cancellation, interface design\n- Concurrency audit: goroutine lifetime management, channel deadlocks, sync.Mutex contention\n- Escape analysis and heap allocation reduction for high-throughput services\n- Gosec security scanning: SQLi, path traversal, exec.Command injection, weak crypto\n- Benchmark and table-driven test review with coverage gap detection\n\n## Usage\nInstall and invoke this reviewer directly inside GitHub Copilot, Claude, or the Engineering Commons CLI:\n```bash\nengineering-commons install go-reviewer\n```\n"
+    },
+    {
+      "path": "cip.yml",
+      "content": "name: go-reviewer\nversion: 1.0.0\ntype: agent\ncategory: Code Review\ndomain: Code Review & Security\nauthor: engineering-commons\ndescription: Autonomous Go (Golang) code review and systems auditor agent. Performs deep static analysis for Go 1.22+ idioms, goroutine leaks, channel deadlock prevention, race condition detection, escape analysis/memory allocations, and comprehensive security vulnerability scanning (Gosec, command injection, unvalidated redirects, insecure crypto).\nmain: .github/agents/go-reviewer.agent.md\nskills:\n  - skills/go-reviewer/SKILL.md\n"
+    }
+  ],
+  "copilotPrompt": "@go-reviewer Inspect this Go gRPC service and worker pool for goroutine leaks, unbuffered channel deadlocks, and race conditions."
+}

@@ -4,14 +4,14 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { exec } from 'child_process';
 
-export const DEFAULT_VERCEL_BACKEND_URL = 'https://ecommerce-app-chi-wine.vercel.app';
+export const DEFAULT_AZURE_BACKEND_URL = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
 
 export class AutoCliProvisioner {
     /**
-     * Seeds ~/.engineering-commons/config.json and ~/.cip/config.json with the Vercel backend URL
-     * if absent or pointing to localhost.
+     * Seeds ~/.engineering-commons/config.json and ~/.cip/config.json with the Azure Container Apps backend URL
+     * if absent or pointing to localhost / vercel.
      */
-    public static seedUserBackendConfig(targetUrl: string = DEFAULT_VERCEL_BACKEND_URL): void {
+    public static seedUserBackendConfig(targetUrl: string = DEFAULT_AZURE_BACKEND_URL): void {
         const homeDir = os.homedir();
         const configDirs = [
             path.join(homeDir, '.engineering-commons'),
@@ -30,7 +30,7 @@ export class AutoCliProvisioner {
                     try {
                         const parsed = JSON.parse(fs.readFileSync(cfgFile, 'utf-8'));
                         const current = (parsed.backendUrl || parsed.url || '').trim();
-                        if (current && !current.includes('localhost')) {
+                        if (current && !current.includes('localhost') && !current.includes('vercel.app')) {
                             shouldWrite = false;
                         }
                     } catch {
@@ -49,7 +49,7 @@ export class AutoCliProvisioner {
                 if (fs.existsSync(sessionFile)) {
                     try {
                         const sessionData = JSON.parse(fs.readFileSync(sessionFile, 'utf-8'));
-                        if (!sessionData.backendUrl || sessionData.backendUrl.includes('localhost')) {
+                        if (!sessionData.backendUrl || sessionData.backendUrl.includes('localhost') || sessionData.backendUrl.includes('vercel.app')) {
                             sessionData.backendUrl = targetUrl;
                             fs.writeFileSync(sessionFile, JSON.stringify(sessionData, null, 2), 'utf-8');
                         }
@@ -80,7 +80,7 @@ export class AutoCliProvisioner {
 
         try {
             // Pre-seed backend configuration so CLI commands work with zero manual setup
-            this.seedUserBackendConfig(DEFAULT_VERCEL_BACKEND_URL);
+            this.seedUserBackendConfig(DEFAULT_AZURE_BACKEND_URL);
 
             // 1. Ensure directory exists
             if (!fs.existsSync(binDir)) {
@@ -130,11 +130,11 @@ export class AutoCliProvisioner {
 
                 let cmdContent = '';
                 if (bundledCliExe && fs.existsSync(bundledCliExe)) {
-                    cmdContent = `@echo off\r\nif "%ENGINEERING_COMMONS_BACKEND_URL%"=="" set "ENGINEERING_COMMONS_BACKEND_URL=${DEFAULT_VERCEL_BACKEND_URL}"\r\n"%~dp0EngineeringCommonsCli.exe" %*\r\n`;
+                    cmdContent = `@echo off\r\nif "%ENGINEERING_COMMONS_BACKEND_URL%"=="" set "ENGINEERING_COMMONS_BACKEND_URL=${DEFAULT_AZURE_BACKEND_URL}"\r\n"%~dp0EngineeringCommonsCli.exe" %*\r\n`;
                 } else if (bundledCliDll && fs.existsSync(bundledCliDll)) {
-                    cmdContent = `@echo off\r\nif "%ENGINEERING_COMMONS_BACKEND_URL%"=="" set "ENGINEERING_COMMONS_BACKEND_URL=${DEFAULT_VERCEL_BACKEND_URL}"\r\ndotnet "%~dp0EngineeringCommonsCli.dll" %*\r\n`;
+                    cmdContent = `@echo off\r\nif "%ENGINEERING_COMMONS_BACKEND_URL%"=="" set "ENGINEERING_COMMONS_BACKEND_URL=${DEFAULT_AZURE_BACKEND_URL}"\r\ndotnet "%~dp0EngineeringCommonsCli.dll" %*\r\n`;
                 } else {
-                    cmdContent = `@echo off\r\nif "%ENGINEERING_COMMONS_BACKEND_URL%"=="" set "ENGINEERING_COMMONS_BACKEND_URL=${DEFAULT_VERCEL_BACKEND_URL}"\r\ndotnet run --project "%~dp0EngineeringCommonsCli.csproj" --no-launch-profile -- %*\r\n`;
+                    cmdContent = `@echo off\r\nif "%ENGINEERING_COMMONS_BACKEND_URL%"=="" set "ENGINEERING_COMMONS_BACKEND_URL=${DEFAULT_AZURE_BACKEND_URL}"\r\ndotnet run --project "%~dp0EngineeringCommonsCli.csproj" --no-launch-profile -- %*\r\n`;
                 }
 
                 fs.writeFileSync(path.join(binDir, 'engineering-commons.cmd'), cmdContent, 'utf-8');
@@ -142,7 +142,7 @@ export class AutoCliProvisioner {
             } else {
                 // POSIX shell launcher
                 let shContent = `#!/usr/bin/env bash\n`;
-                shContent += `if [ -z "$ENGINEERING_COMMONS_BACKEND_URL" ]; then\n    export ENGINEERING_COMMONS_BACKEND_URL="${DEFAULT_VERCEL_BACKEND_URL}"\nfi\n`;
+                shContent += `if [ -z "$ENGINEERING_COMMONS_BACKEND_URL" ]; then\n    export ENGINEERING_COMMONS_BACKEND_URL="${DEFAULT_AZURE_BACKEND_URL}"\nfi\n`;
                 if (bundledCliDll && fs.existsSync(bundledCliDll)) {
                     shContent += `exec dotnet "$(dirname "$0")/EngineeringCommonsCli.dll" "$@"\n`;
                 } else {
@@ -155,7 +155,7 @@ export class AutoCliProvisioner {
             // 5. Inject into VS Code's integrated terminal PATH and Environment (Works immediately without restart)
             const pathSep = isWindows ? ';' : ':';
             context.environmentVariableCollection.prepend('PATH', `${binDir}${pathSep}`);
-            context.environmentVariableCollection.replace('ENGINEERING_COMMONS_BACKEND_URL', DEFAULT_VERCEL_BACKEND_URL);
+            context.environmentVariableCollection.replace('ENGINEERING_COMMONS_BACKEND_URL', DEFAULT_AZURE_BACKEND_URL);
 
             // 6. Check and update persistent user PATH
             const pathUpdated = await this.ensureInPersistentPath(binDir);

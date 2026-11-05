@@ -43,7 +43,7 @@ public class CertificationService : ICertificationService
         var normalizedId = (artifactId ?? string.Empty).Trim().ToLowerInvariant();
 
         // 1. Evaluate Reviews
-        var allReviews = _reviewService.GetPendingReviews().ToList();
+        var allReviews = _reviewService.GetAllReviews().ToList();
         var artifactReviews = allReviews.Where(r => r.ArtifactId.Equals(normalizedId, StringComparison.OrdinalIgnoreCase)).ToList();
 
         int approvedCount = artifactReviews.Count(r => r.Status == ReviewStatus.Approved || r.Status == ReviewStatus.Published || r.IsPublished);

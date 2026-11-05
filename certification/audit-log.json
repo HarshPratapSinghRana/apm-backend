@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T09:39:51.949Z",
+  "updatedAt": "2026-10-15T07:44:29.481Z",
   "totalEntries": 11,
   "entries": [
     {
@@ -39,8 +39,8 @@
       "timestamp": "2026-10-15T07:44:29.460Z"
     },
     {
-      "id": "audit-apm-db-explorer-actual",
-      "artifactId": "apm-db-explorer",
+      "id": "audit-cip-db-explorer-actual",
+      "artifactId": "cip-db-explorer",
       "version": "1.0.0",
       "oldBadge": "Community",
       "newBadge": "Certified",

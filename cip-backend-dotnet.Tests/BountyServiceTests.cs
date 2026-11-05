@@ -36,6 +36,7 @@ public class BountyServiceTests
         public Review? Reject(string reviewId, string reviewerEmail, string? feedback = null) => throw new NotImplementedException();
         public Review? CancelReview(string reviewId, string reviewerEmail, string? reason = null) => throw new NotImplementedException();
         public Review? GetReview(string reviewId) => _store.TryGetValue(reviewId, out var r) ? r : null;
+        public IEnumerable<Review> GetAllReviews() => _store.Values.ToList();
         public IEnumerable<Review> GetPendingReviews() => _store.Values.Where(r => r.Status == ReviewStatus.Submitted || r.Status == ReviewStatus.UnderReview).ToList();
         public IEnumerable<Review> GetByProducer(string producerEmail) => _store.Values.Where(r => r.ProducerEmail == producerEmail).ToList();
         public Review UpdateSlaTarget(string reviewId, int slaTargetMinutes) => throw new NotImplementedException();

@@ -1,3 +1,26 @@
+---
+name: terraform-compliance-guard
+type: agent
+version: 1.0.0
+domain: DevOps & Security
+category: DevOps & Security
+description: Zero-Breaking-Change Infrastructure-as-Code (IaC) security scanner and policy compliance guard for Terraform. Audits CIS benchmarks, public ingress (0.0.0.0/0), TLS configurations, and synthesizes ready-to-apply remediation HCL diffs.
+author: Enterprise Cloud Governance <devops-compliance@maqsoftware.com>
+tags:
+  - terraform
+  - iac
+  - security-compliance
+  - cis-benchmarks
+  - cloud-security
+  - hcl
+useCases:
+  - Auditing Terraform workspaces (*.tf, *.tfvars, tfplan.json) against CIS security policies
+  - Detecting risky 0.0.0.0/0 security group ingress and exposed public IPs
+  - Enforcing server-side encryption and TLS 1.2+ across Azure and AWS storage
+  - Automatically synthesizing copy-pasteable remediation HCL diff snippets
+argument-hint: 'Ask @copilot or engineering-commons-advisor to audit Terraform code for security and CIS compliance'
+---
+
 # Terraform Compliance Guard Agent
 
 **Artifact Name**: `terraform-compliance-guard`  
@@ -29,10 +52,10 @@ It acts as an automated security gate in developer workspaces and CI/CD pull req
 
 ---
 
-## Usage in APM
+## Usage in CIP
 
 ```bash
-company-apm install terraform-compliance-guard
+engineering-commons install terraform-compliance-guard
 ```
 
 Run security check on your workspace:

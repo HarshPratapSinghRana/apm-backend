@@ -1,0 +1,532 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 980" width="100%" height="100%">
+  <defs>
+    <!-- Drop Shadows -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.06" />
+    </filter>
+    <filter id="glow-gold" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#D97706" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Marker Arrowheads -->
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#0284C7" />
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748B" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#9333EA" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#EA580C" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#DC2626" />
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .title-pill { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 800; font-size: 16px; fill: #0F172A; }
+    .box-header { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 800; font-size: 15px; }
+    .box-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748B; font-weight: 500; }
+    .card-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 13px; fill: #0F172A; }
+    .card-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748B; }
+    .card-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #334155; }
+    .step-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 800; font-size: 11px; fill: #FFFFFF; }
+    .step-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 11.5px; fill: #065F46; }
+    .mono { font-family: Consolas, "Fira Code", monospace; font-size: 10px; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1720" height="980" fill="#F8FAFC" rx="14" />
+
+  <!-- =================================================== -->
+  <!-- TOP HEADER PILL: Certification Layer Architecture   -->
+  <!-- =================================================== -->
+  <g transform="translate(560, 16)">
+    <rect width="600" height="42" rx="21" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow)" />
+    <circle cx="28" cy="21" r="12" fill="url(#goldGrad)" />
+    <path d="M 23 21 L 27 25 L 34 17" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" />
+    <text x="315" y="27" text-anchor="middle" class="title-pill">AI Artifact Certification Layer &amp; 100% Zero-DB Architecture</text>
+  </g>
+
+  <!-- =================================================== -->
+  <!-- LEFT COLUMN 1: PRODUCER & INGESTION PIPELINE        -->
+  <!-- =================================================== -->
+  <g transform="translate(40, 75)">
+    <!-- Container -->
+    <rect width="340" height="380" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect width="340" height="40" rx="12" fill="#F1F5F9" />
+    <rect y="26" width="340" height="14" fill="#F1F5F9" />
+    <text x="170" y="26" text-anchor="middle" class="box-header" fill="#334155">1. Producer &amp; Pre-Publish Gates</text>
+
+    <!-- Step 1 Badge -->
+    <g transform="translate(15, 50)">
+      <rect width="210" height="24" rx="12" fill="#D1FAE5" stroke="#A7F3D0" stroke-width="1" />
+      <circle cx="12" cy="12" r="9" fill="url(#stepGrad)" />
+      <text x="12" y="16" text-anchor="middle" class="step-text">1</text>
+      <text x="28" y="16" class="step-desc">engineering-commons publish</text>
+    </g>
+
+    <!-- Author & Tool Box -->
+    <g transform="translate(15, 84)">
+      <rect width="310" height="54" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+      <circle cx="26" cy="27" r="16" fill="#4F46E5" />
+      <circle cx="26" cy="21" r="6" fill="#FFFFFF" />
+      <path d="M 16 35 A 10 9 0 0 1 36 35" fill="#FFFFFF" />
+      <text x="54" y="23" class="card-title" font-size="12.5px">Author / Contributor</text>
+      <text x="54" y="39" class="card-sub">Submits Agent / Skill / MCP Package</text>
+    </g>
+
+    <!-- Pre-Publish Hard Gates (C1-C4) -->
+    <g transform="translate(15, 148)">
+      <rect width="310" height="130" rx="8" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.2" />
+      <text x="14" y="22" class="card-title" font-size="12px" fill="#991B1B">Pre-Publish Hard Gates (Zero-Tolerance)</text>
+      
+      <g transform="translate(14, 34)">
+        <circle cx="6" cy="7" r="3.5" fill="#DC2626" />
+        <text x="16" y="11" class="card-body" font-size="10.5px"><tspan font-weight="700">C1 Manifest Linter:</tspan> Valid YAML &amp; metadata</text>
+
+        <circle cx="6" cy="25" r="3.5" fill="#DC2626" />
+        <text x="16" y="29" class="card-body" font-size="10.5px"><tspan font-weight="700">C2 Schema Strictness:</tspan> SemVer 2.0 &amp; params</text>
+
+        <circle cx="6" cy="43" r="3.5" fill="#DC2626" />
+        <text x="16" y="47" class="card-body" font-size="10.5px"><tspan font-weight="700">C3 Zero-Secret Scan:</tspan> 0 hardcoded keys/passwords</text>
+
+        <circle cx="6" cy="61" r="3.5" fill="#DC2626" />
+        <text x="16" y="65" class="card-body" font-size="10.5px"><tspan font-weight="700">C4 SCA CVE Scan:</tspan> 0 known dependency flaws</text>
+      </g>
+      <rect x="12" y="106" width="286" height="18" rx="4" fill="#FEE2E2" />
+      <text x="155" y="119" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9px" font-weight="700" fill="#B91C1C">Gate Fail ➔ Hard Reject (Not Published)</text>
+    </g>
+
+    <!-- SHA-256 Hash Generator -->
+    <g transform="translate(15, 288)">
+      <rect width="310" height="80" rx="8" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1.2" />
+      <circle cx="22" cy="22" r="12" fill="#059669" />
+      <path d="M 17 22 L 20 25 L 27 18" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" />
+      <text x="44" y="21" class="card-title" font-size="12px" fill="#065F46">SHA-256 Content Hash Lock</text>
+      <text x="44" y="35" class="card-sub" fill="#047857">fingerprint = SHA256(manifest + code)</text>
+      <rect x="10" y="47" width="290" height="25" rx="4" fill="#D1FAE5" />
+      <text x="155" y="63" text-anchor="middle" class="mono" fill="#065F46">🔒 Stored in SharePoint ContentHash Column</text>
+    </g>
+  </g>
+
+  <!-- =================================================== -->
+  <!-- LEFT COLUMN 2: CONSUMER WORKSPACES & TELEMETRY     -->
+  <!-- =================================================== -->
+  <g transform="translate(40, 475)">
+    <!-- Container -->
+    <rect width="340" height="475" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect width="340" height="40" rx="12" fill="#F0FDF4" />
+    <rect y="26" width="340" height="14" fill="#F0FDF4" />
+    <text x="170" y="26" text-anchor="middle" class="box-header" fill="#166534">2. Developer Clients &amp; Live Telemetry</text>
+
+    <!-- Step 2 Badge -->
+    <g transform="translate(15, 50)">
+      <rect width="250" height="24" rx="12" fill="#D1FAE5" stroke="#A7F3D0" stroke-width="1" />
+      <circle cx="12" cy="12" r="9" fill="url(#stepGrad)" />
+      <text x="12" y="16" text-anchor="middle" class="step-text">2</text>
+      <text x="28" y="16" class="step-desc">1-Click Install &amp; In-IDE Execution</text>
+    </g>
+
+    <!-- VS Code Extension & Local Runtime -->
+    <g transform="translate(15, 84)">
+      <rect width="310" height="110" rx="8" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1.2" />
+      <rect x="12" y="12" width="32" height="32" rx="6" fill="#0284C7" />
+      <path d="M 21 19 L 29 28 L 23 34 L 18 28 Z" fill="#FFFFFF" opacity="0.9" />
+      <text x="52" y="25" class="card-title" font-size="12.5px" fill="#0369A1">VS Code Extension Runtime</text>
+      <text x="52" y="39" class="card-sub">Local Sandbox • Auto-Update • Lockfiles</text>
+      
+      <rect x="12" y="52" width="286" height="48" rx="5" fill="#E0F2FE" />
+      <text x="20" y="70" class="mono" fill="#0369A1">&gt; .agents/skills/&lt;name&gt; (MCP / Prompts)</text>
+      <text x="20" y="87" font-family="Segoe UI, sans-serif" font-size="9.5px" font-weight="600" fill="#0284C7">⚡ TTFE &lt;= 60s • Zero Manual Config Required</text>
+    </g>
+
+    <!-- Telemetry Emitter Card -->
+    <g transform="translate(15, 204)">
+      <rect width="310" height="120" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" />
+      <circle cx="24" cy="22" r="12" fill="#0F172A" />
+      <text x="20" y="26" fill="#38BDF8" font-family="Consolas" font-weight="700" font-size="10px">&gt;_</text>
+      <text x="44" y="21" class="card-title" font-size="12px">sharepointTelemetryService.ts</text>
+      <text x="44" y="35" class="card-sub">Batched Invocations, Latency &amp; Crashes</text>
+
+      <g transform="translate(12, 46)">
+        <text x="0" y="14" class="card-body" font-size="10px">• Execution Success / Failure (ESR &gt;= 98%)</text>
+        <text x="0" y="28" class="card-body" font-size="10px">• Latency Profile (TTFT &lt;= 800ms / End-to-End SLA)</text>
+        <text x="0" y="42" class="card-body" font-size="10px">• Appends to SharePoint Telemetry.csv</text>
+        <text x="0" y="58" font-family="Segoe UI, sans-serif" font-size="9.5px" font-weight="700" fill="#D97706">🛡️ Velocity Cap: Max 5 counted runs / dev / day</text>
+      </g>
+    </g>
+
+    <!-- Post-Run In-IDE Feedback -->
+    <g transform="translate(15, 334)">
+      <rect width="310" height="125" rx="8" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1.2" />
+      <circle cx="24" cy="22" r="12" fill="#D97706" />
+      <text x="19" y="26" fill="#FFFFFF" font-size="13px">★</text>
+      <text x="44" y="21" class="card-title" font-size="12px" fill="#92400E">In-IDE Star Rating &amp; CSAT Pulse</text>
+      <text x="44" y="35" class="card-sub" fill="#78350F">Writes to Engineering-Commons-Reviews List</text>
+
+      <g transform="translate(12, 48)">
+        <text x="0" y="14" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="700" fill="#B45309">Target: Rating &gt;= 4.5 ★ | Net CSAT &gt;= +70</text>
+        <rect x="0" y="24" width="286" height="42" rx="4" fill="#FDE68A" />
+        <text x="143" y="40" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9px" font-weight="800" fill="#92400E">TRUST PRINCIPLE T1: NO SELF-CERTIFICATION</text>
+        <text x="143" y="54" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8.5px" fill="#78350F">Author Entra ID OID is hard-excluded from rating scores</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- =================================================== -->
+  <!-- MIDDLE COLUMN: IDENTITY & INGESTION PIPELINE        -->
+  <!-- =================================================== -->
+  
+  <!-- Entra ID SSO Card -->
+  <g transform="translate(405, 235)">
+    <rect width="145" height="140" rx="10" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.5" filter="url(#card-shadow)" />
+    <circle cx="72" cy="36" r="19" fill="#0078D4" />
+    <path d="M 64 36 L 70 42 L 81 30" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <text x="72" y="72" text-anchor="middle" class="card-title" font-size="12px">Microsoft</text>
+    <text x="72" y="87" text-anchor="middle" class="card-title" font-size="12px">Entra ID (SSO)</text>
+    <text x="72" y="103" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9.5px" fill="#64748B">JWT / OID Claims</text>
+    <rect x="10" y="112" width="125" height="20" rx="4" fill="#EFF6FF" />
+    <text x="72" y="126" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8.5px" font-weight="700" fill="#1D4ED8">Corporate Verified</text>
+  </g>
+
+  <!-- Ingestion Controller Card -->
+  <g transform="translate(405, 550)">
+    <rect width="145" height="155" rx="10" fill="#FFFFFF" stroke="#FDBA74" stroke-width="1.5" filter="url(#card-shadow)" />
+    <rect x="15" y="15" width="28" height="28" rx="6" fill="#EA580C" />
+    <path d="M 23 29 L 35 29 M 29 23 L 29 35" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <text x="50" y="27" class="card-title" font-size="11.5px" fill="#9A3412">Usage API</text>
+    <text x="50" y="40" class="card-title" font-size="10.5px" fill="#C2410C">Ingestion</text>
+    <text x="15" y="64" class="card-sub">UsageController.cs</text>
+    
+    <rect x="10" y="74" width="125" height="70" rx="5" fill="#FFF7ED" />
+    <text x="16" y="90" font-family="Segoe UI, sans-serif" font-size="8.5px" font-weight="700" fill="#C2410C">• Velocity Throttler</text>
+    <text x="16" y="104" font-family="Segoe UI, sans-serif" font-size="8.5px" fill="#9A3412">• Machine Hashing</text>
+    <text x="16" y="118" font-family="Segoe UI, sans-serif" font-size="8.5px" fill="#9A3412">• Direct SP Ingestion</text>
+    <text x="16" y="132" font-family="Segoe UI, sans-serif" font-size="8.5px" font-weight="700" fill="#059669">➔ Verified Events</text>
+  </g>
+
+  <!-- Connectors Left to Middle -->
+  <path d="M 380 315 L 405 315" stroke="#059669" stroke-width="1.8" fill="none" marker-end="url(#arrow-green)" />
+  <path d="M 380 600 L 405 600" stroke="#0284C7" stroke-width="1.8" fill="none" marker-end="url(#arrow-blue)" />
+
+  <!-- =================================================== -->
+  <!-- CENTER COLUMN: CORE .NET 10 CERTIFICATION ENGINE    -->
+  <!-- =================================================== -->
+  <g transform="translate(575, 75)">
+    <!-- Outer Container -->
+    <rect width="480" height="875" rx="14" fill="#F8FAFC" stroke="#0284C7" stroke-width="1.8" stroke-dasharray="6,4" filter="url(#shadow)" />
+    <text x="240" y="28" text-anchor="middle" class="box-header" fill="#0369A1">3. Core Certification Engine &amp; AI Evaluation Cluster</text>
+    <text x="240" y="44" text-anchor="middle" class="box-sub">Hosted on Azure Container Apps (.NET 10) • Dynamic Health Scoring (DHS)</text>
+
+    <!-- Step 3 Badge -->
+    <g transform="translate(20, 56)">
+      <rect width="290" height="24" rx="12" fill="#D1FAE5" stroke="#A7F3D0" stroke-width="1" />
+      <circle cx="12" cy="12" r="9" fill="url(#stepGrad)" />
+      <text x="12" y="16" text-anchor="middle" class="step-text">3</text>
+      <text x="28" y="16" class="step-desc">Continuous Dynamic Health Score (DHS)</text>
+    </g>
+
+    <!-- Sub-Box 1: CertificationService.cs Scoring Logic -->
+    <g transform="translate(20, 88)">
+      <rect width="440" height="170" rx="10" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1.4" filter="url(#card-shadow)" />
+      <circle cx="24" cy="22" r="12" fill="#0284C7" />
+      <path d="M 18 22 L 30 22 M 24 16 L 24 28" stroke="#FFFFFF" stroke-width="2" />
+      <text x="46" y="21" class="card-title" font-size="12.5px" fill="#0369A1">CertificationService.cs &amp; DHS Formula</text>
+      <text x="46" y="35" class="card-sub">Multi-Signal Weighted Evaluation Matrix</text>
+
+      <rect x="12" y="46" width="416" height="40" rx="6" fill="#F0F9FF" />
+      <text x="20" y="61" font-family="Segoe UI, sans-serif" font-size="9.5px" font-weight="700" fill="#0369A1">DHS = 0.25·Adoption + 0.20·Feedback + 0.20·Health + 0.15·DX + 0.10·Bench + 0.10·MCP</text>
+      <text x="20" y="76" font-family="Segoe UI, sans-serif" font-size="9px" fill="#0284C7">Composite = (S_Adoption × 0.25) + (S_Reliability × 0.30) + (S_Quality × 0.30) + (S_Feedback × 0.15)</text>
+
+      <!-- Null Rule Alert -->
+      <rect x="12" y="92" width="416" height="68" rx="6" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1" />
+      <text x="20" y="108" font-family="Segoe UI, sans-serif" font-size="9.5px" font-weight="800" fill="#92400E">⚠️ RELIABILITY NULL RULE (Sample Size Gate):</text>
+      <text x="20" y="123" font-family="Segoe UI, sans-serif" font-size="9px" fill="#78350F">If total_invocations &lt; 10 ➔ Reliability = null ➔ Composite is NOT computed</text>
+      <text x="20" y="137" font-family="Segoe UI, sans-serif" font-size="9px" font-weight="700" fill="#B45309">Badge pinned at Community tier with UI display: &quot;Not yet enough data&quot;</text>
+      <text x="20" y="151" font-family="Segoe UI, sans-serif" font-size="8.5px" fill="#78350F">Trust Principle T2: Danger is never averaged away with synthetic high scores.</text>
+    </g>
+
+    <!-- Sub-Box 2: Dynamic AI Evaluation Cluster -->
+    <g transform="translate(20, 268)">
+      <rect width="440" height="200" rx="10" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="1.4" filter="url(#card-shadow)" />
+      <circle cx="24" cy="22" r="12" fill="#7C3AED" />
+      <path d="M 18 26 L 24 16 L 30 26 Z" fill="#FFFFFF" />
+      <text x="46" y="21" class="card-title" font-size="12.5px" fill="#6D28D9">Dynamic AI Evaluation Cluster</text>
+      <text x="46" y="35" class="card-sub">Automated Protocol, Benchmark &amp; LLM Referee Gates</text>
+
+      <!-- Evaluator 1: MCP Validator -->
+      <g transform="translate(12, 46)">
+        <rect width="416" height="44" rx="6" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1" />
+        <text x="14" y="18" class="card-title" font-size="11px" fill="#7E22CE">MCP Protocol JSON-RPC 2.0 Validator (Hard Gate)</text>
+        <text x="14" y="33" class="card-sub" font-size="9.5px">Strict JSON Schema parameter typing • Standard error envelopes (-32600)</text>
+      </g>
+
+      <!-- Evaluator 2: Golden Benchmark Runner -->
+      <g transform="translate(12, 96)">
+        <rect width="416" height="44" rx="6" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1" />
+        <text x="14" y="18" class="card-title" font-size="11px" fill="#7E22CE">Golden Benchmark Harness + Hidden Hold-Out Suite</text>
+        <text x="14" y="33" class="card-sub" font-size="9.5px">50-200 Scenarios (Pass &gt;= 95%) • Private test suite defeats hardcoded cheats</text>
+      </g>
+
+      <!-- Evaluator 3: LLM-as-a-Judge Referee -->
+      <g transform="translate(12, 146)">
+        <rect width="416" height="44" rx="6" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1" />
+        <text x="14" y="18" class="card-title" font-size="11px" fill="#7E22CE">LLM-as-a-Judge Referee Node (Dual-Judge G-Eval)</text>
+        <text x="14" y="33" class="card-sub" font-size="9.5px">Score &gt;= 90/100 • XML Delimiter Sandboxing stops prompt injection attacks</text>
+      </g>
+    </g>
+
+    <!-- Sub-Box 3: Lifecycle State Machine -->
+    <g transform="translate(20, 478)">
+      <rect width="440" height="185" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.4" filter="url(#card-shadow)" />
+      <text x="220" y="22" text-anchor="middle" class="card-title" font-size="12.5px" fill="#0F172A">Certification Lifecycle &amp; State Machine</text>
+
+      <!-- Badges Flow -->
+      <g transform="translate(12, 36)">
+        <!-- Community -->
+        <rect x="0" y="0" width="88" height="34" rx="6" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1" />
+        <text x="44" y="17" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="700" fill="#475569">Community</text>
+        <text x="44" y="28" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8px" fill="#64748B">Initial Tier</text>
+
+        <!-- Arrow -->
+        <path d="M 92 17 L 106 17" stroke="#64748B" stroke-width="1.5" fill="none" marker-end="url(#arrow-gray)" />
+
+        <!-- Verified -->
+        <rect x="110" y="0" width="88" height="34" rx="6" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1" />
+        <text x="154" y="17" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="700" fill="#1D4ED8">Verified</text>
+        <text x="154" y="28" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8px" fill="#2563EB">Gates Cleared</text>
+
+        <!-- Arrow -->
+        <path d="M 202 17 L 216 17" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#arrow-green)" />
+
+        <!-- Certified Gold -->
+        <rect x="220" y="0" width="98" height="34" rx="6" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5" filter="url(#glow-gold)" />
+        <text x="269" y="17" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="800" fill="#B45309">Certified 🥇</text>
+        <text x="269" y="28" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8px" fill="#92400E">DHS &gt;= 82 | U &gt;= 3</text>
+
+        <!-- Arrow -->
+        <path d="M 322 17 L 336 17" stroke="#EA580C" stroke-width="1.5" fill="none" marker-end="url(#arrow-orange)" />
+
+        <!-- At-Risk -->
+        <rect x="340" y="0" width="84" height="34" rx="6" fill="#FFF7ED" stroke="#FB923C" stroke-width="1" />
+        <text x="382" y="17" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="700" fill="#C2410C">At-Risk</text>
+        <text x="382" y="28" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8px" fill="#EA580C">14-day Grace</text>
+      </g>
+
+      <!-- Revoked Badge -->
+      <g transform="translate(155, 80)">
+        <rect width="140" height="28" rx="6" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.2" />
+        <text x="70" y="18" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="800" fill="#B91C1C">REVOKED (Instant)</text>
+      </g>
+
+      <!-- Version Integrity & Asymmetry Note -->
+      <rect x="12" y="118" width="416" height="58" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+      <text x="20" y="134" font-family="Segoe UI, sans-serif" font-size="9px" font-weight="700" fill="#0F172A">• Scenario A (v1.2 ➔ v1.3 Upgrade): 72-Hour Provisional Window; re-earns independently.</text>
+      <text x="20" y="149" font-family="Segoe UI, sans-serif" font-size="9px" font-weight="700" fill="#0F172A">• Scenario B (SharePoint Direct Edit): Instant Revocation via ContentHash signature.</text>
+      <text x="20" y="164" font-family="Segoe UI, sans-serif" font-size="8.5px" fill="#64748B">Asymmetric Policy: Immediate loss on gate fail, slow telemetry re-accumulation to re-enter.</text>
+    </g>
+
+    <!-- Sub-Box 4: Sovereign SharePoint Data Foundation (100% Zero DB Cost) -->
+    <g transform="translate(20, 672)">
+      <rect width="440" height="190" rx="10" fill="#FFFFFF" stroke="#008272" stroke-width="1.4" filter="url(#card-shadow)" />
+      <rect x="12" y="12" width="30" height="30" rx="6" fill="#008272" />
+      <circle cx="27" cy="27" r="7" fill="#FFFFFF" opacity="0.9" />
+      <text x="50" y="24" class="card-title" font-size="12.5px" fill="#00695C">SharePoint Online Data Foundation (100% Zero DB Cost)</text>
+      <text x="50" y="38" class="card-sub">Microsoft Graph API • Sites.Selected • Native M365 Storage</text>
+
+      <g transform="translate(12, 50)">
+        <!-- Box 1: Artifacts -->
+        <g transform="translate(0, 0)">
+          <rect width="200" height="58" rx="6" fill="#E6FFFA" stroke="#5EEAD4" stroke-width="0.8" />
+          <text x="10" y="17" class="card-title" font-size="10.5px" fill="#00695C">Engineering-Commons-Artifacts</text>
+          <text x="10" y="32" class="mono" fill="#004D40">Title, Version, Author</text>
+          <text x="10" y="47" class="mono" font-weight="700" fill="#00796B">ContentHash (SHA-256)</text>
+        </g>
+
+        <!-- Box 2: Telemetry -->
+        <g transform="translate(215, 0)">
+          <rect width="200" height="58" rx="6" fill="#E6FFFA" stroke="#5EEAD4" stroke-width="0.8" />
+          <text x="10" y="17" class="card-title" font-size="10.5px" fill="#00695C">Engineering-Commons-Telemetry</text>
+          <text x="10" y="32" class="mono" fill="#004D40">UserId (Entra OID)</text>
+          <text x="10" y="47" class="mono" fill="#004D40">Success, Latency, Telemetry.csv</text>
+        </g>
+
+        <!-- Box 3: Reviews -->
+        <g transform="translate(0, 68)">
+          <rect width="200" height="58" rx="6" fill="#E6FFFA" stroke="#5EEAD4" stroke-width="0.8" />
+          <text x="10" y="17" class="card-title" font-size="10.5px" fill="#00695C">Engineering-Commons-Reviews</text>
+          <text x="10" y="32" class="mono" fill="#004D40">Rating (1-5★), Comment</text>
+          <text x="10" y="47" class="mono" fill="#004D40">Sentiment, ReviewStatus</text>
+        </g>
+
+        <!-- Box 4: Audit Log -->
+        <g transform="translate(215, 68)">
+          <rect width="200" height="58" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1" />
+          <text x="10" y="17" class="card-title" font-size="10.5px" fill="#991B1B">Engineering-Commons-Audit-Log</text>
+          <text x="10" y="32" class="mono" fill="#7F1D1D">OldBadge, NewBadge, Reason</text>
+          <text x="10" y="47" class="mono" font-weight="700" fill="#991B1B">🔒 IMMUTABLE AUDIT LOG</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Connectors Middle to Right -->
+  <path d="M 550 625 L 575 625" stroke="#EA580C" stroke-width="1.8" fill="none" marker-end="url(#arrow-orange)" />
+
+  <!-- =================================================== -->
+  <!-- RIGHT COLUMN 1: STORAGE & SHAREPOINT COMMONS        -->
+  <!-- =================================================== -->
+  <g transform="translate(1095, 75)">
+    <!-- Container -->
+    <rect width="585" height="400" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect width="585" height="40" rx="12" fill="#E6FFFA" />
+    <rect y="26" width="585" height="14" fill="#E6FFFA" />
+    <text x="292" y="26" text-anchor="middle" class="box-header" fill="#00695C">4. Microsoft 365 SharePoint Online (Exclusive Storage)</text>
+
+    <!-- Step 4 Badge -->
+    <g transform="translate(20, 52)">
+      <rect width="290" height="24" rx="12" fill="#D1FAE5" stroke="#A7F3D0" stroke-width="1" />
+      <circle cx="12" cy="12" r="9" fill="url(#stepGrad)" />
+      <text x="12" y="16" text-anchor="middle" class="step-text">4</text>
+      <text x="28" y="16" class="step-desc">100% Zero-DB Cost Architecture</text>
+    </g>
+
+    <!-- SharePoint Security Lockdown Card -->
+    <g transform="translate(20, 84)">
+      <rect width="545" height="135" rx="8" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1.2" />
+      <rect x="15" y="14" width="34" height="34" rx="6" fill="#008272" />
+      <circle cx="28" cy="27" r="7" fill="#FFFFFF" opacity="0.9" />
+      <circle cx="37" cy="35" r="4" fill="#FFFFFF" opacity="0.7" />
+      <text x="60" y="27" class="card-title" font-size="13px" fill="#00695C">SharePoint Storage &amp; Permission Lockdown</text>
+      <text x="60" y="42" class="card-sub">Engineering-Commons-Artifacts &amp; Metadata Lists</text>
+
+      <g transform="translate(15, 56)">
+        <text x="0" y="14" class="card-body" font-size="10.5px">• Document Library: Package archives (.zip / .json manifests)</text>
+        <text x="0" y="30" class="card-body" font-size="10.5px">• Synchronized Lists: Artifacts, Reviews.csv, Telemetry.csv, AuditLog.csv</text>
+        <rect x="0" y="42" width="515" height="30" rx="4" fill="#CCFBF1" stroke="#2DD4BF" stroke-width="1" />
+        <text x="257" y="56" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9.5px" font-weight="800" fill="#0F766E">🔒 STRICT READ-ONLY PERMISSIONS FOR ALL HUMAN USERS</text>
+        <text x="257" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8.5px" fill="#115E59">Write access exclusively granted to Backend Service Principal (Managed Identity)</text>
+      </g>
+    </g>
+
+    <!-- Downstream Consumers: Marketplace & CLI (PROPERLY OFFSET WITH ZERO OVERLAP) -->
+    <g transform="translate(20, 230)">
+      <rect width="545" height="155" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" />
+      <text x="15" y="22" class="card-title" font-size="12px">5. Discovery &amp; Verified Governance Surfaces</text>
+      
+      <g transform="translate(15, 36)">
+        <!-- LEFT SUB-CARD: VS Code Marketplace -->
+        <g transform="translate(0, 0)">
+          <rect width="250" height="105" rx="6" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.2" filter="url(#card-shadow)" />
+          <text x="14" y="20" class="card-title" font-size="11.5px" fill="#1D4ED8">VS Code Marketplace</text>
+          <text x="14" y="38" class="card-body" font-size="10px">• Live dynamic badge badges</text>
+          <text x="14" y="54" class="card-body" font-size="10px">• In-IDE Quality scorecards</text>
+          <text x="14" y="70" class="card-body" font-size="10px">• Dynamic Health meter (DHS)</text>
+          <text x="14" y="90" font-family="Segoe UI, sans-serif" font-size="9.5px" font-weight="700" fill="#059669">⚡ 1-Click Certified Installs</text>
+        </g>
+
+        <!-- RIGHT SUB-CARD: CLI Tooling Suite (PROPERLY ISOLATED & TRANSLATED) -->
+        <g transform="translate(265, 0)">
+          <rect width="250" height="105" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" filter="url(#card-shadow)" />
+          <text x="14" y="20" class="card-title" font-size="11.5px" fill="#0F172A">CLI Tooling Suite</text>
+          <text x="14" y="38" class="mono" fill="#334155">&gt; engineering-commons check</text>
+          <text x="14" y="54" class="mono" fill="#334155">&gt; engineering-commons status</text>
+          <text x="14" y="70" class="mono" fill="#334155">&gt; engineering-commons integrity</text>
+          <text x="14" y="90" class="mono" font-weight="700" fill="#059669">&gt; engineering-commons audit</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- =================================================== -->
+  <!-- RIGHT COLUMN 2: BACKGROUND DAEMONS & WATCHDOGS      -->
+  <!-- =================================================== -->
+  <g transform="translate(1095, 490)">
+    <!-- Container -->
+    <rect width="585" height="460" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect width="585" height="40" rx="12" fill="#FEF2F2" />
+    <rect y="26" width="585" height="14" fill="#FEF2F2" />
+    <text x="292" y="26" text-anchor="middle" class="box-header" fill="#991B1B">6. Continuous Background Daemons &amp; Anti-Tamper Security Watchdogs</text>
+
+    <!-- Daemon 1: IntegrityDaemon.cs (SHA-256 Re-hasher) -->
+    <g transform="translate(20, 54)">
+      <rect width="545" height="115" rx="8" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1.2" />
+      <circle cx="24" cy="24" r="13" fill="#E11D48" />
+      <path d="M 18 24 L 30 24 M 24 18 L 24 30" stroke="#FFFFFF" stroke-width="2" />
+      <text x="48" y="22" class="card-title" font-size="12px" fill="#9F1239">IntegrityDaemon.cs (Runs every 15 minutes)</text>
+      <text x="48" y="37" class="card-sub" fill="#BE123C">Detects out-of-band SharePoint source tampering / UI edits</text>
+
+      <g transform="translate(15, 50)">
+        <text x="0" y="14" class="card-body" font-size="10px">• Re-computes SHA-256 checksum of live SharePoint files &amp; compares against ContentHash column.</text>
+        <text x="0" y="30" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="700" fill="#9F1239">🚨 ON HASH MISMATCH: Instant Badge Revocation + SECURITY_TAMPER_EVENT logged</text>
+        <text x="0" y="46" class="card-body" font-size="10px">• Dispatches Microsoft Graph Security Alert to SecOps + Flags artifact for forced re-publish.</text>
+      </g>
+    </g>
+
+    <!-- Daemon 2: Hourly Certification Engine (Decay Cron) -->
+    <g transform="translate(20, 180)">
+      <rect width="545" height="88" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.2" />
+      <circle cx="24" cy="24" r="13" fill="#16A34A" />
+      <path d="M 24 15 L 24 25 L 31 25" stroke="#FFFFFF" stroke-width="2.2" fill="none" />
+      <text x="48" y="22" class="card-title" font-size="12px" fill="#166534">HourlyCertificationDaemon.cs (Hourly Cron)</text>
+      <text x="48" y="37" class="card-sub" fill="#15803D">Continuous Health Re-computation &amp; Automated Trust Decay</text>
+
+      <g transform="translate(15, 50)">
+        <text x="0" y="14" class="card-body" font-size="10px">• Re-evaluates live telemetry from Telemetry.csv &amp; refreshes Dynamic Health Scores.</text>
+        <text x="0" y="29" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="700" fill="#15803D">• TRUST PRINCIPLE T3 (CERTIFICATION DECAYS): Dead tools lose badges automatically.</text>
+      </g>
+    </g>
+
+    <!-- Daemon 3: SLA Inactivity & Expiry Daemon -->
+    <g transform="translate(20, 278)">
+      <rect width="545" height="88" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2" />
+      <circle cx="24" cy="24" r="13" fill="#D97706" />
+      <path d="M 24 16 L 24 25 M 24 29 L 24 30" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+      <text x="48" y="22" class="card-title" font-size="12px" fill="#92400E">SlaMonitoringBackgroundService.cs (Lifecycle Daemon)</text>
+      <text x="48" y="37" class="card-sub" fill="#78350F">Inactivity Warnings &amp; Automated Abandonment Management</text>
+
+      <g transform="translate(15, 50)">
+        <text x="0" y="14" class="card-body" font-size="10px">• 45-Day Inactivity Warning: Automated Microsoft Graph email dispatched to author.</text>
+        <text x="0" y="29" font-family="Segoe UI, sans-serif" font-size="10px" font-weight="700" fill="#B45309">• 60-Day Auto-Expiration: Dead artifacts gracefully demoted without breaking local code.</text>
+      </g>
+    </g>
+
+    <!-- Alert Dispatcher Footer -->
+    <g transform="translate(20, 376)">
+      <rect width="545" height="70" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" />
+      <text x="15" y="22" class="card-title" font-size="12px" fill="#334155">Security Alert &amp; Audit Log Notification Pipeline</text>
+      <text x="15" y="39" class="card-sub">Microsoft Graph API (Email) • Microsoft Teams Security Webhooks • SharePoint AuditLog.csv</text>
+      <text x="15" y="55" font-family="Segoe UI, sans-serif" font-size="9.5px" font-weight="700" fill="#0284C7">⚡ Zero-Latency Event Dispatch on any tampering, crash spike, or safety gate violation</text>
+    </g>
+  </g>
+
+  <!-- Connectors from Center Engine to Right Storage & Daemons -->
+  <path d="M 1055 280 L 1095 280" stroke="#008272" stroke-width="1.8" fill="none" marker-end="url(#arrow-green)" />
+  <path d="M 1055 700 L 1095 700" stroke="#DC2626" stroke-width="1.8" fill="none" marker-end="url(#arrow-red)" />
+
+</svg>

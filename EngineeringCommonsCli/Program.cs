@@ -110,7 +110,7 @@ int HandleSetUrl(string[] args)
     {
         var current = BackendClient.ResolveBackendUrl();
         Console.WriteLine($"Current Engineering Commons Backend URL: {current}");
-        Console.WriteLine("Usage: engineering-commons set-url <url> (e.g. https://ecommerce-app-chi-wine.vercel.app)");
+        Console.WriteLine("Usage: engineering-commons set-url <url> (e.g. https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io)");
         return 0;
     }
 

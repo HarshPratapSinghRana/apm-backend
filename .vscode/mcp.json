@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "cip-db-explorer": {
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/.mcp/cip-db-explorer/index.js"
+      ]
+    },
+    "time-mcp": {
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_server_time"
+      ]
+    }
+  }
+}

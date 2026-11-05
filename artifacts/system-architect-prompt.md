@@ -1,3 +1,26 @@
+---
+name: system-architect-prompt
+type: prompt
+version: 1.0.0
+domain: Architecture & Solution Design
+category: Architecture & Design
+description: Enterprise System Architect & Solution Design Prompt. Transforms business requirements into comprehensive C4 diagrams, DDD bounded contexts, database blueprints, and NFR specifications.
+author: Enterprise Architecture Guild <architecture@maqsoftware.com>
+tags:
+  - architecture
+  - solution-design
+  - c4-model
+  - ddd
+  - prompt-template
+  - cloud-native
+useCases:
+  - Transforming application requirements into enterprise High-Level Solution Designs (HLD)
+  - Synthesizing C4 component and container architecture diagrams in Mermaid format
+  - Defining Domain-Driven Design (DDD) bounded contexts and service interfaces
+  - Formulating Non-Functional Requirements (P99 latency, 99.99% availability, multi-region DR)
+argument-hint: 'Ask @copilot or engineering-commons-advisor to design system architecture, generate C4 diagrams, or plan solution blueprints'
+---
+
 # Enterprise System Architect & Solution Design Prompt
 
 **Artifact Name**: `system-architect-prompt`  

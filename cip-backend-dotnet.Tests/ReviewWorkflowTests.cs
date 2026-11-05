@@ -53,7 +53,8 @@ public class ReviewWorkflowTests
 
             // verify marketplace called
             var svc = _factory.Services.GetRequiredService<IMarketplaceService>() as TestMarketplaceService;
-            Assert.True(svc.Published.Any(p => p.ArtifactId == "test-art"));
+            Assert.NotNull(svc);
+            Assert.Contains(svc.Published, p => p.ArtifactId == "test-art");
         }
     }
 

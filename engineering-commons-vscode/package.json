@@ -279,7 +279,7 @@
         },
         "engineeringCommons.backendUrl": {
           "type": "string",
-          "default": "https://ecommerce-app-chi-wine.vercel.app",
+          "default": "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io",
           "description": "Base URL of the Engineering Commons Backend for usage tracking."
         },
         "engineeringCommons.notificationPollingIntervalMinutes": {

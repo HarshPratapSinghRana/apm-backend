@@ -12,7 +12,7 @@ public class TokenAuthenticationMiddleware
     public async Task InvokeAsync(HttpContext ctx, ITokenService tokens)
     {
         var auth = ctx.Request.Headers["Authorization"].ToString();
-        if (!string.IsNullOrEmpty(auth) && auth.StartsWith("Bearer "))
+        if (!string.IsNullOrEmpty(auth) && auth.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
         {
             var token = auth.Substring("Bearer ".Length).Trim();
             var user = tokens.ValidateToken(token);

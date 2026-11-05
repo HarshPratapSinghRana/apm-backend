@@ -159,7 +159,7 @@ export class ArtifactDetailsWebviewProvider {
         authProvider: IAuthenticationStatusProvider,
         cliExecutor: ICliExecutor,
         cliExecutable: string,
-        backendUrl = 'https://ecommerce-app-chi-wine.vercel.app',
+        backendUrl = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
         usageTracker?: CompositeArtifactUsageTracker,
         onInstalledCallback?: () => void,
         certificationService?: CertificationService
@@ -167,7 +167,7 @@ export class ArtifactDetailsWebviewProvider {
         this.authProvider = authProvider;
         this.cliExecutor = cliExecutor;
         this.cliExecutable = cliExecutable;
-        this.backendUrl = (backendUrl || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.usageTracker = usageTracker;
         this.onInstalledCallback = onInstalledCallback;
         this.certificationService = certificationService || new CertificationService(authProvider, cliExecutor, cliExecutable, this.backendUrl);
@@ -177,7 +177,7 @@ export class ArtifactDetailsWebviewProvider {
     }
 
     public setBackendUrl(url: string): void {
-        this.backendUrl = (url || 'https://ecommerce-app-chi-wine.vercel.app').replace(/\/+$/, '');
+        this.backendUrl = (url || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '');
         this.certificationService = new CertificationService(this.authProvider, this.cliExecutor, this.cliExecutable, this.backendUrl);
     }
 

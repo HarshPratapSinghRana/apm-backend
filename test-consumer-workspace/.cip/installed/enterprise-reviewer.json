@@ -1,0 +1,12 @@
+{
+  "ArtifactName": "enterprise-reviewer",
+  "ArtifactType": "agent",
+  "Version": "1.0.0",
+  "InstalledAt": "2026-08-20T11:27:35.1021773Z",
+  "PlacedFiles": [
+    ".github/agents/enterprise-reviewer/enterprise-reviewer.agent.md",
+    ".github/agents/enterprise-reviewer/instructions/code-quality.md",
+    ".github/agents/enterprise-reviewer/rules/security-rules.md",
+    ".github/agents/enterprise-reviewer/cip.yml"
+  ]
+}
