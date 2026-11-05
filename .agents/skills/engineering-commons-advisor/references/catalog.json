@@ -1032,10 +1032,10 @@
       "SQL Server"
     ],
     "useCases": [
-      "115 certified production prompts across all 7 SDLC stages",
-      "Medallion Lakehouse (Bronze/Silver/Gold) architecture patterns",
-      "Data profiling, quality checks, and SCD Type 1/2 transformation templates",
-      "DAX optimization, calculation groups, and semantic model guidelines"
+      "Data Lakehouse Architecture & Workspace Design",
+      "Data Profiling & Automated Schema Validation",
+      "ETL/ELT Pipeline Development with ADF and Fabric",
+      "Power BI Enterprise Modeling & DAX Optimization"
     ],
     "keyFeatures": [
       "115 certified production prompts across all 7 SDLC stages",
@@ -4664,9 +4664,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -4715,9 +4714,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -4769,9 +4767,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -4819,9 +4816,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -4869,9 +4865,8 @@
       "analysis"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -4920,9 +4915,8 @@
       "data-modeling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -4978,9 +4972,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5028,9 +5021,8 @@
       "analysis"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5080,9 +5072,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5136,9 +5127,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5190,9 +5180,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5242,9 +5231,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5292,9 +5280,8 @@
       "analysis"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5346,9 +5333,8 @@
       "data-factory"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5398,9 +5384,8 @@
       "sql-server"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5452,9 +5437,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Analysis & Planning",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5504,9 +5488,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5556,9 +5539,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5613,9 +5595,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5673,9 +5654,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5725,9 +5705,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5778,9 +5757,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5835,9 +5813,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5892,9 +5869,8 @@
       "cicd"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5945,9 +5921,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -5998,9 +5973,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6053,9 +6027,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6104,9 +6077,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Architecture & Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6161,9 +6133,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Deployment & CI/CD",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6217,9 +6188,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Deployment & CI/CD",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6269,9 +6239,8 @@
       "cicd"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6321,9 +6290,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6376,9 +6344,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6430,9 +6397,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6483,9 +6449,8 @@
       "cicd"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6535,9 +6500,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6586,9 +6550,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6640,9 +6603,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6692,9 +6654,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6743,9 +6704,8 @@
       "data-modeling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6797,9 +6757,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6849,9 +6808,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6900,9 +6858,8 @@
       "lakehouse"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -6950,9 +6907,8 @@
       "design"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7009,9 +6965,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7065,9 +7020,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Detailed Design",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7117,9 +7071,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7173,9 +7126,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7227,9 +7179,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7279,9 +7230,8 @@
       "lakehouse"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7335,9 +7285,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7391,9 +7340,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7441,9 +7389,8 @@
       "development"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7493,9 +7440,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7551,9 +7497,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7608,9 +7553,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7662,9 +7606,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7718,9 +7661,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7772,9 +7714,8 @@
       "lakehouse"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7825,9 +7766,8 @@
       "lakehouse"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7875,9 +7815,8 @@
       "development"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7931,9 +7870,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -7981,9 +7919,8 @@
       "development"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8032,9 +7969,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8090,9 +8026,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8141,9 +8076,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8193,9 +8127,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8247,9 +8180,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8303,9 +8235,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8355,9 +8286,8 @@
       "sql-server"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8410,9 +8340,8 @@
       "lakehouse"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8467,9 +8396,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8517,9 +8445,8 @@
       "development"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8575,9 +8502,8 @@
       "data-modeling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8627,9 +8553,8 @@
       "lakehouse"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8679,9 +8604,8 @@
       "lakehouse"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8734,9 +8658,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8788,9 +8711,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8842,9 +8764,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8896,9 +8817,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -8946,9 +8866,8 @@
       "development"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9003,9 +8922,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9058,9 +8976,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9111,9 +9028,8 @@
       "data-modeling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9161,9 +9077,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9212,9 +9127,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9264,9 +9178,8 @@
       "dax"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9315,9 +9228,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9367,9 +9279,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9422,9 +9333,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9480,9 +9390,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9531,9 +9440,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9584,9 +9492,8 @@
       "security"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9635,9 +9542,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9687,9 +9593,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9738,9 +9643,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9790,9 +9694,8 @@
       "dax"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9840,9 +9743,8 @@
       "development"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9891,9 +9793,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -9944,9 +9845,8 @@
       "data-modeling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10002,9 +9902,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10058,9 +9957,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10114,9 +10012,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10169,9 +10066,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Development & Implementation",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10220,9 +10116,8 @@
       "sql-server"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Requirement Gathering",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10271,9 +10166,8 @@
       "power-bi"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Requirement Gathering",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10323,9 +10217,8 @@
       "sql-server"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Requirement Gathering",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10376,9 +10269,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Requirement Gathering",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10434,9 +10326,8 @@
       "cicd"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Requirement Gathering",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10485,9 +10376,8 @@
       "databricks"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Support & Maintenance",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10538,9 +10428,8 @@
       "data-profiling"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Support & Maintenance",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10591,9 +10480,8 @@
       "databricks"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Support & Maintenance",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10647,9 +10535,8 @@
       "etl"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Support & Maintenance",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10700,9 +10587,8 @@
       "cicd"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Support & Maintenance",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
@@ -10750,9 +10636,8 @@
       "support"
     ],
     "useCases": [
-      "Verbatim prompt from Azure BI & Data Engineering Playbook",
-      "Certified for Microsoft Fabric, Synapse, Power BI & Databricks",
-      "Ready to run directly in GitHub Copilot & Antigravity"
+      "Support & Maintenance",
+      "Azure BI & Data Engineering Playbook"
     ],
     "keyFeatures": [
       "Verbatim prompt from Azure BI & Data Engineering Playbook",
