@@ -1834,24 +1834,28 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         }
 
         html {
-            overflow-x: auto;
+            overflow-x: hidden;
             overflow-y: auto;
+            width: 100%;
+            height: 100%;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
             background: var(--page-bg);
             color: var(--text-primary);
-            padding: 8px 8px 40px;
+            padding: 6px 6px 36px;
             font-size: 13px;
             line-height: 1.45;
             user-select: none;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            min-width: 100%;
             width: 100%;
-            overflow-x: auto;
+            min-width: 0;
+            max-width: 100%;
+            overflow-x: hidden;
             overflow-y: auto;
+            box-sizing: border-box;
         }
 
         /* Smooth visible scrollbar (both vertical and horizontal) */
@@ -1878,11 +1882,12 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         .panel {
             background: var(--panel-bg);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: visible;
+            border-radius: 12px;
+            overflow: hidden;
             box-shadow: none;
             width: 100%;
-            min-width: 450px;
+            min-width: 0;
+            max-width: 100%;
             box-sizing: border-box;
         }
 
@@ -2510,20 +2515,23 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         }
         .art-action {
             display: flex;
-            gap: 5px;
+            flex-wrap: wrap;
+            gap: 4px;
             align-items: center;
             width: 100%;
-            padding-top: 2px;
-            min-width: max-content;
+            min-width: 0;
+            padding-top: 4px;
+            box-sizing: border-box;
         }
         .art-action .btn-install,
         .art-action .installed-tag {
-            flex: 1 1 0;
-            min-width: max-content;
-            height: 27px;
-            font-size: 11px;
+            flex: 1 1 calc(25% - 4px);
+            min-width: 50px;
+            max-width: 100%;
+            height: 26px;
+            font-size: 10.5px;
             font-weight: 600;
-            padding: 4px 8px;
+            padding: 3px 6px;
             border-radius: 6px;
             border: 1px solid var(--btn-border);
             background: var(--btn-bg);
@@ -2533,10 +2541,11 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 3px;
             white-space: nowrap;
             box-sizing: border-box;
-            flex-shrink: 0;
+            flex-shrink: 1;
+            text-decoration: none;
         }
         .art-action .btn-install:hover {
             background: var(--accent);
@@ -3462,265 +3471,166 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         }
 
         /* ── Responsive Rules & Media Queries ────────────── */
-        @media (max-width: 380px) {
+        @media (max-width: 400px) {
             body {
-                padding: 4px 4px 30px;
+                padding: 4px 4px 28px !important;
+                overflow-x: hidden !important;
+                max-width: 100% !important;
+                width: 100% !important;
             }
             .panel {
-                border-radius: 10px;
+                border-radius: 10px !important;
+                min-width: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
             .user-header-banner {
-                padding: 6px 8px;
-                gap: 4px;
+                padding: 6px 8px !important;
+                gap: 5px !important;
+            }
+            .user-header-top {
+                gap: 5px !important;
             }
             .user-email-text {
-                max-width: 110px;
+                font-size: 11px !important;
+                max-width: 140px !important;
+            }
+            .user-role-pill {
+                font-size: 8.5px !important;
+                padding: 1px 4px !important;
+            }
+            .theme-toggle-btn {
+                padding: 2px 6px !important;
+                font-size: 10px !important;
+                height: 22px !important;
+            }
+            .switch-account-btn, .logout-btn {
+                height: 25px !important;
+                font-size: 10.5px !important;
+                padding: 3px 6px !important;
+            }
+            .tabbar {
+                padding: 5px 6px !important;
+                gap: 3px !important;
+            }
+            .tab {
+                padding: 5px 3px !important;
+                font-size: 11px !important;
+            }
+            .tab .tab-label {
+                font-size: 11px !important;
             }
             .search-row {
-                padding: 6px 8px 4px;
+                padding: 6px 8px 4px !important;
+            }
+            .search-input, .search-box {
+                font-size: 11.5px !important;
+                padding: 6px 10px 6px 28px !important;
             }
             .artifact-list {
-                padding: 0 6px 6px;
+                padding: 0 6px 6px !important;
             }
-            /* Keep button text readable and preserve action row */
-            .art-action .btn-text {
-                display: inline-block !important;
+            .artifact-row, .market-item-card {
+                padding: 8px !important;
+                gap: 6px !important;
+            }
+            .art-action {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 4px !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                box-sizing: border-box !important;
             }
             .art-action .btn-install,
             .art-action .installed-tag {
-                font-size: 11px !important;
-                padding: 4px 8px !important;
-                height: 27px !important;
-                min-width: max-content !important;
-                flex: 1 1 0 !important;
+                flex: 1 1 calc(33.333% - 4px) !important;
+                min-width: 48px !important;
+                max-width: 100% !important;
+                height: 25px !important;
+                font-size: 10.5px !important;
+                padding: 2px 4px !important;
                 display: inline-flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                white-space: nowrap !important;
-                flex-shrink: 0 !important;
+                box-sizing: border-box !important;
+                flex-shrink: 1 !important;
+            }
+            .art-action .btn-text {
+                display: inline-block !important;
+                font-size: 10.5px !important;
             }
             .art-action .btn-icon {
-                font-size: 12px !important;
+                font-size: 10.5px !important;
                 margin: 0 !important;
-                line-height: 1 !important;
             }
             .art-action .installed-tag svg {
-                width: 13px !important;
-                height: 13px !important;
+                width: 11px !important;
+                height: 11px !important;
             }
-        }
-
-        @media (max-width: 285px) {
-            body {
-                padding: 4px 2px 24px !important;
-                overflow-x: auto !important;
-                min-width: 100% !important;
-                width: 100% !important;
-                box-sizing: border-box !important;
-            }
-            .panel {
-                border-radius: 8px !important;
-                min-width: 450px !important;
-                width: 100% !important;
-                box-sizing: border-box !important;
-            }
-            #view-market, #view-bounties, #view-my-work, #view-notifications {
-                padding: 4px 6px 10px !important;
-                width: 100% !important;
-                box-sizing: border-box !important;
-            }
-
-            /* 1. Stack 3 Primary Navigation Tabs vertically (Market -> Bounties -> My work) */
-            .tabbar {
-                flex-direction: column !important;
-                gap: 5px !important;
-                padding: 7px 8px !important;
-            }
-            .tab {
-                width: 100% !important;
-                flex: none !important;
-                display: flex !important;
-                justify-content: space-between !important;
-                align-items: center !important;
-                padding: 7px 10px !important;
-                font-size: 12px !important;
-                text-align: left !important;
-            }
-            .tab .tab-label {
-                font-size: 12px !important;
-                font-weight: 600 !important;
-            }
-            .tab .badge, .tab .badge-count {
-                position: static !important;
-                top: auto !important;
-                right: auto !important;
-                margin-left: auto !important;
-                font-size: 9.5px !important;
-                min-width: 17px !important;
-                height: 17px !important;
-                padding: 0 5px !important;
-            }
-
-            /* 2. Switch horizontal artifact pills to clean dropdown selector */
-            .market-filter-pills, .bounties-filter-pills {
-                display: none !important;
-            }
-            .market-type-dropdown-wrapper, .bounties-type-dropdown-wrapper {
-                display: block !important;
-                padding: 4px 4px 6px !important;
-            }
-            .filter-dropdown-inner {
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: 3px !important;
-                width: 100% !important;
-            }
-            .filter-dropdown-label {
-                font-size: 10.5px !important;
-                font-weight: 700 !important;
-                color: var(--text-muted) !important;
-            }
-            .filter-select-control {
-                width: 100% !important;
-                font-size: 11.5px !important;
-                height: 28px !important;
-            }
-
-            /* 3. Responsive card layout in narrow sidebar */
-            .artifact-row, .market-item-card {
-                padding: 7px 8px !important;
-                gap: 6px !important;
-            }
-            .art-main {
-                width: 100% !important;
-                gap: 7px !important;
-                align-items: flex-start !important;
-            }
-            .art-icon {
-                width: 26px !important;
-                height: 26px !important;
-                font-size: 12px !important;
-                margin-top: 1px !important;
-            }
-            .art-info {
-                width: 100% !important;
-                min-width: 0 !important;
-            }
-            .art-name, .card-title {
-                font-size: 12px !important;
-                word-break: break-word !important;
-                overflow-wrap: break-word !important;
-            }
-            .art-action {
-                width: 100% !important;
-                padding-left: 0 !important;
-                display: flex !important;
-                gap: 4px !important;
-                justify-content: stretch !important;
-                margin-top: 2px !important;
-            }
-            .art-action .btn-install,
-            .art-action .installed-tag {
-                flex: 1 1 0 !important;
-                min-width: 0 !important;
-                max-width: none !important;
-                height: 25px !important;
-                padding: 3px 4px !important;
-                border-radius: 5px !important;
-                font-size: 10.5px !important;
-            }
-
-            /* 4. Responsive Bounties Section */
             .bounty-card {
-                padding: 10px 9px !important;
+                padding: 9px 10px !important;
                 border-radius: 9px !important;
                 gap: 6px !important;
             }
-            .bounty-top-row {
+            .bounty-card-actions {
+                flex-wrap: wrap !important;
                 gap: 4px !important;
             }
-            .category-pill, .bounty-pill {
-                font-size: 9px !important;
-                padding: 2px 6px !important;
-            }
-            .stage-pill {
-                font-size: 8.5px !important;
-                padding: 1.5px 5px !important;
-            }
-            .credits-reward {
-                font-size: 11px !important;
-            }
-            .bounty-title {
-                font-size: 12px !important;
-                line-height: 1.35 !important;
-            }
-            .workflow-stepper {
-                gap: 2px 3px !important;
-                font-size: 9px !important;
-                line-height: 1.4 !important;
-            }
-            .step-node {
-                font-size: 9px !important;
-                padding: 1px 3px !important;
-            }
-            .bounty-sla-timer-bar {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 3px !important;
-                width: 100% !important;
-            }
-            .sla-live-pill {
-                font-size: 9.5px !important;
-                padding: 2px 6px !important;
-                white-space: normal !important;
-                word-break: break-word !important;
-                line-height: 1.3 !important;
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-            }
-            .autorelease-live-text {
-                font-size: 9.5px !important;
-                white-space: normal !important;
-                word-break: break-word !important;
-                line-height: 1.3 !important;
-                max-width: 100% !important;
-            }
-
-            /* 5. Stack action buttons vertically in Bounties, Admin Tools, and Feedback Loops */
-            .bounty-card-actions, .admin-tools-actions, .access-request-actions, .feedback-choice-actions {
-                flex-direction: column !important;
-                gap: 5px !important;
-                width: 100% !important;
-            }
-            .bounty-card-actions > *, .admin-tools-actions > *, .access-request-actions > *, .feedback-choice-actions > * {
-                width: 100% !important;
-                flex: none !important;
-                min-height: 28px !important;
-                padding: 6px 10px !important;
-                font-size: 11.5px !important;
-                white-space: normal !important;
-                text-align: center !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-
-            /* 6. Responsive My Work & Admin Governance */
-            .access-card {
-                padding: 9px 8px !important;
-                border-radius: 8px !important;
+            .bounty-card-actions > * {
+                flex: 1 1 calc(50% - 4px) !important;
             }
             .review-box-item {
                 padding: 8px 10px !important;
             }
-            .review-name {
-                font-size: 12px !important;
-            }
+        }
+
+        @media (max-width: 320px) {
             .user-email-text {
-                max-width: 75px;
+                max-width: 100px !important;
+            }
+            .art-action .btn-install,
+            .art-action .installed-tag {
+                flex: 1 1 calc(50% - 4px) !important;
             }
             .tab {
-                padding: 6px 8px !important;
+                font-size: 10.5px !important;
+                padding: 5px 2px !important;
+            }
+            .tab .tab-label {
+                font-size: 10.5px !important;
+            }
+            .tab .badge, .tab .badge-count {
+                font-size: 9px !important;
+                min-width: 15px !important;
+                height: 15px !important;
+                padding: 0 3px !important;
+            }
+            .bounty-card-actions > * {
+                flex: 1 1 100% !important;
+            }
+        }
+
+        @media (max-width: 250px) {
+            body {
+                padding: 2px 2px 20px !important;
+            }
+            .user-email-text {
+                max-width: 70px !important;
+            }
+            .tabbar {
+                flex-direction: column !important;
+                gap: 3px !important;
+            }
+            .tab {
+                width: 100% !important;
+                justify-content: space-between !important;
+                padding: 5px 8px !important;
+            }
+            .art-action .btn-install,
+            .art-action .installed-tag {
+                flex: 1 1 100% !important;
             }
         }
 
