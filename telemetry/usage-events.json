@@ -16429,5 +16429,19 @@
     "platform": "EngineeringCommons",
     "workspace": "CIP-Engineering Commons",
     "timestamp": "2026-11-10T08:39:30.327Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons",
+    "artifactName": "engineering-commons",
+    "artifactType": "sso_microsoft",
+    "artifactVersion": "1.0.0",
+    "eventType": "ACTIVATED",
+    "action": "ACTIVATED",
+    "source": "VS_CODE",
+    "platform": "EngineeringCommons",
+    "workspace": "CIP-Engineering Commons",
+    "timestamp": "2026-11-10T08:48:25.421Z"
   }
 ]
