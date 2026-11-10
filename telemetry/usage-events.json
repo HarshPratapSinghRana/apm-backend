@@ -16222,7 +16222,7 @@
     "eventType": "USE",
     "action": "USE",
     "source": "VS_CODE",
-    "platform": "EngineeringCommons",
+    "platform": "CompanyApm",
     "sessionId": "doc-1794292690214",
     "metadata": "Workspace MODIFY: catalog.json",
     "workspace": "CIP-Engineering Commons",
