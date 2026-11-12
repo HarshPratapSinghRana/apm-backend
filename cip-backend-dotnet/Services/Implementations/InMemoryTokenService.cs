@@ -14,6 +14,7 @@ public class InMemoryTokenService : ITokenService
     private readonly ConcurrentDictionary<string, DateTime> _tokenExpirations = new(StringComparer.OrdinalIgnoreCase);
     private static readonly TimeSpan DefaultTokenLifetime = TimeSpan.FromHours(24);
     private readonly string _tokenCachePath;
+    private static readonly object _fileLock = new();
 
     public InMemoryTokenService()
     {
@@ -28,15 +29,18 @@ public class InMemoryTokenService : ITokenService
     {
         try
         {
-            if (File.Exists(_tokenCachePath))
+            lock (_fileLock)
             {
-                var json = File.ReadAllText(_tokenCachePath);
-                var dict = JsonSerializer.Deserialize<Dictionary<string, User>>(json);
-                if (dict != null)
+                if (File.Exists(_tokenCachePath))
                 {
-                    foreach (var kv in dict)
+                    var json = File.ReadAllText(_tokenCachePath);
+                    var dict = JsonSerializer.Deserialize<Dictionary<string, User>>(json);
+                    if (dict != null)
                     {
-                        _tokens[kv.Key] = kv.Value;
+                        foreach (var kv in dict)
+                        {
+                            _tokens[kv.Key] = kv.Value;
+                        }
                     }
                 }
             }
@@ -48,8 +52,11 @@ public class InMemoryTokenService : ITokenService
     {
         try
         {
-            var json = JsonSerializer.Serialize(_tokens);
-            File.WriteAllText(_tokenCachePath, json);
+            lock (_fileLock)
+            {
+                var json = JsonSerializer.Serialize(_tokens);
+                File.WriteAllText(_tokenCachePath, json);
+            }
         }
         catch { }
     }

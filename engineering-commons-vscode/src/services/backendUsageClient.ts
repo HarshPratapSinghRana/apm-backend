@@ -112,11 +112,13 @@ export class HttpBackendUsageClient implements IBackendUsageClient {
                 );
 
                 req.on('error', () => {
+                    if (this.queue.length < 100) { this.queue.unshift(...batch); }
                     resolve(false);
                 });
 
                 req.on('timeout', () => {
                     req.destroy();
+                    if (this.queue.length < 100) { this.queue.unshift(...batch); }
                     resolve(false);
                 });
 

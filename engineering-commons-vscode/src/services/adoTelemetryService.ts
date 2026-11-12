@@ -27,7 +27,7 @@ export const DEFAULT_ADO_CONFIG: AdoConfig = {
     project: process.env.AZURE_DEVOPS_PROJECT || 'Engineering Commons',
     repository: process.env.AZURE_DEVOPS_REPO || 'Engineering Commons',
     branch: 'main',
-    pat: process.env.AZURE_DEVOPS_PAT || 'A2RW5UcHDolfE7HztH9l9Ktj2kDF7Rzka3azqA39eTJR6EGFU9lbJQQJ99CJACAAAAAqDT5DAAASAZDO2Izl'
+    pat: process.env.AZURE_DEVOPS_PAT || ''
 };
 
 export class AdoTelemetryService implements IBackendUsageClient {
@@ -211,7 +211,7 @@ export class AdoTelemetryService implements IBackendUsageClient {
                 if (sess.adoPat || sess.pat) return sess.adoPat || sess.pat;
             } catch {}
         }
-        return 'A2RW5UcHDolfE7HztH9l9Ktj2kDF7Rzka3azqA39eTJR6EGFU9lbJQQJ99CJACAAAAAqDT5DAAASAZDO2Izl';
+        return '';
     }
 
     private async fetchAdoTelemetryEventsAsync(pat: string): Promise<ArtifactUsageEvent[]> {

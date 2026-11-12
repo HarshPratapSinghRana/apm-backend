@@ -39,7 +39,8 @@ public class BountiesController : ControllerBase
         {
             var e = email.Trim().ToLowerInvariant();
             if (e == "harsh.rana@maqsoftware.com" || e == "admin@company.com" || e == "admin@test.com" ||
-                e == "reviewer@company.com" || e == "reviewer@test.com" || e.StartsWith("designated-rev@")) return true;
+                e == "reviewer@company.com" || e == "reviewer@test.com" || 
+                (e.StartsWith("designated-rev@") && (e.EndsWith("@company.com") || e.EndsWith("@test.com") || e.EndsWith("@maqsoftware.com")))) return true;
         }
         return false;
     }

@@ -1,3 +1,15 @@
+// =========================================================================================
+// CIP #1067 – Engineering Commons CLI Console Entry Point (C# / .NET 10)
+// =========================================================================================
+//
+// Key Responsibilities:
+// 1. Dependency Injection: Registers authentication stores, SharePoint Graph clients, backend clients,
+//    and artifact lifecycle managers (classifiers, metadata, placement, diff renderers).
+// 2. Command Dispatch: Parses command-line verbs (login, sso, list, install, contribute, review, etc.)
+//    and routes execution to dedicated command handler classes.
+// 3. User Session Management: Persists authentication tokens and custom backend URLs into ~/.engineering-commons.
+// =========================================================================================
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,7 +25,9 @@ var builder = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices((context, services) =>
     {
-        // Services registrations
+        // =========================================================================
+        // SECTION 1: Service Layer & Dependency Injection Setup
+        // =========================================================================
         services.AddSingleton<EngineeringCommonsCli.Services.Interfaces.IAuthTokenStore, EngineeringCommonsCli.Services.Implementations.FileAuthTokenStore>();
         services.AddSingleton<ICliDiskCache, CliDiskCache>();
         services.AddSingleton<ISharePointGraphClient, SharePointGraphClient>();
@@ -28,7 +42,9 @@ var builder = Host.CreateDefaultBuilder(args)
         services.AddSingleton<IUnifiedDiffRenderer, UnifiedDiffRenderer>();
         services.AddSingleton<IWorkspaceContextExtractor, WorkspaceContextExtractor>();
 
-        // Command handlers
+        // =========================================================================
+        // SECTION 2: Command Handler Registrations
+        // =========================================================================
         services.AddTransient<LoginCommand>();
         services.AddTransient<ListCommand>();
         services.AddTransient<InstallCommand>();
@@ -55,6 +71,9 @@ if (args.Length == 0)
     return 0;
 }
 
+// =========================================================================
+// SECTION 3: Command Routing & Execution Switch Dispatcher
+// =========================================================================
 var cmd = args[0].ToLowerInvariant();
 var remaining = args.Skip(1).ToArray();
 
@@ -103,6 +122,9 @@ catch (Exception ex)
     return 1;
 }
 
+// =========================================================================
+// SECTION 4: Auxiliary Command Helpers (Backend URL, Logout, Help Guide)
+// =========================================================================
 int HandleSetUrl(string[] args)
 {
     var url = args.FirstOrDefault(a => !a.StartsWith('-'));

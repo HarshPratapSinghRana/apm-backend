@@ -41,8 +41,9 @@ public class CertificationsController : ControllerBase
         if (!string.IsNullOrEmpty(role)) return role.ToUpperInvariant();
         var email = GetUserEmail().ToLowerInvariant();
         if (email == "harsh.rana@maqsoftware.com" || email == "admin@company.com" || email == "admin@test.com" ||
-            email == "reviewer@company.com" || email == "reviewer@test.com" || email.StartsWith("designated-rev@")) return "REVIEWER";
-        if (email.StartsWith("producer@") || email.StartsWith("contrib@")) return "PRODUCER";
+            email == "reviewer@company.com" || email == "reviewer@test.com" || 
+            (email.StartsWith("designated-rev@") && (email.EndsWith("@company.com") || email.EndsWith("@test.com") || email.EndsWith("@maqsoftware.com")))) return "REVIEWER";
+        if ((email.StartsWith("producer@") || email.StartsWith("contrib@")) && (email.EndsWith("@company.com") || email.EndsWith("@test.com") || email.EndsWith("@maqsoftware.com"))) return "PRODUCER";
         return "CONSUMER";
     }
 

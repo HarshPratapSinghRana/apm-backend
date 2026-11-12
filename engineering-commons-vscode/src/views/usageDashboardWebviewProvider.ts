@@ -408,6 +408,7 @@ export class UsageDashboardWebviewProvider {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CIP Usage & Analytics</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https: data:; font-src https:; connect-src https: http:;">
     <style>
         :root {
             --page-bg: #0f0f12;

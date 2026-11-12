@@ -1,3 +1,20 @@
+/**
+ * =========================================================================================
+ * CIP #1067 – Engineering Commons Primary Explorer Sidebar Webview Provider
+ * =========================================================================================
+ *
+ * Architecture & UI Layout:
+ * 1. Top Header: Displays user online/offline status, authenticated email, role badge (ADMIN, REVIEWER,
+ *    PRODUCER, CONSUMER), Login/Switch button, Logout button, Theme toggle, and Analytics shortcut.
+ * 2. Tab 1 - Market: Searchable catalog of 200+ AI artifacts (Agents, Skills, MCP Servers, Prompts, Plugins).
+ *    Includes category pills, 1-click Install to workspace, ZIP download, and Details modal preview.
+ * 3. Tab 2 - Bounties: Gamified task marketplace for community contributions with credit rewards.
+ * 4. Tab 3 - My Work: Personal dashboard showing Claimed Bounties, Assigned Code Reviews, and RBAC Access Requests.
+ * 5. Tab 4 - Notifications: Real-time notification center for review approvals, changes requested, and feedback.
+ * 6. Responsive Design: Fluid breakpoints for narrow VS Code sidebars down to 200px width.
+ * =========================================================================================
+ */
+
 import * as vscode from 'vscode';
 import * as http from 'http';
 import * as https from 'https';
@@ -20,6 +37,9 @@ import { SharePointReviewService } from '../services/sharepoint/sharepointReview
 import { AdoGovernanceService, UserRoleRecord, AccessRequestRecord } from '../services/adoGovernanceService';
 import { AdvisorHookProvisioner } from '../services/advisorHookProvisioner';
 
+// =========================================================================
+// SECTION 1: Artifact Classification & Usability Utility Functions
+// =========================================================================
 export function isPlaybookArtifact(a: any): boolean {
     if (!a) { return false; }
     const cat = String(a.category || '').toLowerCase();
@@ -194,6 +214,9 @@ export function isProperAiArtifact(item: any): boolean {
     return false;
 }
 
+// =========================================================================
+// SECTION 2: Provider Class, In-Memory Cache & Service Dependencies
+// =========================================================================
 export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewViewProvider {
     public static readonly viewType = 'engineering-commons-explorer';
 
@@ -400,7 +423,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         } catch (err: any) {
             console.error('Error during initial sidebar refresh:', err);
             try {
-                webviewView.webview.html = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;color:#f87171;"><h3>Failed to load Engineering Commons</h3><p>${err?.message || err}</p></body></html>`;
+                const safeMsg = String(err?.message || err).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                webviewView.webview.html = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;color:#f87171;"><h3>Failed to load Engineering Commons</h3><p>${safeMsg}</p></body></html>`;
             } catch {}
         }
     }
@@ -419,7 +443,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         } catch (err: any) {
             console.error('Error rendering sidebar HTML:', err);
             try {
-                this._view.webview.html = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;color:#f87171;"><h3>Failed to load Engineering Commons</h3><p>${err?.message || err}</p></body></html>`;
+                const safeMsg = String(err?.message || err).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                this._view.webview.html = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;color:#f87171;"><h3>Failed to load Engineering Commons</h3><p>${safeMsg}</p></body></html>`;
             } catch {}
         }
     }
@@ -1103,6 +1128,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         });
     }
 
+    // =========================================================================
+    // SECTION 4: HTML Template Rendering & Dynamic View Generation
+    // =========================================================================
     private async renderHtml(force = false): Promise<string> {
         const isAuth = await this.authProvider.isAuthenticated();
         const userEmail = isAuth ? ((await this.authProvider.getEmail()) || 'user@company.com') : '';
@@ -1144,7 +1172,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         const isAdmin = isAuth && (
             rawRole === 'ADMIN' ||
             userEmail.toLowerCase() === 'harsh.rana@maqsoftware.com' ||
-            userEmail.toLowerCase().includes('admin')
+            userEmail.toLowerCase() === 'admin@company.com' ||
+            userEmail.toLowerCase() === 'admin@maqsoftware.com' ||
+            userEmail.toLowerCase() === 'admin@test.com'
         );
 
         const hasApprovedReviewerRequest = Boolean(
@@ -1718,6 +1748,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engineering Commons</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${this._view?.webview.cspSource || '*'} 'unsafe-inline'; script-src ${this._view?.webview.cspSource || '*'} 'unsafe-inline'; img-src ${this._view?.webview.cspSource || '*'} https: data:; font-src ${this._view?.webview.cspSource || '*'} https:; connect-src https: http:;">
     <style>
         :root, :root[data-theme="light"], .theme-light {
             --page-bg: #f5f6fb;
@@ -3888,8 +3919,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
             <!-- Row 2: Account Actions (Switch & Logout) -->
             <div class="user-header-bottom">
-                <button class="switch-account-btn" onclick="switchAccount()" title="Switch Login Account">
-                    Switch
+                <button class="switch-account-btn" onclick="${isAuth ? 'switchAccount()' : 'login()'}" title="${isAuth ? 'Switch Login Account' : 'Login to Engineering Commons'}">
+                    ${isAuth ? 'Switch' : 'Login'}
                 </button>
                 ${isAuth ? `
                 <button class="logout-btn" onclick="logout()" title="Log out of Engineering Commons">
@@ -4636,6 +4667,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         </div>
     </div>
 
+    <!-- ===================================================================== -->
+    <!-- SECTION 5: Client-Side Webview JavaScript (Search, Filters & RPC)      -->
+    <!-- ===================================================================== -->
     <script>
         const vscode = acquireVsCodeApi();
 

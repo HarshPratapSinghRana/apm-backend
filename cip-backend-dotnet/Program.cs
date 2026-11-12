@@ -1,3 +1,15 @@
+// =========================================================================================
+// CIP #1067 – Engineering Commons ASP.NET Core REST API Entry Point (.NET 10)
+// =========================================================================================
+//
+// Key Responsibilities:
+// 1. Environment & Secrets: Ingests configuration from .env and maps Azure DevOps / GitHub secrets.
+// 2. Data Persistence: Dual-mode support (SQLite database via EF Core or decoupled In-Memory mode).
+// 3. Domain Events: Dispatches asynchronous events for reviews, line comments, and approvals.
+// 4. Governance & Marketplace: Connects to Azure DevOps Git repositories and SharePoint Lists.
+// 5. Enterprise Security: Enforces strict HTTP security headers, CORS, and Token Authentication.
+// =========================================================================================
+
 using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +20,9 @@ using Microsoft.Extensions.Hosting;
 using CipBackend.Services.Interfaces;
 using CipBackend.Services.Implementations;
 
+// =========================================================================
+// SECTION 1: Local Environment & Azure DevOps Secret Mapping
+// =========================================================================
 // Load .env (if present) into environment variables so Configuration can pick them up.
 var envCandidates = new[]
 {
@@ -104,6 +119,9 @@ foreach (var envPath in envCandidates)
     }
 }
 
+// =========================================================================
+// SECTION 2: WebApplication Builder, JSON Converters & CORS Configuration
+// =========================================================================
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
@@ -130,6 +148,9 @@ builder.Services.AddSwaggerGen();
 // Configuration: bind static users from appsettings
 builder.Services.Configure<StaticAuthOptions>(builder.Configuration.GetSection("StaticAuth"));
 
+// =========================================================================
+// SECTION 3: Database & Persistence Layer (SQLite / In-Memory Mode)
+// =========================================================================
 // Determine Database Persistence Mode (Zero-Cost In-Memory or SQLite)
 var useInMemory = string.Equals(Environment.GetEnvironmentVariable("ZERO_COST_MODE"), "true", StringComparison.OrdinalIgnoreCase) ||
                   string.Equals(Environment.GetEnvironmentVariable("NO_DB"), "true", StringComparison.OrdinalIgnoreCase);
@@ -178,6 +199,9 @@ else
     builder.Services.AddSingleton<IUserRoleService, SqliteUserRoleService>();
 }
 
+// =========================================================================
+// SECTION 4: Service Layer Dependency Injection & Background Services
+// =========================================================================
 // Add DI for core interfaces
 builder.Services.AddSingleton<IAuthenticationService, StaticAuthenticationService>();
 builder.Services.AddSingleton<ITokenService, InMemoryTokenService>();
@@ -203,6 +227,9 @@ builder.Services.AddHostedService<SlaMonitoringBackgroundService>();
 
 var app = builder.Build();
 
+// =========================================================================
+// SECTION 5: Database Schema Verification, Migrations & Role Seeding
+// =========================================================================
 // Ensure SQLite schema created on startup (when not in decoupled in-memory mode)
 if (!useInMemory)
 {
@@ -409,6 +436,9 @@ if (enableSwagger)
     app.UseSwaggerUI();
 }
 
+// =========================================================================
+// SECTION 6: HTTP Middleware Pipeline, Security Headers & Endpoint Mapping
+// =========================================================================
 // Centralized enterprise exception handler: catch unhandled errors and return structured JSON
 app.Use(async (context, next) =>
 {

@@ -101,7 +101,7 @@ export class DefaultCliExecutor implements ICliExecutor {
 
             const config = vscode.workspace?.getConfiguration ? vscode.workspace.getConfiguration('engineeringCommons') : undefined;
             const rawBackendUrl = config?.get<string>('backendUrl') || process.env.ENGINEERING_COMMONS_BACKEND_URL;
-            const backendUrl = (rawBackendUrl && !rawBackendUrl.includes('localhost'))
+            const backendUrl = (rawBackendUrl && rawBackendUrl.trim().length > 0)
                 ? rawBackendUrl.trim().replace(/\/+$/, '')
                 : 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
 

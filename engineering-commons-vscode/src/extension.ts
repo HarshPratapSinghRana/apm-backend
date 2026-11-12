@@ -32,10 +32,26 @@ import { SharePointTelemetryService, CompositeUsageClient } from './services/sha
 import { AutoCliProvisioner } from './services/cliProvisioner';
 import { AdvisorHookProvisioner, ADVISOR_SKILL_NAME } from './services/advisorHookProvisioner';
 
+/**
+ * =========================================================================================
+ * CIP #1067 – Engineering Commons VS Code Extension Main Entry Point
+ * =========================================================================================
+ * 
+ * High-Level Responsibilities:
+ * 1. CLI Lifecycle Management: Verifies and auto-provisions the global 'engineering-commons' CLI.
+ * 2. Copilot AI Advisor Integration: Auto-provisions workspace skills, prompts, and Copilot hooks.
+ * 3. Service Layer Architecture: Instantiates telemetry collectors, SharePoint client, review engine, and notifications.
+ * 4. UI View Providers: Coordinates Explorer sidebar, tree view, multi-file diff view, and analytics dashboard.
+ * 5. Commands Layer: Exposes 30+ VS Code commands for authentication, artifacts, code reviews, and RBAC governance.
+ */
+
 export function activate(context: vscode.ExtensionContext) {
     const DEFAULT_AZURE_BACKEND = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
 
-    // 0. Silently auto-provision / verify global CIP CLI in background
+    // =========================================================================
+    // SECTION 0: Background CLI & GitHub Copilot Advisor Auto-Provisioning
+    // =========================================================================
+    // 0a. Verify or unpack bundled CLI executable into user path without blocking activation
     AutoCliProvisioner.ensureInstalled(context).catch(() => {});
 
     // 0b. Silently auto-provision Engineering Commons Advisor skill, prompt & Copilot instructions (ZERO network calls)
@@ -74,7 +90,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     const pollingMinutes = config.get<number>('notificationPollingIntervalMinutes') || 5;
 
-    // 1. Initialize Service Layer
+    // =========================================================================
+    // SECTION 1: Service Layer & Dependency Injection Instantiation
+    // =========================================================================
+    // Instantiates CLI executor, authentication provider, SharePoint sync, usage trackers, and review engines
     const cliExecutable = customCliPath.trim() || 'engineering-commons';
     const cliExecutor = new DefaultCliExecutor(cliExecutable);
     const authProvider = new SessionFileAuthStatusProvider();
@@ -129,7 +148,10 @@ export function activate(context: vscode.ExtensionContext) {
         reviewContentProvider
     );
 
-    // 2. Initialize Views
+    // =========================================================================
+    // SECTION 2: Views & Webview Providers Initialization
+    // =========================================================================
+    // Binds Sidebar webview, Activity Bar tree data provider, details panel, and PR diff viewer
     treeDataProvider = new ArtifactTreeDataProvider(cliExecutor, authProvider, cliExecutable, backendUrl, notificationService);
     sidebarWebviewProvider = new EngineeringCommonsSidebarWebviewProvider(
         context.extensionUri,
@@ -192,6 +214,10 @@ export function activate(context: vscode.ExtensionContext) {
         if (artifactDetailsWebviewProvider) await artifactDetailsWebviewProvider.refreshIfOpen(false);
     };
 
+    // =========================================================================
+    // SECTION 3: Workspace File Watchers & Reactive Debounced Auto-Refresh
+    // =========================================================================
+    // Watches .cip, .github, skills, agents, prompts, and cip.yml for changes with debouncing to update UI automatically
     if (vscode.workspace && vscode.workspace.createFileSystemWatcher) {
         const artifactWatcher = vscode.workspace.createFileSystemWatcher('**/{.cip,.github,.agents,skills,agents,prompts,plugins,.mcp}/**');
         artifactWatcher.onDidCreate((uri) => { if (!shouldIgnorePath(uri)) debouncedRefreshAllViews(); });
@@ -206,7 +232,10 @@ export function activate(context: vscode.ExtensionContext) {
         context.subscriptions.push(ymlWatcher);
     }
 
-    // Configuration change listener: dynamically update all live services
+    // =========================================================================
+    // SECTION 4: Live Configuration Change Listener
+    // =========================================================================
+    // Dynamically propagates backendUrl changes to all active services without requiring VS Code reload
     const configListener = vscode.workspace.onDidChangeConfiguration(async (e) => {
         if (e.affectsConfiguration('engineeringCommons.backendUrl')) {
             const rawUrl = (vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || '').trim();
@@ -227,7 +256,10 @@ export function activate(context: vscode.ExtensionContext) {
     });
     context.subscriptions.push(configListener);
 
-    // 3. Register Commands
+    // =========================================================================
+    // SECTION 5: VS Code Commands Registration
+    // =========================================================================
+    // Registers all command palette actions, button click handlers, and context menu triggers
     const setBackendUrlDisposable = vscode.commands.registerCommand('engineeringCommons.setBackendUrl', async () => {
         const currentUrl = vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || DEFAULT_AZURE_BACKEND;
         const newUrl = await vscode.window.showInputBox({
@@ -257,6 +289,7 @@ export function activate(context: vscode.ExtensionContext) {
         await artifactDetailsWebviewProvider.showArtifactDetails(artItem, version);
     });
 
+    // --- 5.1 Authentication Commands (SSO, Credentials, Logout) ---
     const loginDisposable = vscode.commands.registerCommand('engineeringCommons.login', async () => {
         const loggedIn = await executeLoginCommand(cliExecutor, authProvider, usageTracker, cliExecutable);
         if (loggedIn) {
@@ -286,6 +319,7 @@ export function activate(context: vscode.ExtensionContext) {
         await refreshAllViews();
     });
 
+    // --- 5.2 Artifact Lifecycle Commands (List, Install, Update, Contribute) ---
     const listDisposable = vscode.commands.registerCommand('engineeringCommons.list', async () => {
         await executeListCommand(cliExecutor, authProvider, usageLogger, cliExecutable);
     });
@@ -367,6 +401,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
+    // --- 5.3 Code Review & Discussion Thread Commands ---
     const reviewDisposable = vscode.commands.registerCommand('engineeringCommons.review', async () => {
         await executeReviewCommand(authProvider, reviewContentProvider, backendUrl);
     });
@@ -383,6 +418,7 @@ export function activate(context: vscode.ExtensionContext) {
         await threadWebviewProvider.showThread(reviewId, artifactName);
     });
 
+    // --- 5.4 Notification Center & Alert Handling Commands ---
     const openNotificationDisposable = vscode.commands.registerCommand('engineeringCommons.openNotification', async (notifOrItem: any) => {
         const notif: AppNotification = notifOrItem?.notification ? notifOrItem.notification : notifOrItem;
         if (!notif) return;
@@ -505,6 +541,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (sidebarWebviewProvider) sidebarWebviewProvider.refresh();
     });
 
+    // --- 5.5 Artifact Certification & Quality Governance Commands ---
     const checkCertificationDisposable = vscode.commands.registerCommand('engineeringCommons.checkCertification', async (artifactName?: string) => {
         if (!artifactName) {
             artifactName = await vscode.window.showInputBox({
@@ -570,6 +607,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
+    // --- 5.6 Role-Based Access Control (RBAC) & Governance Commands ---
     const requestAccessDisposable = vscode.commands.registerCommand('engineeringCommons.requestAccess', async () => {
         const isAuth = await authProvider.isAuthenticated();
         if (!isAuth) {
@@ -880,6 +918,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Register Advisor live catalog sync (runs ONLY after user logs in)
     AdvisorHookProvisioner.registerAuthSync(authProvider, backendUrl, getActiveWorkspaceRoot, context);
 
+    // --- 5.7 Copilot AI Artifact Advisor Discovery & Matching Command ---
     // Command to find and match artifacts from Copilot or user palette
     const findArtifactDisposable = vscode.commands.registerCommand('engineeringCommons.findArtifact', async (userQuery?: string) => {
         let query = userQuery;
@@ -942,6 +981,10 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
+    // =========================================================================
+    // SECTION 6: Subscriptions Cleanup & Extension Teardown
+    // =========================================================================
+    // Registers disposables so all watchers, services, and event listeners clean up safely on deactivation
     context.subscriptions.push(
         findArtifactDisposable,
         setBackendUrlDisposable,

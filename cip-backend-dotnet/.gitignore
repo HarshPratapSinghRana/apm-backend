@@ -3,5 +3,12 @@ secrets.json
 *.usersecrets
 bin/
 obj/
-#.env local environment file
+# .env local environment file
 .env
+.env.*
+*.db
+*.db-shm
+*.db-wal
+cloudflared.exe
+mail_outbox/
+*.eml

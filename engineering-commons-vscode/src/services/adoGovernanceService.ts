@@ -65,7 +65,7 @@ export class AdoGovernanceService {
         this.project = process.env.AZURE_DEVOPS_PROJECT || 'Engineering Commons';
         this.repository = process.env.AZURE_DEVOPS_REPO || 'Engineering Commons';
         this.branch = process.env.AZURE_DEVOPS_BRANCH || 'main';
-        this.pat = process.env.AZURE_DEVOPS_PAT || 'A2RW5UcHDolfE7HztH9l9Ktj2kDF7Rzka3azqA39eTJR6EGFU9lbJQQJ99CJACAAAAAqDT5DAAASAZDO2Izl';
+        this.pat = process.env.AZURE_DEVOPS_PAT || '';
     }
 
     public setAuthProvider(authProvider: IAuthenticationStatusProvider): void {

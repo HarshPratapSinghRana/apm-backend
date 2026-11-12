@@ -2,8 +2,10 @@
   "name": "design-reviewer",
   "version": "1.0.0",
   "artifactType": "agent",
-  "installedAt": "2026-10-26T10:43:20.499Z",
+  "installedAt": "2026-11-10T08:42:24.502Z",
   "placedFiles": [
+    "README.md",
+    ".github/agents/design-review.prompt.md",
     ".github/agents/design-reviewer.agent.md"
   ]
 }
