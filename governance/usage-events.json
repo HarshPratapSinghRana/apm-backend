@@ -17319,5 +17319,53 @@
     "metadata": "Workspace CREATE: SKILL.md",
     "workspace": "CIP-Engineering Commons",
     "timestamp": "2026-11-12T06:43:42.643Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "engineering-commons-advisor",
+    "artifactName": "engineering-commons-advisor",
+    "artifactType": "skill",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1794465822651",
+    "metadata": "Workspace CREATE: SKILL.md",
+    "workspace": "CIP-Engineering Commons",
+    "timestamp": "2026-11-12T06:43:42.651Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "chrome-devtools-mcp",
+    "artifactName": "chrome-devtools-mcp",
+    "artifactType": "mcpserver",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1794465824635",
+    "metadata": "Workspace MODIFY: mcp.json",
+    "workspace": "CIP-Engineering Commons",
+    "timestamp": "2026-11-12T06:43:44.635Z"
+  },
+  {
+    "userId": "harsh.rana@maqsoftware.com",
+    "userEmail": "harsh.rana@maqsoftware.com",
+    "artifactId": "github-mcp-server",
+    "artifactName": "github-mcp-server",
+    "artifactType": "mcpserver",
+    "artifactVersion": "1.0.0",
+    "eventType": "USE",
+    "action": "USE",
+    "source": "VS_CODE",
+    "platform": "CompanyApm",
+    "sessionId": "doc-1794465825601",
+    "metadata": "Workspace MODIFY: gemini-extension.json",
+    "workspace": "CIP-Engineering Commons",
+    "timestamp": "2026-11-12T06:43:45.601Z"
   }
 ]
