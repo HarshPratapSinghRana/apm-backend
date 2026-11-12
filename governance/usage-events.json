@@ -17602,7 +17602,7 @@
     "eventType": "USE",
     "action": "USE",
     "source": "VS_CODE",
-    "platform": "EngineeringCommons",
+    "platform": "CompanyApm",
     "sessionId": "doc-1794465904500",
     "metadata": "Workspace MODIFY: catalog.json",
     "workspace": "CIP-Engineering Commons",
