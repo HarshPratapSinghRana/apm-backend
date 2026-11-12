@@ -1,3 +1,36 @@
+# AI Artifacts, prompts, and marketplace data stores (pure code branch)
+.agents/
+.cip/
+.mcp/
+.timeline/
+artifacts/
+artifacts-json/
+certification/
+governance/
+telemetry/
+playbook-prompts/
+plugins/
+skills/
+cip_agents/
+design/
+design-reviewer/
+sharepoint-import-sheets/
+test-consumer-workspace/
+test/
+Ai Leap/
+.github/agents/
+.github/commands/
+.github/instructions/
+.github/mcp/
+.github/packages/
+.github/prompts/
+.github/skills/
+engineering-commons-vscode/.agents/
+engineering-commons-vscode/.cip/
+engineering-commons-vscode/.github/
+engineering-commons-vscode/artifacts/
+engineering-commons-vscode/skills/
+
 # Dependencies and build outputs
 node_modules/
 build/

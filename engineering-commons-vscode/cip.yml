@@ -1,7 +1,0 @@
-name: non-existent-artifact
-version: 1.0.0
-type: agent
-category: Enterprise AI
-main: .github/agents/non-existent-artifact.agent.md
-skills:
-  - .agents/skills/non-existent-artifact/SKILL.md
