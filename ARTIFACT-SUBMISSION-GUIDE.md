@@ -243,12 +243,10 @@ if ($failed.Count -gt 0) {
 
 ### Issue: "Connection refused"
 ```
-❌ Backend not running at http://localhost:5000
+❌ Backend not reachable at https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io
 
-✅ Solution: Start backend in another terminal
-cd cip-backend-dotnet
-$env:ASPNETCORE_ENVIRONMENT = "Development"
-dotnet run
+✅ Solution: Verify network connectivity to Azure Container Apps endpoint
+curl https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io/api/health
 ```
 
 ### Issue: 401 Unauthorized

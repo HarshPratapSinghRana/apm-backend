@@ -1,7 +1,7 @@
-# 🏛️ Engineering Commons — Zero-Cost Enterprise System Architecture & Operational Blueprint (v2.0)
+﻿# 🏛️ Engineering Commons — Zero-Cost Enterprise System Architecture & Operational Blueprint (v2.0)
 
 > **Architectural Specification & Production Engineering Blueprint**  
-> *Authoritative Reference for Engineering Commons, AI Leap Ecosystem, VS Code Extension, .NET CLI, Vercel Serverless Backend API Gateway, and Microsoft 365 / Azure DevOps Zero-Cost Storage.*
+> *Authoritative Reference for Engineering Commons, AI Leap Ecosystem, VS Code Extension, .NET CLI, Azure Container Apps Backend API Gateway, and Microsoft 365 / Azure DevOps Zero-Cost Storage.*
 
 ---
 
@@ -10,8 +10,8 @@
 The **Engineering Commons** platform is an enterprise-grade AI artifact registry, private marketplace, and continuous quality governance system designed specifically for enterprise software engineering organizations. It allows developers, architects, and AI engineers to discover, share, install, certify, and review high-value AI artifacts—including **Autonomous Agents**, **AI Skills**, **MCP (Model Context Protocol) Servers**, **Command Prompt Workflows**, and **Reference Solutions**.
 
 ### Key Architectural Invariants
-1. **100% Zero-Cost Enterprise Infrastructure ($0.00/Month)**: Eliminates all recurring cloud database and dedicated hosting charges by utilizing pre-licensed Microsoft 365 SharePoint Online lists, serverless compute on Vercel, and authoritative Azure DevOps Git repositories.
-2. **Backend Exclusively on Vercel Serverless**: The platform runs 100% of its API gateway, streaming, proxy, diffing, and certification workloads on **Vercel Serverless Edge Platform** (`api/index.js`), requiring **zero Azure Functions** or dedicated virtual machines.
+1. **100% Zero-Cost Enterprise Infrastructure ($0.00/Month)**: Eliminates all recurring cloud database and dedicated hosting charges by utilizing pre-licensed Microsoft 365 SharePoint Online lists, Azure Container Apps serverless compute, and authoritative Azure DevOps Git repositories.
+2. **Backend on Azure Container Apps**: The platform runs 100% of its API gateway, streaming, proxy, diffing, and certification workloads on **Azure Container Apps** (`apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io`), providing containerized reliability with unified governance.
 3. **Zero-Secret Client Security**: No personal access tokens (PATs) or sensitive cloud credentials are ever distributed to client extensions or local developer environments. All private repo operations are proxied through encrypted, authenticated serverless gateways.
 4. **Dual-Model AI Invocation (Agents vs. Skills)**:
    - **AI Agents**: Auto-configured into `.github/agents/<name>.agent.md` for native invocation in GitHub Copilot Chat via the `@agent-name` selector.
@@ -22,7 +22,7 @@ The **Engineering Commons** platform is an enterprise-grade AI artifact registry
 
 ## 2. Main System Architecture
 
-The overall system architecture connects the developer workspace clients directly to the Vercel Serverless API Gateway, authenticated by Microsoft Entra ID SSO, backed by a zero-cost CQRS storage tier (SharePoint Online for reads + Azure DevOps Git for authoritative persistence).
+The overall system architecture connects the developer workspace clients directly to the Azure Container Apps API Gateway, authenticated by Microsoft Entra ID SSO, backed by a zero-cost CQRS storage tier (SharePoint Online for reads + Azure DevOps Git for authoritative persistence).
 
 ### 🖼️ Main System Architecture Diagram
 ![Engineering Commons Main Enterprise System Architecture](./main-system-architecture.svg)
@@ -69,10 +69,10 @@ flowchart TD
     CLI_CORE -.->|Device Code| ENTRA
     ENTRA -->|Validated Bearer Token| RBAC
 
-    %% API Gateway & Vercel Compute
-    subgraph SERVERLESS_TIER["3. Vercel Serverless Backend API Gateway ($0.00 / Month)"]
+    %% API Gateway & Azure Container Apps Compute
+    subgraph SERVERLESS_TIER["3. Azure Container Apps Backend API Gateway"]
         direction TB
-        VERCEL["⚡ Vercel Serverless Production API (api/index.js)<br/>• Express + CORS Edge Handler<br/>• Encrypted Environment Secrets (ADO_PAT, GITHUB_PAT)<br/>• Zero-Idle Cost (100% Free Tier)"]
+        ACA["⚡ Azure Container Apps Production API<br/>• Express + CORS Container<br/>• Encrypted Environment Secrets (ADO_PAT, GITHUB_PAT)<br/>• Enterprise Scalability & Resiliency"]
         
         subgraph API_ROUTER["API Core Endpoints"]
             EP_ART["/api/artifacts & /api/artifacts/:id/download"]
@@ -83,11 +83,11 @@ flowchart TD
             EP_TELE["/api/usage/events & /api/usage/summary"]
         end
 
-        VERCEL --> API_ROUTER
+        ACA --> API_ROUTER
     end
 
-    UI -->|HTTPS / Bearer Token| VERCEL
-    CLI_CORE -->|HTTPS / Bearer Token| VERCEL
+    UI -->|HTTPS / Bearer Token| ACA
+    CLI_CORE -->|HTTPS / Bearer Token| ACA
 
     %% Continuous AI Certification Engine
     subgraph CERT_ENGINE["4. Continuous 5-Pillar Certification Engine"]
@@ -182,18 +182,18 @@ The client layer provides the in-IDE developer experience through the VS Code Ex
 
 ---
 
-## 4. Sub-Architecture 2: Vercel Serverless Backend API Gateway Subsystem
+## 4. Sub-Architecture 2: Azure Container Apps Backend API Gateway Subsystem
 
-The backend runs entirely on **Vercel Serverless Functions** (`api/index.js`), operating as a stateless, highly available API gateway and secure proxy.
+The backend runs on **Azure Container Apps** (`apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io`), operating as a stateless, highly available API gateway and secure proxy.
 
 ### 🖼️ Sub-Architecture 2 Diagram
-![Vercel Serverless Backend API Gateway Subsystem](./sub-arch-2-vercel-backend.svg)
+![Azure Container Apps Backend API Gateway Subsystem](./sub-arch-2-azure-backend.svg)
 
 ### Key Subsystems:
-1. **Stateless Edge Runtime**:
-   - Express app with CORS middleware matching `vercel.json` rewrite (`/api/(.*) -> api/index.js`).
-   - Real-time Vercel Runtime Logging capturing HTTP status, duration (ms), IP, and user-agent.
-   - Cold-start latency $<180\text{ms}$; zero persistent idle server charges.
+1. **Containerized Linux Runtime**:
+   - Express app with CORS middleware running in Azure Container Apps container.
+   - Real-time logging capturing HTTP status, duration (ms), IP, and user-agent.
+   - High availability with instant horizontal auto-scaling.
 2. **Microsoft Entra ID Token Guard & RBAC**:
    - Decodes and validates JWT Bearer tokens from Microsoft Entra ID (App ID: `a5f3ba81-4c95-4c74-afd9-38b72cf39156`).
    - Enforces corporate domain guard: Strictly rejects non-`@maqsoftware.com` email domains.
@@ -237,7 +237,7 @@ The platform achieves zero storage cost by utilizing a CQRS (Command Query Respo
      - `/certification/reviews.json`: Verified community review comments and ratings.
      - `/governance/roles.json`: Enterprise RBAC role assignments.
      - `/telemetry/events.json`: Aggregated telemetry and anti-gaming velocity records.
-   - **Secure Server PAT Access**: Vercel backend communicates with Azure DevOps via REST API v7.1 using the server-side `AZURE_DEVOPS_PAT`.
+   - **Secure Server PAT Access**: Azure Container Apps backend communicates with Azure DevOps via REST API v7.1 using the server-side `AZURE_DEVOPS_PAT`.
    - **Zero Consumer License Cost**: Eliminates per-seat Azure DevOps Basic licenses for consumers, saving **$18,000/year**.
 
 ---
@@ -259,7 +259,7 @@ sequenceDiagram
     autonumber
     actor Dev as Enterprise Developer
     participant Ext as VS Code Extension
-    participant API as Vercel Serverless API
+    participant API as Azure Container Apps API
     participant FS as Local Workspace Disk
     participant Copilot as GitHub Copilot Chat
 
@@ -355,11 +355,11 @@ The platform achieves a genuine **$0.00/month** hosting cost for hundreds of con
 
 | Tier | Technology Component | Free Enterprise Quota | Engineering Commons Usage (250 Devs) | Monthly Cost |
 | :--- | :--- | :--- | :--- | :---: |
-| **API Gateway & Backend** | **Vercel Serverless (Express Edge)** | 100 GB Bandwidth / 1M Edge calls | ~12 GB Bandwidth / 140K calls | **$0.00** |
+| **API Gateway & Backend** | **Azure Container Apps** | 100 GB Bandwidth / 1M Edge calls | ~12 GB Bandwidth / 140K calls | **$0.00** |
 | **CQRS Read Cache** | **Microsoft 365 SharePoint Online** | Included in Enterprise M365 E3/E5 | 4 Dedicated Lists & Document Library | **$0.00** |
 | **Authoritative Store** | **Azure DevOps Git Repository** | Included in Enterprise ADO Project | Authoritative JSON stores & releases | **$0.00** |
 | **Identity & SSO** | **Microsoft Entra ID (Azure AD)** | Included with corporate tenant | App ID `a5f3ba81-4c95-4c74-afd9-38b72cf39156` | **$0.00** |
-| **Outbound Data** | **Vercel Edge Network** | 100 GB Outbound Data / month | ~6.2 GB Outbound Data / month | **$0.00** |
+| **Outbound Data** | **Azure Network** | 100 GB Outbound Data / month | ~6.2 GB Outbound Data / month | **$0.00** |
 | **Consumer Licenses** | **Azure DevOps Basic Licenses** | $6.00 / user / month avoided | 0 ADO consumer licenses required | **$0.00** |
 | **TOTAL** | — | — | — | **$0.00 / mo** |
 

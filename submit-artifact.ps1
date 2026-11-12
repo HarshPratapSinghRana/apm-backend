@@ -1,4 +1,4 @@
-# ============================================
+﻿# ============================================
 # Generic Artifact Submission Script
 # Submits any .md file to CIP Marketplace
 # ============================================
@@ -11,18 +11,17 @@ param(
     [string]$ArtifactId = "",
     
     [switch]$AutoApprove = $false,
-    [string]$BackendUrl = "http://localhost:5000"
+    [string]$BackendUrl = "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io"
 )
 
 function Main {
     # Validate backend is running
     Write-Host "🔍 Checking backend health..." -ForegroundColor Cyan
     try {
-        $health = Invoke-RestMethod -Uri "$BackendUrl/" -ErrorAction Stop
-        Write-Host "✓ Backend is running`n" -ForegroundColor Green
+        $health = Invoke-RestMethod -Uri "$BackendUrl/api/health" -ErrorAction Stop
+        Write-Host "✓ Azure Container Apps backend is running`n" -ForegroundColor Green
     } catch {
-        Write-Host "❌ Backend not running at $BackendUrl" -ForegroundColor Red
-        Write-Host "   Start backend: cd cip-backend-dotnet && `$env:ASPNETCORE_ENVIRONMENT='Development'; dotnet run`n"
+        Write-Host "❌ Backend not responding at $BackendUrl" -ForegroundColor Red
         return 1
     }
 

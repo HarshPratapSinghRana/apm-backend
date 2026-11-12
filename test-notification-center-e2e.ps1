@@ -1,10 +1,10 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 Write-Host "================================================================================" -ForegroundColor Cyan
 Write-Host "      E2E TEST: NOTIFICATION CENTER, DEEP-LINKING & UNREAD/READ LIFECYCLE       " -ForegroundColor Cyan
 Write-Host "================================================================================" -ForegroundColor Cyan
 
-$baseUrl = "http://localhost:5000"
+$baseUrl = "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io"
 
 # 1. Login as Reviewer & Producer
 Write-Host "`n1. Logging in Reviewer & Producer..." -ForegroundColor Yellow

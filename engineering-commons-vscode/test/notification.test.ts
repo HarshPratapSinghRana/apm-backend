@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+﻿import { expect } from 'chai';
 import { AppNotification, INotificationService } from '../src/services/notificationService';
 import { NotificationCoordinator } from '../src/services/notificationCoordinator';
 import { IAuthenticationStatusProvider } from '../src/services/authenticationStatusProvider';
@@ -263,7 +263,7 @@ describe('VS Code Extension Notification & Notification Center Tests', () => {
             new MockCliExecutor(),
             mockAuth,
             'engineering-commons',
-            'http://localhost:5000',
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
             mockNotifs
         );
 

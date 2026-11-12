@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+﻿import { expect } from 'chai';
 import * as assert from 'assert';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -27,8 +27,8 @@ describe('Remote Backend & Cloudflare Tunnel Dynamic Sync Tests', () => {
     });
 
     it('1. HttpBackendUsageClient dynamically updates backend URL for telemetry sync', () => {
-        const client = new HttpBackendUsageClient('http://localhost:5000');
-        expect(client.getBackendUrl()).to.equal('http://localhost:5000');
+        const client = new HttpBackendUsageClient('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
+        expect(client.getBackendUrl()).to.equal('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
 
         const cloudflareUrl = 'https://ai-cip-tunnel.trycloudflare.com';
         client.setBackendUrl(cloudflareUrl);
@@ -36,15 +36,15 @@ describe('Remote Backend & Cloudflare Tunnel Dynamic Sync Tests', () => {
     });
 
     it('2. BountyService dynamically updates remote backend URL', () => {
-        const bountyService = new BountyService(mockAuth, 'http://localhost:5000');
+        const bountyService = new BountyService(mockAuth, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         const cloudflareUrl = 'https://remote-team-hub.trycloudflare.com/';
         bountyService.setBackendUrl(cloudflareUrl);
         expect((bountyService as any).baseUrl).to.equal('https://remote-team-hub.trycloudflare.com');
     });
 
     it('3. HttpReviewThreadService and ReviewCommentService update backend URL', () => {
-        const threadService = new HttpReviewThreadService('http://localhost:5000', mockAuth);
-        const commentService = new ReviewCommentService(mockAuth, 'http://localhost:5000');
+        const threadService = new HttpReviewThreadService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', mockAuth);
+        const commentService = new ReviewCommentService(mockAuth, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
 
         const cloudflareUrl = 'https://cip-shared-server.trycloudflare.com';
         threadService.setBackendUrl(cloudflareUrl);
@@ -55,8 +55,8 @@ describe('Remote Backend & Cloudflare Tunnel Dynamic Sync Tests', () => {
     });
 
     it('4. NotificationService and CertificationService update backend URL', () => {
-        const notifService = new HttpNotificationService('http://localhost:5000', mockAuth);
-        const certService = new CertificationService(mockAuth, mockCli, 'engineering-commons', 'http://localhost:5000');
+        const notifService = new HttpNotificationService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', mockAuth);
+        const certService = new CertificationService(mockAuth, mockCli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
 
         const cloudflareUrl = 'https://cloud-cip-backend.trycloudflare.com';
         notifService.setBackendUrl(cloudflareUrl);
@@ -67,8 +67,8 @@ describe('Remote Backend & Cloudflare Tunnel Dynamic Sync Tests', () => {
     });
 
     it('5. ArtifactDetailsWebviewProvider and ArtifactTreeDataProvider update backend URL', () => {
-        const detailsProvider = new ArtifactDetailsWebviewProvider(mockAuth, mockCli, 'engineering-commons', 'http://localhost:5000');
-        const treeProvider = new ArtifactTreeDataProvider(mockCli, mockAuth, 'engineering-commons', 'http://localhost:5000');
+        const detailsProvider = new ArtifactDetailsWebviewProvider(mockAuth, mockCli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
+        const treeProvider = new ArtifactTreeDataProvider(mockCli, mockAuth, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
 
         const cloudflareUrl = 'https://tunnel-instance-99.trycloudflare.com';
         detailsProvider.setBackendUrl(cloudflareUrl);
@@ -79,17 +79,17 @@ describe('Remote Backend & Cloudflare Tunnel Dynamic Sync Tests', () => {
     });
 
     it('6. EngineeringCommonsSidebarWebviewProvider updates backend URL and propagates to BountyService', () => {
-        const notifService = new HttpNotificationService('http://localhost:5000', mockAuth);
-        const commentService = new ReviewCommentService(mockAuth, 'http://localhost:5000');
-        const threadService = new HttpReviewThreadService('http://localhost:5000', mockAuth);
-        const detailsProvider = new ArtifactDetailsWebviewProvider(mockAuth, mockCli, 'engineering-commons', 'http://localhost:5000');
+        const notifService = new HttpNotificationService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', mockAuth);
+        const commentService = new ReviewCommentService(mockAuth, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
+        const threadService = new HttpReviewThreadService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', mockAuth);
+        const detailsProvider = new ArtifactDetailsWebviewProvider(mockAuth, mockCli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
 
         const sidebar = new EngineeringCommonsSidebarWebviewProvider(
             vscode.Uri.file('/ext'),
             mockAuth,
             mockCli,
             'engineering-commons',
-            'http://localhost:5000',
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
             notifService,
             commentService,
             {} as any,

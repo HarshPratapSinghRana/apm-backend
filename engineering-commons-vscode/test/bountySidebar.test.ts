@@ -38,19 +38,19 @@ sample-package       package    1.0.0
             stderr: '',
             success: true
         };
-        bountyService = new BountyService(mockAuth, 'http://localhost:59999');
+        bountyService = new BountyService(mockAuth, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
 
         const mockBackendUsageClient = new MockBackendUsageClient();
         const usageTracker = new CompositeArtifactUsageTracker(mockBackendUsageClient, mockAuth);
         const reviewThreadService = new MockReviewThreadService();
-        const reviewCommentService = new ReviewCommentService(mockAuth, 'http://localhost:59999');
-        const notificationService = new HttpNotificationService('http://localhost:59999', mockAuth);
+        const reviewCommentService = new ReviewCommentService(mockAuth, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
+        const notificationService = new HttpNotificationService('https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io', mockAuth);
         const threadWebviewProvider = new ThreadWebviewProvider(reviewThreadService, reviewCommentService, mockAuth);
         const detailsProvider = new ArtifactDetailsWebviewProvider(
             mockAuth,
             mockCli,
             'engineering-commons',
-            'http://localhost:59999',
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
             usageTracker,
             () => {}
         );
@@ -60,7 +60,7 @@ sample-package       package    1.0.0
             mockAuth,
             mockCli,
             'engineering-commons',
-            'http://localhost:59999',
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
             notificationService,
             reviewCommentService,
             usageTracker,

@@ -4,7 +4,7 @@ Write-Host "====================================================================
 Write-Host "         E2E TEST: THREAD-BASED NOTIFICATIONS WORKFLOW VERIFICATION             " -ForegroundColor Cyan
 Write-Host "================================================================================" -ForegroundColor Cyan
 
-$baseUrl = "http://localhost:5000"
+$baseUrl = "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io"
 
 # 1. Login Producer & Reviewer
 Write-Host "`n1. Logging in Producer and Reviewer..." -ForegroundColor Yellow

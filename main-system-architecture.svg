@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" width="100%" height="100%">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" width="100%" height="100%">
   <defs>
     <!-- Drop Shadows -->
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
@@ -27,7 +27,7 @@
       <stop offset="0%" stop-color="#0F172A" />
       <stop offset="100%" stop-color="#1E293B" />
     </linearGradient>
-    <linearGradient id="vercelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="azureGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#18181B" />
       <stop offset="100%" stop-color="#09090B" />
     </linearGradient>
@@ -55,7 +55,7 @@
   <g transform="translate(40, 24)">
     <rect width="1520" height="74" rx="14" fill="url(#headerGrad)" filter="url(#shadow)" />
     <text x="32" y="44" class="font-sans" font-size="22px" font-weight="800" fill="#FFFFFF">🏛️ Engineering Commons — Main Enterprise System Architecture</text>
-    <text x="1488" y="44" text-anchor="end" class="font-sans" font-size="13px" font-weight="600" fill="#38BDF8">Vercel Serverless Backend • Dual-Tier Zero-Cost Storage • Copilot Dual-Model Invocation</text>
+    <text x="1488" y="44" text-anchor="end" class="font-sans" font-size="13px" font-weight="600" fill="#38BDF8">Azure Container Apps Backend • Dual-Tier Zero-Cost Storage • Copilot Dual-Model Invocation</text>
   </g>
 
   <!-- =================================================== -->
@@ -124,19 +124,19 @@
   <path d="M 220 540 L 220 560" stroke="#0078D4" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arr-blue)" />
 
   <!-- =================================================== -->
-  <!-- LAYER 3: VERCEL SERVERLESS BACKEND (ACTIVE)         -->
+  <!-- LAYER 3: AZURE CONTAINER APPS BACKEND (ACTIVE)         -->
   <!-- =================================================== -->
   <g transform="translate(470, 120)">
     <!-- Container -->
     <rect width="490" height="590" rx="16" fill="#FFFFFF" stroke="#18181B" stroke-width="2.5" filter="url(#card-shadow)" />
     
-    <!-- Dark Header (Vercel Style) -->
-    <rect width="490" height="60" rx="16" fill="url(#vercelGrad)" />
-    <rect y="44" width="490" height="16" fill="url(#vercelGrad)" />
+    <!-- Dark Header (Azure Style) -->
+    <rect width="490" height="60" rx="16" fill="url(#azureGrad)" />
+    <rect y="44" width="490" height="16" fill="url(#azureGrad)" />
     
-    <!-- Vercel Logo Triangle -->
+    <!-- Azure Container Apps Icon -->
     <polygon points="26,40 36,22 46,40" fill="#FFFFFF" />
-    <text x="56" y="34" class="font-sans" font-size="16px" font-weight="800" fill="#FFFFFF">3. Vercel Serverless Backend API Gateway</text>
+    <text x="56" y="34" class="font-sans" font-size="16px" font-weight="800" fill="#FFFFFF">3. Azure Container Apps Backend API Gateway</text>
     <text x="56" y="50" class="font-sans" font-size="11.5px" fill="#A1A1AA">Express Edge Runtime on Node.js • 100% Zero-Cost Tier ($0.00)</text>
 
     <!-- Main Router Box -->
@@ -191,7 +191,7 @@
     </g>
   </g>
 
-  <!-- Connectors: Clients to Vercel Gateway -->
+  <!-- Connectors: Clients to Azure Gateway -->
   <path d="M 400 300 L 470 300" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arr-blue)" />
   <rect x="408" y="280" width="55" height="18" rx="4" fill="#0284C7" />
   <text x="435" y="293" text-anchor="middle" class="font-sans" font-size="10px" font-weight="700" fill="#FFFFFF">HTTPS</text>
@@ -236,7 +236,7 @@
     </g>
   </g>
 
-  <!-- Connectors: Vercel Gateway to Storage -->
+  <!-- Connectors: Azure Gateway to Storage -->
   <path d="M 960 300 L 1030 300" stroke="#059669" stroke-width="2.5" marker-end="url(#arr-green)" />
   <rect x="968" y="280" width="55" height="18" rx="4" fill="#059669" />
   <text x="995" y="293" text-anchor="middle" class="font-sans" font-size="9.5px" font-weight="700" fill="#FFFFFF">REST API</text>
@@ -267,7 +267,7 @@
     </g>
   </g>
 
-  <!-- Connectors: Vercel to Workspace Targets (Streaming package) -->
+  <!-- Connectors: Azure Container Apps to Workspace Targets (Streaming package) -->
   <path d="M 960 635 L 1030 635" stroke="#7C3AED" stroke-width="2.5" stroke-dasharray="4,3" marker-end="url(#arr-purple)" />
   <rect x="965" y="618" width="60" height="18" rx="4" fill="#7C3AED" />
   <text x="995" y="631" text-anchor="middle" class="font-sans" font-size="9px" font-weight="700" fill="#FFFFFF">STREAM</text>
@@ -278,6 +278,6 @@
   <g transform="translate(40, 730)">
     <rect width="1520" height="60" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" />
     <text x="24" y="35" class="font-sans" font-size="12px" font-weight="700" fill="#0F172A">Enterprise Operational SLA:</text>
-    <text x="185" y="35" class="font-sans" font-size="12px" fill="#475569">100% Stateless Vercel Edge compute with zero cold-starts, zero cloud database licenses, zero client secrets, and 100% free corporate tier utilization ($0.00/month).</text>
+    <text x="185" y="35" class="font-sans" font-size="12px" fill="#475569">Azure Container Apps enterprise runtime with zero cloud database licenses, zero client secrets, and full private network isolation.</text>
   </g>
 </svg>

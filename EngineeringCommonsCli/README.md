@@ -1,8 +1,8 @@
-Engineering Commons CLI (POC)
+Engineering Commons CLI
 
 Consumer Quick Start
 
-Prerequisite: Start the .NET backend (cip-backend-dotnet) locally on http://localhost:5000.
+Prerequisite: Connected to Azure Container Apps hosted backend (https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io).
 
 Login (stores session token locally):
 
@@ -18,16 +18,16 @@ Install an artifact via the installed CIP CLI:
 	engineering-commons install design-reviewer
 
 Notes:
-- This CLI talks to the local .NET backend for authentication and marketplace data.
+- This CLI communicates with the Azure Container Apps hosted backend for authentication and marketplace data.
 - The CLI delegates installation to the `cip` executable on your PATH via `ICipService`.
 - The CLI does NOT call GitHub directly and does NOT store any GitHub PAT.
 - If `cip` is not installed, `engineering-commons install` will show an error and guidance.
 
-Architecture (POC):
+Architecture:
 
 CLI
  ↓
-.NET Backend (auth + marketplace)
+Azure Container Apps Backend (auth + marketplace)
  ↓
 CIP (installed `cip` CLI)
  ↓

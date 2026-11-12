@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+﻿import * as assert from 'assert';
 import { ThreadWebviewProvider, ArtifactDiffData } from '../src/views/threadWebviewProvider';
 import { ReviewCommentService, ReviewCommentDto } from '../src/services/reviewCommentService';
 import { MockAuthProvider, MockReviewThreadService } from './mocks';
@@ -65,7 +65,7 @@ describe('GitHub-Like Multi-File PR Diff & Review Workflow Tests', () => {
         auth.authenticated = true;
         auth.email = 'reviewer@company.com';
         threadService = new MockReviewThreadService();
-        commentService = new ReviewCommentService(auth, 'http://localhost:5000');
+        commentService = new ReviewCommentService(auth, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
     });
 
     it('1. Multi-file diff renders all changed files in navigation sidebar', () => {

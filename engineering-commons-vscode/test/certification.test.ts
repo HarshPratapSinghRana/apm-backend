@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+﻿import * as assert from 'assert';
 import { CertificationService } from '../src/services/certificationService';
 import { MockAuthProvider, MockCliExecutor, MockBackendUsageClient } from './mocks';
 import { EngineeringCommonsSidebarWebviewProvider } from '../src/views/engineeringCommonsSidebarWebviewProvider';
@@ -25,7 +25,7 @@ accessibility-fix    agent      1.0.0
             stderr: '',
             success: true
         };
-        certificationService = new CertificationService(authProvider, cliExecutor, 'engineering-commons', 'http://localhost:5000');
+        certificationService = new CertificationService(authProvider, cliExecutor, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
     });
 
     it('1. CertificationService should initialize and support client methods', async () => {
@@ -50,7 +50,7 @@ accessibility-fix    agent      1.0.0
             authProvider,
             cliExecutor,
             'engineering-commons',
-            'http://localhost:5000',
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
             mockNotifService,
             mockReviewCommentService,
             mockUsageTracker,
@@ -76,7 +76,7 @@ accessibility-fix    agent      1.0.0
             authProvider,
             cliExecutor,
             'engineering-commons',
-            'http://localhost:5000',
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
             mockNotifService,
             {} as any,
             {} as any,
@@ -97,7 +97,7 @@ accessibility-fix    agent      1.0.0
             authProvider,
             cliExecutor,
             'engineering-commons',
-            'http://localhost:5000',
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
             undefined,
             undefined,
             certificationService
@@ -133,7 +133,7 @@ accessibility-fix    agent      1.0.0
             authProvider,
             cliExecutor,
             'engineering-commons',
-            'http://localhost:5000'
+            'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io'
         );
 
         const certifiedArtifact = {

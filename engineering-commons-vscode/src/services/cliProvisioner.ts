@@ -9,7 +9,7 @@ export const DEFAULT_AZURE_BACKEND_URL = 'https://apm-backend.wittyriver-c768e02
 export class AutoCliProvisioner {
     /**
      * Seeds ~/.engineering-commons/config.json and ~/.cip/config.json with the Azure Container Apps backend URL
-     * if absent or pointing to localhost / vercel.
+     * if absent or unconfigured.
      */
     public static seedUserBackendConfig(targetUrl: string = DEFAULT_AZURE_BACKEND_URL): void {
         const homeDir = os.homedir();
@@ -30,7 +30,7 @@ export class AutoCliProvisioner {
                     try {
                         const parsed = JSON.parse(fs.readFileSync(cfgFile, 'utf-8'));
                         const current = (parsed.backendUrl || parsed.url || '').trim();
-                        if (current && !current.includes('localhost') && !current.includes('vercel.app')) {
+                        if (current) {
                             shouldWrite = false;
                         }
                     } catch {
@@ -49,7 +49,7 @@ export class AutoCliProvisioner {
                 if (fs.existsSync(sessionFile)) {
                     try {
                         const sessionData = JSON.parse(fs.readFileSync(sessionFile, 'utf-8'));
-                        if (!sessionData.backendUrl || sessionData.backendUrl.includes('localhost') || sessionData.backendUrl.includes('vercel.app')) {
+                        if (!sessionData.backendUrl) {
                             sessionData.backendUrl = targetUrl;
                             fs.writeFileSync(sessionFile, JSON.stringify(sessionData, null, 2), 'utf-8');
                         }

@@ -51,7 +51,7 @@ public class BackendClient : IBackendClient, IDisposable
                 var txt = File.ReadAllText(cfgPath);
                 var obj = Newtonsoft.Json.Linq.JObject.Parse(txt);
                 var u = obj["backendUrl"]?.ToString() ?? obj["url"]?.ToString();
-                if (string.IsNullOrWhiteSpace(u) || u.Contains("localhost:5000") || u.Contains("localhost:3000"))
+                if (string.IsNullOrWhiteSpace(u))
                 {
                     obj["backendUrl"] = DefaultBackendUrl;
                     obj["url"] = DefaultBackendUrl;

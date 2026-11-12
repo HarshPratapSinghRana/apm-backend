@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 820" width="100%" height="100%">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 820" width="100%" height="100%">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
       <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.08" />
@@ -155,7 +155,7 @@
     <g transform="translate(20, 475)">
       <rect width="620" height="165" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.2" />
       <text x="16" y="24" class="font-sans" font-size="13px" font-weight="800" fill="#1D4ED8">Secure Server-Side Git REST Gateway</text>
-      <text x="16" y="46" class="font-sans" font-size="11.5px" fill="#1E3A8A">• Vercel serverless backend communicates with Azure DevOps via REST API v7.1</text>
+      <text x="16" y="46" class="font-sans" font-size="11.5px" fill="#1E3A8A">• Azure Container Apps backend communicates with Azure DevOps via REST API v7.1</text>
       <text x="16" y="68" class="font-sans" font-size="11.5px" fill="#1E3A8A">• Authenticated exclusively with server-side AZURE_DEVOPS_PAT</text>
       <text x="16" y="90" class="font-sans" font-size="11.5px" fill="#1E3A8A">• Zero consumer ADO licenses needed: 250 enterprise developers read/write through proxy</text>
       

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
       <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
@@ -77,7 +77,7 @@
   <line x1="720" y1="140" x2="720" y2="860" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6,4" />
   <g transform="translate(630, 105)">
     <rect width="180" height="46" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1.8" filter="url(#card-shadow)" />
-    <text x="90" y="24" text-anchor="middle" class="font-sans" font-size="13px" font-weight="700" fill="#6D28D9">⚡ Vercel / ADO API</text>
+    <text x="90" y="24" text-anchor="middle" class="font-sans" font-size="13px" font-weight="700" fill="#6D28D9">⚡ Azure Container Apps / ADO API</text>
     <text x="90" y="38" text-anchor="middle" class="font-sans" font-size="10px" fill="#7C3AED">Serverless Gateway ($0)</text>
   </g>
 

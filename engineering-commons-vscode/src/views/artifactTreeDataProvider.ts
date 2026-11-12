@@ -347,13 +347,11 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                 } catch { }
             }
 
-            // Query hosted backend API dynamically
+            // Query hosted Azure Container Apps backend API dynamically
             try {
                 const rawConfig = vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || process.env.ENGINEERING_COMMONS_BACKEND_URL;
-                const isLocalhost = (this.backendUrl && this.backendUrl.includes('localhost')) || (rawConfig && rawConfig.includes('localhost'));
-                if (!isLocalhost || items.length === 0) {
-                    const backendUrl = (rawConfig && !rawConfig.includes('localhost')) ? rawConfig.trim() : (this.backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
-                    const res = await this.makeRequest(`${backendUrl}/api/artifacts`);
+                const backendUrl = rawConfig ? rawConfig.trim() : (this.backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
+                const res = await this.makeRequest(`${backendUrl}/api/artifacts`);
                     if (res.status === 200 && Array.isArray(res.data) && res.data.length > 0) {
                         for (const item of res.data) {
                             const clean = (item.name || item.id || '').replace(/^leap-/, '').toLowerCase();
@@ -375,7 +373,6 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                             }
                         }
                     }
-                }
             } catch { }
 
             items = items.filter(a => isProperAiArtifact(a));

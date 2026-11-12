@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -233,13 +233,13 @@
     <header>
       <div class="badge-pill">🏛️ Authoritative System Architecture Blueprint • v2.0</div>
       <h1>Engineering Commons System Architecture</h1>
-      <p class="subtitle">Authoritative visual specification featuring the Main Enterprise System Architecture and 5 dedicated Sub-Architecture subsystems (Vercel Serverless Backend, Dual-Tier Storage, and Copilot Dual-Model Invocation).</p>
+      <p class="subtitle">Authoritative visual specification featuring the Main Enterprise System Architecture and 5 dedicated Sub-Architecture subsystems (Azure Container Apps Backend, Dual-Tier Storage, and Copilot Dual-Model Invocation).</p>
     </header>
 
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('tab-main')">🏛️ Main Architecture</button>
       <button class="tab-btn" onclick="switchTab('tab-sub1')">🧩 Sub-1: Client Extension</button>
-      <button class="tab-btn" onclick="switchTab('tab-sub2')">⚡ Sub-2: Vercel Backend</button>
+      <button class="tab-btn" onclick="switchTab('tab-sub2')">⚡ Sub-2: Azure Container Apps Backend</button>
       <button class="tab-btn" onclick="switchTab('tab-sub3')">☁️ Sub-3: Dual-Tier Storage</button>
       <button class="tab-btn" onclick="switchTab('tab-sub4')">🤖 Sub-4: AI Invocation</button>
       <button class="tab-btn" onclick="switchTab('tab-sub5')">🏆 Sub-5: 5-Pillar Certification</button>
@@ -250,7 +250,7 @@
     <div id="tab-main" class="tab-content active">
       <div class="card">
         <h2>🏛️ Main System Architecture (End-to-End Enterprise Topology)</h2>
-        <p style="color: var(--text-muted);">Authoritative visual diagram showing all 7 functional layers: Developer Clients, Microsoft Entra ID SSO, Vercel Serverless Backend API Gateway, Continuous Certification, Dual-Tier Zero-Cost Storage, and Workspace Targets.</p>
+        <p style="color: var(--text-muted);">Authoritative visual diagram showing all 7 functional layers: Developer Clients, Microsoft Entra ID SSO, Azure Container Apps Backend API Gateway, Continuous Certification, Dual-Tier Zero-Cost Storage, and Workspace Targets.</p>
         
         <div class="image-preview-container">
           <img src="./main-system-architecture.svg" alt="Engineering Commons Main System Architecture">
@@ -258,8 +258,8 @@
 
         <div class="grid-2">
           <div class="stat-card">
-            <h3>⚡ Vercel Serverless Backend (No Azure Functions)</h3>
-            <p>100% of compute runs on Vercel Serverless edge functions (<code>api/index.js</code>). Cold-start latency &lt;180ms, zero idle costs, and zero persistent VM management.</p>
+            <h3>⚡ Azure Container Apps Backend (No Azure Functions)</h3>
+            <p>Compute runs on Azure Container Apps (<code>apm-backend</code>). Containerized microservices, enterprise reliability, and private virtual network isolation.</p>
           </div>
           <div class="stat-card">
             <h3>☁️ Dual-Tier CQRS Storage</h3>
@@ -281,14 +281,14 @@
       </div>
     </div>
 
-    <!-- SUB-ARCH 2: VERCEL BACKEND -->
+    <!-- SUB-ARCH 2: AZURE CONTAINER APPS BACKEND -->
     <div id="tab-sub2" class="tab-content">
       <div class="card">
-        <h2>⚡ Sub-Architecture 2: Vercel Serverless Backend API Gateway Subsystem</h2>
-        <p style="color: var(--text-muted);">Routing, zero-secret Git proxy, Bearer token verification, live request logging, and package synthesis on Vercel.</p>
+        <h2>⚡ Sub-Architecture 2: Azure Container Apps Backend API Gateway Subsystem</h2>
+        <p style="color: var(--text-muted);">Routing, zero-secret Git proxy, Bearer token verification, live request logging, and package synthesis on Azure Container Apps.</p>
 
         <div class="image-preview-container">
-          <img src="./sub-arch-2-vercel-backend.svg" alt="Vercel Serverless Backend Gateway">
+          <img src="./sub-arch-2-azure-backend.svg" alt="Azure Container Apps Backend Gateway">
         </div>
       </div>
     </div>
@@ -348,7 +348,7 @@
           <tbody>
             <tr>
               <td><strong>API Gateway & Backend</strong></td>
-              <td>Vercel Serverless (Express Edge)</td>
+              <td>Azure Container Apps</td>
               <td>100 GB Bandwidth / 1M Edge calls</td>
               <td>~12 GB / 140K calls</td>
               <td><span class="badge-free">$0.00</span></td>

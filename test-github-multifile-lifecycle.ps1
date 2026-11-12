@@ -4,7 +4,7 @@ Write-Host "====================================================================
 Write-Host "      MULTI-FILE .GITHUB LIFECYCLE: PRODUCER -> REVIEW -> UPDATE -> CONSUMER    " -ForegroundColor Cyan
 Write-Host "================================================================================" -ForegroundColor Cyan
 
-$baseUrl = "http://localhost:5000"
+$baseUrl = "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io"
 $rootDir = "c:\Users\HarshPratapSinghRana\Desktop\EMPN_HarshPratapSinghRana\ecommerce-app"
 
 # -----------------------------------------------------------------------------

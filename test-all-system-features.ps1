@@ -8,7 +8,7 @@ $cli = ".\engineering-commons.exe"
 if (-not (Test-Path $cli)) {
     $cli = "dotnet run --project EngineeringCommonsCli/EngineeringCommonsCli.csproj --"
 }
-$baseUrl = "http://localhost:5000"
+$baseUrl = "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io"
 
 # -----------------------------------------------------------------------------
 # 1. CONSUMER CLI WORKFLOW

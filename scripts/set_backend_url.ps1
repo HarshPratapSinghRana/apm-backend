@@ -1,4 +1,4 @@
-# Set Vercel backend URL in CLI and VS Code global configuration
+# Set Azure Container Apps backend URL in CLI and VS Code global configuration
 $homeDir = [Environment]::GetFolderPath("UserProfile")
 $cfgDir = Join-Path $homeDir ".engineering-commons"
 if (-not (Test-Path $cfgDir)) {
@@ -12,7 +12,7 @@ $config = @{
 $config | ConvertTo-Json | Set-Content -Path $cfgPath -Encoding UTF8
 
 Write-Host "============================================================" -ForegroundColor Green
-Write-Host "  Successfully linked Extension and CLI to Vercel Backend!  " -ForegroundColor Green
+Write-Host "  Successfully linked Extension and CLI to Azure Backend!   " -ForegroundColor Green
 Write-Host "============================================================" -ForegroundColor Green
 Write-Host "  Config File : $cfgPath" -ForegroundColor Cyan
 Write-Host "  Backend URL : https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io" -ForegroundColor Cyan

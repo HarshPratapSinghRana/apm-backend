@@ -1,4 +1,4 @@
-import { describe, it, before, after } from 'mocha';
+﻿import { describe, it, before, after } from 'mocha';
 import * as assert from 'assert';
 import * as http from 'http';
 import { ReviewCommentService } from '../src/services/reviewCommentService';
@@ -78,7 +78,7 @@ describe('ReviewCommentService Unit Tests', () => {
         });
 
         server.listen(5099, () => {
-            commentService = new ReviewCommentService(authProvider, 'http://localhost:5099');
+            commentService = new ReviewCommentService(authProvider, 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
             done();
         });
     });

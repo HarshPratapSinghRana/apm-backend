@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+﻿import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { ArtifactDetailsWebviewProvider } from '../src/views/artifactDetailsWebviewProvider';
 import { ArtifactTreeDataProvider } from '../src/views/artifactTreeDataProvider';
@@ -16,7 +16,7 @@ describe('Artifact Details View & Explicit Installation Tests', function () {
         auth = new MockAuthProvider();
         auth.authenticated = true;
         auth.email = 'consumer@company.com';
-        tree = new ArtifactTreeDataProvider(cli, auth, 'engineering-commons', 'http://localhost:5000');
+        tree = new ArtifactTreeDataProvider(cli, auth, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
     });
 
     it('1. Clicking artifact in tree assigns showArtifactDetails command (does NOT install)', async () => {
@@ -55,7 +55,7 @@ accessibility-fix    agent      1.0.0
     });
 
     it('2. Artifact details provider resolves metadata, versions, and file structure', async () => {
-        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'http://localhost:5000');
+        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         const artifact: DiscoveredArtifactItem = {
             name: 'design-reviewer',
             type: 'agent',
@@ -71,7 +71,7 @@ accessibility-fix    agent      1.0.0
     });
 
     it('3. Explicit install button triggers CLI install with selected version', async () => {
-        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'http://localhost:5000');
+        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         const artifact: DiscoveredArtifactItem = {
             name: 'design-reviewer',
             type: 'agent',
@@ -97,7 +97,7 @@ accessibility-fix    agent      1.0.0
         auth.authenticated = false;
         auth.email = undefined;
 
-        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'http://localhost:5000');
+        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         await (provider as any).handleInstall(
             { webview: { postMessage: () => {} } },
             'design-reviewer',
@@ -110,7 +110,7 @@ accessibility-fix    agent      1.0.0
     });
 
     it('5. Interactive files list provides expandable content preview and openInEditor action', async () => {
-        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'http://localhost:5000');
+        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         const artifact: DiscoveredArtifactItem = {
             name: 'accessibility-fix',
             type: 'agent',
@@ -128,7 +128,7 @@ accessibility-fix    agent      1.0.0
     });
 
     it('6. Artifact with agent files structure is dynamically resolved to type agent', async () => {
-        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'http://localhost:5000');
+        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         const artifact: DiscoveredArtifactItem = {
             name: 'accessibility-fix',
             type: 'normalfile', // Intentionally pass outdated/fallback type
@@ -140,7 +140,7 @@ accessibility-fix    agent      1.0.0
     });
 
     it('7. Artifact details view renders visibility badge and Make Public button for owner', () => {
-        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'http://localhost:5000');
+        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         const details = {
             id: 'dev-skill',
             name: 'dev-skill',
@@ -162,7 +162,7 @@ accessibility-fix    agent      1.0.0
     });
 
     it('8. Artifact details view renders Install to Workspace and Download ZIP buttons', () => {
-        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'http://localhost:5000');
+        const provider = new ArtifactDetailsWebviewProvider(auth, cli, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
         const details = {
             id: 'design-reviewer',
             name: 'design-reviewer',

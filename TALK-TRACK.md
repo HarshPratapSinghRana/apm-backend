@@ -153,21 +153,21 @@ Show the **Full System Architecture Diagram**:
 ### 🎬 **3.1 Backend Startup & Automatic PostgreSQL Schema Creation (08:00 – 09:30)**
 
 #### 🖥️ Screen Action:
-Open a terminal and start the backend:
+Verify connectivity to the Azure Container Apps hosted backend:
 ```powershell
-.\start-backend-dev.cmd
+curl https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io/api/health
 ```
 
 #### 🗣️ Spoken Script:
-> *"Let's start our live demonstration. I will boot our .NET backend server.*
+> *"Let's start our live demonstration. Our backend is deployed and running live on Azure Container Apps.*
 >
-> *Notice what happens in the console logs: the backend loads our `.env` configuration, detects our live Neon PostgreSQL connection string, initializes Entity Framework Core, and runs `Database.EnsureCreated()`. All database tables and indexes are automatically provisioned in the cloud with zero manual migration scripts."*
+> *Notice what happens when we verify health: the hosted container backend connects to Azure DevOps and SharePoint, providing unified governance and marketplace APIs with enterprise SLA and zero local host dependencies."*
 
 #### 🖥️ Point Out Output:
 ```text
-🐘 PostgreSQL configuration detected. Configuring Npgsql DbContext...
-✓ PostgreSQL tables (usage_events, reviews) initialized successfully.
-Now listening on: http://localhost:5000
+✓ Service: apm-backend (Azure Container Apps)
+✓ Status: Healthy (200 OK)
+✓ Endpoint: https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io
 ```
 
 ---

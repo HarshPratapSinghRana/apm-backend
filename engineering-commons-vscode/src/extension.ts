@@ -79,12 +79,10 @@ export function activate(context: vscode.ExtensionContext) {
     const config = vscode.workspace.getConfiguration('engineeringCommons');
     const customCliPath = config.get<string>('cliPath') || '';
     const rawBackend = (config.get<string>('backendUrl') || '').trim();
-    const backendUrl = (!rawBackend || rawBackend.includes('localhost') || rawBackend.includes('vercel.app'))
-        ? DEFAULT_AZURE_BACKEND
-        : rawBackend.replace(/\/+$/, '');
+    const backendUrl = rawBackend ? rawBackend.replace(/\/+$/, '') : DEFAULT_AZURE_BACKEND;
 
-    // Ensure the setting is permanently aligned to the Azure Container Apps backend if unconfigured or stale
-    if (!rawBackend || rawBackend.includes('localhost') || rawBackend.includes('vercel.app')) {
+    // Ensure the setting is aligned to the Azure Container Apps backend if unconfigured
+    if (!rawBackend) {
         config.update('backendUrl', DEFAULT_AZURE_BACKEND, vscode.ConfigurationTarget.Global).then(undefined, () => {});
     }
 
@@ -239,7 +237,7 @@ export function activate(context: vscode.ExtensionContext) {
     const configListener = vscode.workspace.onDidChangeConfiguration(async (e) => {
         if (e.affectsConfiguration('engineeringCommons.backendUrl')) {
             const rawUrl = (vscode.workspace.getConfiguration('engineeringCommons').get<string>('backendUrl') || '').trim();
-            const newUrl = (!rawUrl || rawUrl.includes('localhost') || rawUrl.includes('vercel.app')) ? DEFAULT_AZURE_BACKEND : rawUrl.replace(/\/+$/, '');
+            const newUrl = rawUrl ? rawUrl.replace(/\/+$/, '') : DEFAULT_AZURE_BACKEND;
             AutoCliProvisioner.seedUserBackendConfig(newUrl);
             backendUsageClient.setBackendUrl(newUrl);
             reviewThreadService.setBackendUrl(newUrl);
