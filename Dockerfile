@@ -11,8 +11,6 @@ RUN npm install express cors --omit=dev && npm cache clean --force
 
 # Copy backend application files
 COPY api ./api
-COPY artifacts-json ./artifacts-json
-COPY scripts ./scripts
 
 EXPOSE 3000
 
