@@ -74,6 +74,8 @@ strix_runs/
 strix-test/
 gitleaks*.json
 tools/
+engineering-commons-vscode/cip.yml
+cip.yml
 
 # Architecture and documentation exports
 engineering-commons-architecture.*
