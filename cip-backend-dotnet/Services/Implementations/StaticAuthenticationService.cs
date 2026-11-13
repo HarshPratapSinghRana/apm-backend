@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using CipBackend.Models;
 using CipBackend.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -37,9 +39,38 @@ public class StaticAuthenticationService : IAuthenticationService
         }
     }
 
+    private static bool VerifyPassword(string inputPassword, User user)
+    {
+        if (string.IsNullOrEmpty(inputPassword)) return false;
+
+        // 1. Verify against SHA-256 hash if present
+        if (!string.IsNullOrEmpty(user.PasswordHash))
+        {
+            using var sha = SHA256.Create();
+            var computed = Convert.ToHexString(sha.ComputeHash(Encoding.UTF8.GetBytes(inputPassword))).ToLowerInvariant();
+            if (string.Equals(computed, user.PasswordHash.ToLowerInvariant(), StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        // 2. Fallback to direct password check with constant-time equality
+        if (!string.IsNullOrEmpty(user.Password))
+        {
+            var inputBytes = Encoding.UTF8.GetBytes(inputPassword);
+            var storedBytes = Encoding.UTF8.GetBytes(user.Password);
+            if (inputBytes.Length == storedBytes.Length && CryptographicOperations.FixedTimeEquals(inputBytes, storedBytes))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public User? ValidateCredentials(string email, string password)
     {
-        var existing = _users.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && u.Password == password);
+        var existing = _users.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && VerifyPassword(password, u));
         if (existing != null) return existing;
 
         // In test & dev environments, allow designated test domains (company.com, test.com)

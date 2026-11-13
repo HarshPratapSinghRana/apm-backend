@@ -10,6 +10,33 @@ describe('Artifact Details View & Explicit Installation Tests', function () {
     let cli: MockCliExecutor;
     let auth: MockAuthProvider;
     let tree: ArtifactTreeDataProvider;
+    let origFetchJson: any;
+
+    before(() => {
+        origFetchJson = (ArtifactDetailsWebviewProvider.prototype as any).fetchJson;
+        (ArtifactDetailsWebviewProvider.prototype as any).fetchJson = async (url: string) => {
+            if (url.includes('/versions')) {
+                return { status: 200, data: [{ version: '1.1.0', cipPackage: 'company.cip.design-reviewer', isLatest: true }] };
+            }
+            return {
+                status: 200,
+                data: {
+                    name: 'design-reviewer',
+                    type: 'agent',
+                    version: '1.1.0',
+                    description: 'Design reviewer agent',
+                    files: [{ path: 'agent.md', content: 'Design agent' }],
+                    versions: [{ version: '1.1.0', cipPackage: 'company.cip.design-reviewer', isLatest: true }]
+                }
+            };
+        };
+    });
+
+    after(() => {
+        if (origFetchJson) {
+            (ArtifactDetailsWebviewProvider.prototype as any).fetchJson = origFetchJson;
+        }
+    });
 
     beforeEach(() => {
         cli = new MockCliExecutor();
@@ -17,6 +44,7 @@ describe('Artifact Details View & Explicit Installation Tests', function () {
         auth.authenticated = true;
         auth.email = 'consumer@company.com';
         tree = new ArtifactTreeDataProvider(cli, auth, 'engineering-commons', 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io');
+        (tree as any).makeRequest = async () => ({ status: 200, data: [] });
     });
 
     it('1. Clicking artifact in tree assigns showArtifactDetails command (does NOT install)', async () => {

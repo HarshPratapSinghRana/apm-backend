@@ -1733,6 +1733,12 @@ export class ArtifactDetailsWebviewProvider {
                     });
                 });
 
+                req.setTimeout(3000, () => {
+                    req.destroy();
+                    if (isGet) ArtifactDetailsWebviewProvider.inFlightDetailsRequests.delete(cacheKey);
+                    resolve({ status: 504, data: null });
+                });
+
                 req.on('error', () => {
                     if (isGet) ArtifactDetailsWebviewProvider.inFlightDetailsRequests.delete(cacheKey);
                     resolve({ status: 500, data: null });

@@ -134,11 +134,35 @@ builder.Services.AddControllers()
     });
 builder.Services.AddCors(options =>
 {
+    var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
     options.AddDefaultPolicy(policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        if (allowedOrigins != null && allowedOrigins.Length > 0)
+        {
+            policy.WithOrigins(allowedOrigins)
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials();
+        }
+        else
+        {
+            policy.SetIsOriginAllowed(origin =>
+            {
+                if (string.IsNullOrEmpty(origin)) return true;
+                if (Uri.TryCreate(origin, UriKind.Absolute, out var uri))
+                {
+                    return uri.Host == "localhost" ||
+                           uri.Host == "127.0.0.1" ||
+                           origin.StartsWith("vscode-webview://", StringComparison.OrdinalIgnoreCase) ||
+                           uri.Host.EndsWith("azurecontainerapps.io", StringComparison.OrdinalIgnoreCase) ||
+                           uri.Host.EndsWith("maqsoftware.com", StringComparison.OrdinalIgnoreCase);
+                }
+                return false;
+            })
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
+        }
     });
 });
 
@@ -448,6 +472,10 @@ app.Use(async (context, next) =>
     }
     catch (Exception ex)
     {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Error.WriteLine($"[HTTP 500 ERROR] {context.Request.Method} {context.Request.Path}: {ex.Message}");
+        Console.ResetColor();
+
         if (!context.Response.HasStarted)
         {
             context.Response.StatusCode = 500;

@@ -953,6 +953,12 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                     });
                 });
 
+                req.setTimeout(3000, () => {
+                    req.destroy();
+                    this.inFlightRequests.delete(cacheKey);
+                    resolve({ status: 504, data: null });
+                });
+
                 req.on('error', () => {
                     this.inFlightRequests.delete(cacheKey);
                     resolve({ status: 500, data: null });

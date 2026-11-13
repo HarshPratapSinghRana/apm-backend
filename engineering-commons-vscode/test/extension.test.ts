@@ -380,14 +380,18 @@ describe('Engineering Commons VS Code Extension Tests', () => {
     // 19. Workspace artifact discovery finds local AI artifacts
     it('19. Workspace artifact discovery finds local skills and agents for contribution', () => {
         const { discoverLocalArtifacts } = require('../src/commands/contributeCommand');
-        const path = require('path');
-        const workspacePath = path.resolve(__dirname, '..', '..', '..');
-        const discovered = discoverLocalArtifacts(workspacePath);
+        const tmpDir = path.join(os.tmpdir(), 'cip-discover-test-' + Date.now());
+        const skillDir = path.join(tmpDir, '.github', 'skills', 'review-and-refactor');
+        fs.mkdirSync(skillDir, { recursive: true });
+        fs.writeFileSync(path.join(skillDir, 'SKILL.md'), '---\nname: review-and-refactor\ntype: skill\n---\n# Review Skill', 'utf-8');
 
+        const discovered = discoverLocalArtifacts(tmpDir);
         expect(discovered).to.be.an('array');
         const skill = discovered.find((d: any) => d.name === 'review-and-refactor' || d.type === 'skill');
         expect(skill).to.not.be.undefined;
         expect(skill.type).to.equal('skill');
+
+        try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch {}
     });
 
     // 20. SessionFileAuthStatusProvider logout cleans up session files and emits event

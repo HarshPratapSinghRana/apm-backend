@@ -100,6 +100,28 @@ sample-package       package    1.0.0
 
     it('5. Bounties tab renders category pills, credit rewards, and Claim bounty buttons', async () => {
         (provider as any).currentTab = 'bounties';
+        (provider as any).bountyService.getBountiesAsync = async () => [
+            {
+                id: 'bty-terraform-guard',
+                title: 'Review terraform-compliance-guard agent',
+                category: 'Review',
+                status: 'Open',
+                stage: 'PendingReview',
+                credits: 160,
+                isClaimedByMe: false,
+                dueInDays: 3
+            },
+            {
+                id: 'bty-graphql-guardian',
+                title: 'Review graphql-schema-guardian agent',
+                category: 'Review',
+                status: 'Open',
+                stage: 'PendingReview',
+                credits: 140,
+                isClaimedByMe: false,
+                dueInDays: 5
+            }
+        ];
         const html = await (provider as any).renderHtml();
 
         assert.ok(html.includes('terraform-compliance-guard') || html.includes('bty-terraform-guard'), 'Should show Review terraform-compliance bounty');
@@ -261,6 +283,18 @@ sample-package       package    1.0.0
     it('15. Reviewer role can claim pending review bounties and view claimed reviews in My Work', async () => {
         mockAuth.email = 'reviewer@test.com';
         mockAuth.role = 'REVIEWER';
+        (provider as any).bountyService.getBountiesAsync = async () => [
+            {
+                id: 'bty-terraform-guard',
+                title: 'Review terraform-compliance-guard agent',
+                category: 'Review',
+                status: 'Open',
+                stage: 'PendingReview',
+                credits: 160,
+                isClaimedByMe: false,
+                dueInDays: 3
+            }
+        ];
         (provider as any).currentTab = 'bounties';
         const bountyHtml = await (provider as any).renderHtml();
 
