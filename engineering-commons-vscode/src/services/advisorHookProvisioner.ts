@@ -261,7 +261,7 @@ export class AdvisorHookProvisioner {
 
             try {
                 // Fetch latest marketplace catalog from backend in a single API call
-                const url = (backendUrl || 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '') + '/api/artifacts';
+                const url = (backendUrl || 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io').replace(/\/+$/, '') + '/api/artifacts';
                 const items = await AdvisorHookProvisioner.fetchJsonAsync<any[]>(url, token);
                 if (Array.isArray(items) && items.length > 0) {
                     AdvisorHookProvisioner.syncLiveCatalogFromArtifacts(items, workspaceRoot);

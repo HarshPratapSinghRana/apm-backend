@@ -103,7 +103,7 @@ export class DefaultCliExecutor implements ICliExecutor {
             const rawBackendUrl = config?.get<string>('backendUrl') || process.env.ENGINEERING_COMMONS_BACKEND_URL;
             const backendUrl = (rawBackendUrl && rawBackendUrl.trim().length > 0)
                 ? rawBackendUrl.trim().replace(/\/+$/, '')
-                : 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
+                : 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io';
 
             const isBatch = executable.toLowerCase().endsWith('.cmd') || executable.toLowerCase().endsWith('.bat');
             const proc = spawn(executable, fullArgs, {

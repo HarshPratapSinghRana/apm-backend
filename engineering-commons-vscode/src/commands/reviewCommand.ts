@@ -88,7 +88,7 @@ function fetchJson<T>(urlStr: string, token?: string, method = 'GET', body?: any
 export async function executeReviewCommand(
     authProvider: IAuthenticationStatusProvider,
     contentProvider: ReviewContentProvider,
-    backendUrl = 'https://cip-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io'
+    backendUrl = 'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io'
 ): Promise<void> {
     const isAuth = await authProvider.isAuthenticated();
     if (!isAuth) {
