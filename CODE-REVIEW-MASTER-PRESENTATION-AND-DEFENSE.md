@@ -47,6 +47,10 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 "Now, please look at the **Architectural Blueprint**. Our production platform is structured across **5 interconnected tiers** designed for high throughput, zero egress overhead, and seamless AI agent invocation:
 
+![1. Architectural Blueprint](./engineering-commons-architecture.png)
+
+> 🔗 **Direct File Link**: [Open Full-Resolution Architecture Blueprint (PNG)](file:///c:/Users/HarshPratapSinghRana/Downloads/CIP-Engineering%20Commons/engineering-commons-architecture.png)
+
 ```mermaid
 %%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#FFFFFF', 'mainBkg': '#FFFFFF', 'primaryTextColor': '#0F172A', 'lineColor': '#334155' }}}%%
 flowchart LR
