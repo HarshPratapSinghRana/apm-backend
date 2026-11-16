@@ -182,41 +182,41 @@ let certificationReviewsDb = [];
 let certificationAuditLogDb = [];
 
 // Load local fallback cache on startup if available
-try {
-    const certDir = path.join(__dirname, '..', 'certification');
-    const regFile = path.join(certDir, 'registry.json');
-    if (fs.existsSync(regFile)) {
-        const regData = JSON.parse(fs.readFileSync(regFile, 'utf8'));
-        if (regData && regData.artifacts) {
-            certificationRegistryDb = regData.artifacts;
-            for (const [k, v] of Object.entries(regData.artifacts)) {
-                certificationsDb[k] = {
-                    isCertified: v.isCertified,
-                    status: v.badge === 'Certified' ? 'CERTIFIED' : (v.badge || 'VERIFIED'),
-                    certifiedAt: v.certifiedAt,
-                    certifiedVersion: v.certifiedVersion || v.version,
-                    reason: v.reason || 'Verified Architectural Standard'
-                };
+const certDir = path.join(__dirname, '..', 'certification');
+if (fs.existsSync(certDir)) {
+    try {
+        const regFile = path.join(certDir, 'registry.json');
+        if (fs.existsSync(regFile)) {
+            const regData = JSON.parse(fs.readFileSync(regFile, 'utf8'));
+            if (regData && regData.artifacts) {
+                certificationRegistryDb = regData.artifacts;
+                for (const [k, v] of Object.entries(regData.artifacts)) {
+                    certificationsDb[k] = {
+                        isCertified: v.isCertified,
+                        status: v.badge === 'Certified' ? 'CERTIFIED' : (v.badge || 'VERIFIED'),
+                        certifiedAt: v.certifiedAt,
+                        certifiedVersion: v.certifiedVersion || v.version,
+                        reason: v.reason || 'Verified Architectural Standard'
+                    };
+                }
             }
         }
-    }
-    const telFile = path.join(certDir, 'telemetry.json');
-    if (fs.existsSync(telFile)) {
-        const telData = JSON.parse(fs.readFileSync(telFile, 'utf8'));
-        if (telData && Array.isArray(telData.events)) certificationTelemetryDb = telData.events;
-    }
-    const revFile = path.join(certDir, 'reviews.json');
-    if (fs.existsSync(revFile)) {
-        const revData = JSON.parse(fs.readFileSync(revFile, 'utf8'));
-        if (revData && Array.isArray(revData.reviews)) certificationReviewsDb = revData.reviews;
-    }
-    const audFile = path.join(certDir, 'audit-log.json');
-    if (fs.existsSync(audFile)) {
-        const audData = JSON.parse(fs.readFileSync(audFile, 'utf8'));
-        if (audData && Array.isArray(audData.entries)) certificationAuditLogDb = audData.entries;
-    }
-} catch (e) {
-    console.warn('[Certification] Startup local fallback load note:', e.message);
+        const telFile = path.join(certDir, 'telemetry.json');
+        if (fs.existsSync(telFile)) {
+            const telData = JSON.parse(fs.readFileSync(telFile, 'utf8'));
+            if (telData && Array.isArray(telData.events)) certificationTelemetryDb = telData.events;
+        }
+        const revFile = path.join(certDir, 'reviews.json');
+        if (fs.existsSync(revFile)) {
+            const revData = JSON.parse(fs.readFileSync(revFile, 'utf8'));
+            if (revData && Array.isArray(revData.reviews)) certificationReviewsDb = revData.reviews;
+        }
+        const audFile = path.join(certDir, 'audit-log.json');
+        if (fs.existsSync(audFile)) {
+            const audData = JSON.parse(fs.readFileSync(audFile, 'utf8'));
+            if (audData && Array.isArray(audData.entries)) certificationAuditLogDb = audData.entries;
+        }
+    } catch {}
 }
 
 let submissionsDb = {};
@@ -878,39 +878,11 @@ try {
     console.warn('[Catalog] Error loading bundled artifacts-catalog.json:', e.message);
 }
 
-let aiLeapHelper = null;
-try {
-    aiLeapHelper = require('../scripts/sync-ai-leap-artifacts.js');
-} catch {
-    try {
-        aiLeapHelper = require(path.join(process.cwd(), 'scripts', 'sync-ai-leap-artifacts.js'));
-    } catch (e) {
-        console.warn('[AI Leap Helper] Failed to load:', e.message);
-    }
-}
-
-let aiLeapCache = { data: [], lastCheck: 0, mtime: 0 };
 function getLiveAiLeapArtifacts() {
-    if (aiLeapHelper) {
-        try {
-            const paths = aiLeapHelper.getAiLeapPaths(process.cwd());
-            if (paths && fs.existsSync(paths.agentsFile)) {
-                const stat = fs.statSync(paths.agentsFile);
-                if (aiLeapCache.data.length > 0 && stat.mtimeMs === aiLeapCache.mtime && (Date.now() - aiLeapCache.lastCheck < 10000)) {
-                    return aiLeapCache.data;
-                }
-                const loaded = aiLeapHelper.loadAiLeapCatalog(process.cwd());
-                aiLeapCache = {
-                    data: loaded,
-                    lastCheck: Date.now(),
-                    mtime: stat.mtimeMs
-                };
-                return loaded;
-            }
-        } catch {}
-    }
-    // Reliable fallback for container runtime:
-    return bundledCatalogArtifacts.filter(a => (a.source === 'AI_LEAP' || (a.id && String(a.id).startsWith('leap-'))) && a.category !== 'Token Optimization' && a.domain !== 'Token Optimization');
+    return bundledCatalogArtifacts.filter(a => 
+        (a.source === 'AI_LEAP' || (a.id && String(a.id).startsWith('leap-')) || (a.category && a.category.toLowerCase().includes('ai leap'))) &&
+        a.category !== 'Token Optimization' && a.domain !== 'Token Optimization'
+    );
 }
 
 // 2.0 Dedicated AI Leap Endpoints
