@@ -434,3 +434,4 @@ We performed a clean architectural unification:
 3. **Temporary Workspace Isolation**:
    - Tests that manipulate files on disk create a transient directory inside `os.tmpdir()` (`path.join(os.tmpdir(), 'cip_test_...')`) and delete it in `finally` or `afterEach` blocks.
    - This ensures tests run in under 55 seconds with zero external network dependencies and zero risk of polluting the developer's working directory."
+
