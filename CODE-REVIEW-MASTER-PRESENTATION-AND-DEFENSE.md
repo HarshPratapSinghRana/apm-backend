@@ -43,41 +43,101 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 ---
 
-### End-to-End System Architecture
+### End-to-End Real Architectural Blueprint (5-Tier Enterprise Architecture)
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                          DEVELOPER INTERFACES                          │
-│                                                                        │
-│   ┌────────────────────────────────┐  ┌────────────────────────────┐   │
-│   │   VS Code Extension (TypeScript)│  │   Console CLI (C# .NET 10) │   │
-│   │   • Tree View & Webview Panels │  │   • Terminal Commands      │   │
-│   │   • Inline Code Reviews & Diffs│  │   • Disk Cache & Offline   │   │
-│   │   • Auto-Hook Provisioner      │  │   • Git-Style Diff Engine  │   │
-│   └───────────────┬────────────────┘  └──────────────┬─────────────┘   │
-└───────────────────┼──────────────────────────────────┼─────────────────┘
-                    │                                  │
-                    ▼                                  ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                        API GATEWAY & BACKEND                           │
-│                                                                        │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │  Azure Container Apps Gateway (`api/` Node.js Express Runtime) │   │
-│   │  • High-performance gzip response compression                  │   │
-│   │  • Live Catalog search & reverse proxy to enterprise services  │   │
-│   └───────────────────────────────┬────────────────────────────────┘   │
-│                                   │                                    │
-│   ┌───────────────────────────────▼────────────────────────────────┐   │
-│   │  Enterprise REST Backend (`cip-backend-dotnet/` ASP.NET Core)  │   │
-│   │  • RBAC & Microsoft Entra ID (SSO) Authentication              │   │
-│   │  • Artifact Governance, Multi-Stage Reviews & Approvals        │   │
-│   │  • Reviewer Certification Scoring & Qualification Engine       │   │
-│   │  • Automated Telemetry Aggregation & Bounty Gamification       │   │
-│   └────────────────────────────────────────────────────────────────┘   │
-└────────────────────────────────────────────────────────────────────────┘
+"Now, please look at the **Architectural Blueprint**. Our production platform is structured across **5 interconnected tiers** designed for high throughput, zero egress overhead, and seamless AI agent invocation:
+
+```mermaid
+%%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#FFFFFF', 'mainBkg': '#FFFFFF', 'primaryTextColor': '#0F172A', 'lineColor': '#334155' }}}%%
+flowchart LR
+    subgraph T1["1. USER & CLIENT LAYER"]
+        direction TB
+        DEV["👤 Enterprise Developer\n(Install / Review / Run)"]
+        VSC["💻 VS Code Extension\n(company-apm-vscode v1.2.8)"]
+        CLI["⌨️ Company APM CLI\n(CompanyApmCli .NET 10)"]
+        WS["📁 Local Workspace\n(.agents/skills | .github/agents)"]
+        DEV -->|"1. Action"| VSC
+        DEV -->|"1. Command"| CLI
+    end
+
+    subgraph T2["2. IDENTITY & INGRESS"]
+        direction TB
+        AAD["🔐 Microsoft Entra ID\n(Azure AD SSO @maqsoftware.com)"]
+        RBAC["🛡️ Role-Based Access (RBAC)\n(ADMIN / REVIEWER / PRODUCER / CONSUMER)"]
+        ING["🌐 Azure Ingress Gateway\n(443 HTTPS -> 5000 Target)"]
+        AAD --> RBAC
+        RBAC --> ING
+    end
+
+    subgraph T3["3. BACKEND CORE SERVICES (Azure)"]
+        direction TB
+        ACA["📦 Azure Container App\n(apm-backend Node 20 Alpine)"]
+        subgraph FEAT["★ CORE PLATFORM FEATURES"]
+            direction TB
+            CACHE["⚡ In-Memory Catalog Cache\n(cachedArtifactsMaster 0.1ms)"]
+            CERT["🛡️ 5-Pillar Cert Engine\n(Dynamic Health Score >= 85%)"]
+            REV["⏱️ Peer Review & Bounties\n(Diff Viewer | 24h/48h SLAs)"]
+            NOTIF["🔔 In-App Notifications\n(Review Mentions & Alerts)"]
+        end
+        ACA --> FEAT
+    end
+
+    subgraph T4["4. ZERO-COST STORAGE TIER"]
+        direction TB
+        ADO["☁️ Azure DevOps Git Repos\n(Master Versions & Source Archives)"]
+        SPO["📂 SharePoint Online (M365)\n(Artifacts | Reviews | Bounties)"]
+        LEAP["🚀 AI Leap Platform Store\n(Shared Skills, Prompts & Specs)"]
+    end
+
+    subgraph T5["5. AI INVOCATION & WORKSPACE"]
+        direction TB
+        COP["🤖 GitHub Copilot Chat\n(@agent-name Native Invocation)"]
+        SLASH["⌨️ Copilot Slash Commands\n(/skill-name Invocation)"]
+        AGY["🪐 Antigravity AI Agent IDE\n(Autonomous Subagent Execution)"]
+    end
+
+    VSC -->|"2. SSO Token"| AAD
+    CLI -->|"2. Device Code"| AAD
+    ING -->|"3. HTTPS"| ACA
+    FEAT -->|"4. Version Archives"| ADO
+    FEAT -->|"5. Business Metadata"| SPO
+    FEAT -->|"5. Playbook Specs"| LEAP
+    ADO -->|"6. Direct Git Sync"| WS
+    WS -->|"7. Agent Spec"| COP
+    WS -->|"7. Skill YAML"| SLASH
+    WS -->|"8. Autonomous Run"| AGY
+    WS -.->|"9. Telemetry Feedback"| FEAT
 ```
 
-Now, let's walk through every folder and file in this repository."
+#### Step-by-Step Architecture Explanation (Read Directly):
+
+"Let me explain the exact journey of a request across these 5 tiers:
+
+1. **Tier 1 — User & Client Layer**: 
+   The enterprise developer interacts through either the **VS Code Extension (`company-apm-vscode v1.2.8`)** or the cross-platform **Company APM CLI (.NET 10)**. Whether browsing bounties, running a diff review, or installing an artifact, all operations originate here.
+
+2. **Tier 2 — Identity & Ingress**: 
+   Before any request touches core infrastructure, identity is verified against **Microsoft Entra ID (Azure AD SSO)**. Our **RBAC Policy Engine** enforces strict role separation across `ADMIN`, `REVIEWER`, `PRODUCER`, and `CONSUMER`. Authenticated traffic enters through the **Azure Ingress Gateway** over HTTPS on port 443, routing directly to the container target.
+
+3. **Tier 3 — Backend Core Services (Azure Container Apps)**: 
+   The core application runs inside a serverless **Azure Container App (`apm-backend` on Node 20 Alpine)**. It houses four critical platform subsystems:
+   - **In-Memory Catalog Cache (`cachedArtifactsMaster`)**: Delivers sub-millisecond (0.1ms) catalog queries and gzip-compressed responses.
+   - **5-Pillar Certification Engine**: Evaluates artifacts across adoption, peer reviews, code health, documentation, and security, calculating a Dynamic Health Score (DHS >= 85%).
+   - **Peer Review & Bounties**: Powers side-by-side Git diff generation and enforces 24-hour and 48-hour review SLAs.
+   - **In-App Notifications**: Dispatches alerts for code review mentions, approval states, and claimed bounties.
+
+4. **Tier 4 — Zero-Cost Storage Tier**: 
+   To eliminate expensive database and blob storage egress costs, we utilize enterprise-entitled storage:
+   - **Azure DevOps Git Repositories** store master artifact versions, tag releases, and immutable source archives.
+   - **SharePoint Online (M365)** stores business review metadata, bounty logs, and audit entries with zero additional cloud spend.
+   - **AI Leap Platform Store** acts as the enterprise catalog for shared prompt specs and standardized agents.
+
+5. **Tier 5 — AI Invocation & Workspace Runtime**: 
+   When an artifact is installed, files are placed directly into the workspace (`.agents/skills` and `.github/agents`). Our `AdvisorHookProvisioner` automatically updates `.github/copilot-instructions.md`. This allows:
+   - **GitHub Copilot Chat** to natively invoke agents using `@agent-name`.
+   - **Copilot Slash Commands** to execute skills via `/skill-name`.
+   - **Antigravity AI Agent IDE** to orchestrate multi-step autonomous subagent execution directly on developer workstations.
+   Finally, execution events loop back into the certification telemetry engine, completing the continuous governance cycle."
 
 ---
 
@@ -471,3 +531,4 @@ Now, let's walk through every folder and file in this repository."
 1. **Telemetry Batching**: `telemetryBatcher.ts` batches events into chunks of 50 or 5-second intervals to avoid saturating HTTP sockets.
 2. **File Streaming**: `ArtifactPlacementService.cs` reads and writes file streams in memory-buffered chunks.
 3. **Response Compression**: `api/index.js` applies gzip stream chunking via `compression()` to compress large catalog JSON payloads by up to 90%."
+
