@@ -1,9 +1,10 @@
 # Engineering Commons — Master Code Review Presentation & Technical Defense Guide
 
-> **Document Type**: Comprehensive Spoken Presentation Script, Exhaustive File-by-File Dictionary, and 25-Question Technical Defense Guide  
+> **Document Type**: Comprehensive Spoken Presentation Script, Exhaustive ADO Codebase Dictionary (100% Files Covered), and 25-Question Technical Defense Guide  
 > **Target Audience**: External Code Reviewers, Principal Architects, and Engineering Leadership  
-> **Target Branch**: Azure DevOps (`Engineering-Commons-Code`)  
-> **Presenter Instructions**: You can read Part 1 directly aloud word-for-word during your code review session. Part 2 contains folder-by-folder and file-by-file single-line descriptions. Part 3 provides complete model answers for all 25 technical review questions.
+> **Target Repository**: Azure DevOps (`MAQInternalCIP-Engineering-Commons/Engineering Commons`)  
+> **Target Branch**: `Engineering-Commons-Code`  
+> **Presenter Instructions**: You can read Part 1 directly aloud word-for-word during your presentation. Part 2 walks through every single directory and file exactly as structured on Azure DevOps with clear one-line explanations. Part 3 provides complete model answers for all 25 technical defense questions.
 
 ---
 
@@ -93,35 +94,36 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 ---
 
-# PART 2: FOLDER-BY-FOLDER & FILE-BY-FILE CODEBASE DICTIONARY
-*(Read this section to present every file in the repository with its clear, one-line spoken explanation.)*
+# PART 2: COMPLETE FILE-BY-FILE DICTIONARY (EXACT ADO REPOSITORY STRUCTURE)
+*(This section covers 100% of all files present in the Azure DevOps `Engineering-Commons-Code` branch, grouped in their exact directory hierarchy with clear, one-line spoken explanations.)*
 
 ---
 
-### 1. Root Configuration & Deployment Files
-> **Folder Overview**: The repository root contains production containerization instructions, Git exclusions, workspace automation scripts, and executive documentation certifying codebase health.
+### Directory: `/` (Repository Root)
+> **Folder Overview**: The root directory contains production Docker containerization specifications, dependency manifests, Git exclusion rules, and executive architectural documentation certifying the codebase.
 
+- **`.dockerignore`**: Excludes build artifacts, local tests, and node_modules from being copied into Docker container layers.
+- **`.gitignore`**: Prevents runtime caches, build outputs, environment files, and SQLite databases from entering source control.
+- **`CODE-EXPLANATION.md`**: Architectural dictionary detailing multi-tier components, security boundaries, and review workflows.
+- **`CODE-REVIEW-MASTER-PRESENTATION-AND-DEFENSE.md`**: The master presentation script, file-by-file dictionary, and 25-question defense guide.
+- **`CODE-REVIEW-PRESENTATION-AND-DEFENSE.md`**: Initial spoken presentation guide and reviewer defense notes.
 - **`Dockerfile`**: Multi-stage lightweight Alpine Linux container build packaging production dependencies and the API gateway for Azure Container Apps.
-- **`.dockerignore`**: Excludes `node_modules`, test results, `.git`, and development artifacts to minimize container image size.
-- **`.gitignore`**: Excludes build outputs, temporary test artifacts, SQLite databases, and environment secrets from reaching source control.
 - **`package.json`**: Root project manifest declaring production dependencies (`express`, `cors`) and container startup commands.
 - **`package-lock.json`**: Deterministic dependency lockfile ensuring reproducible package installations.
 - **`README.md`**: Central landing documentation covering platform capabilities, CLI syntax, and quickstart guides.
 - **`STRICT-CODE-REVIEW-REPORT.md`**: Official code review and security audit report certifying zero compiler warnings and 100% test pass rate.
 - **`SYSTEM-ARCHITECTURE.md`**: High-level architectural specification describing system topology and data flows.
-- **`CODE-EXPLANATION.md`**: Comprehensive architectural dictionary detailing multi-tier components and review workflows.
-- **`CODE-REVIEW-PRESENTATION-AND-DEFENSE.md`**: Dedicated spoken presentation notes and reviewer defense guide.
 
 ---
 
-### 2. CI/CD Workflows (`.github/workflows/`)
+### Directory: `.github/workflows/`
 > **Folder Overview**: Contains automated continuous integration and continuous deployment pipelines for cloud container hosting.
 
 - **`cip-backend-AutoDeployTrigger-8182d836-f31f-43cb-a97f-3e22a088a75c.yml`**: GitHub Actions / Azure DevOps CI/CD workflow that builds the container image and deploys it automatically to Azure Container Apps.
 
 ---
 
-### 3. VS Code Workspace Settings (`.vscode/`)
+### Directory: `.vscode/`
 > **Folder Overview**: Contains IDE configurations standardizing development environments, debugging tasks, and code formatting rules.
 
 - **`launch.json`**: Debugger configurations allowing developers to hit F5 and debug the VS Code extension host, .NET API, or CLI.
@@ -130,73 +132,138 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 ---
 
-### 4. Cloud API Gateway (`api/`)
-> **Folder Overview**: Contains the Node.js Express gateway deployed on Azure Container Apps, providing high-speed catalog discovery, gzip compression, and qualification scoring.
+### Directory: `api/` (Azure Container Apps Gateway)
+> **Folder Overview**: Contains the Node.js Express cloud gateway deployed on Azure Container Apps, providing high-speed catalog discovery, gzip compression, and qualification scoring.
 
+- **`api/artifacts-catalog.json`**: Authoritative bundled catalog containing all 236 verified enterprise AI artifacts for self-contained container runtime.
+- **`api/certificationEngine.js`**: Deterministic 5-pillar mathematical scoring engine evaluating reviewer qualification tiers based on real-world adoption and reviews.
 - **`api/index.js`**: Express.js server providing REST endpoints for live catalog search, telemetry ingestion, gzip compression, and `/health` probes.
-- **`api/artifacts-catalog.json`**: Authoritative bundled catalog containing all 236 verified AI artifacts for self-contained container runtime.
-- **`api/certificationEngine.js`**: Deterministic 5-pillar mathematical scoring engine evaluating reviewer qualification tiers.
 
 ---
 
-### 5. ASP.NET Core REST Backend (`cip-backend-dotnet/`)
+### Directory: `cip-backend-dotnet/` (ASP.NET Core Backend Root)
 > **Folder Overview**: The enterprise core backend built in .NET 10, managing RBAC governance, review lifecycles, bounty gamification, and cryptographic security.
 
-- **`cip-backend-dotnet.csproj`**: .NET 10 project file configuring C# 13, strict nullable reference types, and Entity Framework Core packages.
-- **`Program.cs`**: Application entrypoint configuring dependency injection, CORS origin whitelisting, global exception handling, and SQLite.
-- **`appsettings.json`**: Production configuration defining database connections, CORS allowed origins, and SHA-256 test credentials.
+- **`.dockerignore`**: Excludes build outputs and obj directories from container builds of the .NET backend.
+- **`.gitignore`**: Excludes .NET build artifacts (`bin/`, `obj/`), user option files, and SQLite databases from Git.
 - **`appsettings.Development.json`**: Local development configuration overrides for debugging and testing.
+- **`appsettings.json`**: Production configuration defining database connections, CORS allowed origins, and SHA-256 test credentials.
+- **`cip-backend-dotnet.csproj`**: .NET 10 project file configuring C# 13, strict nullable reference types, and Entity Framework Core packages.
+- **`Dockerfile`**: Dedicated Dockerfile for building and containerizing the ASP.NET Core Web API service.
+- **`Program.cs`**: Application entrypoint configuring dependency injection, CORS origin whitelisting, global exception handling, and SQLite.
+- **`README.md`**: Documentation covering backend API architecture, database setup, and controller endpoints.
 
-#### Controllers (`cip-backend-dotnet/Controllers/`)
+#### Directory: `cip-backend-dotnet/Controllers/`
 > **Folder Overview**: Exposes strongly typed HTTP REST endpoints for the developer platform.
+
+- **`AccessRequestsController.cs`**: Manages developer requests to access private or restricted enterprise artifacts.
 - **`ArtifactsController.cs`**: Handles catalog search, artifact detail queries, semantic version listing, and file package downloads.
 - **`AuthController.cs`**: Authenticates users via Microsoft Entra ID (SSO) or SHA-256 hashed fallback credentials.
 - **`BountiesController.cs`**: Manages creating, claiming, submitting, and awarding gamified developer bounties.
-- **`CertificationController.cs`**: Computes and returns reviewer qualification scores and badge levels.
+- **`CertificationsController.cs`**: Computes and returns reviewer qualification scores and badge levels.
+- **`DebugController.cs`**: Diagnostics endpoint for inspecting runtime memory state, database counts, and service health.
+- **`EmailDiagnosticsController.cs`**: Diagnostics endpoint for validating email notification templates and SMTP/Graph connectivity.
+- **`HomeController.cs`**: Root API controller serving API status, version information, and health probes.
 - **`NotificationsController.cs`**: Delivers real-time notification alerts, unread counts, and notification dismissal.
+- **`RecommendationsController.cs`**: Recommends AI skills and agents based on user activity and workspace project context.
 - **`ReviewsController.cs`**: Manages peer review submissions, file diff generation, and line-level comment workflows.
 - **`UsageController.cs`**: Ingests tool execution telemetry events and updates adoption statistics.
 
-#### Data Access Layer (`cip-backend-dotnet/Data/`)
+#### Directory: `cip-backend-dotnet/Data/`
 > **Folder Overview**: Contains the Entity Framework Core database context.
-- **`AppDbContext.cs`**: Configures SQLite relational tables, indexes, and entity relationships for users, artifacts, bounties, and reviews.
 
-#### Domain Models (`cip-backend-dotnet/Models/`)
-> **Folder Overview**: Strongly typed entity and data transfer objects representing core domain entities.
-- **`Artifact.cs`**: Represents an AI artifact (prompt, skill, agent) with versioning, ownership, and visibility whitelists.
-- **`Bounty.cs`**: Represents a development or review task with credit reward values and lifecycle states.
-- **`Notification.cs`**: Represents user-targeted alert messages with read/unread tracking.
-- **`Review.cs`**: Represents peer review records, approval decisions, and version transitions.
-- **`ReviewComment.cs`**: Represents threaded line-by-line code review comments and replies.
-- **`UsageEvent.cs`**: Represents telemetry events capturing artifact name, version, action, and client source.
-- **`User.cs`**: Represents enterprise developers with RBAC roles and SHA-256 password verification.
+- **`CipDbContext.cs`**: Entity Framework Core DbContext configuring relational schemas, indexes, and entity mappings for SQLite.
 
-#### Business Logic Services (`cip-backend-dotnet/Services/`)
-> **Folder Overview**: Implements core business logic, governance algorithms, and external integrations.
-- **`ArtifactService.cs`**: Manages artifact publishing, catalog filtering, version resolution, and zip packaging.
+#### Directory: `cip-backend-dotnet/Events/`
+> **Folder Overview**: Implements domain event publishing and event-driven review notifications.
+
+- **`DomainEventPublisher.cs`**: Dispatches domain events in-memory to registered event handlers asynchronously.
+- **`IDomainEventPublisher.cs`**: Interface contract defining asynchronous domain event publishing methods.
+- **`ReviewDomainEvents.cs`**: Event records capturing review submission, comment addition, and approval milestones.
+- **`ReviewNotificationEventHandler.cs`**: Listens for review domain events and dispatches notifications to reviewers and authors.
+
+#### Directory: `cip-backend-dotnet/Middleware/`
+> **Folder Overview**: HTTP request pipeline middleware for security and authentication.
+
+- **`TokenAuthenticationMiddleware.cs`**: Extracts bearer tokens from HTTP Authorization headers and validates user sessions.
+
+#### Directory: `cip-backend-dotnet/Models/`
+> **Folder Overview**: Strongly typed entity models and data transfer objects representing core domain concepts.
+
+- **`ArtifactCertification.cs`**: Domain model storing certification badges, qualification tiers, and audit dates.
+- **`ArtifactChange.cs`**: Domain model capturing change records and version increments for artifact submissions.
+- **`ArtifactDiffModels.cs`**: Data transfer models representing side-by-side and unified text diff lines for code reviews.
+- **`Bounty.cs`**: Domain model representing a development or review task with credit reward values and lifecycle states.
+- **`DuplicateCheckResult.cs`**: Model holding duplicate artifact detection scores and similarity matches.
+- **`Notification.cs`**: Domain model representing user-targeted alert messages with read/unread tracking.
+- **`Review.cs`**: Domain model capturing peer review records, approval decisions, and version transitions.
+- **`ReviewComment.cs`**: Domain model representing threaded line-by-line code review comments and author replies.
+- **`ReviewThread.cs`**: Domain model representing active review conversation threads anchored to specific files.
+- **`UsageEvent.cs`**: Domain model representing telemetry events capturing artifact name, version, action, and client source.
+- **`User.cs`**: Domain model representing enterprise developers with RBAC roles and SHA-256 password verification.
+- **`UserAccessRequest.cs`**: Domain model tracking developer requests for access to restricted artifacts.
+- **`UserRoleAssignment.cs`**: Domain model mapping enterprise users to assigned RBAC roles and granted permissions.
+
+#### Directory: `cip-backend-dotnet/Properties/`
+> **Folder Overview**: Contains development runtime profile settings.
+
+- **`launchSettings.json`**: Configures local HTTP and HTTPS ports, environment variables, and ASP.NET Core profiles.
+
+#### Directory: `cip-backend-dotnet/Services/Implementations/`
+> **Folder Overview**: Implements core business logic, governance algorithms, database access, and external integrations.
+
+- **`ArtifactClassifier.cs`**: Inspects artifact manifests (`cip.yml`, frontmatter) to classify artifacts as skills, agents, or prompts.
 - **`ArtifactDiffService.cs`**: Generates line-by-line unified text diffs between artifact versions for code reviews.
+- **`ArtifactRecommendationService.cs`**: Recommends relevant tools based on user roles and project technology stacks.
+- **`AzureDevOpsMarketplaceService.cs`**: Synchronizes artifacts with Azure DevOps Git repositories and releases.
 - **`BountyService.cs`**: Coordinates bounty claiming eligibility, submission tracking, and reward transfers.
 - **`CertificationService.cs`**: Evaluates reviewer qualifications based on review accuracy and activity history.
-- **`StaticAuthenticationService.cs`**: Validates credentials using SHA-256 hashing and constant-time string comparison to prevent timing attacks.
-- **`InMemoryTokenService.cs`**: Generates and manages secure session tokens with in-memory caching.
-- **`NotificationService.cs`**: Dispatches notifications to artifact authors, reviewers, and bounty claimants.
-- **`ReviewService.cs`**: Coordinates multi-stage peer reviews, approval rules, and status transitions.
-- **`ReviewCommentService.cs`**: Manages threaded line comments and replies on code review diffs.
-- **`ReviewThreadService.cs`**: Manages real-time review conversation threads and lifecycle states.
-- **`UsageService.cs`**: Aggregates usage events and calculates artifact adoption analytics.
-- **`UserRoleService.cs`**: Enforces role-based permissions (Consumer, Producer, Reviewer, Admin) across resources.
-- **`AzureDevOpsMarketplaceService.cs`**: Synchronizes artifacts with Azure DevOps Git repositories and releases.
+- **`EmailNotificationService.cs`**: Orchestrates email notification dispatching for reviews and bounty claims.
 - **`GitHubMarketplaceService.cs`**: Integrates with remote GitHub repositories for artifact discovery and version fetching.
+- **`InMemoryNotificationService.cs`**: In-memory notification service implementation for lightweight development and testing.
+- **`InMemoryReviewRepository.cs`**: In-memory repository for storing and querying review records during tests.
+- **`InMemoryTokenService.cs`**: Generates and manages secure session tokens with in-memory caching.
+- **`InMemoryUsageService.cs`**: In-memory implementation of telemetry aggregation for isolated testing.
+- **`InMemoryUserRoleService.cs`**: In-memory user role registry providing fast RBAC lookups during testing.
+- **`LocalMarketplaceService.cs`**: Serves artifacts from the local filesystem for offline operation.
 - **`MicrosoftGraphEmailClient.cs`**: Sends notification emails to developers via the Microsoft Graph API.
-- **`SmtpEmailNotificationService.cs`**: Fallback email notification service using standard SMTP protocols.
-- **`Services/Interfaces/*.cs`**: 16 interface definitions decoupling business logic from concrete implementations.
+- **`ReviewCommentService.cs`**: Manages threaded line comments and replies on code review diffs.
+- **`ReviewService.cs`**: Coordinates multi-stage peer reviews, approval rules, and status transitions.
+- **`ReviewThreadService.cs`**: Manages real-time review conversation threads and lifecycle states.
+- **`SlaMonitoringBackgroundService.cs`**: Background hosted service monitoring pending reviews and alerting on 24h/48h SLA breaches.
+- **`SqliteNotificationService.cs`**: Persists and queries user notifications using SQLite via Entity Framework Core.
+- **`SqliteReviewRepository.cs`**: Persists code review submissions, diffs, and approvals to SQLite.
+- **`SqliteUsageService.cs`**: Persists and aggregates telemetry events in SQLite for usage analytics.
+- **`SqliteUserRoleService.cs`**: Persists and evaluates user roles and resource permissions in SQLite.
+- **`StaticAuthenticationService.cs`**: Validates credentials using SHA-256 hashing and constant-time string comparison to prevent timing attacks.
+- **`UsageService.cs`**: Aggregates usage events and calculates artifact adoption analytics.
+
+#### Directory: `cip-backend-dotnet/Services/Interfaces/`
+> **Folder Overview**: Abstract contracts decoupling business logic from concrete implementations across the backend.
+
+- **`IArtifactClassifier.cs`**: Interface for artifact type classification.
+- **`IArtifactDiffService.cs`**: Interface for text diff computation.
+- **`IArtifactRecommendationService.cs`**: Interface for tool recommendation logic.
+- **`IAuthenticationService.cs`**: Interface for user authentication.
+- **`IBountyService.cs`**: Interface for bounty lifecycle management.
+- **`ICertificationService.cs`**: Interface for reviewer qualification scoring.
+- **`IEmailNotificationService.cs`**: Interface for email dispatching.
+- **`IMarketplaceService.cs`**: Interface for artifact catalog querying.
+- **`IMicrosoftGraphEmailClient.cs`**: Interface for Microsoft Graph email operations.
+- **`INotificationService.cs`**: Interface for notification alert dispatching.
+- **`IReviewCommentService.cs`**: Interface for review comment handling.
+- **`IReviewRepository.cs`**: Interface for review data persistence.
+- **`IReviewService.cs`**: Interface for review lifecycle orchestration.
+- **`IReviewThreadService.cs`**: Interface for review discussion threads.
+- **`ITokenService.cs`**: Interface for session token management.
+- **`IUsageService.cs`**: Interface for telemetry aggregation.
+- **`IUserRoleService.cs`**: Interface for RBAC role validation.
 
 ---
 
-### 6. Backend Test Suite (`cip-backend-dotnet.Tests/`)
-> **Folder Overview**: Comprehensive xUnit unit test suite verifying backend governance, security, and workflows.
+### Directory: `cip-backend-dotnet.Tests/` (Backend Unit Tests)
+> **Folder Overview**: Comprehensive xUnit test suite verifying backend governance, security, and workflows.
 
-- **`cip-backend-dotnet.Tests.csproj`**: Test project file referencing xUnit, FluentAssertions, and Moq.
 - **`AccessGovernanceTests.cs`**: Verifies that private artifacts block unauthorized consumers.
 - **`ArtifactClassifierTests.cs`**: Tests automatic classification of skills, agents, and prompts.
 - **`ArtifactDiffServiceTests.cs`**: Validates line-level text diff generation across versions.
@@ -204,48 +271,74 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 - **`AzureDevOpsMarketplaceServiceTests.cs`**: Validates Azure DevOps Git synchronization.
 - **`BountyServiceTests.cs`**: Tests bounty claiming, submission, and credit allocation rules.
 - **`CertificationTests.cs`**: Validates 5-pillar reviewer qualification scoring algorithms.
+- **`cip-backend-dotnet.Tests.csproj`**: Test project file referencing xUnit, FluentAssertions, and Moq.
 - **`DuplicateDetectionTests.cs`**: Ensures duplicate artifact submissions are detected and prevented.
 - **`EmailDiagnosticsTests.cs`**: Tests email notification formatting and delivery pipelines.
 - **`GitHubMarketplaceServiceTests.cs`**: Validates GitHub remote repository artifact synchronization.
 - **`ManualVerificationTests.cs`**: Tests edge-case manual verification and review transitions.
 - **`MarketplaceVersionTests.cs`**: Tests semantic version comparison and upgrade path resolution.
-- **`ReviewLifecycleTests.cs`**: Validates the end-to-end peer review lifecycle from submission to approval.
-- **`RoleGovernanceTests.cs`**: Verifies RBAC role enforcement across all protected operations.
+- **`MicrosoftGraphEmailTests.cs`**: Tests Microsoft Graph email API payload construction.
+- **`NotificationSecurityTests.cs`**: Validates that notifications cannot be read by unauthorized users.
+- **`NotificationServiceTests.cs`**: Tests notification creation, unread counts, and dismissal.
+- **`ReviewCommentTests.cs`**: Tests threaded review comments and line attachment logic.
+- **`ReviewStatusLifecycleTests.cs`**: Validates review status transitions from Pending to Approved or ChangesRequested.
+- **`ReviewThreadTests.cs`**: Tests multi-user review discussion threads and state updates.
+- **`ReviewWorkflowTests.cs`**: End-to-end integration tests of the full review submission workflow.
+- **`SecurityAuditRegressionTests.cs`**: Regression tests verifying security hardening (CORS, credentials, sanitization).
+- **`SlaTrackingAndEscalationTests.cs`**: Tests 24h and 48h SLA breach detection and escalation alerts.
+- **`SqliteUsageServiceTests.cs`**: Tests SQLite persistence of telemetry events and summary calculations.
+- **`TestWebApplicationFactory.cs`**: In-memory test server factory for executing integration tests against ASP.NET Core controllers.
+- **`UsageAnalyticsScenariosTests.cs`**: Tests complex telemetry scenarios including deduplication and burst events.
+- **`UsageControllerTests.cs`**: Tests the telemetry ingestion REST API endpoint.
+- **`VisibilityTests.cs`**: Validates public/private visibility toggling and whitelist enforcement.
 *(Total: 149 of 149 tests passing).*
 
 ---
 
-### 7. Cross-Platform Console CLI (`EngineeringCommonsCli/`)
+### Directory: `EngineeringCommonsCli/` (Console CLI Root)
 > **Folder Overview**: .NET 10 console application providing terminal commands for installing, listing, updating, reviewing, and contributing artifacts.
 
-- **`Program.cs`**: Terminal entrypoint registering commands and dependency injection services.
 - **`EngineeringCommonsCli.csproj`**: .NET 10 project file configuring Spectre.Console and nullable checks.
+- **`Program.cs`**: Terminal entrypoint registering commands and dependency injection services.
 - **`README.md`**: Command-line documentation detailing syntax and arguments for all CLI verbs.
 
-#### CLI Commands (`EngineeringCommonsCli/Commands/`)
+#### Directory: `EngineeringCommonsCli/Commands/`
 > **Folder Overview**: Individual CLI command handlers implementing specific verbs.
+
+- **`AccessCommand.cs`**: Command requesting or granting access to private enterprise artifacts.
+- **`BountyCommand.cs`**: Lists and claims engineering bounties directly from the terminal.
+- **`CertificationCommand.cs`**: Checks developer certification status and qualification scores.
+- **`ContributeCommand.cs`**: Packages and submits local workspace artifacts to the marketplace.
 - **`InstallCommand.cs`**: Downloads and places artifact files into the active workspace.
 - **`ListCommand.cs`**: Displays marketplace artifacts in a formatted terminal table.
 - **`ListVersionsCommand.cs`**: Lists available semantic versions for a specific artifact.
 - **`LoginCommand.cs`**: Authenticates the developer using credentials or API tokens.
-- **`SsoLoginCommand.cs`**: Initiates interactive Microsoft Entra ID browser sign-in.
-- **`BountyCommand.cs`**: Lists and claims engineering bounties directly from the terminal.
-- **`ContributeCommand.cs`**: Packages and submits local workspace artifacts to the marketplace.
 - **`RecommendCommand.cs`**: Analyzes workspace files and suggests matching AI skills and prompts.
 - **`ReviewCommand.cs`**: Inspects pending submissions and submits approvals or change requests.
 - **`StatusCommand.cs`**: Displays installed artifact versions and checks for updates.
 - **`UpdateCommand.cs`**: Updates installed workspace artifacts to the latest version.
 - **`UseCommand.cs`**: Activates and switches active artifact versions in the local environment.
 - **`VisibilityCommand.cs`**: Toggles public or private access and manages consumer whitelists.
-- **`AccessCommand.cs`**: Requests or grants access to private enterprise artifacts.
-- **`CertificationCommand.cs`**: Checks developer certification status and qualification scores.
 
-#### CLI Services (`EngineeringCommonsCli/Services/`)
+#### Directory: `EngineeringCommonsCli/Models/`
+> **Folder Overview**: Strongly typed CLI data transfer objects and session state models.
+
+- **`AccessRequestCliDto.cs`**: DTO representing an access request submitted via the CLI.
+- **`ArtifactClassificationModels.cs`**: Models for artifact classification results and validation warnings.
+- **`ArtifactSubmission.cs`**: Model holding package files and metadata for artifact publishing.
+- **`BountyCliModels.cs`**: Models for rendering bounty tables and claim responses in the terminal.
+- **`CertificationModels.cs`**: Models holding certification scores and qualification thresholds for the CLI.
+- **`RecommendationModels.cs`**: Models holding recommended artifacts and match reasons.
+- **`ReviewModels.cs`**: Models representing review queues, diff summaries, and decisions in the CLI.
+- **`UserSession.cs`**: Model storing the active user session, token, and email.
+
+#### Directory: `EngineeringCommonsCli/Services/Implementations/`
 > **Folder Overview**: Core services powering CLI file unpacking, security checks, and offline caching.
-- **`ArtifactPlacementService.cs`**: Unpacks artifact files with canonical path containment checks blocking directory traversal.
+
 - **`ArtifactClassifier.cs`**: Inspects artifact manifests (`cip.yml`, frontmatter) to determine artifact type.
 - **`ArtifactDiscoveryService.cs`**: Scans the local workspace for skills, prompts, and agent definitions.
 - **`ArtifactMetadataService.cs`**: Parses and validates metadata tags, version strings, and author info.
+- **`ArtifactPlacementService.cs`**: Unpacks artifact files with canonical path containment checks blocking directory traversal.
 - **`AuthenticationService.cs`**: Manages login sessions, credential verification, and token acquisition.
 - **`BackendClient.cs`**: Typed HTTP client executing REST calls against the gateway and backend API.
 - **`CipService.cs`**: Orchestrates higher-level CLI workflows across placement, cache, and backend clients.
@@ -255,20 +348,35 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 - **`SharePointGraphClient.cs`**: Connects to SharePoint document libraries for legacy artifact synchronization.
 - **`UnifiedDiffRenderer.cs`**: Renders Git-style colored unified diffs in the terminal using ANSI colors.
 - **`WorkspaceContextExtractor.cs`**: Analyzes workspace project files to suggest matching AI tools and prompts.
-- **`Models/*.cs`**: Strongly typed data transfer objects for CLI operations.
-- **`Services/Interfaces/*.cs`**: Interface contracts for CLI services.
+
+#### Directory: `EngineeringCommonsCli/Services/Interfaces/`
+> **Folder Overview**: Interface contracts defining CLI service capabilities.
+
+- **`IArtifactClassifier.cs`**: Interface for artifact classification.
+- **`IArtifactDiscoveryService.cs`**: Interface for workspace artifact discovery.
+- **`IArtifactMetadataService.cs`**: Interface for artifact metadata extraction.
+- **`IArtifactPlacementService.cs`**: Interface for workspace file placement and path validation.
+- **`IAuthenticationService.cs`**: Interface for CLI authentication.
+- **`IAuthTokenStore.cs`**: Interface for local session token storage.
+- **`IBackendClient.cs`**: Interface for HTTP backend communication.
+- **`ICipService.cs`**: Interface for high-level CLI orchestration.
+- **`ICliDiskCache.cs`**: Interface for local disk caching.
+- **`ISharePointGraphClient.cs`**: Interface for SharePoint integration.
+- **`ISsoAuthService.cs`**: Interface for Microsoft SSO device flows.
+- **`IUnifiedDiffRenderer.cs`**: Interface for terminal diff rendering.
+- **`IWorkspaceContextExtractor.cs`**: Interface for project context extraction.
 
 ---
 
-### 8. CLI Test Suite (`EngineeringCommonsCli.Tests/`)
+### Directory: `EngineeringCommonsCli.Tests/` (CLI Unit Tests)
 > **Folder Overview**: xUnit test suite validating CLI commands, diff rendering, and path security.
 
-- **`EngineeringCommonsCli.Tests.csproj`**: Test project file referencing xUnit and Moq.
 - **`AccessCommandTests.cs`**: Tests access request and grant command flows.
 - **`ArtifactClassifierTests.cs`**: Validates manifest inspection and artifact classification.
 - **`ArtifactPlacementTests.cs`**: Verifies path traversal prevention (`../../`) during file placement.
 - **`BountyCommandTests.cs`**: Tests terminal bounty listing and claiming workflows.
 - **`CliDiskCacheTests.cs`**: Tests local disk cache persistence and cache invalidation.
+- **`EngineeringCommonsCli.Tests.csproj`**: Test project file referencing xUnit and Moq.
 - **`InstallCommandTests.cs`**: Validates package download and installation handling.
 - **`InstallVersionTests.cs`**: Tests installing specific semantic versions.
 - **`ListCommandTests.cs`**: Tests terminal table formatting and catalog filtering.
@@ -284,62 +392,108 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 ---
 
-### 9. TypeScript VS Code Extension (`engineering-commons-vscode/`)
+### Directory: `engineering-commons-vscode/` (VS Code Extension Root)
 > **Folder Overview**: The developer interface inside VS Code, delivering sidebars, diff viewers, and automatic Copilot discovery.
 
+- **`.vscodeignore`**: Excludes test files, source maps, and development dependencies from the packaged VSIX extension.
 - **`package.json`**: Extension manifest defining custom views, commands, configuration settings, and activation triggers.
-- **`tsconfig.json`**: TypeScript compiler configuration enforcing `strict: true` and modern ES2022 module resolution.
+- **`package-lock.json`**: Lockfile ensuring reproducible extension dependencies.
 - **`README.md`**: Extension usage documentation with visual walkthroughs and setup guides.
+- **`tsconfig.json`**: TypeScript compiler configuration enforcing `strict: true` and modern ES2022 module resolution.
+
+#### Directory: `engineering-commons-vscode/resources/`
+> **Folder Overview**: Bundled graphical and catalog assets for the extension.
+
+- **`resources/icon.svg`**: Vector icon displayed in the VS Code Activity Bar and Marketplace.
+- **`resources/catalog/masterCatalog.json`**: Master catalog containing all 236 curated engineering AI artifacts.
+
+#### Directory: `engineering-commons-vscode/src/` (Extension Source)
+> **Folder Overview**: Root source files for extension lifecycle and activation.
+
 - **`src/extension.ts`**: Main extension activation script initializing views, commands, and workspace hook provisioning.
 
-#### Extension Commands (`src/commands/`)
-> **Folder Overview**: Command palette and button action handlers.
-- **`installCommand.ts`**: Handles UI install clicks, direct workspace placement, ZIP downloads, and telemetry logging.
-- **`reviewCommand.ts`**: Opens the interactive multi-file side-by-side or unified code review diff webview.
-- **`loginCommand.ts`**: Manages developer authentication and updates the status bar and sidebar state.
+#### Directory: `engineering-commons-vscode/src/commands/`
+> **Folder Overview**: Command palette and UI button action handlers.
+
 - **`contributeCommand.ts`**: Launches the interactive wizard for publishing new skills or agents.
+- **`installCommand.ts`**: Handles UI install clicks, direct workspace placement, ZIP downloads, and telemetry logging.
 - **`listCommand.ts`**: Native command palette action displaying marketplace catalog entries.
+- **`loginCommand.ts`**: Manages developer authentication and updates the status bar and sidebar state.
+- **`reviewCommand.ts`**: Opens the interactive multi-file side-by-side or unified code review diff webview.
 - **`updateCommand.ts`**: Checks for artifact updates and applies new versions to the workspace.
 - **`visibilityCommand.ts`**: Opens modal dialogs to toggle artifact privacy and manage whitelist access.
 
-#### Extension Services (`src/services/`)
+#### Directory: `engineering-commons-vscode/src/models/`
+> **Folder Overview**: TypeScript interfaces representing client data structures.
+
+- **`src/models/usageEvent.ts`**: Interface defining telemetry event structure, action types, and source tags.
+
+#### Directory: `engineering-commons-vscode/src/services/`
 > **Folder Overview**: Client services handling Copilot discovery, command execution, and telemetry.
+
+- **`adoGovernanceService.ts`**: Synchronizes governance metadata and review state with Azure DevOps.
+- **`adoTelemetryService.ts`**: Pushes aggregated telemetry batches directly to Azure DevOps work items.
 - **`advisorHookProvisioner.ts`**: Automatically provisions `.github/copilot-instructions.md` for zero-latency Copilot discovery.
-- **`cliExecutor.ts`**: Executes CLI commands securely via `child_process.spawn` using array arguments.
-- **`cliProvisioner.ts`**: Ensures the CLI binary is compiled, present, and executable on the host machine.
-- **`installationChecker.ts`**: Checks local workspace folders to physically verify installed artifacts.
-- **`reviewContentProvider.ts`**: Supplies virtual document content for side-by-side diff editors.
-- **`reviewThreadService.ts`**: Manages discussion threads, inline review comments, and approval status.
-- **`reviewCommentService.ts`**: Communicates with backend endpoints to persist line-level review comments.
-- **`zipArchiveService.ts`**: Packages artifact files into valid PKZIP archives with IEEE 802.3 CRC-32 checksums.
-- **`usageTracker.ts`**: Tracks IDE events and deduplicates invocation logs before forwarding.
-- **`usageLogger.ts`**: Formats and sanitizes telemetry events, stripping credentials and sensitive data.
+- **`artifactRegistry.ts`**: In-memory cache of marketplace artifacts for instant search and filtering.
+- **`artifactUsageCollector.ts`**: Collects invocation statistics from local agent debug sessions.
+- **`authenticationStatusProvider.ts`**: Provides login state, user email, and assigned roles to UI components.
 - **`backendUsageClient.ts`**: HTTP client delivering telemetry event batches to the cloud gateway.
 - **`bountyService.ts`**: Client service fetching and claiming bounties from the backend API.
 - **`certificationService.ts`**: Queries reviewer scores and updates certification badges in the UI.
-- **`notificationService.ts`**: Polls backend for alerts and notifies the developer via status bar indicators.
+- **`cliExecutor.ts`**: Executes CLI commands securely via `child_process.spawn` using array arguments.
+- **`cliProvisioner.ts`**: Ensures the CLI binary is compiled, present, and executable on the host machine.
+- **`installationChecker.ts`**: Checks local workspace folders to physically verify installed artifacts.
 - **`notificationClient.ts`**: HTTP client querying notification endpoints and marking alerts as read.
 - **`notificationCoordinator.ts`**: Central hub coordinating notification badges across tabs and tree views.
-- **`authenticationStatusProvider.ts`**: Provides login state, user email, and assigned roles to UI components.
+- **`notificationService.ts`**: Polls backend for alerts and notifies the developer via status bar indicators.
+- **`reviewCommentService.ts`**: Communicates with backend endpoints to persist line-level review comments.
+- **`reviewContentProvider.ts`**: Supplies virtual document content for side-by-side diff editors.
+- **`reviewThreadService.ts`**: Manages discussion threads, inline review comments, and approval status.
 - **`ssoService.ts`**: Manages Microsoft Entra ID single sign-on flows within the VS Code environment.
-- **`artifactRegistry.ts`**: In-memory cache of marketplace artifacts for instant search and filtering.
-- **`artifactUsageCollector.ts`**: Collects invocation statistics from local agent debug sessions.
-- **`adoGovernanceService.ts`**: Synchronizes governance metadata and review state with Azure DevOps.
-- **`adoTelemetryService.ts`**: Pushes aggregated telemetry batches directly to Azure DevOps work items.
-- **`sharepoint/telemetryBatcher.ts`**: Batches telemetry events into chunks of 50 to optimize network requests.
+- **`usageLogger.ts`**: Formats and sanitizes telemetry events, stripping credentials and sensitive data.
+- **`usageTracker.ts`**: Tracks IDE events and deduplicates invocation logs before forwarding.
+- **`zipArchiveService.ts`**: Packages artifact files into valid PKZIP archives with IEEE 802.3 CRC-32 checksums.
 
-#### Webview & View Providers (`src/views/`)
-> **Folder Overview**: Custom webview and tree view providers rendering the interactive user interfaces.
-- **`engineeringCommonsSidebarWebviewProvider.ts`**: Main modern sidebar UI hosting Bounties, My Work, Market, and Installed tabs.
+#### Directory: `engineering-commons-vscode/src/services/sharepoint/`
+> **Folder Overview**: SharePoint integration services and telemetry batching.
+
+- **`sharepointArtifactService.ts`**: Interfaces with SharePoint lists for legacy artifact catalog queries.
+- **`sharepointBountyService.ts`**: Synchronizes bounty claims and rewards with SharePoint list data.
+- **`sharepointClient.ts`**: Low-level HTTP client executing Microsoft Graph REST calls against SharePoint.
+- **`sharepointReviewService.ts`**: Synchronizes review records and status transitions to SharePoint.
+- **`sharepointTelemetryService.ts`**: Uploads telemetry batches to SharePoint list storage.
+- **`telemetryBatcher.ts`**: Batches telemetry events into chunks of 50 to optimize network requests.
+
+#### Directory: `engineering-commons-vscode/src/views/`
+> **Folder Overview**: Custom webview and tree view providers rendering interactive user interfaces.
+
 - **`artifactDetailsWebviewProvider.ts`**: Interactive webview displaying metadata, version selectors, and file trees.
+- **`artifactTreeDataProvider.ts`**: Native VS Code tree view provider for the activity bar.
 - **`contributeWebviewProvider.ts`**: Multi-step form webview for publishing new artifacts.
+- **`engineeringCommonsSidebarWebviewProvider.ts`**: Main modern sidebar UI hosting Bounties, My Work, Market, and Installed tabs.
 - **`threadWebviewProvider.ts`**: Webview panel rendering line-by-line review comments and discussion replies.
 - **`usageDashboardWebviewProvider.ts`**: Analytics webview visualizing artifact adoption, charts, and team velocity.
-- **`artifactTreeDataProvider.ts`**: Native VS Code tree view provider for the activity bar.
 
-#### Extension Test Suite (`engineering-commons-vscode/test/`)
+#### Directory: `engineering-commons-vscode/test/` (Extension Unit Tests)
 > **Folder Overview**: 16 Mocha test suites validating extension functionality with zero network dependencies.
-- Tests include: `advisorHookProvisioner.test.ts`, `agentUsageTracking.test.ts`, `artifactDetails.test.ts`, `backendUrlSync.test.ts`, `bountySidebar.test.ts`, `certification.test.ts`, `contributeWebview.test.ts`, `extension.test.ts`, `githubDiffReview.test.ts`, `installationChecker.test.ts`, `mocks.ts`, `notification.test.ts`, `reviewComment.test.ts`, `setup.ts`, `visibilityCommand.test.ts`, `zipDownload.test.ts`.  
+
+- **`advisorHookProvisioner.test.ts`**: Validates automatic generation of `.github/copilot-instructions.md`.
+- **`agentUsageTracking.test.ts`**: Tests telemetry event generation during agent invocations.
+- **`artifactDetails.test.ts`**: Tests artifact detail panel rendering and version selection.
+- **`backendUrlSync.test.ts`**: Tests dynamic backend URL synchronization and configuration updates.
+- **`bountySidebar.test.ts`**: Tests sidebar webview rendering, bounty tabs, and role access restrictions.
+- **`certification.test.ts`**: Tests certification tier badge display and qualification checks.
+- **`contributeWebview.test.ts`**: Tests contribution form validation and payload submission.
+- **`extension.test.ts`**: Comprehensive integration tests covering login, install, diffs, and security.
+- **`githubDiffReview.test.ts`**: Tests multi-file review diff rendering and line comment attachments.
+- **`installationChecker.test.ts`**: Tests disk verification of installed workspace artifacts.
+- **`mocks.ts`**: Hermetic mock implementations for CLI executors, auth providers, and telemetry loggers.
+- **`notification.test.ts`**: Tests notification polling, badges, and dismissal.
+- **`reviewComment.test.ts`**: Tests adding line comments and replies to code review threads.
+- **`setup.ts`**: Global Mocha test setup configuring virtual VS Code environments.
+- **`visibilityCommand.test.ts`**: Tests toggling artifact privacy and managing whitelist inputs.
+- **`vscode-mock.ts`**: Mock implementation of the VS Code extension host API.
+- **`zipDownload.test.ts`**: Tests in-memory PKZIP archive creation and CRC-32 checksum calculation.
 *(Total: 131 of 131 tests passing).*
 
 ---
@@ -397,7 +551,7 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 **Answer**:
 "We manage SQLite concurrency using:
 1. **Async/Await**: All Entity Framework Core queries use asynchronous methods (`SaveChangesAsync`, `FirstOrDefaultAsync`), preventing thread-pool starvation.
-2. **Scoped DbContext**: Each HTTP request receives its own isolated `AppDbContext` instance.
+2. **Scoped DbContext**: Each HTTP request receives its own isolated `CipDbContext` instance.
 3. **Atomic State Guards**: State transitions (such as claiming a bounty) use atomic conditions (`WHERE Status == 'Open'`), returning HTTP 409 Conflict if another developer claims it first."
 
 #### Q8: How do you ensure that unauthenticated users cannot download private artifacts or execute administrative actions?
@@ -483,4 +637,3 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 1. **Telemetry Batching**: `telemetryBatcher.ts` batches events into chunks of 50 or 5-second intervals to avoid saturating HTTP sockets.
 2. **File Streaming**: `ArtifactPlacementService.cs` reads and writes file streams in memory-buffered chunks.
 3. **Response Compression**: `api/index.js` applies gzip stream chunking via `compression()` to compress large catalog JSON payloads by up to 90%."
-
