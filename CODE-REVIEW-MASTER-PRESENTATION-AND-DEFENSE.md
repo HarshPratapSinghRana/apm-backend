@@ -51,67 +51,15 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 > 🔗 **Direct File Link**: [Open Full-Resolution Architecture Blueprint (PNG)](file:///c:/Users/HarshPratapSinghRana/Downloads/CIP-Engineering%20Commons/engineering-commons-architecture.png)
 
-```mermaid
-%%{init: {'theme': 'neutral', 'themeVariables': { 'background': '#FFFFFF', 'mainBkg': '#FFFFFF', 'primaryTextColor': '#0F172A', 'lineColor': '#334155' }}}%%
-flowchart LR
-    subgraph T1["1. USER & CLIENT LAYER"]
-        direction TB
-        DEV["👤 Enterprise Developer\n(Install / Review / Run)"]
-        VSC["💻 VS Code Extension\n(company-apm-vscode v1.2.8)"]
-        CLI["⌨️ Company APM CLI\n(CompanyApmCli .NET 10)"]
-        WS["📁 Local Workspace\n(.agents/skills | .github/agents)"]
-        DEV -->|"1. Action"| VSC
-        DEV -->|"1. Command"| CLI
-    end
+### 5-Tier Architecture Matrix
 
-    subgraph T2["2. IDENTITY & INGRESS"]
-        direction TB
-        AAD["🔐 Microsoft Entra ID\n(Azure AD SSO @maqsoftware.com)"]
-        RBAC["🛡️ Role-Based Access (RBAC)\n(ADMIN / REVIEWER / PRODUCER / CONSUMER)"]
-        ING["🌐 Azure Ingress Gateway\n(443 HTTPS -> 5000 Target)"]
-        AAD --> RBAC
-        RBAC --> ING
-    end
-
-    subgraph T3["3. BACKEND CORE SERVICES (Azure)"]
-        direction TB
-        ACA["📦 Azure Container App\n(apm-backend Node 20 Alpine)"]
-        subgraph FEAT["★ CORE PLATFORM FEATURES"]
-            direction TB
-            CACHE["⚡ In-Memory Catalog Cache\n(cachedArtifactsMaster 0.1ms)"]
-            CERT["🛡️ 5-Pillar Cert Engine\n(Dynamic Health Score >= 85%)"]
-            REV["⏱️ Peer Review & Bounties\n(Diff Viewer | 24h/48h SLAs)"]
-            NOTIF["🔔 In-App Notifications\n(Review Mentions & Alerts)"]
-        end
-        ACA --> FEAT
-    end
-
-    subgraph T4["4. ZERO-COST STORAGE TIER"]
-        direction TB
-        ADO["☁️ Azure DevOps Git Repos\n(Master Versions & Source Archives)"]
-        SPO["📂 SharePoint Online (M365)\n(Artifacts | Reviews | Bounties)"]
-        LEAP["🚀 AI Leap Platform Store\n(Shared Skills, Prompts & Specs)"]
-    end
-
-    subgraph T5["5. AI INVOCATION & WORKSPACE"]
-        direction TB
-        COP["🤖 GitHub Copilot Chat\n(@agent-name Native Invocation)"]
-        SLASH["⌨️ Copilot Slash Commands\n(/skill-name Invocation)"]
-        AGY["🪐 Antigravity AI Agent IDE\n(Autonomous Subagent Execution)"]
-    end
-
-    VSC -->|"2. SSO Token"| AAD
-    CLI -->|"2. Device Code"| AAD
-    ING -->|"3. HTTPS"| ACA
-    FEAT -->|"4. Version Archives"| ADO
-    FEAT -->|"5. Business Metadata"| SPO
-    FEAT -->|"5. Playbook Specs"| LEAP
-    ADO -->|"6. Direct Git Sync"| WS
-    WS -->|"7. Agent Spec"| COP
-    WS -->|"7. Skill YAML"| SLASH
-    WS -->|"8. Autonomous Run"| AGY
-    WS -.->|"9. Telemetry Feedback"| FEAT
-```
+| Tier # | Architectural Layer | Primary Components | Core Responsibilities & SLAs |
+| :---: | :--- | :--- | :--- |
+| **Tier 1** | **User & Client Layer** | • VS Code Extension (`company-apm-vscode v1.2.8`)<br>• Company APM CLI (.NET 10)<br>• Local Workspace (`.agents/skills`, `.github/agents`) | • Developer actions (Browse, Install, Review, Run)<br>• Terminal CLI command execution<br>• Local workspace placement & Copilot hooks |
+| **Tier 2** | **Identity & Ingress** | • Microsoft Entra ID (Azure AD SSO `@maqsoftware.com`)<br>• RBAC Policy Engine<br>• Azure Ingress Gateway (HTTPS 443) | • Single Sign-On token issuance (MSAL / Device Code)<br>• Role enforcement (`ADMIN`, `REVIEWER`, `PRODUCER`, `CONSUMER`)<br>• TLS termination & secure routing |
+| **Tier 3** | **Backend Core Services** | • Azure Container App (`apm-backend` Node 20 Alpine)<br>• In-Memory Catalog Cache<br>• 5-Pillar Certification Engine<br>• Peer Review & Bounties Engine<br>• In-App Notifications Service | • Sub-millisecond (0.1ms) catalog queries & gzip compression<br>• Dynamic Health Scoring (DHS $\ge$ 85%)<br>• Side-by-side Git diff viewer with 24h/48h SLAs<br>• Developer alerts and mention dispatching |
+| **Tier 4** | **Zero-Cost Storage Tier** | • Azure DevOps Git Repositories<br>• SharePoint Online (M365)<br>• AI Leap Platform Store | • Master artifact versions & immutable source archives<br>• Business review metadata, bounty logs & audit trails<br>• Enterprise prompt templates & shared agent specs |
+| **Tier 5** | **AI Invocation & Workspace** | • GitHub Copilot Chat<br>• Copilot Slash Commands<br>• Antigravity AI Agent IDE | • Native IDE agent invocation (`@agent-name`)<br>• Quick action skill execution (`/skill-name`)<br>• Autonomous multi-step subagent execution |
 
 #### Step-by-Step Architecture Explanation (Read Directly):
 
