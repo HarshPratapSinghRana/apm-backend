@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Services.Implementations;
+namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class SlaMonitoringBackgroundService : BackgroundService
 {

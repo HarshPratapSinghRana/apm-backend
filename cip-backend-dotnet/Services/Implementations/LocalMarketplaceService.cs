@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 
-namespace CipBackend.Services.Implementations;
+namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class LocalMarketplaceService : IMarketplaceService
 {

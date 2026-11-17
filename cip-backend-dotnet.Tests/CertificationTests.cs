@@ -7,13 +7,13 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
-using CipBackend.IntegrationTests;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.IntegrationTests;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class CertificationTests : IClassFixture<TestWebApplicationFactory>
 {

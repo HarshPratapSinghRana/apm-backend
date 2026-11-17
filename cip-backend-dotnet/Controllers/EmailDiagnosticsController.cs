@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
 [Route("api/admin/emails")]

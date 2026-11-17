@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CipBackend.Services.Interfaces;
+namespace EngineeringCommons.Backend.Services.Interfaces;
 
 public class RecommendationRequest
 {

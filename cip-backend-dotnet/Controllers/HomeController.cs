@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
 [Route("/")]

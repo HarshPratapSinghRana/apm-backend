@@ -2,10 +2,10 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 public class CertifyRequestPayload
 {

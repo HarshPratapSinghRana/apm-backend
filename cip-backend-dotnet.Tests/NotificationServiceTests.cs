@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
-using CipBackend.Data;
-using CipBackend.Models;
-using CipBackend.Services.Implementations;
-using CipBackend.IntegrationTests;
+using EngineeringCommons.Backend.Data;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Implementations;
+using EngineeringCommons.Backend.IntegrationTests;
 using Xunit;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class NotificationServiceTests : IClassFixture<TestWebApplicationFactory>
 {

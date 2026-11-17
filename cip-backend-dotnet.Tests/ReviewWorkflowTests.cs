@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using CipBackend.Services.Interfaces;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Implementations;
 
-namespace CipBackend.IntegrationTests;
+namespace EngineeringCommons.Backend.IntegrationTests;
 
 public class ReviewWorkflowTests
 {

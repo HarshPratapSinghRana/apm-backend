@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Services.Implementations;
+namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class EmailNotificationService : IEmailNotificationService
 {

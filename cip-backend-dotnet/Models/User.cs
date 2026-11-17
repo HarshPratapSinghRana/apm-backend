@@ -1,4 +1,4 @@
-namespace CipBackend.Models;
+namespace EngineeringCommons.Backend.Models;
 
 public class User
 {

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using CipBackend.Services.Interfaces;
-using CipBackend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
 using System.Security.Claims;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
 [Route("api/reviews")]

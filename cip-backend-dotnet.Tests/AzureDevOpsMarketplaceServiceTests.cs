@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Xunit;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Configuration;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Implementations;
 
-namespace CipBackend.IntegrationTests
+namespace EngineeringCommons.Backend.IntegrationTests
 {
     public class AzureDevOpsMarketplaceServiceTests
     {

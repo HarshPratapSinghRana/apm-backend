@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace CipBackend.Events;
+namespace EngineeringCommons.Backend.Events;
 
 public interface IDomainEventPublisher
 {

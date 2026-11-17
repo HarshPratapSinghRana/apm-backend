@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Xunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
-using CipBackend.Events;
-using CipBackend.Models;
-using CipBackend.Services.Implementations;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Events;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class ReviewCommentTests
 {

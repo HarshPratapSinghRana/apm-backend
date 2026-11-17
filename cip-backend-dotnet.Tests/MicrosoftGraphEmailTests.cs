@@ -5,11 +5,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
-using CipBackend.Services.Implementations;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Interfaces;
 using Xunit;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class MicrosoftGraphEmailTests : IDisposable
 {

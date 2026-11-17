@@ -2,10 +2,10 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using CipBackend.Services.Interfaces;
-using CipBackend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
 [Route("api/auth")]

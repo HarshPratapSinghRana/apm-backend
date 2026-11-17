@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace CipBackend.IntegrationTests;
+namespace EngineeringCommons.Backend.IntegrationTests;
 
 public class AuthenticationTests : IClassFixture<TestWebApplicationFactory>
 {

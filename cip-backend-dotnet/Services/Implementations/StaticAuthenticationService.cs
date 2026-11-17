@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
-namespace CipBackend.Services.Implementations;
+namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class StaticAuthOptions 
 { 

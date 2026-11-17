@@ -1,8 +1,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
-using CipBackend.Models;
+using EngineeringCommons.Backend.Models;
 
-namespace CipBackend.Data;
+namespace EngineeringCommons.Backend.Data;
 
 public class CipDbContext : DbContext
 {

@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CipBackend.IntegrationTests;
+namespace EngineeringCommons.Backend.IntegrationTests;
 
 public class UsageControllerTests : IClassFixture<TestWebApplicationFactory>
 {

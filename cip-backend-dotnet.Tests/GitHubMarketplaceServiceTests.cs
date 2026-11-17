@@ -5,11 +5,11 @@ using System;
 using Xunit;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Configuration;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Implementations;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CipBackend.IntegrationTests
+namespace EngineeringCommons.Backend.IntegrationTests
 {
     public class GitHubMarketplaceServiceTests
     {

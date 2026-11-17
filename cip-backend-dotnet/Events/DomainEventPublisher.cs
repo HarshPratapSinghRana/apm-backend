@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace CipBackend.Events;
+namespace EngineeringCommons.Backend.Events;
 
 public interface IReviewEventHandler<in TEvent> where TEvent : ReviewDomainEvent
 {

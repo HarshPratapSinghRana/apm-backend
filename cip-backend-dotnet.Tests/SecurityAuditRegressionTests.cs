@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using CipBackend.Events;
-using CipBackend.Models;
-using CipBackend.Services.Implementations;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Events;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class SecurityAuditRegressionTests
 {

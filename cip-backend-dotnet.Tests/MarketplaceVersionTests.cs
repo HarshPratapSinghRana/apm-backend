@@ -4,12 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
-namespace CipBackend.IntegrationTests;
+namespace EngineeringCommons.Backend.IntegrationTests;
 
 public class MarketplaceVersionTests
 {

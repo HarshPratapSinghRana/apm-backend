@@ -3,10 +3,10 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Services.Implementations;
+namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class InMemoryTokenService : ITokenService
 {

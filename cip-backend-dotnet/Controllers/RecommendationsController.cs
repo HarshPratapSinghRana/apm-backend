@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
 [Route("api/artifacts/recommend")]

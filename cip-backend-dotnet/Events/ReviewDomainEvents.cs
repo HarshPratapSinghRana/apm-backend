@@ -1,7 +1,7 @@
 using System;
-using CipBackend.Models;
+using EngineeringCommons.Backend.Models;
 
-namespace CipBackend.Events;
+namespace EngineeringCommons.Backend.Events;
 
 public abstract class ReviewDomainEvent
 {

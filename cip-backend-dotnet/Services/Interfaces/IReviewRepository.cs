@@ -1,6 +1,6 @@
-using CipBackend.Models;
+using EngineeringCommons.Backend.Models;
 
-namespace CipBackend.Services.Interfaces;
+namespace EngineeringCommons.Backend.Services.Interfaces;
 
 public interface IReviewRepository
 {

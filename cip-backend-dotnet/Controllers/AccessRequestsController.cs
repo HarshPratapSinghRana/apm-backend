@@ -4,11 +4,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Implementations;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
 public class AccessRequestsController : ControllerBase

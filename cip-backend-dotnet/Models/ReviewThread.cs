@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CipBackend.Models;
+namespace EngineeringCommons.Backend.Models;
 
 [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
 [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]

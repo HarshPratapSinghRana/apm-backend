@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CipBackend.Data;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Data;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Services.Implementations;
+namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class SqliteUserRoleService : IUserRoleService
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CipBackend.Models;
+namespace EngineeringCommons.Backend.Models;
 
 public enum CertificationStatus
 {

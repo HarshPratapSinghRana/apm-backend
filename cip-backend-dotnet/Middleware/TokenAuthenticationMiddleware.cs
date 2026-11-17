@@ -1,7 +1,7 @@
 using System.Security.Claims;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Middleware;
+namespace EngineeringCommons.Backend.Middleware;
 
 public class TokenAuthenticationMiddleware
 {

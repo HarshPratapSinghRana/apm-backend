@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using CipBackend.Models;
-using CipBackend.Services.Implementations;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Interfaces;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class ManualVerificationTests
 {

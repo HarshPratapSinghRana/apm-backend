@@ -5,16 +5,16 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CipBackend.Controllers;
-using CipBackend.Events;
-using CipBackend.Models;
-using CipBackend.Services.Implementations;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Controllers;
+using EngineeringCommons.Backend.Events;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Implementations;
+using EngineeringCommons.Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class DuplicateDetectionTests
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CipBackend.Services.Interfaces;
+namespace EngineeringCommons.Backend.Services.Interfaces;
 
 public enum ArtifactType
 {

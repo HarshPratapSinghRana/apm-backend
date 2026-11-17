@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using CipBackend.Services.Interfaces;
-using CipBackend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
 
-namespace CipBackend.Controllers;
+namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
 [Route("api/artifacts")]

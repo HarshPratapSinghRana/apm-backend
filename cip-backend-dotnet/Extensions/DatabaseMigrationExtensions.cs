@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CipBackend.Data;
+using EngineeringCommons.Backend.Data;
 
-namespace CipBackend.Extensions;
+namespace EngineeringCommons.Backend.Extensions;
 
 /// <summary>
 /// Modular database initialization and schema migration runner, decoupled from Program.cs.

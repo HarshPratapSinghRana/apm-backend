@@ -7,11 +7,11 @@ using Xunit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
-using CipBackend.Data;
-using CipBackend.Models;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Data;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Implementations;
 
-namespace CipBackend.Tests;
+namespace EngineeringCommons.Backend.Tests;
 
 public class NotificationSecurityTests
 {

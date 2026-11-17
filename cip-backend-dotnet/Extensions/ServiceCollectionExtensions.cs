@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CipBackend.Data;
-using CipBackend.Events;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Data;
+using EngineeringCommons.Backend.Events;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Implementations;
 
-namespace CipBackend.Extensions;
+namespace EngineeringCommons.Backend.Extensions;
 
 /// <summary>
 /// Modular service collection extensions separating service registrations from Program.cs bootstrap.

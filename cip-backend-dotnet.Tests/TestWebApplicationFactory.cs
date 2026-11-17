@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using CipBackend.Data;
-using CipBackend.Services.Implementations;
-using CipBackend.Models;
+using EngineeringCommons.Backend.Data;
+using EngineeringCommons.Backend.Services.Implementations;
+using EngineeringCommons.Backend.Models;
 
-namespace CipBackend.IntegrationTests;
+namespace EngineeringCommons.Backend.IntegrationTests;
 
 /// <summary>
 /// Custom WebApplicationFactory that configures test users and isolated DbContext for integration tests

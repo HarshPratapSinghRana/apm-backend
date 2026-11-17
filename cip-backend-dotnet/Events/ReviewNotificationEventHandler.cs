@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using CipBackend.Models;
-using CipBackend.Services.Interfaces;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
 
-namespace CipBackend.Events;
+namespace EngineeringCommons.Backend.Events;
 
 public class ReviewNotificationEventHandler :
     IReviewEventHandler<ReviewAssignedEvent>,

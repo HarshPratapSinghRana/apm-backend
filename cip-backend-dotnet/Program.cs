@@ -18,9 +18,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CipBackend.Extensions;
-using CipBackend.Services.Interfaces;
-using CipBackend.Services.Implementations;
+using EngineeringCommons.Backend.Extensions;
+using EngineeringCommons.Backend.Services.Interfaces;
+using EngineeringCommons.Backend.Services.Implementations;
 
 // =========================================================================
 // SECTION 1: Local Environment & Azure DevOps Secret Mapping
@@ -244,7 +244,7 @@ app.UseCors();
 app.UseRouting();
 
 // Authentication MUST be executed before Authorization
-app.UseMiddleware<CipBackend.Middleware.TokenAuthenticationMiddleware>();
+app.UseMiddleware<EngineeringCommons.Backend.Middleware.TokenAuthenticationMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
