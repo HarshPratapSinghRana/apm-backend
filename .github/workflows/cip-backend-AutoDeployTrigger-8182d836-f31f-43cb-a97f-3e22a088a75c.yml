@@ -5,7 +5,7 @@ on:
   # Automatically trigger it when detected changes in repo
   push:
     branches: 
-      [ main ]
+      [ main, Engineering-Commons-Code ]
     paths:
     - 'api/**'
     - 'Dockerfile'
@@ -22,6 +22,7 @@ jobs:
     permissions: 
       id-token: write #This is required for requesting the OIDC JWT Token
       contents: read #Required when GH token is used to authenticate with private repo
+      packages: write #Required to push to GitHub Container Registry (ghcr.io)
 
     steps:
       - name: Checkout to the branch
@@ -39,9 +40,9 @@ jobs:
         with:
           appSourcePath: ${{ github.workspace }}
           dockerfilePath: Dockerfile
-          registryUrl: ca45c2f88c77acr.azurecr.io
-          registryUsername: ${{ secrets.APMBACKEND_REGISTRY_USERNAME || secrets.CIPBACKEND_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.APMBACKEND_REGISTRY_PASSWORD || secrets.CIPBACKEND_REGISTRY_PASSWORD }}
+          registryUrl: ghcr.io
+          registryUsername: ${{ github.actor }}
+          registryPassword: ${{ secrets.GHCR_PAT || secrets.GITHUB_TOKEN }}
           containerAppName: apm-backend
           resourceGroup: apm-rg
-          imageToBuild: ca45c2f88c77acr.azurecr.io/apm-backend:${{ github.sha }}
+          imageToBuild: ghcr.io/harshpratapsinghrana/apm-backend:${{ github.sha }}
