@@ -120,7 +120,15 @@ export class ArtifactDetailsWebviewProvider {
     private adoGovernanceService: AdoGovernanceService;
     private lastArtifact?: DiscoveredArtifactItem;
     private lastVersion?: string;
+    private themeMode: 'auto' | 'light' | 'dark' = 'auto';
     private static detailsCache = new Map<string, { timestamp: number; data: ArtifactDetailsInfo }>();
+
+    public setThemeMode(mode: 'auto' | 'light' | 'dark'): void {
+        this.themeMode = mode;
+        if (ArtifactDetailsWebviewProvider.currentPanel) {
+            ArtifactDetailsWebviewProvider.currentPanel.webview.postMessage({ command: 'setTheme', themeMode: mode });
+        }
+    }
 
     public static closeIfOpen(): void {
         if (ArtifactDetailsWebviewProvider.currentPanel) {
@@ -1829,9 +1837,11 @@ export class ArtifactDetailsWebviewProvider {
         }).join('\n');
 
         const filesTreeHtml = this.buildFilesTreeHtml(details.files);
+        const themeAttr = this.themeMode === 'light' ? 'data-theme="light"' : (this.themeMode === 'dark' ? 'data-theme="dark"' : '');
+        const themeClass = this.themeMode === 'light' ? 'theme-light' : (this.themeMode === 'dark' ? 'theme-dark' : 'theme-auto');
 
         return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ${themeAttr} class="${themeClass}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1853,6 +1863,232 @@ export class ArtifactDetailsWebviewProvider {
             --btn-border: #33333e;
             --btn-text: #f4f4f6;
             --btn-hover: #2c2c36;
+        }
+        :root[data-theme="light"], .theme-light, body.vscode-light {
+            --bg-color: #f5f6fb;
+            --fg-color: #1a1d2e;
+            --card-bg: #ffffff;
+            --panel-bg: #ffffff;
+            --border-color: #e4e8f5;
+            --border-strong: #ced3e8;
+            --text-primary: #1a1d2e;
+            --text-secondary: #4a5180;
+            --text-muted: #64748b;
+            --accent: #4f6ef7;
+            --btn-bg: #f1f3f9;
+            --btn-border: #ced3e8;
+            --btn-text: #1a1d2e;
+            --btn-hover: #e4e8f5;
+        }
+        :root[data-theme="light"] .package-name code,
+        .theme-light .package-name code {
+            background: rgba(0, 0, 0, 0.06);
+        }
+        :root[data-theme="light"] code,
+        .theme-light code,
+        body.vscode-light code {
+            background: rgba(15, 23, 42, 0.07);
+            color: #1e293b;
+            border-radius: 4px;
+            padding: 1px 5px;
+        }
+        .usage-source-row code {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            border-radius: 4px;
+            padding: 1px 5px;
+        }
+        :root[data-theme="light"] .usage-source-row code,
+        .theme-light .usage-source-row code,
+        body.vscode-light .usage-source-row code {
+            background: rgba(15, 23, 42, 0.07);
+            color: #1e293b;
+        }
+        :root[data-theme="light"] .readme-card,
+        .theme-light .readme-card,
+        body.vscode-light .readme-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+            backdrop-filter: none;
+        }
+        :root[data-theme="light"] .readme-header,
+        .theme-light .readme-header,
+        body.vscode-light .readme-header {
+            border-bottom-color: #e2e8f0;
+        }
+        :root[data-theme="light"] .readme-icon,
+        .theme-light .readme-icon,
+        body.vscode-light .readme-icon {
+            background: #eef2ff;
+            border-color: #c7d2fe;
+            color: #4f46e5;
+        }
+        :root[data-theme="light"] .readme-title,
+        .theme-light .readme-title,
+        body.vscode-light .readme-title {
+            color: #0f172a;
+        }
+        :root[data-theme="light"] .readme-subtitle,
+        .theme-light .readme-subtitle,
+        body.vscode-light .readme-subtitle {
+            color: #475569;
+        }
+        :root[data-theme="light"] .readme-prompt-callout,
+        .theme-light .readme-prompt-callout,
+        body.vscode-light .readme-prompt-callout {
+            background: #f8fafc;
+            border-color: #c7d2fe;
+            box-shadow: none;
+        }
+        :root[data-theme="light"] .readme-prompt-label,
+        .theme-light .readme-prompt-label,
+        body.vscode-light .readme-prompt-label {
+            color: #4338ca;
+        }
+        :root[data-theme="light"] .btn-prompt-copy,
+        .theme-light .btn-prompt-copy,
+        body.vscode-light .btn-prompt-copy {
+            background: #eef2ff;
+            border-color: #c7d2fe;
+            color: #3730a3;
+        }
+        :root[data-theme="light"] .btn-prompt-copy:hover,
+        .theme-light .btn-prompt-copy:hover,
+        body.vscode-light .btn-prompt-copy:hover {
+            background: #e0e7ff;
+            color: #312e81;
+            box-shadow: none;
+        }
+        :root[data-theme="light"] .readme-prompt-box,
+        .theme-light .readme-prompt-box,
+        body.vscode-light .readme-prompt-box {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            color: #1e293b;
+        }
+        :root[data-theme="light"] .readme-prompt-box code,
+        .theme-light .readme-prompt-box code,
+        body.vscode-light .readme-prompt-box code {
+            background: transparent;
+            color: #1e293b;
+            padding: 0;
+        }
+        :root[data-theme="light"] .readme-body,
+        .theme-light .readme-body,
+        body.vscode-light .readme-body {
+            color: #334155;
+        }
+        :root[data-theme="light"] .readme-body h1,
+        .theme-light .readme-body h1,
+        body.vscode-light .readme-body h1 {
+            color: #0f172a;
+            border-bottom-color: #e2e8f0;
+        }
+        :root[data-theme="light"] .readme-body h2,
+        .theme-light .readme-body h2,
+        body.vscode-light .readme-body h2 {
+            color: #1e293b;
+        }
+        :root[data-theme="light"] .readme-body h3,
+        .theme-light .readme-body h3,
+        body.vscode-light .readme-body h3 {
+            color: #334155;
+        }
+        :root[data-theme="light"] .readme-hr,
+        .theme-light .readme-hr,
+        body.vscode-light .readme-hr {
+            border-top-color: #e2e8f0;
+        }
+        :root[data-theme="light"] .readme-bq,
+        .theme-light .readme-bq,
+        body.vscode-light .readme-bq {
+            background: #f8fafc;
+            color: #475569;
+        }
+        :root[data-theme="light"] .readme-code,
+        .theme-light .readme-code,
+        body.vscode-light .readme-code {
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+            color: #4338ca;
+        }
+        :root[data-theme="light"] .readme-code-box,
+        .theme-light .readme-code-box,
+        body.vscode-light .readme-code-box {
+            background: #f8fafc;
+            border-color: #e2e8f0;
+        }
+        :root[data-theme="light"] .readme-code-header,
+        .theme-light .readme-code-header,
+        body.vscode-light .readme-code-header {
+            background: #f1f5f9;
+            border-bottom-color: #e2e8f0;
+            color: #475569;
+        }
+        :root[data-theme="light"] .readme-pre,
+        .theme-light .readme-pre,
+        body.vscode-light .readme-pre {
+            color: #1e293b;
+        }
+        :root[data-theme="light"] .readme-pre code,
+        .theme-light .readme-pre code,
+        body.vscode-light .readme-pre code {
+            background: transparent;
+            color: #1e293b;
+            padding: 0;
+        }
+        .cert-version-pill {
+            font-size: 11px;
+            background: rgba(0, 0, 0, 0.25);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 2px 7px;
+            border-radius: 4px;
+        }
+        .cert-pillar-card {
+            background: rgba(0, 0, 0, 0.18);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 10px;
+        }
+        .cert-reviews-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-top: 10px;
+        }
+        .cert-score-pass { color: #10b981; }
+        .cert-score-warn { color: #f59e0b; }
+        :root[data-theme="light"] .cert-version-pill,
+        .theme-light .cert-version-pill,
+        body.vscode-light .cert-version-pill {
+            background: #f1f5f9;
+            color: #475569;
+            border-color: #cbd5e1;
+        }
+        :root[data-theme="light"] .cert-pillar-card,
+        .theme-light .cert-pillar-card,
+        body.vscode-light .cert-pillar-card {
+            background: #ffffff;
+            border-color: #e2e8f0;
+        }
+        :root[data-theme="light"] .cert-reviews-box,
+        .theme-light .cert-reviews-box,
+        body.vscode-light .cert-reviews-box {
+            background: #ffffff;
+            border-color: #e2e8f0;
+        }
+        :root[data-theme="light"] .cert-score-pass,
+        .theme-light .cert-score-pass,
+        body.vscode-light .cert-score-pass {
+            color: #059669;
+        }
+        :root[data-theme="light"] .cert-score-warn,
+        .theme-light .cert-score-warn,
+        body.vscode-light .cert-score-warn {
+            color: #d97706;
         }
         * {
             box-sizing: border-box;
@@ -2856,12 +3092,10 @@ export class ArtifactDetailsWebviewProvider {
             <button id="header-delete-btn" class="btn-delete-admin" onclick="triggerDelete('${details.name}')" title="Permanently delete this artifact from Azure DevOps and SharePoint Online">
                 🗑️ Delete Artifact
             </button>` : ''}
+            ${details.isInstalled ? `
             <div class="install-status-wrap">
-                ${details.isInstalled ? 
-                    `<span class="installed-pill">✓ Installed (v${details.installedVersion || details.version})</span>` : 
-                    `<span style="font-size: 11px; color: var(--text-muted);">Not Installed</span>`
-                }
-            </div>
+                <span class="installed-pill">✓ Installed (v${details.installedVersion || details.version})</span>
+            </div>` : ''}
         </div>
     </div>
 
@@ -2946,7 +3180,7 @@ export class ArtifactDetailsWebviewProvider {
                     <span style="font-size: 12px; font-weight: 700; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 12px;">
                         DHS: ${details.compositeScore.toFixed(1)} / 100
                     </span>` : ''}
-                    <span style="font-size: 11px; background: rgba(0,0,0,0.25); color: var(--text-muted); border: 1px solid var(--border-color); padding: 2px 7px; border-radius: 4px;">
+                    <span class="cert-version-pill">
                         v${details.certifiedVersion || details.version}
                     </span>
                 </div>
@@ -2977,9 +3211,9 @@ export class ArtifactDetailsWebviewProvider {
         <!-- 5-PILLAR METRICS GRID -->
         ${details.certificationPillars ? `
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin: 12px 0;">
-            <div style="background: rgba(0,0,0,0.18); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 10px;">
+            <div class="cert-pillar-card">
                 <div style="color: var(--text-muted); font-size: 10px; text-transform: uppercase; font-weight: 700;">1. Adoption (25%)</div>
-                <div style="font-size: 14px; font-weight: 800; color: ${details.certificationPillars.adoption?.passed ? '#10b981' : '#f59e0b'};">
+                <div class="${details.certificationPillars.adoption?.passed ? 'cert-score-pass' : 'cert-score-warn'}" style="font-size: 14px; font-weight: 800;">
                     ${details.certificationPillars.adoption?.score?.toFixed(0) || '0'}/100
                 </div>
                 <div style="font-size: 10px; color: var(--text-secondary); margin-top: 2px;">
@@ -2987,9 +3221,9 @@ export class ArtifactDetailsWebviewProvider {
                 </div>
             </div>
 
-            <div style="background: rgba(0,0,0,0.18); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 10px;">
+            <div class="cert-pillar-card">
                 <div style="color: var(--text-muted); font-size: 10px; text-transform: uppercase; font-weight: 700;">2. Feedback (15%)</div>
-                <div style="font-size: 14px; font-weight: 800; color: ${details.certificationPillars.feedback?.passed ? '#10b981' : '#f59e0b'};">
+                <div class="${details.certificationPillars.feedback?.passed ? 'cert-score-pass' : 'cert-score-warn'}" style="font-size: 14px; font-weight: 800;">
                     ${details.certificationPillars.feedback?.score?.toFixed(0) || '80'}/100
                 </div>
                 <div style="font-size: 10px; color: var(--text-secondary); margin-top: 2px;">
@@ -2997,9 +3231,9 @@ export class ArtifactDetailsWebviewProvider {
                 </div>
             </div>
 
-            <div style="background: rgba(0,0,0,0.18); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 10px;">
+            <div class="cert-pillar-card">
                 <div style="color: var(--text-muted); font-size: 10px; text-transform: uppercase; font-weight: 700;">3. DX & Docs (15%)</div>
-                <div style="font-size: 14px; font-weight: 800; color: ${details.certificationPillars.dx?.passed ? '#10b981' : '#f59e0b'};">
+                <div class="${details.certificationPillars.dx?.passed ? 'cert-score-pass' : 'cert-score-warn'}" style="font-size: 14px; font-weight: 800;">
                     ${details.certificationPillars.dx?.score?.toFixed(0) || '100'}/100
                 </div>
                 <div style="font-size: 10px; color: var(--text-secondary); margin-top: 2px;">
@@ -3007,9 +3241,9 @@ export class ArtifactDetailsWebviewProvider {
                 </div>
             </div>
 
-            <div style="background: rgba(0,0,0,0.18); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 10px;">
+            <div class="cert-pillar-card">
                 <div style="color: var(--text-muted); font-size: 10px; text-transform: uppercase; font-weight: 700;">4. Tech Conf. (20%)</div>
-                <div style="font-size: 14px; font-weight: 800; color: ${details.certificationPillars.technical?.passed ? '#10b981' : '#f59e0b'};">
+                <div class="${details.certificationPillars.technical?.passed ? 'cert-score-pass' : 'cert-score-warn'}" style="font-size: 14px; font-weight: 800;">
                     ${details.certificationPillars.technical?.score?.toFixed(0) || '100'}/100
                 </div>
                 <div style="font-size: 10px; color: var(--text-secondary); margin-top: 2px;">
@@ -3017,9 +3251,9 @@ export class ArtifactDetailsWebviewProvider {
                 </div>
             </div>
 
-            <div style="background: rgba(0,0,0,0.18); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 10px;">
+            <div class="cert-pillar-card">
                 <div style="color: var(--text-muted); font-size: 10px; text-transform: uppercase; font-weight: 700;">5. Crash Safety (25%)</div>
-                <div style="font-size: 14px; font-weight: 800; color: ${details.certificationPillars.health?.passed ? '#10b981' : '#f59e0b'};">
+                <div class="${details.certificationPillars.health?.passed ? 'cert-score-pass' : 'cert-score-warn'}" style="font-size: 14px; font-weight: 800;">
                     ${details.certificationPillars.health?.score !== null && details.certificationPillars.health?.score !== undefined ? details.certificationPillars.health.score.toFixed(0) + '/100' : 'Pending'}
                 </div>
                 <div style="font-size: 10px; color: var(--text-secondary); margin-top: 2px;">
@@ -3078,7 +3312,7 @@ export class ArtifactDetailsWebviewProvider {
         </div>`)}
 
         <!-- COMMUNITY REVIEWS LIST FROM AZURE DEVOPS -->
-        <div style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
+        <div class="cert-reviews-box">
             <div style="font-size: 11.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
                 <span>💬 Community Reviews & Developer Sentiment (${(details.reviews || []).length})</span>
                 <span style="font-size: 10px; color: var(--text-muted);">Authoritative Store: ADO Git</span>
@@ -3185,7 +3419,7 @@ export class ArtifactDetailsWebviewProvider {
             </div>
             <div>
                 <strong>External AI Telemetry (GitHub Copilot / Claude):</strong>
-                <code style="color: #8b949e;">EXTERNAL_USAGE_UNAVAILABLE (Zero Fake Data)</code>
+                <code style="color: var(--text-secondary);">EXTERNAL_USAGE_UNAVAILABLE (Zero Fake Data)</code>
             </div>
         </div>
     </div>
@@ -3394,6 +3628,22 @@ export class ArtifactDetailsWebviewProvider {
 
         window.addEventListener('message', event => {
             const msg = event.data;
+            if (msg.command === 'setTheme') {
+                const mode = msg.themeMode || 'auto';
+                const root = document.documentElement;
+                root.classList.remove('theme-light', 'theme-dark', 'theme-auto');
+                if (mode === 'light') {
+                    root.setAttribute('data-theme', 'light');
+                    root.classList.add('theme-light');
+                } else if (mode === 'dark') {
+                    root.setAttribute('data-theme', 'dark');
+                    root.classList.add('theme-dark');
+                } else {
+                    root.removeAttribute('data-theme');
+                    root.classList.add('theme-auto');
+                }
+                return;
+            }
             const pSteps = document.getElementById('progress-steps');
             const btns = document.querySelectorAll('.btn-install');
 

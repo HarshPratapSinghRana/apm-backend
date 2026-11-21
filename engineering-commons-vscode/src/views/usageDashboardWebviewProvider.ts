@@ -12,6 +12,15 @@ import { ArtifactUsageEvent } from '../models/usageEvent';
 export class UsageDashboardWebviewProvider {
     public static currentPanel: vscode.WebviewPanel | undefined;
     public static currentInstance: UsageDashboardWebviewProvider | undefined;
+    public static currentThemeMode: 'auto' | 'light' | 'dark' = 'auto';
+
+    public static setThemeMode(mode: 'auto' | 'light' | 'dark'): void {
+        UsageDashboardWebviewProvider.currentThemeMode = mode;
+        if (UsageDashboardWebviewProvider.currentPanel) {
+            UsageDashboardWebviewProvider.currentPanel.webview.postMessage({ command: 'setTheme', themeMode: mode });
+        }
+    }
+
     private readonly _extensionUri: vscode.Uri;
     private _backendUrl: string;
     private _authProvider: IAuthenticationStatusProvider;
@@ -46,7 +55,7 @@ export class UsageDashboardWebviewProvider {
 
         const panel = vscode.window.createWebviewPanel(
             'engineeringCommonsUsageDashboard',
-            'CIP Usage & Analytics',
+            'Usage & Analytics',
             column || vscode.ViewColumn.One,
             {
                 enableScripts: true,
@@ -396,18 +405,30 @@ export class UsageDashboardWebviewProvider {
                         </div>
                     </td>
                     <td>
-                        <button class="btn-action-users" onclick="showUsers('${a.artifactId}', '${a.artifactType}')" title="View User Usage">👥 Users</button>
+                        <button class="btn-action-users" onclick="showUsers('${a.artifactId}', '${a.artifactType}')" title="View User Usage">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <span>Users</span>
+                        </button>
                     </td>
                 </tr>`;
             }).join('')
             : `<tr><td colspan="9" class="empty-state">No real artifact telemetry recorded yet. Only artifacts with active installations or invocations are displayed.</td></tr>`;
 
+        const themeMode = UsageDashboardWebviewProvider.currentThemeMode;
+        const themeAttr = themeMode === 'light' ? 'data-theme="light"' : (themeMode === 'dark' ? 'data-theme="dark"' : '');
+        const themeClass = themeMode === 'light' ? 'theme-light' : (themeMode === 'dark' ? 'theme-dark' : 'theme-auto');
+
         return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ${themeAttr} class="${themeClass}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIP Usage & Analytics</title>
+    <title>Usage & Analytics</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https: data:; font-src https:; connect-src https: http:;">
     <style>
         :root {
@@ -450,6 +471,7 @@ export class UsageDashboardWebviewProvider {
         }
 
         :root[data-theme="light"], .theme-light, body.vscode-light {
+            color-scheme: light;
             --page-bg: #f4f6fb;
             --panel-bg: #ffffff;
             --header-bg: #ffffff;
@@ -617,11 +639,10 @@ export class UsageDashboardWebviewProvider {
         }
 
         .kpi-label {
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 700;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.2px;
             margin-bottom: 8px;
         }
 
@@ -747,6 +768,27 @@ export class UsageDashboardWebviewProvider {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             border-radius: 6px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-strong) var(--panel-bg);
+        }
+        .table-responsive::-webkit-scrollbar,
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .table-responsive::-webkit-scrollbar-track,
+        ::-webkit-scrollbar-track {
+            background: var(--panel-bg);
+            border-radius: 4px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb,
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-strong);
+            border-radius: 4px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb:hover,
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
         }
 
         th, td {
@@ -758,9 +800,8 @@ export class UsageDashboardWebviewProvider {
         th {
             color: var(--text-muted);
             font-weight: 700;
-            text-transform: uppercase;
-            font-size: 10.5px;
-            letter-spacing: 0.5px;
+            font-size: 11px;
+            letter-spacing: 0.2px;
             background: var(--header-bg);
             white-space: nowrap;
         }
@@ -825,7 +866,9 @@ export class UsageDashboardWebviewProvider {
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 5px;
+            line-height: 1;
             transition: all 0.15s ease;
             outline: none;
             white-space: nowrap;
@@ -856,6 +899,17 @@ export class UsageDashboardWebviewProvider {
             line-height: 1.5;
             color: var(--text-secondary);
             width: 100%;
+        }
+        .telemetry-notice code,
+        code {
+            background: var(--btn-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: var(--vscode-editor-font-family, Consolas, monospace);
+            font-size: 11px;
+            font-weight: 600;
         }
 
         @keyframes spin {
@@ -1244,7 +1298,21 @@ export class UsageDashboardWebviewProvider {
         // Listen for messages from extension host
         window.addEventListener('message', event => {
             const msg = event.data;
-            if (msg.command === 'showUserModal') {
+            if (msg.command === 'setTheme') {
+                const mode = msg.themeMode || 'auto';
+                const root = document.documentElement;
+                root.classList.remove('theme-light', 'theme-dark', 'theme-auto');
+                if (mode === 'light') {
+                    root.setAttribute('data-theme', 'light');
+                    root.classList.add('theme-light');
+                } else if (mode === 'dark') {
+                    root.setAttribute('data-theme', 'dark');
+                    root.classList.add('theme-dark');
+                } else {
+                    root.removeAttribute('data-theme');
+                    root.classList.add('theme-auto');
+                }
+            } else if (msg.command === 'showUserModal') {
                 renderUsersInModal(msg.artifactId, msg.artifactType, msg.users);
             }
         });
@@ -1271,15 +1339,15 @@ export class UsageDashboardWebviewProvider {
                 const summaryBar =
                     '<div style="display: flex; gap: 10px; margin-bottom: 14px;">' +
                         '<div style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center;">' +
-                            '<div style="font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Developers</div>' +
+                            '<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Developers</div>' +
                             '<div style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin-top: 2px;">' + activeUsers.length + '</div>' +
                         '</div>' +
                         '<div style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center;">' +
-                            '<div style="font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Invocations</div>' +
+                            '<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Invocations</div>' +
                             '<div style="font-size: 16px; font-weight: 700; color: var(--accent); margin-top: 2px;">' + totalUses + '</div>' +
                         '</div>' +
                         '<div style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center;">' +
-                            '<div style="font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Downloads</div>' +
+                            '<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Downloads</div>' +
                             '<div style="font-size: 16px; font-weight: 700; color: var(--text-secondary); margin-top: 2px;">' + totalDownloads + '</div>' +
                         '</div>' +
                     '</div>';

@@ -29,6 +29,7 @@ import { CompositeArtifactUsageTracker } from '../services/usageTracker';
 import { BountyService, BountyDto, MyWorkSummaryDto, MyReviewItemDto } from '../services/bountyService';
 import { ArtifactDetailsWebviewProvider } from './artifactDetailsWebviewProvider';
 import { ThreadWebviewProvider } from './threadWebviewProvider';
+import { UsageDashboardWebviewProvider } from './usageDashboardWebviewProvider';
 import { parseListOutput, DiscoveredArtifactItem } from '../commands/listCommand';
 import { getAllInstalledArtifacts, checkArtifactInstallation, normalizeArtifactName } from '../services/installationChecker';
 import { SharePointArtifactService } from '../services/sharepoint/sharepointArtifactService';
@@ -473,7 +474,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 break;
 
             case 'toggleTheme':
-                this.themeMode = this.themeMode === 'light' ? 'dark' : (this.themeMode === 'dark' ? 'auto' : 'light');
+                this.themeMode = this.themeMode === 'light' ? 'dark' : 'light';
+                this.detailsProvider.setThemeMode(this.themeMode);
+                UsageDashboardWebviewProvider.setThemeMode(this.themeMode);
                 await this.refresh(false);
                 break;
 
@@ -2014,23 +2017,130 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             background: var(--btn-bg);
             border: 1px solid var(--btn-border);
             color: var(--text-secondary);
-            font-size: 10.5px;
-            font-weight: 600;
             cursor: pointer;
-            padding: 3px 8px;
-            border-radius: 12px;
+            padding: 0;
+            border-radius: 6px;
             transition: all 0.18s;
-            white-space: nowrap;
             flex-shrink: 0;
+            width: 24px;
             height: 24px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
         .theme-toggle-btn:hover {
-            color: var(--text-primary);
+            color: var(--accent);
             border-color: var(--accent);
             background: var(--accent-bg);
+        }
+        .account-menu-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .account-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            right: 0;
+            min-width: 148px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-strong);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .account-dropdown.open {
+            display: flex;
+        }
+        .account-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            padding: 6px 8px;
+            border: none;
+            border-radius: 5px;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.14s;
+        }
+        .account-dropdown-item:hover {
+            background: var(--accent-bg);
+            color: var(--accent);
+        }
+        .account-dropdown-item.danger:hover {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+        }
+        .market-filter-toolbar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .market-filter-inline {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .hamburger-filter-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 4px 9px;
+            border-radius: 20px;
+            border: 1px solid var(--border-strong);
+            background: var(--btn-bg);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.16s;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        .hamburger-filter-btn:hover,
+        .hamburger-filter-btn.open,
+        .hamburger-filter-btn.has-active {
+            border-color: var(--tab-active-border);
+            background: var(--tab-active-bg);
+            color: var(--tab-active-text);
+        }
+        .market-filter-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 2px);
+            left: 12px;
+            right: 12px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-strong);
+            border-radius: 9px;
+            padding: 8px;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+            z-index: 900;
+            flex-wrap: wrap;
+            gap: 5px;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+        .market-filter-dropdown.open {
+            display: flex;
         }
         .icon-btn {
             width: 24px;
@@ -2496,6 +2606,11 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         .artifact-row:hover, .market-item-card:hover {
             border-color: var(--card-hover-border);
             background: var(--card-bg);
+        }
+        .artifact-row.selected, .market-item-card.selected, .bounty-card.selected {
+            border-color: var(--accent) !important;
+            background: var(--accent-bg) !important;
+            box-shadow: 0 0 0 1px var(--accent);
         }
         .art-main {
             display: flex;
@@ -3911,22 +4026,50 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                             <line x1="6" y1="20" x2="6" y2="14"/>
                         </svg>
                     </button>
-                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
-                        <span>${this.themeMode === 'light' ? 'Light' : 'Dark'}</span>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="${this.themeMode === 'light' ? 'Light Mode — Switch to Dark Mode' : 'Dark Mode — Switch to Light Mode'}" aria-label="Toggle Theme">
+                        ${this.themeMode === 'light' ? `
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>` : `
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>`}
                     </button>
+                    ${isAuth ? `
+                    <div class="account-menu-wrap">
+                        <button class="icon-btn" id="account-arrow-btn" onclick="toggleAccountMenu(event)" title="Account options (Switch / Logout)" aria-label="Account options">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="account-dropdown" id="account-dropdown">
+                            <button class="account-dropdown-item" onclick="switchAccount()">
+                                <span>🔄</span>
+                                <span>Switch Account</span>
+                            </button>
+                            <button class="account-dropdown-item danger" onclick="logout()">
+                                <span>🚪</span>
+                                <span>Logout</span>
+                            </button>
+                        </div>
+                    </div>` : ''}
                 </div>
             </div>
 
-            <!-- Row 2: Account Actions (Switch & Logout) -->
+            ${!isAuth ? `
             <div class="user-header-bottom">
-                <button class="switch-account-btn" onclick="${isAuth ? 'switchAccount()' : 'login()'}" title="${isAuth ? 'Switch Login Account' : 'Login to Engineering Commons'}">
-                    ${isAuth ? 'Switch' : 'Login'}
+                <button class="switch-account-btn" onclick="login()" title="Login to Engineering Commons">
+                    Login
                 </button>
-                ${isAuth ? `
-                <button class="logout-btn" onclick="logout()" title="Log out of Engineering Commons">
-                    Logout
-                </button>` : ''}
-            </div>
+            </div>` : ''}
         </div>
 
         ${!isAuth ? `
@@ -3976,42 +4119,31 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 <input class="search-input search-box" id="market-search" type="text" placeholder="Search verified artifacts by name, category, capabilities..." oninput="onSearchInput(this.value)" />
             </div>
 
-            <div class="chip-row market-filter-pills" id="type-filter-bar">
-                <span class="chip market-pill-btn active" data-type="all" onclick="selectTypeFilter('all')">All (${marketArtifacts.length})</span>
-                <span class="chip market-pill-btn" data-type="code-review" onclick="selectTypeFilter('code-review')">🔍 Code Review (${reviewCount})</span>
-                <span class="chip market-pill-btn" data-type="featured" onclick="selectTypeFilter('featured')">⭐ Featured (${featuredCount})</span>
-                <span class="chip market-pill-btn" data-type="token-optimization" onclick="selectTypeFilter('token-optimization')">⚡ Token Optimization (${tokenOptCount})</span>
-                <span class="chip market-pill-btn" data-type="agent" onclick="selectTypeFilter('agent')">🤖 Agents (${agentCount})</span>
-                <span class="chip market-pill-btn" data-type="skill" onclick="selectTypeFilter('skill')">⚡ Skills (${skillCount})</span>
-                <span class="chip market-pill-btn" data-type="plugin" onclick="selectTypeFilter('plugin')">🧩 Plugins (${pluginCount})</span>
-                <span class="chip market-pill-btn" data-type="mcpserver" onclick="selectTypeFilter('mcpserver')">🔌 MCP (${mcpCount})</span>
-                <span class="chip market-pill-btn" data-type="playbook" onclick="selectTypeFilter('playbook')">📖 Prompt Playbook (${playbookCount})</span>
-                <span class="chip market-pill-btn" data-type="prompt" onclick="selectTypeFilter('prompt')">📜 Prompts (${promptCount})</span>
-                <span class="chip market-pill-btn" data-type="command" onclick="selectTypeFilter('command')">⌨️ Commands (${commandCount})</span>
-                <span class="chip market-pill-btn" data-type="package" onclick="selectTypeFilter('package')">📦 Packages (${packageCount})</span>
-                <span class="chip market-pill-btn" data-type="certified" onclick="selectTypeFilter('certified')">🛡️ Certified (${certifiedCount})</span>
-            </div>
-
-            <!-- Responsive Category Dropdown (for narrow sidebars <= 285px) -->
-            <div class="market-type-dropdown-wrapper" id="market-type-dropdown-container">
-                <div class="filter-dropdown-inner">
-                    <label for="market-type-select" class="filter-dropdown-label">Category:</label>
-                    <select id="market-type-select" class="filter-select-control" onchange="selectTypeFilter(this.value)">
-                        <option value="all">All Verified (${marketArtifacts.length})</option>
-                        <option value="code-review">🔍 Code Review & Architecture (${reviewCount})</option>
-                        <option value="featured">⭐ Featured (${featuredCount})</option>
-                        <option value="token-optimization">⚡ Token Optimization (${tokenOptCount})</option>
-                        <option value="agent">🤖 Agents (${agentCount})</option>
-                        <option value="skill">⚡ Skills (${skillCount})</option>
-                        <option value="plugin">🧩 Plugins (${pluginCount})</option>
-                        <option value="mcpserver">🔌 MCP Servers (${mcpCount})</option>
-                        <option value="playbook">📖 Prompt Playbook (${playbookCount})</option>
-                        <option value="prompt">📜 Prompts (${promptCount})</option>
-                        <option value="command">⌨️ Commands (${commandCount})</option>
-                        <option value="package">📦 CIP Packages (${packageCount})</option>
-                        <option value="certified">🛡️ Certified Only (${certifiedCount})</option>
-                    </select>
+            <div class="market-filter-toolbar" id="market-filter-toolbar">
+                <div class="market-filter-inline" id="type-filter-bar">
+                    <span class="chip market-pill-btn active" data-type="all" onclick="selectTypeFilter('all')">All (${marketArtifacts.length})</span>
+                    <span class="chip market-pill-btn" data-type="code-review" onclick="selectTypeFilter('code-review')">🔍 Code Review (${reviewCount})</span>
+                    <span class="chip market-pill-btn" data-type="featured" onclick="selectTypeFilter('featured')">⭐ Featured (${featuredCount})</span>
+                    <span class="chip market-pill-btn" data-type="token-optimization" onclick="selectTypeFilter('token-optimization')">⚡ Token Optimization (${tokenOptCount})</span>
+                    <span class="chip market-pill-btn" data-type="agent" onclick="selectTypeFilter('agent')">🤖 Agents (${agentCount})</span>
+                    <span class="chip market-pill-btn" data-type="skill" onclick="selectTypeFilter('skill')">⚡ Skills (${skillCount})</span>
+                    <span class="chip market-pill-btn" data-type="plugin" onclick="selectTypeFilter('plugin')">🧩 Plugins (${pluginCount})</span>
+                    <span class="chip market-pill-btn" data-type="mcpserver" onclick="selectTypeFilter('mcpserver')">🔌 MCP (${mcpCount})</span>
+                    <span class="chip market-pill-btn" data-type="playbook" onclick="selectTypeFilter('playbook')">📖 Prompt Playbook (${playbookCount})</span>
+                    <span class="chip market-pill-btn" data-type="prompt" onclick="selectTypeFilter('prompt')">📜 Prompts (${promptCount})</span>
+                    <span class="chip market-pill-btn" data-type="command" onclick="selectTypeFilter('command')">⌨️ Commands (${commandCount})</span>
+                    <span class="chip market-pill-btn" data-type="package" onclick="selectTypeFilter('package')">📦 Packages (${packageCount})</span>
+                    <span class="chip market-pill-btn" data-type="certified" onclick="selectTypeFilter('certified')">🛡️ Certified (${certifiedCount})</span>
                 </div>
+                <button class="hamburger-filter-btn" id="hamburger-filter-btn" onclick="toggleFilterMenu(event)" title="More category filters" style="display: none;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                    <span id="overflow-filter-count"></span>
+                </button>
+                <div class="market-filter-dropdown" id="type-overflow-dropdown"></div>
             </div>
 
             <div class="count-row" id="market-count">${marketArtifacts.length} artifacts</div>
@@ -4163,10 +4295,10 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 -->
             </div>` : `
             <div class="chip-row bounties-filter-pills">
-                <span class="chip selected" data-bcat="all" onclick="selectBountyFilter('all')">All</span>
-                <span class="chip" data-bcat="Review" onclick="selectBountyFilter('Review')">Review</span>
-                <span class="chip" data-bcat="Code gen" onclick="selectBountyFilter('Code gen')">Code gen</span>
-                <span class="chip" data-bcat="Testing" onclick="selectBountyFilter('Testing')">Testing</span>
+                <span class="chip selected" data-bcat="all" onclick="selectBountyFilter('all')">📋 All</span>
+                <span class="chip" data-bcat="Review" onclick="selectBountyFilter('Review')">🔍 Review</span>
+                <span class="chip" data-bcat="Code gen" onclick="selectBountyFilter('Code gen')">💻 Code gen</span>
+                <span class="chip" data-bcat="Testing" onclick="selectBountyFilter('Testing')">🧪 Testing</span>
             </div>
 
             <!-- Responsive Bounties Category Dropdown (for narrow sidebars <= 285px) -->
@@ -4174,10 +4306,10 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 <div class="filter-dropdown-inner">
                     <label for="bounties-category-select" class="filter-dropdown-label">Category:</label>
                     <select id="bounties-category-select" class="filter-select-control" onchange="selectBountyFilter(this.value)">
-                        <option value="all">All Categories</option>
-                        <option value="Review">Review</option>
-                        <option value="Code gen">Code gen</option>
-                        <option value="Testing">Testing</option>
+                        <option value="all">📋 All Categories</option>
+                        <option value="Review">🔍 Review</option>
+                        <option value="Code gen">💻 Code gen</option>
+                        <option value="Testing">🧪 Testing</option>
                     </select>
                 </div>
             </div>
@@ -4187,20 +4319,21 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             <div style="padding: 4px 10px 10px;">
                 ${openBounties.map(b => {
                     const tagClass = b.category === 'Code gen' ? 'cat-codegen' : (b.category === 'Testing' ? 'cat-testing' : 'cat-review');
+                    const catIcon = b.category === 'Code gen' ? '💻' : (b.category === 'Testing' ? '🧪' : '🔍');
                     const stageKey = (b.stage || 'Open').toLowerCase();
                     const stageClass = `stage-${stageKey}`;
-                    const stageLabel = b.stage === 'CodeGeneration' ? 'Code Gen' : (b.stage === 'InReview' ? 'In Review' : (b.stage === 'InTesting' ? 'In Testing' : (b.stage || 'Open')));
+                    const stageLabel = b.stage === 'CodeGeneration' ? '💻 Code Gen' : (b.stage === 'InReview' ? '🔍 In Review' : (b.stage === 'InTesting' ? '🧪 In Testing' : (b.stage === 'Completed' ? '✅ Completed' : (b.stage === 'Cancelled' ? '⛔ Cancelled' : `🟢 ${b.stage || 'Open'}`))));
                     const safeTitle = escapeHtml(b.title);
                     const safeCat = escapeHtml(b.category);
                     const safeIdJs = escapeJsArg(b.id);
                     return `
-                    <div class="bounty-card" data-bcat="${safeCat}">
+                    <div class="bounty-card" data-bcat="${safeCat}" onclick="selectBountyCard(this, event)">
                         <div class="bounty-top-row">
                             <div style="display: flex; gap: 5px; align-items: center;">
-                                <span class="category-pill ${tagClass}">${safeCat}</span>
+                                <span class="category-pill ${tagClass}">${catIcon} ${safeCat}</span>
                                 <span class="stage-pill ${stageClass}">${stageLabel}</span>
                             </div>
-                            <span class="credits-reward">${escapeHtml(String(b.credits ?? b.points ?? (b as any).rewardCredits ?? 100))} points</span>
+                            <span class="credits-reward">🏆 ${escapeHtml(String(b.credits ?? b.points ?? (b as any).rewardCredits ?? 100))} points</span>
                         </div>
                         <p class="bounty-title card-title">${safeTitle}</p>
                         <div class="workflow-stepper">
@@ -4804,7 +4937,157 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             vscode.postMessage({ command: 'reviewArtifact' });
         }
 
+        function toggleAccountMenu(event) {
+            if (event) event.stopPropagation();
+            const menu = document.getElementById('account-dropdown');
+            const filterMenu = document.getElementById('type-overflow-dropdown');
+            const filterBtn = document.getElementById('hamburger-filter-btn');
+            if (filterMenu) filterMenu.classList.remove('open');
+            if (filterBtn) filterBtn.classList.remove('open');
+            if (menu) menu.classList.toggle('open');
+        }
+
+        function toggleFilterMenu(event) {
+            if (event) event.stopPropagation();
+            const menu = document.getElementById('type-overflow-dropdown');
+            const btn = document.getElementById('hamburger-filter-btn');
+            const acctMenu = document.getElementById('account-dropdown');
+            if (acctMenu) acctMenu.classList.remove('open');
+            if (menu) menu.classList.toggle('open');
+            if (btn) btn.classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            const acctWrap = document.querySelector('.account-menu-wrap');
+            const acctMenu = document.getElementById('account-dropdown');
+            if (acctMenu && acctWrap && !acctWrap.contains(e.target)) {
+                acctMenu.classList.remove('open');
+            }
+            const filterToolbar = document.getElementById('market-filter-toolbar');
+            const filterMenu = document.getElementById('type-overflow-dropdown');
+            const filterBtn = document.getElementById('hamburger-filter-btn');
+            if (filterMenu && filterToolbar && !filterToolbar.contains(e.target)) {
+                filterMenu.classList.remove('open');
+                if (filterBtn) filterBtn.classList.remove('open');
+            }
+        });
+
+        const allMarketPills = Array.from(document.querySelectorAll('#type-filter-bar .market-pill-btn'));
+
+        function syncHamburgerActiveState() {
+            const btn = document.getElementById('hamburger-filter-btn');
+            const dropdown = document.getElementById('type-overflow-dropdown');
+            if (!btn || !dropdown) return;
+            const hasActiveInOverflow = Boolean(dropdown.querySelector('.market-pill-btn.active'));
+            if (hasActiveInOverflow) {
+                btn.classList.add('has-active');
+            } else {
+                btn.classList.remove('has-active');
+            }
+        }
+
+        function layoutFilterPills() {
+            const toolbar = document.getElementById('market-filter-toolbar');
+            const inlineBar = document.getElementById('type-filter-bar');
+            const dropdown = document.getElementById('type-overflow-dropdown');
+            const btn = document.getElementById('hamburger-filter-btn');
+            const countSpan = document.getElementById('overflow-filter-count');
+            if (!toolbar || !inlineBar || !dropdown || !btn || allMarketPills.length === 0) return;
+
+            allMarketPills.forEach(p => inlineBar.appendChild(p));
+            btn.style.display = 'none';
+            dropdown.classList.remove('open');
+            btn.classList.remove('open');
+
+            const toolbarStyle = window.getComputedStyle(toolbar);
+            const padLeft = parseFloat(toolbarStyle.paddingLeft) || 0;
+            const padRight = parseFloat(toolbarStyle.paddingRight) || 0;
+            const availableWidth = toolbar.clientWidth - padLeft - padRight;
+            if (availableWidth <= 0) return;
+
+            const gap = 5;
+            let totalWidth = 0;
+            const widths = allMarketPills.map((p, idx) => {
+                const w = p.getBoundingClientRect().width;
+                totalWidth += w + (idx > 0 ? gap : 0);
+                return w;
+            });
+
+            if (totalWidth <= availableWidth) {
+                syncHamburgerActiveState();
+                return;
+            }
+
+            btn.style.display = 'inline-flex';
+            if (countSpan) countSpan.textContent = '+' + allMarketPills.length;
+            const btnWidth = btn.getBoundingClientRect().width || 44;
+            const maxInlineWidth = Math.max(0, availableWidth - btnWidth - gap);
+
+            let usedWidth = 0;
+            let splitIdx = allMarketPills.length;
+            for (let i = 0; i < allMarketPills.length; i++) {
+                const w = widths[i];
+                const needed = usedWidth + (i > 0 ? gap : 0) + w;
+                if (needed <= maxInlineWidth || i === 0) {
+                    usedWidth = needed;
+                } else {
+                    splitIdx = i;
+                    break;
+                }
+            }
+
+            const overflowPills = allMarketPills.slice(splitIdx);
+            overflowPills.forEach(p => dropdown.appendChild(p));
+
+            if (overflowPills.length === 0) {
+                btn.style.display = 'none';
+            } else if (countSpan) {
+                countSpan.textContent = '+' + overflowPills.length;
+            }
+            syncHamburgerActiveState();
+        }
+
+        if (typeof ResizeObserver !== 'undefined') {
+            const toolbarEl = document.getElementById('market-filter-toolbar');
+            if (toolbarEl) {
+                const ro = new ResizeObserver(() => layoutFilterPills());
+                ro.observe(toolbarEl);
+            }
+        }
+        window.addEventListener('resize', layoutFilterPills);
+        setTimeout(layoutFilterPills, 0);
+
+        function highlightSelectedMarketCard(name) {
+            const target = (name || '').toLowerCase();
+            document.querySelectorAll('.market-item-card').forEach(card => {
+                const cName = (card.getAttribute('data-name') || '').toLowerCase();
+                if (target && cName === target) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+            try {
+                const prev = vscode.getState() || {};
+                vscode.setState({ ...prev, selectedArtifactName: name || '' });
+            } catch {}
+        }
+
+        function selectBountyCard(cardEl, event) {
+            if (event && event.target && event.target.closest('button')) return;
+            document.querySelectorAll('.bounty-card').forEach(c => c.classList.remove('selected'));
+            if (cardEl) cardEl.classList.add('selected');
+        }
+
+        try {
+            const savedState = vscode.getState();
+            if (savedState && savedState.selectedArtifactName) {
+                highlightSelectedMarketCard(savedState.selectedArtifactName);
+            }
+        } catch {}
+
         function showDetails(name, type, version, isPrivate) {
+            highlightSelectedMarketCard(name);
             vscode.postMessage({ command: 'showDetails', artifact: { name, type, version, isPrivate: Boolean(isPrivate) }, version: version });
         }
 
@@ -4916,6 +5199,11 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     btn.classList.remove('active');
                 }
             });
+            const filterMenu = document.getElementById('type-overflow-dropdown');
+            const filterBtn = document.getElementById('hamburger-filter-btn');
+            if (filterMenu) filterMenu.classList.remove('open');
+            if (filterBtn) filterBtn.classList.remove('open');
+            syncHamburgerActiveState();
             const mSel = document.getElementById('market-type-select');
             if (mSel && mSel.value.toLowerCase() !== currentSelectedType) {
                 mSel.value = currentSelectedType;
@@ -4925,6 +5213,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
         function applyMarketFilters() {
             let visibleCount = 0;
+            const searchBoundaryRegex = currentSearchQuery
+                ? new RegExp('(^|[^a-z0-9])' + currentSearchQuery.replace(/[.*+?^$()|[\]\\{}]/g, '\\\\$&'), 'i')
+                : null;
             document.querySelectorAll('.market-item-card').forEach(c => {
                 const name = (c.getAttribute('data-name') || '').toLowerCase();
                 const title = (c.getAttribute('data-title') || '').toLowerCase();
@@ -4939,9 +5230,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 const matchesSearch = !currentSearchQuery || 
                                       name.includes(currentSearchQuery) || 
                                       title.includes(currentSearchQuery) || 
-                                      desc.includes(currentSearchQuery) ||
-                                      domain.includes(currentSearchQuery) ||
-                                      usability.includes(currentSearchQuery);
+                                      (searchBoundaryRegex ? searchBoundaryRegex.test(desc) : false) ||
+                                      (searchBoundaryRegex ? searchBoundaryRegex.test(domain) : false);
 
                 const matchesSource = (currentSelectedSource === 'all') || 
                                       (currentSelectedSource === 'ai-leap' && source === 'ai-leap') ||
