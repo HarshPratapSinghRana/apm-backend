@@ -377,7 +377,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                             type: item.type || 'agent',
                             version: item.version || '1.0.0',
                             isPrivate: Boolean(item.isPrivate),
-                            isCertified: Boolean(item.isCertified !== undefined ? item.isCertified : true),
+                            isCertified: Boolean(item.isCertified === true),
                             isFeatured,
                             source: effectiveSource,
                             domain: item.domain || item.category || 'General',
@@ -1437,7 +1437,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                                 type: item.type || 'agent',
                                 version: item.version || '1.0.0',
                                 isPrivate: Boolean(item.isPrivate),
-                                isCertified: Boolean(item.isCertified !== undefined ? item.isCertified : true),
+                                isCertified: Boolean(item.isCertified === true),
                                 isFeatured: item.isFeatured !== undefined ? Boolean(item.isFeatured) : Boolean(existing?.isFeatured),
                                 source: item.source || 'CIP',
                                 domain: item.domain || item.category || existing?.domain || 'General',
@@ -5089,7 +5089,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             for (let i = 0; i < allMarketPills.length; i++) {
                 const w = widths[i];
                 const needed = usedWidth + (i > 0 ? gap : 0) + w;
-                if (needed <= maxInlineWidth || i === 0) {
+                if (needed <= maxInlineWidth || i < 2) {
                     usedWidth = needed;
                 } else {
                     splitIdx = i;
