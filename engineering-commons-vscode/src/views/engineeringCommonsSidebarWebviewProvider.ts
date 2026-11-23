@@ -2029,8 +2029,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         .user-role-pill {
             font-size: 9.5px;
             font-weight: 700;
-            padding: 1.5px 6px;
-            border-radius: 4px;
+            padding: 2px 8px;
+            border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.4px;
             line-height: 1.2;
@@ -2070,7 +2070,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             color: var(--text-secondary);
             cursor: pointer;
             padding: 0;
-            border-radius: 6px;
+            border-radius: 20px;
             transition: all 0.18s;
             flex-shrink: 0;
             width: 24px;
@@ -2199,7 +2199,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 6px;
+            border-radius: 20px;
             border: 1px solid var(--btn-border);
             background: var(--btn-bg);
             color: var(--text-secondary);
@@ -2224,7 +2224,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             font-size: 10.5px;
             font-weight: 600;
             padding: 4px 8px;
-            border-radius: 5px;
+            border-radius: 20px;
             border: 1px solid var(--btn-border);
             background: var(--btn-bg);
             color: var(--text-secondary);
@@ -2248,7 +2248,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             font-size: 10.5px;
             font-weight: 600;
             padding: 4px 8px;
-            border-radius: 5px;
+            border-radius: 20px;
             border: 1px solid var(--btn-border);
             background: var(--btn-bg);
             color: var(--text-secondary);
@@ -2298,7 +2298,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             font-weight: 600;
             padding: 7px 4px;
             text-align: center;
-            border-radius: 9px;
+            border-radius: 20px;
             border: 1px solid var(--tab-border);
             color: var(--text-secondary);
             background: var(--tab-bg);
@@ -2728,8 +2728,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             height: 26px;
             font-size: 10.5px;
             font-weight: 600;
-            padding: 3px 6px;
-            border-radius: 6px;
+            padding: 3px 8px;
+            border-radius: 20px;
             border: 1px solid var(--btn-border);
             background: var(--btn-bg);
             color: var(--btn-text);
@@ -2777,7 +2777,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             min-width: 58px;
             height: 26px;
             box-sizing: border-box;
-            border-radius: 6px;
+            border-radius: 20px;
             border: 1px solid var(--btn-border);
             background: var(--btn-bg);
             color: var(--btn-text);
@@ -3084,8 +3084,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         .usability-pill {
             font-size: 9px;
             font-weight: 700;
-            padding: 1.5px 6px;
-            border-radius: 4px;
+            padding: 2px 8px;
+            border-radius: 20px;
             display: inline-flex;
             align-items: center;
             gap: 3px;
@@ -3180,17 +3180,24 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         .stage-pill {
             font-size: 9.5px;
             font-weight: 800;
-            padding: 2px 7px;
-            border-radius: 4px;
+            padding: 2.5px 9px;
+            border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
             flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
         }
         .stage-open          { background: rgba(107, 114, 128, 0.18); color: #9ca3af; border: 1px solid rgba(107, 114, 128, 0.3); }
         .stage-codegeneration{ background: rgba(59, 130, 246, 0.18);  color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
         .stage-inreview      { background: rgba(251, 191, 36, 0.18);  color: #fde047; border: 1px solid rgba(251, 191, 36, 0.3); }
         .stage-intesting     { background: rgba(168, 85, 247, 0.18);  color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
         .stage-completed     { background: rgba(16, 185, 129, 0.18);  color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        :root[data-theme="light"] .stage-open          { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+        :root[data-theme="light"] .stage-codegeneration{ background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+        :root[data-theme="light"] .stage-inreview      { background: #fefce8; color: #a16207; border-color: #fef08a; }
+        :root[data-theme="light"] .stage-intesting     { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
+        :root[data-theme="light"] .stage-completed     { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
 
         .workflow-stepper {
             display: flex;
@@ -3207,8 +3214,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             align-items: center;
             gap: 3px;
             font-weight: 600;
-            padding: 1px 4px;
-            border-radius: 3px;
+            padding: 1.5px 6px;
+            border-radius: 12px;
             white-space: nowrap;
         }
         .step-node.active-step {
@@ -3260,8 +3267,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         .sla-live-pill {
             font-size: 10.5px;
             font-weight: 700;
-            padding: 2.5px 8px;
-            border-radius: 12px;
+            padding: 2.5px 9px;
+            border-radius: 20px;
             display: inline-flex;
             align-items: center;
             gap: 4px;
@@ -3303,7 +3310,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             font-size: 12px;
             font-weight: 700;
             padding: 8px 0;
-            border-radius: 8px;
+            border-radius: 20px;
             border: 1.5px solid var(--accent);
             background: transparent;
             color: var(--accent);
@@ -3326,7 +3333,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             font-size: 12px;
             font-weight: 700;
             padding: 8px 0;
-            border-radius: 8px;
+            border-radius: 20px;
             border: 1.5px solid var(--danger);
             background: transparent;
             color: var(--danger);
@@ -3346,7 +3353,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             font-size: 11.5px;
             font-weight: 600;
             padding: 6px 14px;
-            border-radius: 7px;
+            border-radius: 20px;
             border: 1px solid var(--btn-border);
             background: var(--btn-bg);
             color: var(--btn-text);
@@ -4080,6 +4087,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     <button class="theme-toggle-btn" onclick="toggleTheme()" title="${this.themeMode === 'light' ? 'Light Mode — Switch to Dark Mode' : 'Dark Mode — Switch to Light Mode'}" aria-label="Toggle Theme">
                         ${this.themeMode === 'light' ? `
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>` : `
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <circle cx="12" cy="12" r="5"/>
                             <line x1="12" y1="1" x2="12" y2="3"/>
                             <line x1="12" y1="21" x2="12" y2="23"/>
@@ -4089,9 +4099,6 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                             <line x1="21" y1="12" x2="23" y2="12"/>
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                        </svg>` : `
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                         </svg>`}
                     </button>
                     ${isAuth ? `

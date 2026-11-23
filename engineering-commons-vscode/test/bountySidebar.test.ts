@@ -84,10 +84,18 @@ sample-package       package    1.0.0
     });
 
     it('3. Sidebar Webview renders header with logged-in user email, Switch button, and theme toggle', async () => {
-        const html = await (provider as any).renderHtml();
+        (provider as any).themeMode = 'light';
+        let html = await (provider as any).renderHtml();
         assert.ok(html.includes('user-identity-block') || html.includes('user-email-text'), 'Should render user identity block');
         assert.ok(html.includes('switch-account-btn'), 'Should render Switch account button');
         assert.ok(html.includes('theme-toggle-btn'), 'Should render theme switcher');
+        // Light mode active -> Moon icon displayed to switch to dark mode
+        assert.ok(html.includes('M21 12.79A9 9 0 1 1 11.21 3'), 'Light mode should show moon icon to switch to dark mode');
+
+        (provider as any).themeMode = 'dark';
+        html = await (provider as any).renderHtml();
+        // Dark mode active -> Sun icon displayed to switch to light mode
+        assert.ok(html.includes('<circle cx="12" cy="12" r="5"/>'), 'Dark mode should show sun icon to switch to light mode');
     });
 
     it('4. Sidebar Webview renders 3 navigation tabs with notification badges', async () => {

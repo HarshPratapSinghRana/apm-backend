@@ -2092,13 +2092,117 @@ export class ArtifactDetailsWebviewProvider {
             color: #1e293b;
             padding: 0;
         }
+        :root[data-theme="light"] select,
+        .theme-light select,
+        body.vscode-light select {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
+        }
+        :root[data-theme="light"] .btn-install,
+        .theme-light .btn-install,
+        body.vscode-light .btn-install {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+        :root[data-theme="light"] .btn-install:hover,
+        .theme-light .btn-install:hover,
+        body.vscode-light .btn-install:hover {
+            background-color: #dbeafe !important;
+            border-color: #3b82f6 !important;
+            color: #1e3a8a !important;
+        }
+        :root[data-theme="light"] .btn-zip,
+        .theme-light .btn-zip,
+        body.vscode-light .btn-zip {
+            background-color: #f8fafc;
+            color: #334155;
+            border-color: #cbd5e1;
+        }
+        :root[data-theme="light"] .btn-zip:hover,
+        .theme-light .btn-zip:hover,
+        body.vscode-light .btn-zip:hover {
+            background-color: #fef3c7 !important;
+            border-color: #f59e0b !important;
+            color: #78350f !important;
+        }
+        :root[data-theme="light"] .btn-vis-toggle:hover,
+        .theme-light .btn-vis-toggle:hover,
+        body.vscode-light .btn-vis-toggle:hover,
+        :root[data-theme="light"] .btn-file-action:hover,
+        .theme-light .btn-file-action:hover,
+        body.vscode-light .btn-file-action:hover,
+        :root[data-theme="light"] .btn-file-copy:hover,
+        .theme-light .btn-file-copy:hover,
+        body.vscode-light .btn-file-copy:hover {
+            background-color: #dbeafe !important;
+            border-color: #3b82f6 !important;
+            color: #1e3a8a !important;
+        }
+        :root[data-theme="light"] .installed-pill,
+        .theme-light .installed-pill,
+        body.vscode-light .installed-pill {
+            background-color: #ecfdf5 !important;
+            color: #047857 !important;
+            border-color: #a7f3d0 !important;
+        }
+        :root[data-theme="light"] .badge-public,
+        .theme-light .badge-public,
+        body.vscode-light .badge-public,
+        :root[data-theme="light"] .badge-public-pill,
+        .theme-light .badge-public-pill,
+        body.vscode-light .badge-public-pill {
+            background-color: #ecfdf5 !important;
+            color: #047857 !important;
+            border-color: #a7f3d0 !important;
+        }
+        :root[data-theme="light"] .badge-private,
+        .theme-light .badge-private,
+        body.vscode-light .badge-private,
+        :root[data-theme="light"] .badge-private-pill,
+        .theme-light .badge-private-pill,
+        body.vscode-light .badge-private-pill {
+            background-color: #fef2f2 !important;
+            color: #b91c1c !important;
+            border-color: #fecaca !important;
+        }
+        :root[data-theme="light"] .badge-skill,
+        .theme-light .badge-skill,
+        body.vscode-light .badge-skill {
+            background-color: #ecfdf5 !important;
+            color: #047857 !important;
+            border-color: #a7f3d0 !important;
+        }
+        :root[data-theme="light"] .badge-agent,
+        .theme-light .badge-agent,
+        body.vscode-light .badge-agent {
+            background-color: #f5f3ff !important;
+            color: #6d28d9 !important;
+            border-color: #ddd6fe !important;
+        }
+        :root[data-theme="light"] .badge-plugin,
+        .theme-light .badge-plugin,
+        body.vscode-light .badge-plugin {
+            background-color: #fef3c7 !important;
+            color: #b45309 !important;
+            border-color: #fde68a !important;
+        }
+        :root[data-theme="light"] .badge-certified,
+        .theme-light .badge-certified,
+        body.vscode-light .badge-certified {
+            background-color: #ecfdf5 !important;
+            color: #047857 !important;
+            border-color: #a7f3d0 !important;
+        }
+
         .cert-version-pill {
             font-size: 11px;
             background: rgba(0, 0, 0, 0.25);
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 2px 7px;
-            border-radius: 4px;
+            padding: 2px 8px;
+            border-radius: 20px;
         }
         .cert-pillar-card {
             background: rgba(0, 0, 0, 0.18);
@@ -2204,8 +2308,8 @@ export class ArtifactDetailsWebviewProvider {
         .badge {
             font-size: 10px;
             font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 12px;
+            padding: 2.5px 9px;
+            border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
             line-height: 1.3;
@@ -2226,8 +2330,8 @@ export class ArtifactDetailsWebviewProvider {
             border: 1px solid #1e3a30;
             font-size: 10.5px;
             font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 6px;
+            padding: 2px 8px;
+            border-radius: 20px;
             display: inline-flex;
             align-items: center;
             gap: 3px;
@@ -2243,20 +2347,20 @@ export class ArtifactDetailsWebviewProvider {
             border: 1px solid #33333e;
             font-size: 10px;
             font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 6px;
+            padding: 2px 8px;
+            border-radius: 20px;
             white-space: nowrap;
         }
-        .badge-private { background-color: #301818; color: #fca5a5; border: 1px solid #4a2020; padding: 2px 7px; border-radius: 6px; font-size: 10.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
-        .badge-public { background-color: #142822; color: #6ee7b7; border: 1px solid #1e3a30; padding: 2px 7px; border-radius: 6px; font-size: 10.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
-        .badge-private-pill { background-color: #301818; color: #fca5a5; border: 1px solid #4a2020; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
-        .badge-public-pill { background-color: #142822; color: #6ee7b7; border: 1px solid #1e3a30; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+        .badge-private { background-color: #301818; color: #fca5a5; border: 1px solid #4a2020; padding: 2px 8px; border-radius: 20px; font-size: 10.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+        .badge-public { background-color: #142822; color: #6ee7b7; border: 1px solid #1e3a30; padding: 2px 8px; border-radius: 20px; font-size: 10.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+        .badge-private-pill { background-color: #301818; color: #fca5a5; border: 1px solid #4a2020; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+        .badge-public-pill { background-color: #142822; color: #6ee7b7; border: 1px solid #1e3a30; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
         .btn-vis-toggle {
             background-color: var(--btn-bg);
             border: 1px solid var(--btn-border);
             color: var(--btn-text);
-            border-radius: 6px;
-            padding: 3px 8px;
+            border-radius: 20px;
+            padding: 3px 10px;
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
@@ -2269,7 +2373,7 @@ export class ArtifactDetailsWebviewProvider {
         .btn-vis-toggle:hover {
             background-color: var(--btn-hover);
             border-color: var(--border-strong);
-            color: #ffffff;
+            color: var(--text-primary);
         }
 
         .certification-card {
@@ -2321,8 +2425,8 @@ export class ArtifactDetailsWebviewProvider {
         .leap-header-badge {
             font-size: 9.5px;
             font-weight: 800;
-            padding: 2px 7px;
-            border-radius: 4px;
+            padding: 2.5px 8px;
+            border-radius: 20px;
             background: #7c3aed;
             color: #ffffff;
             letter-spacing: 0.5px;
@@ -2330,8 +2434,8 @@ export class ArtifactDetailsWebviewProvider {
         .leap-header-pill {
             font-size: 11px;
             font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 6px;
+            padding: 2.5px 9px;
+            border-radius: 20px;
             background: rgba(124, 58, 237, 0.15);
             color: #c084fc;
             border: 1px solid rgba(124, 58, 237, 0.25);
@@ -2385,8 +2489,8 @@ export class ArtifactDetailsWebviewProvider {
             line-height: 1.5;
         }
         .btn-cert-action {
-            border-radius: 6px;
-            padding: 4px 10px;
+            border-radius: 20px;
+            padding: 4px 12px;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
@@ -2602,8 +2706,8 @@ export class ArtifactDetailsWebviewProvider {
             background-color: var(--btn-bg);
             border: 1px solid var(--btn-border);
             color: var(--btn-text);
-            padding: 3px 8px;
-            border-radius: 6px;
+            padding: 3px 10px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
@@ -2615,7 +2719,7 @@ export class ArtifactDetailsWebviewProvider {
         }
         .btn-file-action:hover {
             background-color: var(--btn-hover);
-            color: #ffffff;
+            color: var(--text-primary);
             border-color: var(--border-strong);
         }
         .file-content-panel {
@@ -2640,8 +2744,8 @@ export class ArtifactDetailsWebviewProvider {
             background: var(--btn-bg);
             border: 1px solid var(--btn-border);
             color: var(--text-secondary);
-            padding: 2px 8px;
-            border-radius: 4px;
+            padding: 2px 10px;
+            border-radius: 20px;
             font-size: 10.5px;
             cursor: pointer;
             transition: all 0.15s ease;
@@ -2690,8 +2794,8 @@ export class ArtifactDetailsWebviewProvider {
             background-color: #1b1b20;
             color: #f4f4f6;
             border: 1px solid #33333e;
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 12px;
             cursor: pointer;
             outline: none;
@@ -2705,7 +2809,7 @@ export class ArtifactDetailsWebviewProvider {
             color: var(--btn-text);
             border: 1px solid var(--btn-border);
             padding: 5px 14px;
-            border-radius: 6px;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
@@ -2720,7 +2824,7 @@ export class ArtifactDetailsWebviewProvider {
         .btn-install:hover {
             background-color: var(--btn-hover);
             border-color: var(--border-strong);
-            color: #ffffff;
+            color: var(--text-primary);
         }
         .btn-install:disabled {
             opacity: 0.5;
@@ -2747,8 +2851,8 @@ export class ArtifactDetailsWebviewProvider {
             background-color: #1b1b20;
             color: #f4f4f6;
             border: 1px solid #33333e;
-            padding: 4px 8px;
-            border-radius: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 11.5px;
             cursor: pointer;
             outline: none;
@@ -2761,8 +2865,8 @@ export class ArtifactDetailsWebviewProvider {
             background-color: var(--btn-bg);
             color: var(--btn-text);
             border: 1px solid var(--btn-border);
-            padding: 5px 12px;
-            border-radius: 6px;
+            padding: 5px 14px;
+            border-radius: 20px;
             font-size: 11.5px;
             font-weight: 600;
             cursor: pointer;
@@ -2778,7 +2882,7 @@ export class ArtifactDetailsWebviewProvider {
         .btn-install:hover {
             background-color: var(--btn-hover);
             border-color: var(--border-strong);
-            color: #ffffff;
+            color: var(--text-primary);
         }
         .btn-install:disabled {
             opacity: 0.5;
@@ -2788,8 +2892,8 @@ export class ArtifactDetailsWebviewProvider {
             background-color: #301818;
             color: #fca5a5;
             border: 1px solid #4a2020;
-            padding: 5px 12px;
-            border-radius: 6px;
+            padding: 5px 14px;
+            border-radius: 20px;
             font-size: 11.5px;
             font-weight: 600;
             cursor: pointer;
@@ -2818,8 +2922,8 @@ export class ArtifactDetailsWebviewProvider {
             background-color: #142822;
             color: #6ee7b7;
             border: 1px solid #1e3a30;
-            padding: 3px 8px;
-            border-radius: 6px;
+            padding: 3px 10px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
             white-space: nowrap;
@@ -2999,8 +3103,8 @@ export class ArtifactDetailsWebviewProvider {
             background: rgba(99, 102, 241, 0.25);
             border: 1px solid rgba(99, 102, 241, 0.5);
             color: #e0e7ff;
-            padding: 4px 12px;
-            border-radius: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
             font-size: 11.5px;
             font-weight: 600;
             cursor: pointer;
@@ -3171,7 +3275,7 @@ export class ArtifactDetailsWebviewProvider {
         <div class="meta-item">
             <span class="meta-label">Featured Status</span>
             <span class="meta-value" style="display: flex; align-items: center; gap: 8px;">
-                ${details.isFeatured ? '<span class="badge-featured-pill" style="background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">⭐ Featured</span>' : '<span style="font-size: 11px; color: var(--text-muted);">Standard</span>'}
+                ${details.isFeatured ? '<span class="badge-featured-pill" style="background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">⭐ Featured</span>' : '<span style="font-size: 11px; color: var(--text-muted);">Standard</span>'}
                 ${details.isAdmin ? `
                     <button class="btn-vis-toggle" onclick="triggerToggleFeatured('${details.name}')" title="Admin Toggle Featured Status" style="${details.isFeatured ? 'color: #f59e0b;' : ''}">
                         ${details.isFeatured ? 'Remove Featured' : '⭐ Make Featured'}
@@ -3245,13 +3349,13 @@ export class ArtifactDetailsWebviewProvider {
 
             <!-- ACTION BUTTONS: RECHECK, INTEGRITY, CERTIFY, REVOKE -->
             <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button class="btn-cert-action" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: var(--text-primary); cursor: pointer; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;" onclick="recheckCertification('${details.name}')">
+                <button class="btn-cert-action" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: var(--text-primary); cursor: pointer; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;" onclick="recheckCertification('${details.name}')">
                     🔄 Recheck Score
                 </button>
-                <button class="btn-cert-action" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: var(--text-primary); cursor: pointer; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;" onclick="verifyIntegrity('${details.name}')">
+                <button class="btn-cert-action" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: var(--text-primary); cursor: pointer; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;" onclick="verifyIntegrity('${details.name}')">
                     🛡️ Verify SHA-256
                 </button>
-                <button class="btn-cert-action" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: var(--text-primary); cursor: pointer; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;" onclick="viewAuditHistory('${details.name}')">
+                <button class="btn-cert-action" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: var(--text-primary); cursor: pointer; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;" onclick="viewAuditHistory('${details.name}')">
                     📜 Audit History
                 </button>
                 ${details.isReviewer ? `
@@ -3326,7 +3430,7 @@ export class ArtifactDetailsWebviewProvider {
                     <div style="font-size: 10.5px; color: var(--text-secondary);">Only developers who have downloaded and used this tool at least 1 time can submit ratings for the Certification Layer.</div>
                 </div>
             </div>
-            <button class="btn-install" style="background: #2563eb; color: #fff; border: none; padding: 4px 12px; border-radius: 4px; font-weight: 700; cursor: pointer;" onclick="triggerInstall('version-select')">
+            <button class="btn-install" style="background: #2563eb; color: #fff; border: none; padding: 4px 14px; border-radius: 20px; font-weight: 700; cursor: pointer;" onclick="triggerInstall('version-select')">
                 📥 Install to Unlock
             </button>
         </div>` : (!details.hasUsed ? `
@@ -3338,7 +3442,7 @@ export class ArtifactDetailsWebviewProvider {
                     <div style="font-size: 10.5px; color: var(--text-secondary);">You have downloaded this artifact, but haven't used it yet. Run or execute this tool at least once to unlock rating and feedback.</div>
                 </div>
             </div>
-            <button style="background: #059669; color: #ffffff; border: none; padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onclick="runArtifact('${details.name}')">
+            <button style="background: #059669; color: #ffffff; border: none; padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onclick="runArtifact('${details.name}')">
                 ▶ Run / Use Tool (Unlock Rating)
             </button>
         </div>` : `
@@ -3351,15 +3455,15 @@ export class ArtifactDetailsWebviewProvider {
                 <span style="font-size: 10px; color: var(--text-muted);">Committed to Azure DevOps (/certification/reviews.json)</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                <select id="review-rating-select" style="background: var(--input-bg, #1e1e1e); color: #eab308; border: 1px solid var(--border-color); border-radius: 4px; padding: 3px 6px; font-size: 11.5px; font-weight: 700;">
+                <select id="review-rating-select" style="background: var(--input-bg, #1e1e1e); color: #eab308; border: 1px solid var(--border-color); border-radius: 20px; padding: 3px 10px; font-size: 11.5px; font-weight: 700;">
                     <option value="5">★★★★★ (5 Stars - Exceptional)</option>
                     <option value="4">★★★★☆ (4 Stars - Solid Quality)</option>
                     <option value="3">★★★☆☆ (3 Stars - Functional)</option>
                     <option value="2">★★☆☆☆ (2 Stars - Needs Work)</option>
                     <option value="1">★☆☆☆☆ (1 Star - Buggy)</option>
                 </select>
-                <input id="review-feedback-input" type="text" placeholder="Share your experience, accuracy, and feedback for author & reviewers..." style="flex: 1 1 200px; background: var(--input-bg, #1e1e1e); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 4px; padding: 4px 8px; font-size: 11px;" />
-                <button onclick="submitReview('${details.name}')" style="background: #10b981; color: #ffffff; border: none; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap;">
+                <input id="review-feedback-input" type="text" placeholder="Share your experience, accuracy, and feedback for author & reviewers..." style="flex: 1 1 200px; background: var(--input-bg, #1e1e1e); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 20px; padding: 4px 12px; font-size: 11px;" />
+                <button onclick="submitReview('${details.name}')" style="background: #10b981; color: #ffffff; border: none; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap;">
                     ⭐ Submit Rating to ADO
                 </button>
             </div>
