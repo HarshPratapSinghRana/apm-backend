@@ -121,7 +121,9 @@ export class DefaultCliExecutor implements ICliExecutor {
                     hasCompleted = true;
                     try {
                         proc.kill('SIGKILL');
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     resolve({
                         exitCode: 124,
                         stdout: stdout.trim(),

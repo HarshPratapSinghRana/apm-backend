@@ -581,8 +581,9 @@ public class GitHubMarketplaceService : IMarketplaceService
                 using var doc = JsonDocument.Parse(json);
                 if (doc.RootElement.TryGetProperty("sha", out var shaProp)) sha = shaProp.GetString();
             }
-            catch (JsonException)
+            catch (JsonException ex)
             {
+                _logger.LogDebug(ex, "Failed to parse SHA response JSON for path {Path}", path);
                 sha = null;
             }
         }

@@ -69,7 +69,9 @@ export function discoverLocalArtifacts(workspaceRoot: string): DiscoveredLocalAr
                         }
                     }
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
     }
 
@@ -116,7 +118,9 @@ export function discoverLocalArtifacts(workspaceRoot: string): DiscoveredLocalAr
                         }
                     }
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
     }
 
@@ -147,7 +151,9 @@ export function discoverLocalArtifacts(workspaceRoot: string): DiscoveredLocalAr
                         }
                     }
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
     }
 
@@ -173,7 +179,9 @@ export function discoverLocalArtifacts(workspaceRoot: string): DiscoveredLocalAr
                     }
                 }
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     // 5. Scan MCP Servers: .mcp/*
@@ -198,7 +206,9 @@ export function discoverLocalArtifacts(workspaceRoot: string): DiscoveredLocalAr
                     }
                 }
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     // 6. Check root cip.yml (CIP Package)
@@ -220,7 +230,9 @@ export function discoverLocalArtifacts(workspaceRoot: string): DiscoveredLocalAr
                     description: `Workspace CIP Package (${pkgName})`
                 });
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     return results;
@@ -252,7 +264,9 @@ export async function getDiscoveredArtifacts(
                 }
             }
         }
-    } catch { }
+    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
     // Fallback to local scanner
     return discoverLocalArtifacts(workspaceRoot);

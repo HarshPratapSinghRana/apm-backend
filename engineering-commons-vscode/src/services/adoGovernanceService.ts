@@ -88,7 +88,9 @@ export class AdoGovernanceService {
                 const data = JSON.parse(fs.readFileSync(sessFile, 'utf-8'));
                 if (data?.token || data?.ssoToken) return true;
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         return false;
     }
 
@@ -115,7 +117,9 @@ export class AdoGovernanceService {
             if (data && typeof data.content === 'string') {
                 try {
                     parsed = JSON.parse(data.content);
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             if (parsed && Array.isArray(parsed.userRoles)) {
                 // Deduplicate any records with same normalized email, preserving highest role (ADMIN > REVIEWER > CONTRIBUTOR > CONSUMER)
@@ -170,7 +174,9 @@ export class AdoGovernanceService {
             if (data && typeof data.content === 'string') {
                 try {
                     parsed = JSON.parse(data.content);
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             if (parsed && Array.isArray(parsed.requests)) {
                 this.cachedRequests = parsed.requests;
@@ -206,7 +212,9 @@ export class AdoGovernanceService {
                     const data = await this.httpGetJsonAsync<any>(url);
                     let parsed = data;
                     if (data && typeof data.content === 'string') {
-                        try { parsed = JSON.parse(data.content); } catch {}
+                        try { parsed = JSON.parse(data.content); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                     if (Array.isArray(parsed) && parsed.length > 0) {
                         this.cachedUsageEvents = parsed;
@@ -984,7 +992,9 @@ export class AdoGovernanceService {
                     if (parsed && Array.isArray(parsed.files) && parsed.files.length > 0) {
                         return parsed.files;
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
 
             // 2. Query full recursive repository file tree from ADO Git
@@ -1029,7 +1039,9 @@ export class AdoGovernanceService {
                     try {
                         const parsed = JSON.parse(content);
                         if (parsed && typeof parsed.content === 'string') content = parsed.content;
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     files.push({ path: relPath, content });
 
                     // Also mirror .agents/skills to skills/

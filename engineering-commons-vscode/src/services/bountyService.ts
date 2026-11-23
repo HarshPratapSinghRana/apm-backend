@@ -506,7 +506,9 @@ export class BountyService implements IBountyService {
         try {
             const res = await this.requestJson<BountyDetailDto>(`${this.baseUrl}/api/bounties/${id}`, 'GET', undefined, token);
             if (res.data) return { ...this.normalizeBounty(res.data, userEmail), submissions: res.data.submissions || [], reviews: res.data.reviews || [], testRuns: res.data.testRuns || [] };
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const localMatch = this.localClaimedMap.get(id) || this.localCompletedMap.get(id);
         if (localMatch) {
@@ -538,7 +540,9 @@ export class BountyService implements IBountyService {
         try {
             const res = await this.requestJson<BountyDto>(`${this.baseUrl}/api/bounties`, 'POST', req, token);
             if (res.data) created = this.normalizeBounty(res.data);
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const newBounty: BountyDto = created || {
             id: `bty-${Date.now()}`,
@@ -585,7 +589,9 @@ export class BountyService implements IBountyService {
             if (res.data) {
                 claimedDto = this.normalizeBounty(res.data, userEmail);
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 2. Persist directly to Azure DevOps Git repository (/governance/bounties.json) with live SLA deadlines
         let persistedSlaDeadline: string | undefined;
@@ -666,7 +672,9 @@ export class BountyService implements IBountyService {
         try {
             const res = await this.requestJson<BountyDto>(`${this.baseUrl}/api/bounties/${id}/release`, 'POST', undefined, token);
             if (res.data) return this.normalizeBounty(res.data);
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // Persist directly to Azure DevOps Git repository (/governance/bounties.json)
         await this.adoGovernanceService.releaseBountyInAdoAsync(id).catch(() => {});
@@ -683,7 +691,9 @@ export class BountyService implements IBountyService {
         try {
             const res = await this.requestJson<BountyDetailDto>(`${this.baseUrl}/api/bounties/${id}/submit-code`, 'POST', req, token);
             if (res.data) resDetail = res.data;
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const currentClaimed = this.localClaimedMap.get(id);
         if (currentClaimed) {
@@ -736,7 +746,9 @@ export class BountyService implements IBountyService {
         try {
             const res = await this.requestJson<BountyDetailDto>(`${this.baseUrl}/api/bounties/${id}/review`, 'POST', req, token);
             if (res.data) resDetail = res.data;
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const newStage: BountyStage = req.isApproved ? 'InTesting' : 'CodeGeneration';
         const currentClaimed = this.localClaimedMap.get(id);
@@ -793,7 +805,9 @@ export class BountyService implements IBountyService {
         try {
             const res = await this.requestJson<BountyDetailDto>(`${this.baseUrl}/api/bounties/${id}/run-tests`, 'POST', req, token);
             if (res.data) resDetail = res.data;
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const newStage: BountyStage = req.isPassed ? 'Completed' : 'CodeGeneration';
         const currentClaimed = this.localClaimedMap.get(id);
@@ -895,7 +909,9 @@ export class BountyService implements IBountyService {
         try {
             const res = await this.requestJson<BountyDto>(`${this.baseUrl}/api/bounties/${encodeURIComponent(id)}/complete`, 'POST', undefined, token);
             if (res.data) return this.normalizeBounty(res.data, userEmail);
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         if (!matched) {
             const liveBounties = await this.getBountiesAsync();
@@ -953,7 +969,9 @@ export class BountyService implements IBountyService {
                     myWorkCount: res.data.myWorkCount || 0
                 };
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         if (!summary) {
             // Live ADO Git computation - zero hardcoded mock arrays!

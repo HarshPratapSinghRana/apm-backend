@@ -172,16 +172,22 @@ export class ThreadWebviewProvider {
                     try {
                         const rApproved = await this.reviewCommentService.approveReviewAsync(currentRevId, message.feedback);
                         if (rApproved) approved = true;
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                     // Mark corresponding bounty as Completed so it is removed from active Claimed Bounties
                     try {
                         await this.bountyService.completeBountyAsync(currentRevId);
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     if (currentArtName) {
                         try {
                             await this.bountyService.completeBountyAsync(currentArtName);
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
 
                     if (approved) {
@@ -198,18 +204,24 @@ export class ThreadWebviewProvider {
                     try {
                         const rRejected = await this.reviewCommentService.rejectReviewAsync(currentRevId, message.feedback);
                         if (rRejected) rejected = true;
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                     try {
                         const bRes = await this.bountyService.reviewCodeAsync(currentRevId, { isApproved: false, feedback: message.feedback || 'Rejected' });
                         if (bRes) rejected = true;
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                     if (!rejected && currentArtName) {
                         try {
                             const bRes = await this.bountyService.reviewCodeAsync(currentArtName, { isApproved: false, feedback: message.feedback || 'Rejected' });
                             if (bRes) rejected = true;
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
 
                     if (rejected) {
@@ -226,18 +238,24 @@ export class ThreadWebviewProvider {
                     try {
                         const rReq = await this.reviewCommentService.requestChangesAsync(currentRevId, message.feedback);
                         if (rReq) requested = true;
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                     try {
                         const bRes = await this.bountyService.reviewCodeAsync(currentRevId, { isApproved: false, feedback: message.feedback || 'Changes requested' });
                         if (bRes) requested = true;
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                     if (!requested && currentArtName) {
                         try {
                             const bRes = await this.bountyService.reviewCodeAsync(currentArtName, { isApproved: false, feedback: message.feedback || 'Changes requested' });
                             if (bRes) requested = true;
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
 
                     if (requested) {
@@ -399,7 +417,9 @@ export class ThreadWebviewProvider {
                             files: fileDiffs
                         };
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
 
             // 3. Guaranteed fallback if still empty

@@ -45,7 +45,9 @@ export class AdoTelemetryService implements IBackendUsageClient {
         const homeDir = os.homedir();
         const cipDir = path.join(homeDir, '.engineering-commons');
         if (!fs.existsSync(cipDir)) {
-            try { fs.mkdirSync(cipDir, { recursive: true }); } catch {}
+            try { fs.mkdirSync(cipDir, { recursive: true }); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
         this.queuePath = path.join(cipDir, 'ado_telemetry_queue.json');
 
@@ -80,7 +82,9 @@ export class AdoTelemetryService implements IBackendUsageClient {
                 const data = JSON.parse(fs.readFileSync(sessFile, 'utf-8'));
                 if (data?.token || data?.ssoToken) return true;
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         return false;
     }
 
@@ -111,7 +115,9 @@ export class AdoTelemetryService implements IBackendUsageClient {
                 const content = fs.readFileSync(this.queuePath, 'utf8');
                 queue = JSON.parse(content);
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         queue.push({
             ...event,
@@ -120,7 +126,9 @@ export class AdoTelemetryService implements IBackendUsageClient {
 
         try {
             fs.writeFileSync(this.queuePath, JSON.stringify(queue, null, 2), 'utf8');
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     public async flushQueueAsync(): Promise<boolean> {
@@ -168,7 +176,9 @@ export class AdoTelemetryService implements IBackendUsageClient {
             const success = await this.pushToAdoAsync(merged, pat);
             if (success) {
                 // Clear queue
-                try { fs.unlinkSync(this.queuePath); } catch {}
+                try { fs.unlinkSync(this.queuePath); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             this.isFlushing = false;
             return success;
@@ -209,7 +219,9 @@ export class AdoTelemetryService implements IBackendUsageClient {
             try {
                 const sess = JSON.parse(fs.readFileSync(sessionFile, 'utf8'));
                 if (sess.adoPat || sess.pat) return sess.adoPat || sess.pat;
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
         return '';
     }
@@ -228,9 +240,13 @@ export class AdoTelemetryService implements IBackendUsageClient {
                 if (res) {
                     let parsed = res;
                     if (typeof res === 'string') {
-                        try { parsed = JSON.parse(res); } catch {}
+                        try { parsed = JSON.parse(res); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     } else if (res && typeof res.content === 'string') {
-                        try { parsed = JSON.parse(res.content); } catch {}
+                        try { parsed = JSON.parse(res.content); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                     if (Array.isArray(parsed) && parsed.length > 0) {
                         return parsed;
@@ -263,7 +279,9 @@ export class AdoTelemetryService implements IBackendUsageClient {
             const checkUrl = `https://dev.azure.com/${org}/${project}/_apis/git/repositories/${repo}/items?path=/telemetry/usage-events.json&versionDescriptor.version=${branch}&api-version=7.0`;
             const checkRes = await this.httpGetJsonAsync<any>(checkUrl, pat);
             if (checkRes) changeType = 'edit';
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 3. Create Git push commit
         const jsonContent = JSON.stringify(events, null, 2);

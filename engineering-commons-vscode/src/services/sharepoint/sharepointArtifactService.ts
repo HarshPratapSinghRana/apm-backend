@@ -209,7 +209,9 @@ export class SharePointArtifactService {
                         await this.client.httpDeleteAsync(`/v1.0/sites/${siteId}/lists/${bountyListId}/items/${bMatch.id}`, graphToken);
                     }
                 }
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
             // Invalidate in-memory caches
             this.invalidateCache();

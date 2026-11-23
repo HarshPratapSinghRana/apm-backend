@@ -284,6 +284,7 @@ public class ReviewService : IReviewService
         {
             r.IsPublished = false;
             r.PublishError = ex.Message;
+            _logger?.LogError(ex, "Failed to publish approved artifact {ArtifactId} to marketplace.", r.ArtifactId);
         }
         _repo.Add(r);
 

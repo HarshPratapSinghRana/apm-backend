@@ -83,7 +83,7 @@ public class CertificationTests : IClassFixture<TestWebApplicationFactory>
             Encoding.UTF8,
             "application/json");
 
-        var resp = await reviewerClient.PostAsync($"/api/certifications/certify/{artId}", certifyPayload);
+        var resp = await reviewerClient.PostAsync($"/api/certifications/certify-artifact/{artId}", certifyPayload);
         Assert.Equal(HttpStatusCode.OK, resp.StatusCode);
 
         var json = await resp.Content.ReadAsStringAsync();
@@ -109,7 +109,7 @@ public class CertificationTests : IClassFixture<TestWebApplicationFactory>
         var artId = $"agent-revoke-{Guid.NewGuid():N}";
 
         // First certify it
-        await reviewerClient.PostAsync($"/api/certifications/certify/{artId}", new StringContent(
+        await reviewerClient.PostAsync($"/api/certifications/certify-artifact/{artId}", new StringContent(
             JsonSerializer.Serialize(new { version = "1.0.0" }), Encoding.UTF8, "application/json"));
 
         // Now revoke it
@@ -118,7 +118,7 @@ public class CertificationTests : IClassFixture<TestWebApplicationFactory>
             Encoding.UTF8,
             "application/json");
 
-        var revokeResp = await reviewerClient.PostAsync($"/api/certifications/revoke/{artId}", revokePayload);
+        var revokeResp = await reviewerClient.PostAsync($"/api/certifications/revoke-certification/{artId}", revokePayload);
         Assert.Equal(HttpStatusCode.OK, revokeResp.StatusCode);
 
         var json = await revokeResp.Content.ReadAsStringAsync();
@@ -138,20 +138,20 @@ public class CertificationTests : IClassFixture<TestWebApplicationFactory>
         var artId = "accessibility-agent";
 
         // Consumer attempting to certify -> 403 Forbidden
-        var cResp = await consumerClient.PostAsync($"/api/certifications/certify/{artId}", new StringContent("{}", Encoding.UTF8, "application/json"));
+        var cResp = await consumerClient.PostAsync($"/api/certifications/certify-artifact/{artId}", new StringContent("{}", Encoding.UTF8, "application/json"));
         Assert.Equal(HttpStatusCode.Forbidden, cResp.StatusCode);
 
         // Producer attempting to certify -> 403 Forbidden
-        var pResp = await producerClient.PostAsync($"/api/certifications/certify/{artId}", new StringContent("{}", Encoding.UTF8, "application/json"));
+        var pResp = await producerClient.PostAsync($"/api/certifications/certify-artifact/{artId}", new StringContent("{}", Encoding.UTF8, "application/json"));
         Assert.Equal(HttpStatusCode.Forbidden, pResp.StatusCode);
 
         // Consumer attempting to revoke -> 403 Forbidden
-        var crResp = await consumerClient.PostAsync($"/api/certifications/revoke/{artId}", new StringContent(
+        var crResp = await consumerClient.PostAsync($"/api/certifications/revoke-certification/{artId}", new StringContent(
             JsonSerializer.Serialize(new { reason = "test" }), Encoding.UTF8, "application/json"));
         Assert.Equal(HttpStatusCode.Forbidden, crResp.StatusCode);
 
         // Producer attempting to revoke -> 403 Forbidden
-        var prResp = await producerClient.PostAsync($"/api/certifications/revoke/{artId}", new StringContent(
+        var prResp = await producerClient.PostAsync($"/api/certifications/revoke-certification/{artId}", new StringContent(
             JsonSerializer.Serialize(new { reason = "test" }), Encoding.UTF8, "application/json"));
         Assert.Equal(HttpStatusCode.Forbidden, prResp.StatusCode);
     }

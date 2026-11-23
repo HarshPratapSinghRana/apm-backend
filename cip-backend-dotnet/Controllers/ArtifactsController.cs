@@ -22,6 +22,7 @@ public class ArtifactsController : ControllerBase
     private readonly IArtifactDiffService _diffService;
     private readonly ICertificationService? _certificationService;
     private readonly IUserRoleService? _userRoleService;
+    private readonly ILogger<ArtifactsController>? _logger;
 
     public ArtifactsController(
         IReviewService reviews,
@@ -29,7 +30,8 @@ public class ArtifactsController : ControllerBase
         INotificationService notifications,
         IArtifactDiffService diffService,
         ICertificationService? certificationService = null,
-        IUserRoleService? userRoleService = null)
+        IUserRoleService? userRoleService = null,
+        ILogger<ArtifactsController>? logger = null)
     {
         _reviews = reviews ?? throw new ArgumentNullException(nameof(reviews));
         _usage = usage ?? throw new ArgumentNullException(nameof(usage));
@@ -37,6 +39,7 @@ public class ArtifactsController : ControllerBase
         _diffService = diffService ?? throw new ArgumentNullException(nameof(diffService));
         _certificationService = certificationService;
         _userRoleService = userRoleService;
+        _logger = logger;
     }
 
     private static bool IsAdminUser(string? role, string? email)
@@ -267,9 +270,9 @@ public class ArtifactsController : ControllerBase
                     if (allowedReviewers == null && innerObj["allowedReviewers"] != null) allowedReviewers = innerObj["allowedReviewers"]?.ToString();
                     if (allowedConsumers == null && innerObj["allowedConsumers"] != null) allowedConsumers = innerObj["allowedConsumers"]?.ToString();
                 }
-                catch (Newtonsoft.Json.JsonReaderException)
+                catch (Newtonsoft.Json.JsonReaderException ex)
                 {
-                    // Non-JSON content string is used as-is
+                    _logger?.LogDebug(ex, "Non-JSON content string is used as-is for artifact {ArtifactId}", artifactId);
                 }
             }
             else

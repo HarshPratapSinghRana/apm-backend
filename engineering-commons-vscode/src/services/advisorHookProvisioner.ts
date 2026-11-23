@@ -143,7 +143,9 @@ export class AdvisorHookProvisioner {
                 if (fs.existsSync(catalogPath)) {
                     try {
                         masterCatalogJson = fs.readFileSync(catalogPath, 'utf8');
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                 }
             }
 
@@ -164,7 +166,9 @@ export class AdvisorHookProvisioner {
                                 masterCatalogJson = content;
                                 break;
                             }
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
             }
@@ -179,7 +183,9 @@ export class AdvisorHookProvisioner {
                     }
                     masterCatalogJson = JSON.stringify(parsedCat, null, 2);
                 }
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
             // 2. Install .github/skills/engineering-commons-advisor/SKILL.md
             const githubSkillDir = path.join(workspaceRoot, '.github', 'skills', ADVISOR_SKILL_NAME);
@@ -320,7 +326,9 @@ export class AdvisorHookProvisioner {
             if (fs.existsSync(catalogRefPath)) {
                 try {
                     existingCatalog = JSON.parse(fs.readFileSync(catalogRefPath, 'utf8'));
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
 
             const mergedMap = new Map<string, any>();
@@ -381,7 +389,9 @@ export class AdvisorHookProvisioner {
                     const dir = path.dirname(targetPath);
                     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
                     fs.writeFileSync(targetPath, content, 'utf8');
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             };
 
             writeIfChanged(catalogRefPath, updatedStr);

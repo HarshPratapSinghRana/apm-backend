@@ -136,23 +136,33 @@ export class SessionFileAuthStatusProvider implements IAuthenticationStatusProvi
     public async logout(): Promise<void> {
         try {
             if (fs.existsSync(this.sessionFilePath)) {
-                try { fs.unlinkSync(this.sessionFilePath); } catch {}
+                try { fs.unlinkSync(this.sessionFilePath); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             const home = os.homedir();
             const engDir = path.join(home, '.engineering-commons');
             const engTokenFile = path.join(engDir, 'token.json');
             if (fs.existsSync(engTokenFile)) {
-                try { fs.unlinkSync(engTokenFile); } catch {}
+                try { fs.unlinkSync(engTokenFile); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             const engSessionFile = path.join(engDir, 'session.json');
             if (fs.existsSync(engSessionFile)) {
-                try { fs.unlinkSync(engSessionFile); } catch {}
+                try { fs.unlinkSync(engSessionFile); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             const cipTokensCache = path.join(home, '.engineering-commons', 'tokens_cache.json');
             if (fs.existsSync(cipTokensCache)) {
-                try { fs.unlinkSync(cipTokensCache); } catch {}
+                try { fs.unlinkSync(cipTokensCache); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         this.notifyAuthChanged();
     }
 }

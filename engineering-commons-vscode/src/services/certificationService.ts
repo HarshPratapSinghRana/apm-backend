@@ -220,7 +220,9 @@ export class CertificationService {
                     }
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 2. Secondary Fallback: Backend HTTP API
         try {
@@ -284,7 +286,9 @@ export class CertificationService {
                 token
             );
             if (res.data) return res.data;
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // Direct fallback from ADO registry
         const latest = await this.getCertificationStatus(artifactId);
@@ -331,7 +335,9 @@ export class CertificationService {
                     };
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 2. Secondary Fallback: Backend HTTP API
         try {
@@ -499,7 +505,9 @@ export class CertificationService {
                     }
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 2. Query backend API
         try {
@@ -514,7 +522,9 @@ export class CertificationService {
                 CertificationService.reviewsCache.set(clean, { data: res.data.reviews, timestamp: now });
                 return res.data.reviews;
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         return [];
     }
@@ -523,13 +533,14 @@ export class CertificationService {
         try {
             const token = await this.authProvider.getToken();
             const res = await this.fetchJson<CertificationEvaluationResult>(
-                `${this.backendUrl}/api/certifications/request/${encodeURIComponent(artifactId)}`,
+                `${this.backendUrl}/api/certifications/request-certification/${encodeURIComponent(artifactId)}`,
                 'POST',
                 {},
                 token
             );
             return res.data || null;
-        } catch {
+        } catch (err) {
+            console.debug('[CertificationService] Failed to request certification:', err);
             return null;
         }
     }
@@ -538,13 +549,14 @@ export class CertificationService {
         try {
             const token = await this.authProvider.getToken();
             const res = await this.fetchJson<CertificationStatusResult>(
-                `${this.backendUrl}/api/certifications/certify/${encodeURIComponent(artifactId)}`,
+                `${this.backendUrl}/api/certifications/certify-artifact/${encodeURIComponent(artifactId)}`,
                 'POST',
                 { version, reason },
                 token
             );
             return res.data || null;
-        } catch {
+        } catch (err) {
+            console.debug('[CertificationService] Failed to certify artifact:', err);
             return null;
         }
     }
@@ -553,13 +565,14 @@ export class CertificationService {
         try {
             const token = await this.authProvider.getToken();
             const res = await this.fetchJson<CertificationStatusResult>(
-                `${this.backendUrl}/api/certifications/revoke/${encodeURIComponent(artifactId)}`,
+                `${this.backendUrl}/api/certifications/revoke-certification/${encodeURIComponent(artifactId)}`,
                 'POST',
                 { reason },
                 token
             );
             return res.data || null;
-        } catch {
+        } catch (err) {
+            console.debug('[CertificationService] Failed to revoke certification:', err);
             return null;
         }
     }

@@ -34,7 +34,9 @@ export class BackendUsageLogger implements IUsageLogger {
         let userEmail: string | undefined;
         try {
             userEmail = (await this.authProvider.getEmail()) || undefined;
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const sanitizedEvent = createSanitizedUsageEvent({
             action,

@@ -326,7 +326,9 @@ export class ArtifactDetailsWebviewProvider {
             if (bRes.status === 200 && bRes.data) {
                 bundleData = bRes.data;
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 1. Fetch available versions
         let versions: ArtifactVersionInfo[] = [];
@@ -338,7 +340,9 @@ export class ArtifactDetailsWebviewProvider {
                 if (res.status === 200 && res.data && Array.isArray(res.data)) {
                     versions = res.data;
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         if (versions.length === 0) {
@@ -413,11 +417,15 @@ export class ArtifactDetailsWebviewProvider {
                                     break;
                                 }
                             }
-                        } catch { }
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 2. Secondary Fallback: Use bundled artifact data if available
         if (files.length === 0 && bundleData?.artifact) {
@@ -474,7 +482,9 @@ export class ArtifactDetailsWebviewProvider {
                                     }));
                                 }
                             }
-                        } catch { }
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
 
                     // Raw markdown content
@@ -497,7 +507,9 @@ export class ArtifactDetailsWebviewProvider {
                         ];
                     }
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         // Classify type based on files structure if still generic
@@ -557,7 +569,9 @@ export class ArtifactDetailsWebviewProvider {
                         }
                     }
                 }
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         // Fallback comprehensive files if not returned by download API
@@ -701,7 +715,9 @@ export class ArtifactDetailsWebviewProvider {
                     if (usageRes.status === 200 && usageRes.data) {
                         usageAnalytics = usageRes.data;
                     }
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
 
@@ -733,7 +749,9 @@ export class ArtifactDetailsWebviewProvider {
                     if (artRes.data.allowedReviewers) allowedReviewers = artRes.data.allowedReviewers;
                     if (artRes.data.allowedConsumers) allowedConsumers = artRes.data.allowedConsumers;
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         // 6. Query certification status (from bundle or ADO fallback)
@@ -785,7 +803,9 @@ export class ArtifactDetailsWebviewProvider {
                     certCriteria = cert.criteria;
                     certMetrics = cert.metrics;
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         const isLeap = artifact.source === 'AI_LEAP' || String(artifact.source || '').toLowerCase().includes('leap') || artifact.name.startsWith('leap-');
@@ -930,7 +950,9 @@ export class ArtifactDetailsWebviewProvider {
                     fs.writeFileSync(jPath, JSON.stringify(raw, null, 2), 'utf8');
                     foundJson = true;
                     break;
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
 
@@ -950,7 +972,9 @@ export class ArtifactDetailsWebviewProvider {
                     for (const entry of entries) {
                         catCandidates.push(path.join(extDir, entry, 'resources', 'catalog', 'masterCatalog.json'));
                     }
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
         for (const catPath of catCandidates) {
@@ -965,7 +989,9 @@ export class ArtifactDetailsWebviewProvider {
                         cat[idx].isFeatured = targetFeaturedState;
                         fs.writeFileSync(catPath, JSON.stringify(cat, null, 2), 'utf8');
                     }
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
 
@@ -979,13 +1005,17 @@ export class ArtifactDetailsWebviewProvider {
                     apiCat[aIdx].isFeatured = targetFeaturedState;
                     fs.writeFileSync(apiCatPath, JSON.stringify(apiCat, null, 2), 'utf8');
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         // Invalidate cache if present
         try {
             this.spArtifactService?.invalidateCache?.();
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 4. Show success feedback
         if (targetFeaturedState) {
@@ -1142,7 +1172,9 @@ export class ArtifactDetailsWebviewProvider {
         const homeDir = os.homedir();
         const cipDir = path.join(homeDir, '.engineering-commons');
         if (!fs.existsSync(cipDir)) {
-            try { fs.mkdirSync(cipDir, { recursive: true }); } catch {}
+            try { fs.mkdirSync(cipDir, { recursive: true }); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
         return path.join(cipDir, 'usage-history.json');
     }
@@ -1152,7 +1184,9 @@ export class ArtifactDetailsWebviewProvider {
             const usageFile = this.getLocalUsageHistoryFile();
             let history: any[] = [];
             if (fs.existsSync(usageFile)) {
-                try { history = JSON.parse(fs.readFileSync(usageFile, 'utf8')); } catch {}
+                try { history = JSON.parse(fs.readFileSync(usageFile, 'utf8')); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             if (!Array.isArray(history)) history = [];
 
@@ -1173,7 +1207,9 @@ export class ArtifactDetailsWebviewProvider {
             const queueFile = path.join(os.homedir(), '.engineering-commons', 'ado_telemetry_queue.json');
             let queue: any[] = [];
             if (fs.existsSync(queueFile)) {
-                try { queue = JSON.parse(fs.readFileSync(queueFile, 'utf8')); } catch {}
+                try { queue = JSON.parse(fs.readFileSync(queueFile, 'utf8')); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
             if (!Array.isArray(queue)) queue = [];
             queue.push(event);
@@ -1204,7 +1240,9 @@ export class ArtifactDetailsWebviewProvider {
                     }
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 2. Check workspace telemetry files
         if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
@@ -1228,7 +1266,9 @@ export class ArtifactDetailsWebviewProvider {
                                     count++;
                                 }
                             }
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
             }
@@ -1249,7 +1289,9 @@ export class ArtifactDetailsWebviewProvider {
                     }
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         return { hasUsed: count > 0, count };
     }
@@ -1284,7 +1326,9 @@ export class ArtifactDetailsWebviewProvider {
                     const doc = await vscode.workspace.openTextDocument(cand);
                     await vscode.window.showTextDocument(doc, { preview: false });
                     return true;
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
         return false;
@@ -1397,7 +1441,9 @@ export class ArtifactDetailsWebviewProvider {
             if (!fs.existsSync(githubDir)) {
                 try {
                     fs.mkdirSync(githubDir, { recursive: true });
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
 
@@ -1454,7 +1500,9 @@ export class ArtifactDetailsWebviewProvider {
                 if (res.status === 200 && res.data && Array.isArray(res.data.files) && res.data.files.length > 0) {
                     installedFiles = placeArtifactFilesIntoWorkspace(cwd, name, detectedVersion, detectedType, res.data.files);
                 }
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
             if (installedFiles.length === 0) {
                 const clean = name.replace(/^leap-/, '');
@@ -1471,7 +1519,9 @@ export class ArtifactDetailsWebviewProvider {
                                 installedFiles = placeArtifactFilesIntoWorkspace(cwd, name, detectedVersion, detectedType, raw.files);
                                 break;
                             }
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
             }
@@ -1602,7 +1652,9 @@ export class ArtifactDetailsWebviewProvider {
                     detectedType = res.data.type || detectedType;
                     detectedVersion = res.data.version || detectedVersion;
                 }
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         // 3. Local artifacts-json
@@ -1627,7 +1679,9 @@ export class ArtifactDetailsWebviewProvider {
                             artifactFiles = raw.files;
                             break;
                         }
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                 }
             }
         }

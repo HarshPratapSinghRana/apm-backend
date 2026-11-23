@@ -358,8 +358,9 @@ public class ReviewThreadService : IReviewThreadService
             using var doc = JsonDocument.Parse(content);
             if (doc.RootElement.TryGetProperty("name", out var prop)) return prop.GetString();
         }
-        catch (JsonException) 
+        catch (JsonException ex) 
         {
+            System.Diagnostics.Debug.WriteLine($"[ReviewThreadService] ExtractArtifactName parse error: {ex.Message}");
             return null;
         }
         return null;
@@ -372,8 +373,9 @@ public class ReviewThreadService : IReviewThreadService
             using var doc = JsonDocument.Parse(content);
             if (doc.RootElement.TryGetProperty("version", out var prop)) return prop.GetString();
         }
-        catch (JsonException) 
+        catch (JsonException ex) 
         {
+            System.Diagnostics.Debug.WriteLine($"[ReviewThreadService] ExtractArtifactVersion parse error: {ex.Message}");
             return null;
         }
         return null;

@@ -327,7 +327,9 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                     if (result.success && result.stdout && result.stdout.includes('---')) {
                         items = parseListOutput(result.stdout);
                     }
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
 
             if (items.length === 0) {
@@ -344,7 +346,9 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                             isCertified: Boolean(item.isCertified || item.certified)
                         }));
                     }
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
 
             // Query hosted Azure Container Apps backend API dynamically
@@ -373,7 +377,9 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                             }
                         }
                     }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
             items = items.filter(a => isProperAiArtifact(a));
 
@@ -582,7 +588,9 @@ export class ArtifactTreeDataProvider implements vscode.TreeDataProvider<AppTree
                 if (parsed.type && parsed.type !== 'normalfile' && parsed.type !== 'unknown') {
                     return parsed.type.toLowerCase();
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         if (fs.existsSync(path.join(root, '.github', 'agents', name)) || fs.existsSync(path.join(root, '.github', 'agents', `${name}.agent.md`)) || fs.existsSync(path.join(root, 'agents', name))) {

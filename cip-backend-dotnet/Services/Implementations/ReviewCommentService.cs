@@ -271,9 +271,9 @@ public class ReviewCommentService : IReviewCommentService
                 return vProp.GetString() ?? "1.0.0";
             }
         }
-        catch (JsonException)
+        catch (JsonException ex)
         {
-            // Invalid JSON structure; fallback to default 1.0.0
+            System.Diagnostics.Debug.WriteLine($"[ReviewCommentService] ExtractArtifactVersion parse error: {ex.Message}");
             return "1.0.0";
         }
         return "1.0.0";

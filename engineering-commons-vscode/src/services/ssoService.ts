@@ -58,12 +58,16 @@ export async function executeMicrosoftDeviceCodeSsoLogin(
         // Copy code to clipboard & launch browser
         try {
             await vscode.env.clipboard.writeText(userCode);
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const uriToOpen = verificationUri || 'https://microsoft.com/devicelogin';
         try {
             await vscode.env.openExternal(vscode.Uri.parse(uriToOpen));
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // Show prompt with action buttons
         vscode.window.showInformationMessage(
@@ -241,7 +245,9 @@ export async function executeMicrosoftNativeSsoLogin(
                     role = ssoResponse.user.role.toUpperCase();
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         saveSessionFiles(email, cipToken, session.accessToken, role, displayName);
         authProvider.notifyAuthChanged();
@@ -352,7 +358,9 @@ async function resolveUserInfoAsync(accessToken: string, idToken?: string): Prom
                     resolvedName = payload.name;
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         if (resolvedEmail && resolvedEmail.includes('@')) break;
     }
 
@@ -362,7 +370,9 @@ async function resolveUserInfoAsync(accessToken: string, idToken?: string): Prom
             const graphUser = await fetchGraphUserProfileAsync(accessToken);
             if (graphUser.email) resolvedEmail = graphUser.email;
             if (graphUser.name && !resolvedName) resolvedName = graphUser.name;
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     return { email: resolvedEmail, name: resolvedName };

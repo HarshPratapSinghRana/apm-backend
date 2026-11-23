@@ -184,7 +184,9 @@ export class UsageDashboardWebviewProvider {
                     events.push(...parsed);
                 }
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         return events;
     }
 
@@ -198,7 +200,9 @@ export class UsageDashboardWebviewProvider {
             if (adoEvents && adoEvents.length > 0) {
                 allEvents.push(...adoEvents);
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         // 2. Local Telemetry Log
         const localEvents = this.loadLocalTelemetryEvents();
@@ -222,7 +226,9 @@ export class UsageDashboardWebviewProvider {
                 if (res.status === 200 && Array.isArray(res.data) && res.data.length > 0) {
                     users = res.data;
                 }
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         if (this.panel) {

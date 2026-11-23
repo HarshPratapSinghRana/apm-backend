@@ -185,7 +185,9 @@ export function checkArtifactInstallation(workspaceRoot: string, rawArtifactName
                     }
                 }
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     return { isInstalled: false };
@@ -227,9 +229,13 @@ export function getAllInstalledArtifacts(workspaceRoot: string): InstalledArtifa
                             type: (parsed.ArtifactType || parsed.artifactType || 'agent').toLowerCase()
                         });
                     }
-                } catch { }
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     // 2. Scan workspace canonical directories
@@ -300,7 +306,9 @@ export function getAllInstalledArtifacts(workspaceRoot: string): InstalledArtifa
                     });
                 }
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     // 3. Scan cip.yml dependencies
@@ -338,7 +346,9 @@ export function getAllInstalledArtifacts(workspaceRoot: string): InstalledArtifa
                     }
                 }
             }
-        } catch { }
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     return Array.from(results.values());

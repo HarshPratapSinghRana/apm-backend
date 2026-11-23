@@ -53,8 +53,9 @@ public class SlaMonitoringBackgroundService : BackgroundService
             {
                 await Task.Delay(_checkInterval, stoppingToken);
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException ex)
             {
+                _logger.LogDebug(ex, "SLA monitoring delay cancelled on host shutdown.");
                 break;
             }
         }

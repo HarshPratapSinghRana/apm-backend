@@ -111,7 +111,9 @@ export function placeArtifactFilesIntoWorkspace(
         if (agentFile && agentFile.content) {
             agentContent = agentFile.content;
         } else if (fs.existsSync(directAgentPath)) {
-            try { agentContent = fs.readFileSync(directAgentPath, 'utf8'); } catch {}
+            try { agentContent = fs.readFileSync(directAgentPath, 'utf8'); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         if (!agentContent) {
@@ -128,7 +130,9 @@ export function placeArtifactFilesIntoWorkspace(
         // Clean up any redundant nested folder .github/agents/<artifactName>/ if created
         const nestedDir = path.join(githubAgentsDir, artifactName);
         if (fs.existsSync(nestedDir) && fs.lstatSync(nestedDir).isDirectory()) {
-            try { fs.rmSync(nestedDir, { recursive: true, force: true }); } catch {}
+            try { fs.rmSync(nestedDir, { recursive: true, force: true }); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
     }
 
@@ -186,7 +190,9 @@ export function placeArtifactFilesIntoWorkspace(
             try {
                 mcpConfig = JSON.parse(fs.readFileSync(mcpJsonPath, 'utf8'));
                 if (!mcpConfig.mcpServers) mcpConfig.mcpServers = {};
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
         mcpConfig.mcpServers[artifactName] = {
             command: 'node',
@@ -501,7 +507,9 @@ export async function executeDownloadZipCommand(
                             detectedVersion = res.data.version || detectedVersion;
                             break;
                         }
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                 }
             } catch (err) {
                 console.warn('[DownloadZip] Backend fetch attempt:', err);
@@ -533,10 +541,14 @@ export async function executeDownloadZipCommand(
                                 detectedVersion = parsed.version || detectedVersion;
                                 break;
                             }
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         // 4. Synthesize standard code files if none found
@@ -674,7 +686,9 @@ export async function executeInstallCommand(
     if (!fs.existsSync(githubDir)) {
         try {
             fs.mkdirSync(githubDir, { recursive: true });
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
     }
 
     const progressOptions: vscode.ProgressOptions = {
@@ -772,7 +786,9 @@ export async function executeInstallCommand(
                             installedFiles = placeArtifactFilesIntoWorkspace(workspaceRoot, target!, detectedVersion, detectedType, res.data.files);
                             break;
                         }
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                 }
             } catch (apiErr: any) {
                 console.warn('[InstallCommand] Backend download attempt:', apiErr);
@@ -801,11 +817,15 @@ export async function executeInstallCommand(
                                 installedFiles = placeArtifactFilesIntoWorkspace(workspaceRoot, target!, detectedVersion, detectedType, parsed.files);
                                 break;
                             }
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
 
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         // 3. Fallback: Synthesize standard code files

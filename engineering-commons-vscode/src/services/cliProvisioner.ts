@@ -53,7 +53,9 @@ export class AutoCliProvisioner {
                             sessionData.backendUrl = targetUrl;
                             fs.writeFileSync(sessionFile, JSON.stringify(sessionData, null, 2), 'utf-8');
                         }
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                 }
             } catch (e) {
                 console.warn(`[AutoCliProvisioner] Could not seed config in ${dir}:`, e);
@@ -116,7 +118,9 @@ export class AutoCliProvisioner {
                 for (const legacyPs of ['engineering-commons.ps1', 'engineering-commons.ps1']) {
                     const ps1Path = path.join(binDir, legacyPs);
                     if (fs.existsSync(ps1Path)) {
-                        try { fs.unlinkSync(ps1Path); } catch {}
+                        try { fs.unlinkSync(ps1Path); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
 
@@ -124,7 +128,9 @@ export class AutoCliProvisioner {
                 if (bundledCliExe && fs.existsSync(bundledCliExe)) {
                     for (const exeName of ['engineering-commons.exe', 'engineering-commons.exe']) {
                         const exeDest = path.join(binDir, exeName);
-                        try { fs.copyFileSync(bundledCliExe, exeDest); } catch {}
+                        try { fs.copyFileSync(bundledCliExe, exeDest); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
 
@@ -263,7 +269,9 @@ export class AutoCliProvisioner {
                     if (!isWindows) {
                         try {
                             fs.chmodSync(dest, 0o755);
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
             } catch {

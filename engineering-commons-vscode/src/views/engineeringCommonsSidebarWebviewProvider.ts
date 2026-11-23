@@ -325,7 +325,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                                 jsonStr = content;
                                 break;
                             }
-                        } catch {}
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                     }
                 }
             }
@@ -356,7 +358,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                                             isFeatured = Boolean(raw.isFeatured);
                                             break;
                                         }
-                                    } catch {}
+                                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                                 }
                             }
                         }
@@ -435,7 +439,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             try {
                 const safeMsg = String(err?.message || err).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 webviewView.webview.html = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;color:#f87171;"><h3>Failed to load Engineering Commons</h3><p>${safeMsg}</p></body></html>`;
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
     }
 
@@ -455,7 +461,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             try {
                 const safeMsg = String(err?.message || err).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 this._view.webview.html = `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:16px;color:#f87171;"><h3>Failed to load Engineering Commons</h3><p>${safeMsg}</p></body></html>`;
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
     }
 
@@ -832,7 +840,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.approveAccessRequestAsync(reqId, adminEmail, notes);
                     if (adoOk) success = true;
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 try {
                     const res = await this.fetchJson<any>(`${this.backendUrl}/api/admin/access-requests/${encodeURIComponent(reqId)}/approve`, token, 'POST', {
@@ -841,7 +851,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     if (res.status >= 200 && res.status < 300) {
                         success = true;
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 if (!success) {
                     const cliArgs = ['access', 'approve', reqId];
@@ -878,7 +890,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.rejectAccessRequestAsync(reqId, adminEmail, notes);
                     if (adoOk) success = true;
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 try {
                     const res = await this.fetchJson<any>(`${this.backendUrl}/api/admin/access-requests/${encodeURIComponent(reqId)}/reject`, token, 'POST', {
@@ -887,7 +901,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     if (res.status >= 200 && res.status < 300) {
                         success = true;
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 if (!success) {
                     const cliArgs = ['access', 'reject', reqId];
@@ -927,7 +943,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.revokeAccessAsync(email, adminEmail, notes);
                     if (adoOk) success = true;
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 try {
                     const res = await this.fetchJson<any>(`${this.backendUrl}/api/admin/roles/revoke`, token, 'POST', {
@@ -938,7 +956,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     if (res.status >= 200 && res.status < 300) {
                         success = true;
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 if (!success) {
                     const cliArgs = ['access', 'revoke', email];
@@ -978,7 +998,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.certifyReviewerAsync(email, adminEmail, notes);
                     if (adoOk) success = true;
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 try {
                     const res = await this.fetchJson<any>(`${this.backendUrl}/api/admin/roles/certify-reviewer`, token, 'POST', {
@@ -989,7 +1011,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     if (res.status >= 200 && res.status < 300) {
                         success = true;
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 if (!success) {
                     const cliArgs = ['access', 'certify', email];
@@ -1022,7 +1046,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                         const reqs = await this.adoGovernanceService.getAccessRequestsAsync(undefined, true);
                         rolesCount = roles.length;
                         reqsCount = reqs.length;
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                     vscode.window.showInformationMessage(`✓ Synchronized with Azure DevOps: ${rolesCount} users, ${reqsCount} access requests.`);
                     await this.refresh();
@@ -1179,7 +1205,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     this.cachedUserRole = rawRole;
                     this.cachedAccessRequestsStatus = myAccessRequestsStatus;
                     this.lastGovernanceFetchMs = now;
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
 
@@ -1456,10 +1484,14 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                                 if (existing && raw.isFeatured !== undefined) {
                                     existing.isFeatured = Boolean(raw.isFeatured);
                                 }
-                            } catch {}
+                            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                         }
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 // ADO Git catalog sync (overlay certification status if present)
                 try {
@@ -1479,7 +1511,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                             }
                         }
                     }
-                } catch {}
+                } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                 // CLI fallback if catalog is still empty
                 if (artifactMap.size === 0) {
@@ -1491,7 +1525,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                                 artifactMap.set(key, { ...a, isCertified: Boolean(a.isCertified) });
                             }
                         }
-                    } catch {}
+                    } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
                 }
 
                 marketArtifacts = Array.from(artifactMap.values()).filter(a => isProperAiArtifact(a));
@@ -5095,7 +5131,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             try {
                 const prev = vscode.getState() || {};
                 vscode.setState({ ...prev, selectedArtifactName: name || '' });
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         function selectBountyCard(cardEl, event) {
@@ -5109,7 +5147,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             if (savedState && savedState.selectedArtifactName) {
                 highlightSelectedMarketCard(savedState.selectedArtifactName);
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         function showDetails(name, type, version, isPrivate) {
             highlightSelectedMarketCard(name);
@@ -5842,7 +5882,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 if (parsed.type && parsed.type !== 'normalfile' && parsed.type !== 'unknown') {
                     return parsed.type.toLowerCase();
                 }
-            } catch { }
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         }
 
         if (fs.existsSync(path.join(root, '.github', 'agents', name)) || fs.existsSync(path.join(root, '.github', 'agents', `${name}.agent.md`)) || fs.existsSync(path.join(root, 'agents', name))) {

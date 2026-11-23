@@ -65,7 +65,9 @@ export class VsCodeUsageProvider implements IArtifactUsageProvider {
             let email: string | undefined;
             try {
                 email = (await this.authProvider.getEmail()) || undefined;
-            } catch {}
+            } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
             // Zero prompt body, zero PATs, zero secret capture
             const payload = {

@@ -11,10 +11,12 @@ namespace EngineeringCommons.Backend.Services.Implementations;
 public class ArtifactDiffService : IArtifactDiffService
 {
     private readonly IMarketplaceService _marketplace;
+    private readonly ILogger<ArtifactDiffService>? _logger;
 
-    public ArtifactDiffService(IMarketplaceService marketplace)
+    public ArtifactDiffService(IMarketplaceService marketplace, ILogger<ArtifactDiffService>? logger = null)
     {
         _marketplace = marketplace;
+        _logger = logger;
     }
 
     public List<LineChange> GenerateUnifiedDiff(string? oldContent, string? newContent)
@@ -67,8 +69,9 @@ public class ArtifactDiffService : IArtifactDiffService
         {
             currentApproved = await _marketplace.GetArtifactAsync(artifactId);
         }
-        catch
+        catch (Exception ex)
         {
+            _logger?.LogWarning(ex, "Failed to retrieve approved artifact content for {ArtifactId}; defaulting to null.", artifactId);
             currentApproved = null;
         }
 
@@ -219,8 +222,9 @@ public class ArtifactDiffService : IArtifactDiffService
         {
             currentApproved = await _marketplace.GetArtifactAsync(artifactId);
         }
-        catch
+        catch (Exception ex)
         {
+            _logger?.LogWarning(ex, "Failed to retrieve approved artifact content for {ArtifactId}; defaulting to null.", artifactId);
             currentApproved = null;
         }
 
@@ -392,9 +396,9 @@ public class ArtifactDiffService : IArtifactDiffService
                 result[fallbackPath] = contentJson;
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // Raw text fallback
+            System.Diagnostics.Debug.WriteLine($"[ArtifactDiffService] ExtractFiles parse error: {ex.Message}");
             var fallbackPath = $"{defaultArtifactName ?? "artifact"}.md";
             result[fallbackPath] = contentJson;
         }
@@ -410,9 +414,9 @@ public class ArtifactDiffService : IArtifactDiffService
             using var doc = JsonDocument.Parse(contentJson);
             if (doc.RootElement.TryGetProperty("version", out var vProp)) return vProp.GetString();
         }
-        catch (JsonException) 
+        catch (JsonException ex) 
         {
-            // Invalid JSON structure; fallback to null
+            System.Diagnostics.Debug.WriteLine($"[ArtifactDiffService] ExtractVersion parse error: {ex.Message}");
             return null;
         }
         return null;
@@ -426,9 +430,9 @@ public class ArtifactDiffService : IArtifactDiffService
             using var doc = JsonDocument.Parse(contentJson);
             if (doc.RootElement.TryGetProperty("name", out var nProp)) return nProp.GetString();
         }
-        catch (JsonException) 
+        catch (JsonException ex) 
         {
-            // Invalid JSON structure; fallback to null
+            System.Diagnostics.Debug.WriteLine($"[ArtifactDiffService] ExtractName parse error: {ex.Message}");
             return null;
         }
         return null;

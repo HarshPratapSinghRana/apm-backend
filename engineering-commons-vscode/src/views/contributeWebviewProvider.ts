@@ -105,7 +105,9 @@ export class ContributeWebviewProvider {
                                     .filter(f => !f.startsWith('.'))
                                     .map(f => path.join(relPath, f).replace(/\\/g, '/'));
                             }
-                        } catch { }
+                        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
                         panel.webview.postMessage({
                             command: 'customFileSelected',

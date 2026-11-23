@@ -76,7 +76,7 @@ public class CertificationsController : ControllerBase
         return Ok(evaluation);
     }
 
-    [HttpPost("request/{artifactId}")]
+    [HttpPost("request-certification/{artifactId}")]
     public async Task<IActionResult> RequestCertification(string artifactId)
     {
         var email = GetUserEmail();
@@ -94,7 +94,7 @@ public class CertificationsController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("certify/{artifactId}")]
+    [HttpPost("certify-artifact/{artifactId}")]
     public async Task<IActionResult> CertifyArtifact(string artifactId, [FromBody] CertifyRequestPayload? payload)
     {
         var email = GetUserEmail();
@@ -115,7 +115,7 @@ public class CertificationsController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("revoke/{artifactId}")]
+    [HttpPost("revoke-certification/{artifactId}")]
     public async Task<IActionResult> RevokeCertification(string artifactId, [FromBody] RevokeRequestPayload payload)
     {
         var email = GetUserEmail();

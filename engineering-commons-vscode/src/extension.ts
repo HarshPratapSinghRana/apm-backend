@@ -310,7 +310,9 @@ export function activate(context: vscode.ExtensionContext) {
         }
         try {
             await cliExecutor.executeAsync(cliExecutable, ['logout']);
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
         ArtifactDetailsWebviewProvider.closeIfOpen();
         ThreadWebviewProvider.closeIfOpen();
         vscode.window.showInformationMessage('Successfully logged out of Engineering Commons.');
@@ -793,7 +795,9 @@ export function activate(context: vscode.ExtensionContext) {
             if (resp.ok) {
                 statusInfo = await resp.json();
             }
-        } catch {}
+        } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
 
         const mode = statusInfo?.deliveryMode || 'PickupDirectory + SMTP (Auto)';
         const host = statusInfo?.host || '(Local EML Outbox Mode)';
@@ -933,13 +937,17 @@ export function activate(context: vscode.ExtensionContext) {
         if (wsRoot) {
             const catPath = path.join(wsRoot, '.github', 'skills', ADVISOR_SKILL_NAME, 'references', 'catalog.json');
             if (fs.existsSync(catPath)) {
-                try { catalog = JSON.parse(fs.readFileSync(catPath, 'utf8')); } catch {}
+                try { catalog = JSON.parse(fs.readFileSync(catPath, 'utf8')); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
         if (catalog.length === 0) {
             const bundledPath = path.join(context.extensionUri.fsPath, 'resources', 'catalog', 'masterCatalog.json');
             if (fs.existsSync(bundledPath)) {
-                try { catalog = JSON.parse(fs.readFileSync(bundledPath, 'utf8')); } catch {}
+                try { catalog = JSON.parse(fs.readFileSync(bundledPath, 'utf8')); } catch (err) {
+            console.debug('[EngineeringCommons] Handled error:', err);
+        }
             }
         }
 
