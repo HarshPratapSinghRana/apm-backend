@@ -177,18 +177,7 @@ let userRolesCache = [
     }
 ];
 
-let accessRequestsCache = [
-    {
-        id: 'req-init-1',
-        userEmail: 'developer@maqsoftware.com',
-        requestedRole: 'CONTRIBUTOR',
-        currentRole: 'CONSUMER',
-        status: 'Pending',
-        reason: 'I would like to contribute new skills to the AI Artifacts marketplace.',
-        adminEmail: 'harsh.rana@maqsoftware.com',
-        requestedAt: new Date(Date.now() - 3600 * 1000).toISOString()
-    }
-];
+let accessRequestsCache = [];
 
 let artifactChangesDb = [];
 let bountiesDb = [];
@@ -1369,13 +1358,10 @@ async function resolveArtifactUsage(rawId) {
         const target = safeId.toLowerCase();
         const targetClean = target.replace(/^leap-/, '');
 
-        const syntheticUsers = new Set([
-            'qa.specialist@maqsoftware.com',
-            'cloud.architect@maqsoftware.com',
-            'platform.admin@maqsoftware.com',
-            'dev.lead@maqsoftware.com',
-            'ai.engineer@maqsoftware.com'
-        ]);
+        const syntheticUsers = new Set(
+            (process.env.SYNTHETIC_USERS ? process.env.SYNTHETIC_USERS.split(',') : [])
+                .map(s => s.trim().toLowerCase()).filter(Boolean)
+        );
 
         const matched = (allEvents || []).filter(e => {
             if (e.workspace === 'enterprise-workspace') return false;
@@ -4193,13 +4179,10 @@ function filterUsageEvents(events, period = 'all', artifactType = 'all') {
         'vp-agent'
     ]);
 
-    const syntheticUsers = new Set([
-        'qa.specialist@maqsoftware.com',
-        'cloud.architect@maqsoftware.com',
-        'platform.admin@maqsoftware.com',
-        'dev.lead@maqsoftware.com',
-        'ai.engineer@maqsoftware.com'
-    ]);
+    const syntheticUsers = new Set(
+        (process.env.SYNTHETIC_USERS ? process.env.SYNTHETIC_USERS.split(',') : [])
+            .map(s => s.trim().toLowerCase()).filter(Boolean)
+    );
 
     return events.filter(e => {
         const artId = (e.artifactId || e.artifactName || '').trim().toLowerCase();
@@ -4443,13 +4426,10 @@ app.get('/api/usage/artifacts/:id', async (req, res) => {
     const target = (id || '').trim().toLowerCase();
     const targetClean = target.replace(/^leap-/, '');
 
-    const syntheticUsers = new Set([
-        'qa.specialist@maqsoftware.com',
-        'cloud.architect@maqsoftware.com',
-        'platform.admin@maqsoftware.com',
-        'dev.lead@maqsoftware.com',
-        'ai.engineer@maqsoftware.com'
-    ]);
+    const syntheticUsers = new Set(
+        (process.env.SYNTHETIC_USERS ? process.env.SYNTHETIC_USERS.split(',') : [])
+            .map(s => s.trim().toLowerCase()).filter(Boolean)
+    );
 
     const matched = allEvents.filter(e => {
         if (e.workspace === 'enterprise-workspace') return false;
@@ -4544,13 +4524,10 @@ app.get('/api/usage/artifacts/:artifactId/users', async (req, res) => {
     const target = (artifactId || '').trim().toLowerCase();
     const targetClean = target.replace(/^leap-/, '');
 
-    const syntheticUsers = new Set([
-        'qa.specialist@maqsoftware.com',
-        'cloud.architect@maqsoftware.com',
-        'platform.admin@maqsoftware.com',
-        'dev.lead@maqsoftware.com',
-        'ai.engineer@maqsoftware.com'
-    ]);
+    const syntheticUsers = new Set(
+        (process.env.SYNTHETIC_USERS ? process.env.SYNTHETIC_USERS.split(',') : [])
+            .map(s => s.trim().toLowerCase()).filter(Boolean)
+    );
 
     const matched = allEvents.filter(e => {
         if (e.workspace === 'enterprise-workspace') return false;
