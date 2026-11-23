@@ -1064,13 +1064,14 @@ app.get('/api/artifacts', async (req, res) => {
 
             // Merge submitted review artifacts into catalog
             for (const sub of artifactChangesDb) {
-                if (!artifacts.some(a => (a.name || a.id || '').toLowerCase() === sub.artifactId.toLowerCase())) {
+                const subId = (sub.artifactId || sub.name || sub.id || '').toLowerCase();
+                if (subId && !artifacts.some(a => (a.name || a.id || '').toLowerCase() === subId)) {
                     artifacts.push({
-                        id: sub.artifactId,
-                        name: sub.artifactId,
+                        id: sub.artifactId || subId,
+                        name: sub.artifactId || subId,
                         type: sub.artifactType || 'agent',
                         version: sub.version || '1.0.0',
-                        description: `Contributed AI artifact: ${sub.artifactId}`,
+                        description: `Contributed AI artifact: ${sub.artifactId || subId}`,
                         isPrivate: Boolean(sub.isPrivate),
                         producerEmail: sub.producerEmail,
                         isCertified: Boolean(certificationsDb[sub.artifactId]?.isCertified),
@@ -1082,7 +1083,8 @@ app.get('/api/artifacts', async (req, res) => {
             // Dynamic merge of AI Leap artifacts directly from live storage
             const liveLeap = getLiveAiLeapArtifacts();
             for (const leapArt of liveLeap) {
-                const cleanName = leapArt.rawId.toLowerCase();
+                const cleanName = (leapArt.rawId || leapArt.name || leapArt.id || '').replace(/^leap-/, '').toLowerCase();
+                if (!cleanName) continue;
                 const existingIdx = artifacts.findIndex(a => 
                     (a.name || a.rawId || a.id || '').replace(/^leap-/, '').toLowerCase() === cleanName
                 );
@@ -1608,14 +1610,16 @@ app.get(['/api/artifacts/:id/download', '/api/artifacts/:id/zip', '/api/artifact
     // 1. Check live AI Leap catalog first
     const liveLeap = getLiveAiLeapArtifacts();
     const leapMatch = liveLeap.find(a => 
-        a.rawId.toLowerCase() === cleanId || 
-        a.id.toLowerCase() === id.toLowerCase() ||
-        (a.title || '').toLowerCase() === id.toLowerCase()
+        (a.rawId && a.rawId.toLowerCase() === cleanId) || 
+        (a.name && a.name.toLowerCase() === cleanId) ||
+        (a.id && a.id.toLowerCase() === id.toLowerCase()) ||
+        (a.title && a.title.toLowerCase() === id.toLowerCase())
     );
     if (leapMatch) {
+        const artName = leapMatch.rawId || leapMatch.name || leapMatch.id || id;
         return res.json({
             id: leapMatch.id,
-            name: leapMatch.rawId,
+            name: artName,
             type: leapMatch.type,
             version: leapMatch.version,
             description: leapMatch.description,
@@ -1624,7 +1628,7 @@ app.get(['/api/artifacts/:id/download', '/api/artifacts/:id/zip', '/api/artifact
             isCertified: true,
             files: leapMatch.files,
             content: JSON.stringify({
-                name: leapMatch.rawId,
+                name: artName,
                 type: leapMatch.type,
                 version: leapMatch.version,
                 source: 'AI_LEAP',
