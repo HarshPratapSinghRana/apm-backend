@@ -45,4 +45,4 @@ jobs:
           registryPassword: ${{ secrets.GHCR_PAT || secrets.PAT || secrets.GITHUB_PAT || secrets.GITHUB_TOKEN }}
           containerAppName: apm-backend
           resourceGroup: apm-rg
-          imageToBuild: ghcr.io/harshpratapsinghrana/apm-backend:latest
+          imageToBuild: ghcr.io/harshpratapsinghrana/apm-backend:${{ github.sha }}
