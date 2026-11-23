@@ -22,6 +22,16 @@ public static class DatabaseMigrationExtensions
             return;
         }
 
+        var isDevOrTest = string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "Development", StringComparison.OrdinalIgnoreCase) ||
+                          string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "Testing", StringComparison.OrdinalIgnoreCase) ||
+                          string.Equals(Environment.GetEnvironmentVariable("AUTO_MIGRATE"), "true", StringComparison.OrdinalIgnoreCase);
+
+        if (!isDevOrTest)
+        {
+            logger.LogInformation("Production mode active: Database schema migrations are decoupled from application startup and managed via CI/CD execution scripts (V001, V002).");
+            return;
+        }
+
         try
         {
             using var scope = app.ApplicationServices.CreateScope();
@@ -100,8 +110,8 @@ public static class DatabaseMigrationExtensions
         {
             try
             {
-                // Execute using parameterized SQL commands safely
-                db.Database.ExecuteSql($"ALTER TABLE reviews ADD COLUMN SlaTargetMinutes INTEGER DEFAULT 1440;");
+                var sql = string.Format("ALTER TABLE {0} ADD COLUMN {1} {2};", item.Table, item.Column, item.ColType);
+                db.Database.ExecuteSqlRaw(sql);
             }
             catch (Exception ex)
             {

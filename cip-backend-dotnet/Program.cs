@@ -211,52 +211,9 @@ if (enableSwagger)
 // =========================================================================
 // SECTION 4: HTTP Middleware Pipeline & Correct Execution Order
 // =========================================================================
-// Centralized enterprise exception handler: structured JSON
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await next();
-    }
-    catch (Exception ex)
-    {
-        logger.LogError(ex, "[HTTP 500 ERROR] {Method} {Path}: {Message}", context.Request.Method, context.Request.Path, ex.Message);
-
-        if (!context.Response.HasStarted)
-        {
-            context.Response.StatusCode = 500;
-            context.Response.ContentType = "application/json";
-            var isDev = app.Environment.IsDevelopment();
-            var payload = System.Text.Json.JsonSerializer.Serialize(new
-            {
-                error = "Internal Server Error",
-                message = isDev ? ex.Message : "An unexpected error occurred while processing your request."
-            });
-            await context.Response.WriteAsync(payload);
-        }
-    }
-});
-
-// Enterprise HTTP security response headers
-app.Use(async (context, next) =>
-{
-    context.Response.Headers["X-Content-Type-Options"] = "nosniff";
-    context.Response.Headers["X-Frame-Options"] = "DENY";
-    context.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
-    context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
-    context.Response.Headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains";
-    context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; frame-ancestors 'none';";
-    await next();
-});
-
-// Correct Middleware Execution Order
-app.UseCors();
-app.UseRouting();
-
-// Authentication MUST be executed before Authorization
-app.UseMiddleware<EngineeringCommons.Backend.Middleware.TokenAuthenticationMiddleware>();
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseGlobalExceptionHandler(logger, app.Environment);
+app.UseEnterpriseSecurityHeaders();
+app.UseEngineeringCommonsPipeline();
 
 app.MapControllers();
 

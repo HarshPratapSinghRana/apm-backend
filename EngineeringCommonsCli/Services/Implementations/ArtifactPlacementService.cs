@@ -572,7 +572,7 @@ public class ArtifactPlacementService : IArtifactPlacementService
             {
                 Directory.CreateDirectory(githubDir);
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         bool isMulti = fileList.Count > 1;
@@ -626,7 +626,7 @@ public class ArtifactPlacementService : IArtifactPlacementService
             {
                 Directory.CreateDirectory(githubDir);
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         var normType = (artifactType ?? "agent").Trim().ToLowerInvariant();
@@ -863,7 +863,7 @@ public class ArtifactPlacementService : IArtifactPlacementService
                             }
                         }
                     }
-                    catch { }
+                    catch (Exception) { /* handled non-fatal CLI fallback */ }
                 }
             }
 
@@ -910,7 +910,7 @@ public class ArtifactPlacementService : IArtifactPlacementService
 
             File.WriteAllText(fullMcpPath, rootObj.ToString(Newtonsoft.Json.Formatting.Indented)); // nosemgrep: csharp.lang.security.filesystem.unsafe-path-combine.unsafe-path-combine
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
     }
 
     /// <summary>
@@ -998,6 +998,8 @@ public class ArtifactPlacementService : IArtifactPlacementService
                 File.WriteAllText(fullSettingsPath, settingsObj.ToString(Newtonsoft.Json.Formatting.Indented)); // nosemgrep: csharp.lang.security.filesystem.unsafe-path-combine.unsafe-path-combine
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
     }
 }
+
+

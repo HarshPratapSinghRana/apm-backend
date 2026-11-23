@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using EngineeringCommons.Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+using EngineeringCommons.Backend.Services.Interfaces;
 
 namespace EngineeringCommons.Backend.Services.Implementations;
 
@@ -12,12 +13,14 @@ public class LocalMarketplaceService : IMarketplaceService
 {
     private readonly string _repoRoot;
     private readonly IArtifactClassifier _classifier;
+    private readonly ILogger<LocalMarketplaceService>? _logger;
 
-    public LocalMarketplaceService(IWebHostEnvironment env, IArtifactClassifier? classifier = null)
+    public LocalMarketplaceService(IWebHostEnvironment env, IArtifactClassifier? classifier = null, ILogger<LocalMarketplaceService>? logger = null)
     {
         // assume repo root is workspace root two levels up from backend project
         _repoRoot = Directory.GetParent(env.ContentRootPath)?.Parent?.FullName ?? env.ContentRootPath;
         _classifier = classifier ?? new ArtifactClassifier();
+        _logger = logger;
     }
 
     public Task<IEnumerable<ArtifactDto>> ListArtifactsAsync()
@@ -53,7 +56,10 @@ public class LocalMarketplaceService : IMarketplaceService
                     list.Add(new ArtifactDto { Id = name, Name = name, Type = typeStr, Version = version ?? "1.0.0", Description = string.Empty, CipPackage = cipId });
                 }
             }
-            catch { }
+            catch (Exception ex) 
+            { 
+                _logger?.LogDebug(ex, "Handled non-fatal exception parsing lockfile at {Path}", lockPath);
+            }
         }
         return Task.FromResult<IEnumerable<ArtifactDto>>(list);
     }

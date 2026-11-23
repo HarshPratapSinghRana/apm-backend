@@ -151,7 +151,7 @@ int HandleSetUrl(string[] args)
     var obj = new Newtonsoft.Json.Linq.JObject();
     if (File.Exists(cfgPath))
     {
-        try { obj = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(cfgPath)); } catch { }
+        try { obj = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(cfgPath)); } catch (Exception) { /* handled non-fatal CLI fallback */ }
     }
     obj["backendUrl"] = url;
     File.WriteAllText(cfgPath, obj.ToString());
@@ -166,7 +166,7 @@ int HandleSetUrl(string[] args)
             sObj["backendUrl"] = url;
             File.WriteAllText(sessionPath, sObj.ToString());
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
     }
 
     Console.WriteLine($"✓ Engineering Commons Backend URL configured to: {url}");
@@ -217,3 +217,5 @@ int Unknown()
     Console.WriteLine("Run 'engineering-commons help' or 'engineering-commons --help' to view available commands.");
     return 2;
 }
+
+

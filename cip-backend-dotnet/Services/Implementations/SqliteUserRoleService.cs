@@ -114,7 +114,7 @@ public class SqliteUserRoleService : IUserRoleService
             await db.SaveChangesAsync();
             TriggerAdoSync();
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         return defaultRole;
     }
@@ -290,7 +290,7 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         // Send Email to User (COMMENTED OUT FOR NOW)
         /*
@@ -298,7 +298,7 @@ public class SqliteUserRoleService : IUserRoleService
         {
             await _emailService.SendAccessDecisionNotificationAsync(norm, "APPROVED", request.RequestedRole, notes);
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
         */
 
         return request;
@@ -334,7 +334,7 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         // Send Email to User (COMMENTED OUT FOR NOW)
         /*
@@ -342,7 +342,7 @@ public class SqliteUserRoleService : IUserRoleService
         {
             await _emailService.SendAccessDecisionNotificationAsync(request.UserEmail.ToLowerInvariant(), "DECLINED", request.RequestedRole, notes);
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
         */
 
         return request;
@@ -408,14 +408,14 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         // Send Email to User
         try
         {
             await _emailService.SendAccessDecisionNotificationAsync(norm, "REVOKED", "PRODUCER", notes);
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         return assignment;
     }
@@ -468,7 +468,7 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         return assignment;
     }
@@ -580,7 +580,7 @@ public class SqliteUserRoleService : IUserRoleService
                 }
             }
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         // Check if items exist to select edit vs add
         string rolesChangeType = "add";
@@ -591,7 +591,7 @@ public class SqliteUserRoleService : IUserRoleService
             var itemResp = await client.GetAsync(itemUrl);
             if (itemResp.IsSuccessStatusCode) rolesChangeType = "edit";
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         try
         {
@@ -599,7 +599,7 @@ public class SqliteUserRoleService : IUserRoleService
             var itemResp = await client.GetAsync(itemUrl);
             if (itemResp.IsSuccessStatusCode) requestsChangeType = "edit";
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
 
         var pushesUrl = $"https://dev.azure.com/{org}/{projectPart}_apis/git/repositories/{repo}/pushes?api-version=7.0";
         var pushPayload = new
@@ -657,3 +657,4 @@ public class SqliteUserRoleService : IUserRoleService
         }
     }
 }
+

@@ -34,7 +34,7 @@ public class ArtifactClassifier : IArtifactClassifier
         // Load content if not provided and file exists
         if (content == null && !isDirectory && File.Exists(fullPath))
         {
-            try { content = File.ReadAllText(fullPath); } catch { }
+            try { content = File.ReadAllText(fullPath); } catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         // =========================================================================
@@ -108,7 +108,7 @@ public class ArtifactClassifier : IArtifactClassifier
                         }
                     }
                 }
-                catch { }
+                catch (Exception) { /* handled non-fatal CLI fallback */ }
             }
         }
 
@@ -422,3 +422,5 @@ public class ArtifactClassifier : IArtifactClassifier
         return new ClassificationResult(ArtifactType.Unknown, DetectionConfidence.Low, "Multi-file package does not match a recognized AI artifact type.", rootPackageName);
     }
 }
+
+

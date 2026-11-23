@@ -181,8 +181,9 @@ public class ReviewThreadService : IReviewThreadService
             {
                 _reviewService.RequestChanges(review.Id, userEmail);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogDebug(ex, "Handled fallback in RequestChanges for review {ReviewId}", review.Id);
                 await _eventPublisher.PublishAsync(new ChangesRequestedEvent
                 {
                     SubmissionId = review.Id,
@@ -357,7 +358,10 @@ public class ReviewThreadService : IReviewThreadService
             using var doc = JsonDocument.Parse(content);
             if (doc.RootElement.TryGetProperty("name", out var prop)) return prop.GetString();
         }
-        catch { }
+        catch (JsonException) 
+        {
+            return null;
+        }
         return null;
     }
 
@@ -368,7 +372,10 @@ public class ReviewThreadService : IReviewThreadService
             using var doc = JsonDocument.Parse(content);
             if (doc.RootElement.TryGetProperty("version", out var prop)) return prop.GetString();
         }
-        catch { }
+        catch (JsonException) 
+        {
+            return null;
+        }
         return null;
     }
 }

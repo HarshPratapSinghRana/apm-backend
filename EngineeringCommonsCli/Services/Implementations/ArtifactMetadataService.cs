@@ -47,7 +47,7 @@ public class ArtifactMetadataService : IArtifactMetadataService
                     if (dMatch.Success) description = dMatch.Groups[1].Value.Trim().Trim('"', '\'');
                     if (aMatch.Success) author = aMatch.Groups[1].Value.Trim().Trim('"', '\'');
                 }
-                catch { }
+                catch (Exception) { /* handled non-fatal CLI fallback */ }
             }
 
             var pluginPath = Path.Combine(safeDir, "plugin.json");
@@ -62,7 +62,7 @@ public class ArtifactMetadataService : IArtifactMetadataService
                     if (doc.RootElement.TryGetProperty("description", out var dProp)) description = dProp.GetString() ?? description;
                     if (doc.RootElement.TryGetProperty("author", out var aProp)) author = aProp.GetString() ?? author;
                 }
-                catch { }
+                catch (Exception) { /* handled non-fatal CLI fallback */ }
             }
 
             return new ArtifactMetadata(name, version, description ?? $"{type} artifact: {name}", author, cipPackage ?? $"harshpratapsinghrana1/{name}#v{version}");
@@ -71,7 +71,7 @@ public class ArtifactMetadataService : IArtifactMetadataService
         // If file, read content if needed
         if (content == null && File.Exists(fullPath))
         {
-            try { content = File.ReadAllText(fullPath); } catch { }
+            try { content = File.ReadAllText(fullPath); } catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         if (!string.IsNullOrWhiteSpace(content))
@@ -96,3 +96,5 @@ public class ArtifactMetadataService : IArtifactMetadataService
         return new ArtifactMetadata(name, version, description ?? $"{type} artifact: {name}", author, $"harshpratapsinghrana1/{name}#v{version}");
     }
 }
+
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using EngineeringCommons.Backend.Events;
 using EngineeringCommons.Backend.Models;
 using EngineeringCommons.Backend.Services.Interfaces;
@@ -15,17 +16,20 @@ public class ReviewService : IReviewService
     private readonly IMarketplaceService _marketplace;
     private readonly IDomainEventPublisher _eventPublisher;
     private readonly INotificationService? _notifications;
+    private readonly ILogger<ReviewService>? _logger;
 
     public ReviewService(
         IReviewRepository repo,
         IMarketplaceService marketplace,
         IDomainEventPublisher eventPublisher,
-        INotificationService? notifications = null)
+        INotificationService? notifications = null,
+        ILogger<ReviewService>? logger = null)
     {
         _repo = repo;
         _marketplace = marketplace;
         _eventPublisher = eventPublisher;
         _notifications = notifications;
+        _logger = logger;
     }
 
     public Review SubmitChange(string artifactId, string producerEmail, string content, bool isPrivate = false, string? allowedContributors = null, string? allowedReviewers = null, string? allowedConsumers = null, int slaTargetMinutes = 1440)
@@ -511,7 +515,7 @@ public class ReviewService : IReviewService
         };
     }
 
-    private static string ExtractVersion(string content)
+    private string ExtractVersion(string content)
     {
         try
         {
@@ -521,7 +525,10 @@ public class ReviewService : IReviewService
                 return vProp.GetString() ?? "1.0.0";
             }
         }
-        catch { }
+        catch (JsonException ex)
+        {
+            _logger?.LogDebug(ex, "Failed parsing JSON version from content, defaulting to 1.0.0");
+        }
         return "1.0.0";
     }
 }

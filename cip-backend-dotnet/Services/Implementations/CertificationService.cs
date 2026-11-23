@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using EngineeringCommons.Backend.Data;
 using EngineeringCommons.Backend.Models;
@@ -18,6 +19,7 @@ public class CertificationService : ICertificationService
     private readonly IReviewService _reviewService;
     private readonly IUsageService _usageService;
     private readonly CertificationOptions _options;
+    private readonly ILogger<CertificationService>? _logger;
 
     // Seeded certified artifacts for testing and marketplace demonstration
     private static readonly HashSet<string> DefaultCertifiedArtifacts = new(StringComparer.OrdinalIgnoreCase)
@@ -30,12 +32,14 @@ public class CertificationService : ICertificationService
         IServiceProvider serviceProvider,
         IReviewService reviewService,
         IUsageService usageService,
-        IOptions<CertificationOptions>? options = null)
+        IOptions<CertificationOptions>? options = null,
+        ILogger<CertificationService>? logger = null)
     {
         _serviceProvider = serviceProvider;
         _reviewService = reviewService;
         _usageService = usageService;
         _options = options?.Value ?? new CertificationOptions();
+        _logger = logger;
     }
 
     public async Task<CertificationEvaluationDto> EvaluateCertificationAsync(string artifactId)
@@ -65,7 +69,7 @@ public class CertificationService : ICertificationService
         {
             analytics = await _usageService.GetArtifactDetailsAnalyticsAsync(normalizedId);
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in CertificationService operation"); }
 
         int downloads = analytics?.Downloads ?? 0;
         int totalUsage = analytics?.UsageCount ?? 0;
@@ -139,7 +143,7 @@ public class CertificationService : ICertificationService
                 Metadata = $"Status={status}; Eligible={eligible}"
             });
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in CertificationService operation"); }
 
         return new CertificationEvaluationDto
         {
@@ -168,7 +172,7 @@ public class CertificationService : ICertificationService
                 if (!string.IsNullOrEmpty(entity.CriteriaJson)) criteria = JsonSerializer.Deserialize<CertificationCriteriaResult>(entity.CriteriaJson);
                 if (!string.IsNullOrEmpty(entity.MetricsJson)) metrics = JsonSerializer.Deserialize<CertificationMetricsSnapshot>(entity.MetricsJson);
             }
-            catch { }
+            catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in CertificationService operation"); }
 
             return new CertificationStatusDto
             {
@@ -267,7 +271,7 @@ public class CertificationService : ICertificationService
                 Metadata = $"RequestedBy={requestedByEmail}; Eligible={eval.Eligible}"
             });
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in CertificationService operation"); }
 
         return eval;
     }
@@ -335,7 +339,7 @@ public class CertificationService : ICertificationService
                 Metadata = $"CertifiedBy={certifiedByEmail}; Version={certVersion}"
             });
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in CertificationService operation"); }
 
         return await GetCertificationStatusAsync(normalizedId);
     }
@@ -392,7 +396,7 @@ public class CertificationService : ICertificationService
                 Metadata = $"RevokedBy={revokedByEmail}; Reason={reason}"
             });
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in CertificationService operation"); }
 
         return await GetCertificationStatusAsync(normalizedId);
     }
@@ -448,7 +452,7 @@ public class CertificationService : ICertificationService
                 }
             }
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in CertificationService operation"); }
 
         return result;
     }
@@ -462,9 +466,11 @@ public class CertificationService : ICertificationService
             if (db == null) return null;
             return await db.ArtifactCertifications.FirstOrDefaultAsync(c => c.ArtifactId.ToLower() == artifactId.ToLower());
         }
-        catch
+        catch (Exception ex)
         {
+            _logger?.LogDebug(ex, "Handled non-fatal exception retrieving certification entity for {ArtifactId}", artifactId);
             return null;
         }
     }
 }
+

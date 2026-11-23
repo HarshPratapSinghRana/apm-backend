@@ -310,7 +310,7 @@ public class BountyService : IBountyService
                                 rev.Status = ReviewStatus.Submitted;
                             }
                         }
-                        catch { }
+                        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
                     }
 
                     if (!string.IsNullOrEmpty(previousClaimant))
@@ -362,9 +362,9 @@ public class BountyService : IBountyService
                 }
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // fallback
+            _logger?.LogDebug(ex, "Handled non-fatal exception syncing reviews in BountyService");
         }
 
         var list = _bounties.Values
@@ -454,7 +454,7 @@ public class BountyService : IBountyService
             {
                 _reviewService.AssignReview(reviewId, userEmail);
             }
-            catch { }
+            catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
         }
 
         // Send notifications
@@ -496,7 +496,7 @@ public class BountyService : IBountyService
                     rev.Status = ReviewStatus.Submitted;
                 }
             }
-            catch { }
+            catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
         }
 
         _ = NotifyAsync(userEmail, NotificationType.ReviewAssigned,
@@ -595,7 +595,7 @@ public class BountyService : IBountyService
                 {
                     _ = _reviewService.ApproveAsync(reviewId, reviewerEmail, req.Feedback);
                 }
-                catch { }
+                catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
             }
 
             _ = NotifyAsync(submitterEmail, NotificationType.ReviewAssigned,
@@ -614,7 +614,7 @@ public class BountyService : IBountyService
                 {
                     _ = _reviewService.RequestChanges(reviewId, reviewerEmail, req.Feedback);
                 }
-                catch { }
+                catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
             }
 
             _ = NotifyAsync(submitterEmail, NotificationType.ChangesRequested,
@@ -675,7 +675,7 @@ public class BountyService : IBountyService
                         content = rev.Content;
                     }
                 }
-                catch { }
+                catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
             }
 
             if (string.IsNullOrWhiteSpace(content))
@@ -712,7 +712,7 @@ public class BountyService : IBountyService
                         rev.PublishError = null;
                     }
                 }
-                catch { }
+                catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
             }
 
             // Record PUBLISH usage event
@@ -730,7 +730,7 @@ public class BountyService : IBountyService
                         Timestamp = DateTime.UtcNow
                     });
                 }
-                catch { }
+                catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
             }
 
             _ = NotifyAsync(submitterEmail, NotificationType.ReviewApproved,
@@ -816,7 +816,7 @@ public class BountyService : IBountyService
                     content = rev.Content;
                 }
             }
-            catch { }
+            catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
         }
 
         if (string.IsNullOrWhiteSpace(content))
@@ -851,7 +851,7 @@ public class BountyService : IBountyService
                     rev.PublishError = null;
                 }
             }
-            catch { }
+            catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
         }
 
         if (_usageService != null)
@@ -868,7 +868,7 @@ public class BountyService : IBountyService
                     Timestamp = DateTime.UtcNow
                 });
             }
-            catch { }
+            catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
         }
 
         return MapToDto(b, userEmail);
@@ -944,7 +944,7 @@ public class BountyService : IBountyService
                     });
                 }
             }
-            catch { }
+            catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
 
             if (reviews.Count == 0 && (isReviewer || string.IsNullOrEmpty(userEmail) || userEmail.Contains("producer", StringComparison.OrdinalIgnoreCase)))
             {
@@ -1060,7 +1060,7 @@ public class BountyService : IBountyService
                 });
             }
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in BountyService operation"); }
     }
 
     private static BountyDto MapToDto(Bounty b, string userEmail)
@@ -1199,3 +1199,4 @@ public class BountyService : IBountyService
         };
     }
 }
+

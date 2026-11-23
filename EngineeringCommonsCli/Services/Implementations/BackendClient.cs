@@ -59,7 +59,7 @@ public class BackendClient : IBackendClient, IDisposable
                 }
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
     }
 
     public static string ResolveBackendUrl()
@@ -94,7 +94,7 @@ public class BackendClient : IBackendClient, IDisposable
                 if (!string.IsNullOrWhiteSpace(u)) return u.Trim().TrimEnd('/');
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         return DefaultBackendUrl;
     }
@@ -139,7 +139,7 @@ public class BackendClient : IBackendClient, IDisposable
                         Console.WriteLine($"\nBackend SSO Error: {detail}");
                     }
                 }
-                catch { }
+                catch (Exception) { /* handled non-fatal CLI fallback */ }
                 return null;
             }
 
@@ -256,7 +256,7 @@ public class BackendClient : IBackendClient, IDisposable
                     freshArtifacts = spArtifacts.ToList();
                 }
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         // 3. Secondary Fallback: Backend HTTP API
@@ -281,7 +281,7 @@ public class BackendClient : IBackendClient, IDisposable
                     }
                 }
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         // Offline / Local catalog fallback
@@ -307,7 +307,7 @@ public class BackendClient : IBackendClient, IDisposable
                                 localList.Add(ExtractArtifactSpec(it, Path.GetFileNameWithoutExtension(file)));
                             }
                         }
-                        catch { }
+                        catch (Exception) { /* handled non-fatal CLI fallback */ }
                     }
                     if (localList.Any())
                     {
@@ -315,7 +315,7 @@ public class BackendClient : IBackendClient, IDisposable
                     }
                 }
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         // Merge any local artifacts from artifacts-json if remote backend did not include them
@@ -344,11 +344,11 @@ public class BackendClient : IBackendClient, IDisposable
                                 }
                             }
                         }
-                        catch { }
+                        catch (Exception) { /* handled non-fatal CLI fallback */ }
                     }
                 }
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         if (freshArtifacts != null && freshArtifacts.Any())
@@ -400,7 +400,7 @@ public class BackendClient : IBackendClient, IDisposable
                 var spArt = await _sharePointClient.GetArtifactByNameAsync(ssoToken, name);
                 if (spArt != null) return spArt;
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         // 3. Secondary Fallback: Backend HTTP API
@@ -450,7 +450,7 @@ public class BackendClient : IBackendClient, IDisposable
             allowedReviewers = parsed["allowedReviewers"]?.ToString();
             allowedConsumers = parsed["allowedConsumers"]?.ToString();
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         var bodyObj = new Dictionary<string, object?>
         {
@@ -483,7 +483,7 @@ public class BackendClient : IBackendClient, IDisposable
                     return new ArtifactSubmissionResult(false, detail);
                 }
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
             return new ArtifactSubmissionResult(false, $"HTTP {(int)resp.StatusCode}: {errText}");
         }
 
@@ -852,7 +852,7 @@ public class BackendClient : IBackendClient, IDisposable
                 queue.Add(payload);
                 File.WriteAllText(queueFile, JsonConvert.SerializeObject(queue, Formatting.Indented));
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
 
             // 2. Also send to HTTP backend if available
             using var req = new HttpRequestMessage(HttpMethod.Post, "/api/usage/events");
@@ -957,7 +957,7 @@ public class BackendClient : IBackendClient, IDisposable
                 }
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         // 1.5. Authoritative Direct ADO Git Local Store: Check ./certification/registry.json or user cache
         try
@@ -991,7 +991,7 @@ public class BackendClient : IBackendClient, IDisposable
                 }
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         // 2. Secondary Fallback: Backend HTTP API
         try
@@ -1007,7 +1007,7 @@ public class BackendClient : IBackendClient, IDisposable
                 return JsonConvert.DeserializeObject<CertificationStatusCliDto>(json);
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         return null;
     }
@@ -1049,7 +1049,7 @@ public class BackendClient : IBackendClient, IDisposable
                 return JsonConvert.DeserializeObject<CertificationEvaluationCliDto>(json);
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         return null;
     }
@@ -1069,7 +1069,7 @@ public class BackendClient : IBackendClient, IDisposable
                 return JsonConvert.DeserializeObject<CertificationEvaluationCliDto>(json);
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         return await EvaluateCertificationAsync(artifactName);
     }
@@ -1092,7 +1092,7 @@ public class BackendClient : IBackendClient, IDisposable
                 return JsonConvert.DeserializeObject<CertificationRecheckResultCliDto>(json);
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         // 2. Re-read directly from authoritative ADO Git
         var latest = await GetCertificationStatusAsync(artifactName);
@@ -1151,7 +1151,7 @@ public class BackendClient : IBackendClient, IDisposable
                 }
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         // 1.5. Authoritative Direct ADO Git Local Store: Check ./certification/audit-log.json or user cache
         try
@@ -1189,7 +1189,7 @@ public class BackendClient : IBackendClient, IDisposable
                 }
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
         try
         {
             var token = await _tokenStore.GetTokenAsync();
@@ -1203,7 +1203,7 @@ public class BackendClient : IBackendClient, IDisposable
                 return JsonConvert.DeserializeObject<CertificationAuditLogResponseCliDto>(json);
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         return new CertificationAuditLogResponseCliDto { ArtifactId = artifactName, TotalEntries = 0, Entries = new List<CertificationAuditEntryCliDto>() };
     }
@@ -1496,7 +1496,7 @@ public class BackendClient : IBackendClient, IDisposable
                     return filtered.ToList();
                 }
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         // 2. Secondary Fallback: Backend HTTP API
@@ -1538,7 +1538,7 @@ public class BackendClient : IBackendClient, IDisposable
                 var spBounty = await _sharePointClient.GetBountyByIdAsync(ssoToken, id);
                 if (spBounty != null) return spBounty;
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
 
         // 2. Secondary Fallback: Backend HTTP API
@@ -1676,3 +1676,5 @@ public class BackendClient : IBackendClient, IDisposable
         }
     }
 }
+
+

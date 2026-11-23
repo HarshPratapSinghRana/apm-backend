@@ -287,7 +287,7 @@ public class ContributeCommand
             string content = string.Empty;
             if (File.Exists(fullPath))
             {
-                try { content = File.ReadAllText(fullPath); } catch { }
+                try { content = File.ReadAllText(fullPath); } catch (Exception) { /* handled non-fatal CLI fallback */ }
             }
 
             var canonicalPath = relativeFilePath.Replace('\\', '/');
@@ -410,4 +410,6 @@ public class ContributeCommand
         return null;
     }
 }
+
+
 

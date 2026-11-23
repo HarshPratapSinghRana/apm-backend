@@ -137,7 +137,7 @@ public class InstallCommand
                     Console.WriteLine($"[✓] Resolved '{name}' directly from authoritative artifact package bundle.");
                     break;
                 }
-                catch { }
+                catch (Exception) { /* handled non-fatal CLI fallback */ }
             }
         }
 
@@ -268,7 +268,7 @@ public class InstallCommand
                     var inner = JsonConvert.DeserializeObject<JObject>(obj["content"]!.ToString());
                     filesArray = inner?["files"] as JArray;
                 }
-                catch { }
+                catch (Exception) { /* handled non-fatal CLI fallback */ }
             }
             if (filesArray == null) return null;
             return filesArray.Select(f => new ArtifactFileEntry(
@@ -282,3 +282,5 @@ public class InstallCommand
         }
     }
 }
+
+

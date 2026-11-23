@@ -26,6 +26,7 @@ public static class ServiceCollectionExtensions
         // 1. Persistence Layer (SQLite / EF Core)
         services.AddDbContext<CipDbContext>(options =>
             options.UseSqlite(sqliteConnectionString));
+        services.AddScoped<EngineeringCommonsDbContext>(sp => sp.GetRequiredService<CipDbContext>());
 
         // 2. Domain Event Handlers
         services.AddSingleton<IDomainEventPublisher, DomainEventPublisher>();

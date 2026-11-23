@@ -4,9 +4,13 @@ using EngineeringCommons.Backend.Models;
 
 namespace EngineeringCommons.Backend.Data;
 
-public class CipDbContext : DbContext
+public class EngineeringCommonsDbContext : DbContext
 {
-    public CipDbContext(DbContextOptions<CipDbContext> options) : base(options)
+    public EngineeringCommonsDbContext(DbContextOptions<EngineeringCommonsDbContext> options) : base(options)
+    {
+    }
+
+    protected EngineeringCommonsDbContext(DbContextOptions options) : base(options)
     {
     }
 
@@ -233,5 +237,15 @@ public class CipDbContext : DbContext
 
             entity.HasIndex(a => a.Role);
         });
+    }
+}
+
+/// <summary>
+/// Legacy backward-compatibility alias for EngineeringCommonsDbContext.
+/// </summary>
+public class CipDbContext : EngineeringCommonsDbContext
+{
+    public CipDbContext(DbContextOptions<CipDbContext> options) : base(options)
+    {
     }
 }

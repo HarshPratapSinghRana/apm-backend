@@ -126,7 +126,10 @@ public class ReviewCommentService : IReviewCommentService
                 {
                     parent = await db.ReviewComments.FirstOrDefaultAsync(c => c.Id == commentId && c.SubmissionId == submissionId);
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    _logger.LogDebug(ex, "Failed querying parent comment from DB");
+                }
             }
         }
 
@@ -231,7 +234,10 @@ public class ReviewCommentService : IReviewCommentService
                     }
                     all = await query.OrderBy(c => c.CreatedAt).ToListAsync();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    _logger.LogDebug(ex, "Failed querying comments from DB");
+                }
             }
         }
 
@@ -265,7 +271,12 @@ public class ReviewCommentService : IReviewCommentService
                 return vProp.GetString() ?? "1.0.0";
             }
         }
-        catch { }
+        catch (JsonException)
+        {
+            // Invalid JSON structure; fallback to default 1.0.0
+            return "1.0.0";
+        }
         return "1.0.0";
     }
 }
+

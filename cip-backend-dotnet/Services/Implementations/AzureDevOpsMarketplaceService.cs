@@ -290,7 +290,10 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                _logger.LogDebug(ex, "Failed parsing review metadata for {ArtifactId}", artifactId);
+            }
         }
 
         // 3. If no versions found yet, call GetArtifactAsync to resolve base
@@ -429,7 +432,10 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
                         }
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    _logger.LogDebug(ex, "Failed reading raw content from ADO tree for {ArtifactId}", artifactId);
+                }
             }
         }
 
@@ -523,7 +529,10 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
                 allowedConsumers = conProp.GetString();
             }
         }
-        catch { }
+        catch (JsonException ex)
+        {
+            _logger.LogDebug(ex, "Failed parsing JSON metadata for artifact {ArtifactId}", artifactId);
+        }
 
         // Also query matching review from SQLite to ensure accurate metadata
         if (_scopeFactory != null)
@@ -545,7 +554,10 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                _logger.LogDebug(ex, "Failed parsing review metadata for {ArtifactId}", artifactId);
+            }
         }
 
         if (type == "normalfile" || type == "unknown")
@@ -617,7 +629,10 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
                 changeType = "edit";
             }
         }
-        catch { }
+        catch (Exception ex)
+        {
+            _logger.LogDebug(ex, "Failed checking existing item in ADO repo at {Path}", path);
+        }
 
         // Push commit to Azure DevOps Git Repo
         var pushesUrl = $"https://dev.azure.com/{_opts.Organization}/{projectPart}_apis/git/repositories/{_opts.Repository}/pushes?api-version=7.0";
@@ -766,7 +781,10 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
                     cipPkg = pkgP.GetString()!;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                _logger.LogDebug(ex, "Failed parsing review metadata for {ArtifactId}", r.ArtifactId);
+            }
         }
 
         if (typeStr == "normalfile" || typeStr == "unknown")
@@ -844,7 +862,10 @@ public class AzureDevOpsMarketplaceService : IMarketplaceService
                 return rawContent;
             }
         }
-        catch { }
+        catch (JsonException ex)
+        {
+            _logger.LogDebug(ex, "Failed validating JSON bundle for artifact {ArtifactName}", name);
+        }
 
         var defaultRelPath = GetDefaultFilePath(name, type);
         var bundle = new

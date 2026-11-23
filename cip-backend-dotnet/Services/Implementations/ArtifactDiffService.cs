@@ -410,7 +410,11 @@ public class ArtifactDiffService : IArtifactDiffService
             using var doc = JsonDocument.Parse(contentJson);
             if (doc.RootElement.TryGetProperty("version", out var vProp)) return vProp.GetString();
         }
-        catch { }
+        catch (JsonException) 
+        {
+            // Invalid JSON structure; fallback to null
+            return null;
+        }
         return null;
     }
 
@@ -422,7 +426,11 @@ public class ArtifactDiffService : IArtifactDiffService
             using var doc = JsonDocument.Parse(contentJson);
             if (doc.RootElement.TryGetProperty("name", out var nProp)) return nProp.GetString();
         }
-        catch { }
+        catch (JsonException) 
+        {
+            // Invalid JSON structure; fallback to null
+            return null;
+        }
         return null;
     }
 

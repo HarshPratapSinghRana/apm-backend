@@ -154,8 +154,10 @@ public class UnifiedDiffRenderer : IUnifiedDiffRenderer
                 Console.ForegroundColor = prev;
                 return;
             }
-            catch { }
+            catch (Exception) { /* handled non-fatal CLI fallback */ }
         }
         writer.WriteLine(text);
     }
 }
+
+

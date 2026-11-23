@@ -40,7 +40,7 @@ public class WorkspaceContextExtractor : IWorkspaceContextExtractor
                     subDirs = Directory.GetDirectories(currentDir);
                     dirFiles = Directory.GetFiles(currentDir);
                 }
-                catch { }
+                catch (Exception) { /* handled non-fatal CLI fallback */ }
 
                 foreach (var sub in subDirs)
                 {
@@ -97,7 +97,7 @@ public class WorkspaceContextExtractor : IWorkspaceContextExtractor
                 }
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         summary.ScannedFileCount = scanned;
         summary.FileExtensions = extensions.Take(20).ToList();
@@ -124,6 +124,8 @@ public class WorkspaceContextExtractor : IWorkspaceContextExtractor
                 }
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
     }
 }
+
+

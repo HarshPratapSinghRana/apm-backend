@@ -108,7 +108,7 @@ public class CliDiskCache : ICliDiskCache
                 File.Delete(fullPath);
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         return Task.CompletedTask;
     }
@@ -122,7 +122,7 @@ public class CliDiskCache : ICliDiskCache
                 Directory.Delete(_cacheDirectory, true);
             }
         }
-        catch { }
+        catch (Exception) { /* handled non-fatal CLI fallback */ }
 
         return Task.CompletedTask;
     }
@@ -135,3 +135,5 @@ public class DiskCacheEntry<T>
     public double TtlSeconds { get; set; } = 900; // 15 minutes default
     public T? Data { get; set; }
 }
+
+

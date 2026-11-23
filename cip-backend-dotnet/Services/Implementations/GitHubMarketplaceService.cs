@@ -264,7 +264,7 @@ public class GitHubMarketplaceService : IMarketplaceService
                     }
                 }
             }
-            catch { }
+            catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in GitHubMarketplaceService operation"); }
         }
 
         // 3. If no versions found yet, call GetArtifactAsync to resolve base
@@ -405,7 +405,7 @@ public class GitHubMarketplaceService : IMarketplaceService
                         }
                     }
                 }
-                catch { }
+                catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in GitHubMarketplaceService operation"); }
             }
         }
 
@@ -500,7 +500,7 @@ public class GitHubMarketplaceService : IMarketplaceService
                 allowedConsumers = conProp.GetString();
             }
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in GitHubMarketplaceService operation"); }
 
         // Also query matching review from SQLite to ensure accurate metadata
         if (_scopeFactory != null)
@@ -522,7 +522,7 @@ public class GitHubMarketplaceService : IMarketplaceService
                     }
                 }
             }
-            catch { }
+            catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in GitHubMarketplaceService operation"); }
         }
 
         if (type == "normalfile" || type == "unknown")
@@ -702,7 +702,7 @@ public class GitHubMarketplaceService : IMarketplaceService
                     cipPkg = pkgP.GetString()!;
                 }
             }
-            catch { }
+            catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in GitHubMarketplaceService operation"); }
         }
 
         if (typeStr == "normalfile" || typeStr == "unknown")
@@ -780,7 +780,7 @@ public class GitHubMarketplaceService : IMarketplaceService
                 return rawContent; // Already a valid bundle JSON
             }
         }
-        catch { }
+        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in GitHubMarketplaceService operation"); }
 
         // Wrap raw markdown/text into valid bundle JSON
         var defaultRelPath = GetDefaultFilePath(name, type);
@@ -924,3 +924,4 @@ public class GitHubMarketplaceService : IMarketplaceService
         }
     }
 }
+

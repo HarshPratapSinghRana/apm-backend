@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using EngineeringCommons.Backend.Models;
 using EngineeringCommons.Backend.Services.Interfaces;
 
@@ -15,9 +16,11 @@ public class InMemoryTokenService : ITokenService
     private static readonly TimeSpan DefaultTokenLifetime = TimeSpan.FromHours(24);
     private readonly string _tokenCachePath;
     private static readonly object _fileLock = new();
+    private readonly ILogger<InMemoryTokenService>? _logger;
 
-    public InMemoryTokenService()
+    public InMemoryTokenService(ILogger<InMemoryTokenService>? logger = null)
     {
+        _logger = logger;
         var appData = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         var dir = Path.Combine(appData, ".engineering-commons");
         if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
@@ -45,7 +48,7 @@ public class InMemoryTokenService : ITokenService
                 }
             }
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in InMemoryTokenService operation"); }
     }
 
     private void SaveTokens()
@@ -58,7 +61,7 @@ public class InMemoryTokenService : ITokenService
                 File.WriteAllText(_tokenCachePath, json);
             }
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in InMemoryTokenService operation"); }
     }
 
     public string CreateToken(User user)
@@ -140,8 +143,9 @@ public class InMemoryTokenService : ITokenService
                 }
             }
         }
-        catch { }
+        catch (Exception ex) { _logger?.LogDebug(ex, "Handled non-fatal exception in InMemoryTokenService operation"); }
 
         return null;
     }
 }
+

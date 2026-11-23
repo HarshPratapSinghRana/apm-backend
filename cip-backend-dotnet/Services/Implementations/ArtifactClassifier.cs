@@ -4,12 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
 using EngineeringCommons.Backend.Services.Interfaces;
 
 namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class ArtifactClassifier : IArtifactClassifier
 {
+    private readonly ILogger<ArtifactClassifier>? _logger;
+
+    public ArtifactClassifier(ILogger<ArtifactClassifier>? logger = null)
+    {
+        _logger = logger;
+    }
     private static readonly HashSet<string> NormalFileNames = new(StringComparer.OrdinalIgnoreCase)
     {
         "README.md", "README", "LICENSE", "LICENSE.md", "LICENSE.txt",
@@ -35,7 +42,14 @@ public class ArtifactClassifier : IArtifactClassifier
         // Load content if not provided and file exists on disk
         if (content == null && !isDirectory && File.Exists(fullPathOrName))
         {
-            try { content = File.ReadAllText(fullPathOrName); } catch { }
+            try 
+            { 
+                content = File.ReadAllText(fullPathOrName); 
+            } 
+            catch (Exception ex) 
+            { 
+                _logger?.LogDebug(ex, "Failed to read content from file path {Path}", fullPathOrName); 
+            }
         }
 
         // =========================================================================
@@ -85,7 +99,10 @@ public class ArtifactClassifier : IArtifactClassifier
                         }
                     }
                 }
-                catch { }
+                catch (JsonException ex) 
+                { 
+                    _logger?.LogDebug(ex, "Failed parsing JSON payload for multi-file classification: {Path}", fullPathOrName);
+                }
             }
 
             // 1b. YAML Frontmatter
@@ -142,7 +159,10 @@ public class ArtifactClassifier : IArtifactClassifier
                     return new ClassificationResult(explicitType.Value, DetectionConfidence.High, $"cip.yml specifies type: {explicitType.Value}", fileName);
                 }
             }
-            catch { }
+            catch (Exception ex) 
+            { 
+                _logger?.LogDebug(ex, "Failed reading cip.yml from path: {Path}", cipPath);
+            }
             return new ClassificationResult(ArtifactType.CipPackage, DetectionConfidence.High, "CIP package project containing cip.yml", fileName);
         }
 

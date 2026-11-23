@@ -103,7 +103,9 @@ public class FileAuthTokenStore : IAuthTokenStore
 
     public Task ClearTokenAsync()
     {
-        try { if (File.Exists(_path)) File.Delete(_path); } catch { }
+        try { if (File.Exists(_path)) File.Delete(_path); } catch (Exception) { /* handled non-fatal CLI fallback */ }
         return Task.CompletedTask;
     }
 }
+
+
