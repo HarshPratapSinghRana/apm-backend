@@ -634,7 +634,7 @@ export function activate(context: vscode.ExtensionContext) {
         ]);
 
         if (res.exitCode === 0) {
-            vscode.window.showInformationMessage(`✓ Access request for ${rolePick.label} submitted! Admin harsh.rana@maqsoftware.com has been notified.`);
+            vscode.window.showInformationMessage(`✓ Access request for ${rolePick.label} submitted! System Administrator has been notified.`);
             await refreshAllViews();
         } else {
             vscode.window.showErrorMessage(`Failed to submit access request: ${res.stderr || res.stdout}`);
@@ -809,7 +809,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (choice === 'Send Test Email') {
             const recipient = await vscode.window.showInputBox({
                 prompt: 'Recipient email address for test notification:',
-                value: 'harsh.rana@maqsoftware.com'
+                value: 'admin@maqsoftware.com'
             });
             if (!recipient) return;
             try {
@@ -866,7 +866,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         const role = (await authProvider.getRole?.()) || 'CONSUMER';
         const email = (await authProvider.getEmail()) || '';
-        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase() === 'harsh.rana@maqsoftware.com' || email.toLowerCase().includes('admin');
+        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase().includes('admin');
         if (!isAdmin) {
             vscode.window.showErrorMessage('Permission denied: Only administrators can permanently delete artifacts.');
             return;

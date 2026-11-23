@@ -573,7 +573,7 @@ export class BountyService implements IBountyService {
 
     public async claimBountyAsync(id: string): Promise<BountyDto | null> {
         const token = await this.authProvider.getToken();
-        const userEmail = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+        const userEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
         const nowIso = new Date().toISOString();
         const claimedMs = new Date(nowIso).getTime();
 
@@ -867,7 +867,7 @@ export class BountyService implements IBountyService {
 
     public async completeBountyAsync(id: string): Promise<BountyDto | null> {
         const token = await this.authProvider.getToken();
-        const userEmail = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+        const userEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
 
         // 1. Persist directly to Azure DevOps Git repository (/governance/bounties.json)
         await this.adoGovernanceService.completeBountyInAdoAsync(id, userEmail).catch(() => {});

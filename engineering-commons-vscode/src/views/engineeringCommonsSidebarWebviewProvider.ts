@@ -53,7 +53,9 @@ export function isPlaybookArtifact(a: any): boolean {
 }
 
 export function classifyArtifactUsability(item: any): { usability: string; usabilityLabel: string; usabilityBadge: string; isCopilotReady: boolean } {
-    const isLeap = item.source === 'AI_LEAP' || (item.id || item.name || '').startsWith('leap-');
+    const isLeap = item.source === 'AI_LEAP' || 
+                   (item.id || item.name || '').startsWith('leap-') ||
+                   (Array.isArray(item.files) && item.files.some((f: any) => typeof f.content === 'string' && (f.content.includes("source: 'AI_LEAP'") || f.content.includes("source: AI_LEAP") || f.content.includes("ai-leap") || f.content.includes("AI Leap Federated Registry"))));
     const u = item.usability || '';
 
     // Architecture presentation deck (.pptx) - deprecated & excluded from marketplace
@@ -358,6 +360,13 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                                 }
                             }
                         }
+                        const isItemLeap = item.source === 'AI_LEAP' || 
+                            (item.id || item.name || '').startsWith('leap-') ||
+                            (Array.isArray(item.files) && item.files.some((f: any) => 
+                                (typeof f.content === 'string' && (f.content.includes("source: 'AI_LEAP'") || f.content.includes("source: AI_LEAP") || f.content.includes("ai-leap") || f.content.includes("AI Leap Federated Registry")))
+                            ));
+                        const effectiveSource = isItemLeap ? 'AI_LEAP' : (item.source || 'CIP');
+
                         return {
                             name: item.name || item.id,
                             title: item.title || item.name || item.id,
@@ -366,7 +375,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                             isPrivate: Boolean(item.isPrivate),
                             isCertified: Boolean(item.isCertified !== undefined ? item.isCertified : true),
                             isFeatured,
-                            source: item.source || 'CIP',
+                            source: effectiveSource,
                             domain: item.domain || item.category || 'General',
                             category: item.category || item.domain || 'General',
                             subcategory: item.subcategory || item.stage || '',
@@ -698,7 +707,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     vscode.window.showErrorMessage('You must be logged in to request access. Run "Engineering Commons: Login" first.');
                     break;
                 }
-                const userEmail = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+                const userEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                 const token = await this.authProvider.getToken();
                 const role = (message.role || 'REVIEWER').toUpperCase();
                 let reason = message.reason;
@@ -727,7 +736,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 const currentRank = ROLE_RANKS[currentRole] || 1;
                 const requestedRank = ROLE_RANKS[role] || 2;
 
-                if (currentRole === 'ADMIN' || userEmail.toLowerCase() === 'harsh.rana@maqsoftware.com') {
+                if (currentRole === 'ADMIN' || userEmail.toLowerCase().includes('admin')) {
                     vscode.window.showInformationMessage('You already have Administrator permissions with full access.');
                     break;
                 }
@@ -797,7 +806,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 }
 
                 if (success) {
-                    vscode.window.showInformationMessage(`✓ Access request for ${role} submitted! Admin harsh.rana@maqsoftware.com has been notified.`);
+                    vscode.window.showInformationMessage(`✓ Access request for ${role} submitted! Administrator has been notified.`);
                     this.currentTab = 'my-work';
                     await this.refresh();
                 } else if (!businessError) {
@@ -820,7 +829,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
                 let success = false;
                 try {
-                    const adminEmail = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+                    const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.approveAccessRequestAsync(reqId, adminEmail, notes);
                     if (adoOk) success = true;
                 } catch {}
@@ -866,7 +875,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
                 let success = false;
                 try {
-                    const adminEmail = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+                    const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.rejectAccessRequestAsync(reqId, adminEmail, notes);
                     if (adoOk) success = true;
                 } catch {}
@@ -915,7 +924,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
                 let success = false;
                 try {
-                    const adminEmail = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+                    const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.revokeAccessAsync(email, adminEmail, notes);
                     if (adoOk) success = true;
                 } catch {}
@@ -966,7 +975,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
                 let success = false;
                 try {
-                    const adminEmail = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+                    const adminEmail = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
                     const adoOk = await this.adoGovernanceService.certifyReviewerAsync(email, adminEmail, notes);
                     if (adoOk) success = true;
                 } catch {}
@@ -1050,7 +1059,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 const token = await this.authProvider.getToken();
                 const recipient = await vscode.window.showInputBox({
                     prompt: 'Recipient email address for test notification:',
-                    value: 'harsh.rana@maqsoftware.com'
+                    value: 'admin@maqsoftware.com'
                 });
                 if (!recipient) break;
                 const res = await this.fetchJson<any>(`${this.backendUrl}/api/admin/emails/test`, token, 'POST', {
@@ -1075,7 +1084,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
     private async handleDeleteArtifact(artifactName: string): Promise<void> {
         const role = (await this.authProvider.getRole?.()) || 'CONSUMER';
         const email = (await this.authProvider.getEmail()) || '';
-        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase() === 'harsh.rana@maqsoftware.com' || email.toLowerCase().includes('admin');
+        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase().includes('admin');
         if (!isAdmin) {
             vscode.window.showErrorMessage('Permission denied: Only administrators can permanently delete artifacts.');
             return;
@@ -1137,6 +1146,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
     private async renderHtml(force = false): Promise<string> {
         const isAuth = await this.authProvider.isAuthenticated();
         const userEmail = isAuth ? ((await this.authProvider.getEmail()) || 'user@company.com') : '';
+        const isPersonalAdmin = userEmail.toLowerCase().startsWith('harsh') || userEmail.toLowerCase().includes('.rana');
+        const displayUserEmail = isAuth ? (isPersonalAdmin ? 'admin@maqsoftware.com' : userEmail) : 'Not logged in';
         let rawRole = isAuth ? ((await this.authProvider.getRole?.()) || 'CONSUMER') : 'CONSUMER';
 
         let adminAccessRequests: any[] = [];
@@ -1174,7 +1185,6 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
         const isAdmin = isAuth && (
             rawRole === 'ADMIN' ||
-            userEmail.toLowerCase() === 'harsh.rana@maqsoftware.com' ||
             userEmail.toLowerCase() === 'admin@company.com' ||
             userEmail.toLowerCase() === 'admin@maqsoftware.com' ||
             userEmail.toLowerCase() === 'admin@test.com'
@@ -1606,8 +1616,14 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         const reviewCount = marketArtifacts.filter(isReviewArtifact).length;
         const packageCount = marketArtifacts.filter(a => a.type === 'package' || a.type === 'cippackage').length;
         const certifiedCount = marketArtifacts.filter(a => a.isCertified).length;
-        const leapArtifacts: DiscoveredArtifactItem[] = [];
-        const leapCount = 0;
+        const isLeapArtifact = (a: any) => {
+            return a.source === 'AI_LEAP' || 
+                   String(a.source || '').toLowerCase().includes('leap') || 
+                   String(a.name || a.id || '').startsWith('leap-') ||
+                   (Array.isArray((a as any).files) && (a as any).files.some((f: any) => typeof f.content === 'string' && (f.content.includes("source: 'AI_LEAP'") || f.content.includes("source: AI_LEAP") || f.content.includes("ai-leap") || f.content.includes("AI Leap Federated Registry"))));
+        };
+        const leapArtifacts: DiscoveredArtifactItem[] = marketArtifacts.filter(isLeapArtifact);
+        const leapCount = leapArtifacts.length;
         const nativeCount = marketArtifacts.length;
         const leapDomains: string[] = [];
         const copilotReadyCount = marketArtifacts.filter(a => a.isCopilotReady === true || (a as any).usability === 'copilot-ready' || a.type === 'agent' || a.type === 'skill').length;
@@ -4012,9 +4028,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         <div class="user-header-banner">
             <!-- Row 1: Identity + Controls -->
             <div class="user-header-top">
-                <div class="user-identity-block" title="${isAuth ? `Logged in as ${userEmail} (Role: ${userRole})` : 'Not logged in'}">
+                <div class="user-identity-block" title="${isAuth ? `Logged in as ${displayUserEmail} (Role: ${userRole})` : 'Not logged in'}">
                     <div class="user-status-dot ${isAuth ? 'online' : 'offline'}"></div>
-                    <span class="user-email-text">${isAuth ? userEmail : 'Not logged in'}</span>
+                    <span class="user-email-text">${displayUserEmail}</span>
                     ${isAuth ? `<span class="user-role-pill role-${userRole.toLowerCase()}">${userRole}</span>` : ''}
                 </div>
 
@@ -4122,6 +4138,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             <div class="market-filter-toolbar" id="market-filter-toolbar">
                 <div class="market-filter-inline" id="type-filter-bar">
                     <span class="chip market-pill-btn active" data-type="all" onclick="selectTypeFilter('all')">All (${marketArtifacts.length})</span>
+                    <span class="chip market-pill-btn" data-type="ai-leap" onclick="selectTypeFilter('ai-leap')">🚀 AI Leap (${leapCount})</span>
                     <span class="chip market-pill-btn" data-type="code-review" onclick="selectTypeFilter('code-review')">🔍 Code Review (${reviewCount})</span>
                     <span class="chip market-pill-btn" data-type="featured" onclick="selectTypeFilter('featured')">⭐ Featured (${featuredCount})</span>
                     <span class="chip market-pill-btn" data-type="token-optimization" onclick="selectTypeFilter('token-optimization')">⚡ Token Optimization (${tokenOptCount})</span>
@@ -4144,6 +4161,14 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     <span id="overflow-filter-count"></span>
                 </button>
                 <div class="market-filter-dropdown" id="type-overflow-dropdown"></div>
+                <select id="market-type-select" class="responsive-category-select" style="display: none;" onchange="selectTypeFilter(this.value)">
+                    <option value="all">All</option>
+                    <option value="ai-leap">AI Leap</option>
+                    <option value="agent">Agents</option>
+                    <option value="skill">Skills</option>
+                    <option value="mcpserver">MCP</option>
+                    <option value="certified">Certified</option>
+                </select>
             </div>
 
             <div class="count-row" id="market-count">${marketArtifacts.length} artifacts</div>
@@ -4603,7 +4628,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                         <textarea id="request-reason-input" rows="3" placeholder="Explain why you need elevated access (project, lead approval, etc.)..." style="padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border-strong); background: var(--input-bg); color: var(--text-primary); font-size: 11.5px; font-family: inherit; resize: vertical;"></textarea>
 
                         <button id="submit-access-btn" class="btn-approve" style="margin-top: 4px; padding: 7px 12px; cursor: pointer;" onclick="submitAccessForm()">
-                            Submit Request to Admin (harsh.rana@maqsoftware.com)
+                            Submit Request to Administrator
                         </button>
                     </div>`))}
                 </div>
@@ -4837,7 +4862,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 window.__isSubmittingAccess = false;
                 if (submitBtn) {
                     submitBtn.disabled = false;
-                    submitBtn.innerText = 'Submit Request to Admin (harsh.rana@maqsoftware.com)';
+                    submitBtn.innerText = 'Submit Request to Administrator';
                 }
             }, 6000);
         }
@@ -5186,11 +5211,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
 
         function selectTypeFilter(type) {
             const t = type.toLowerCase();
-            if (t === 'leap') {
-                selectSourceTab('ai-leap');
-                return;
-            }
-            currentSelectedType = t;
+            currentSelectedType = (t === 'leap') ? 'ai-leap' : t;
             document.querySelectorAll('.market-pill-btn').forEach(btn => {
                 const btnType = (btn.getAttribute('data-type') || 'all').toLowerCase();
                 if (btnType === currentSelectedType) {
@@ -5257,7 +5278,13 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                                    name.includes('playbook') ||
                                    title.includes('playbook');
 
+                const isLeap = source === 'ai-leap' || 
+                               c.getAttribute('data-tooltip-leap') === 'true' || 
+                               c.classList.contains('leap-card-item') ||
+                               c.getAttribute('data-source') === 'ai-leap';
+
                 const matchesType = (currentSelectedType === 'all') || 
+                                    ((currentSelectedType === 'ai-leap' || currentSelectedType === 'leap') && isLeap) ||
                                     (currentSelectedType === 'playbook' && isPlaybook) ||
                                     (currentSelectedType === 'code-review' && isReview) ||
                                     (currentSelectedType === 'review' && isReview) ||
@@ -5293,7 +5320,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     prefix = 'Engineering Commons: ';
                 }
                 let unit = 'artifacts';
-                if (currentSelectedType === 'token-optimization') {
+                if (currentSelectedType === 'ai-leap' || currentSelectedType === 'leap') {
+                    unit = visibleCount === 1 ? 'AI Leap solution' : 'AI Leap solutions';
+                } else if (currentSelectedType === 'token-optimization') {
                     unit = visibleCount === 1 ? 'token optimization skill' : 'token optimization skills';
                 } else if (currentSelectedType === 'copilot-ready') {
                     unit = visibleCount === 1 ? 'Copilot & Claude ready prompt' : 'Copilot & Claude ready prompts';
@@ -5512,7 +5541,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     icon: '📖',
                     badgeHtml: '<span class=\"playbook-badge\">📖 Prompt Playbook</span>',
                     title: 'Azure BI & Data Engineering Prompt Playbook',
-                    desc: 'Authentic production prompt extracted verbatim from the Azure BI & Data Engineering Playbook by harsh.rana@maqsoftware.com.',
+                    desc: 'Authentic production prompt extracted verbatim from the Azure BI & Data Engineering Playbook.',
                     bullets: [
                         { icon: '📖', title: 'Verbatim Prompt', text: '100% authentic prompt with zero unauthorized changes or rephrasing.' },
                         { icon: '☁️', title: 'Azure BI & Fabric', text: 'Tailored for Microsoft Fabric, Synapse, Databricks, Azure Data Factory, and Power BI.' },
@@ -5887,7 +5916,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             return this.inFlightRequests.get(cacheKey)!;
         }
 
-        const email = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+        const email = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
         const promise = new Promise<{ status: number; data?: T }>((resolve) => {
             try {
                 const parsedUrl = new URL(url);

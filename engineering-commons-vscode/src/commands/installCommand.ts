@@ -204,7 +204,7 @@ export function synthesizeArtifactFiles(
     artifactName: string,
     version: string = '1.0.0',
     type: string = 'skill',
-    author: string = 'harsh.rana@maqsoftware.com'
+    author: string = 'admin@maqsoftware.com'
 ): Array<{ path: string; content: string }> {
     const normType = (type || 'skill').toLowerCase();
     const formattedTitle = artifactName.split(/[-_]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');

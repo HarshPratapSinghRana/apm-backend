@@ -812,7 +812,7 @@ export class ArtifactDetailsWebviewProvider {
         const userRole = (await this.authProvider.getRole?.()) || '';
         const isOwner = Boolean(currentUserEmail && producerEmail && (currentUserEmail.toLowerCase() === producerEmail.toLowerCase()));
         const isReviewer = userRole.toUpperCase() === 'REVIEWER' || userRole.toUpperCase() === 'ADMIN' || currentUserEmail.toLowerCase().includes('reviewer') || currentUserEmail.toLowerCase().includes('admin');
-        const isAdmin = userRole.toUpperCase() === 'ADMIN' || currentUserEmail.toLowerCase() === 'harsh.rana@maqsoftware.com' || currentUserEmail.toLowerCase().includes('admin');
+        const isAdmin = userRole.toUpperCase() === 'ADMIN' || currentUserEmail.toLowerCase().includes('admin');
 
         // Gating Verification: User must have downloaded AND used the tool at least 1 time
         const hasDownloaded = isInstalled || Boolean(usageAnalytics && usageAnalytics.downloads > 0);
@@ -898,7 +898,7 @@ export class ArtifactDetailsWebviewProvider {
         ArtifactDetailsWebviewProvider.invalidateDetailsCache(artifactName);
         const role = (await this.authProvider.getRole?.()) || 'CONSUMER';
         const email = (await this.authProvider.getEmail()) || '';
-        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase() === 'harsh.rana@maqsoftware.com' || email.toLowerCase().includes('admin');
+        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase().includes('admin');
         if (!isAdmin) {
             vscode.window.showErrorMessage('Permission denied: Only administrators can modify featured status.');
             return;
@@ -1010,7 +1010,7 @@ export class ArtifactDetailsWebviewProvider {
         ArtifactDetailsWebviewProvider.invalidateDetailsCache(artifactName);
         const role = (await this.authProvider.getRole?.()) || 'CONSUMER';
         const email = (await this.authProvider.getEmail()) || '';
-        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase() === 'harsh.rana@maqsoftware.com' || email.toLowerCase().includes('admin');
+        const isAdmin = role.toUpperCase() === 'ADMIN' || email.toLowerCase().includes('admin');
         if (!isAdmin) {
             vscode.window.showErrorMessage('Permission denied: Only administrators can permanently delete artifacts.');
             return;
@@ -1709,7 +1709,7 @@ export class ArtifactDetailsWebviewProvider {
             return ArtifactDetailsWebviewProvider.inFlightDetailsRequests.get(cacheKey)! as Promise<{ status: number; data: T | null }>;
         }
 
-        const email = (await this.authProvider.getEmail()) || 'harsh.rana@maqsoftware.com';
+        const email = (await this.authProvider.getEmail()) || 'admin@maqsoftware.com';
         const promise = new Promise<{ status: number; data: T | null }>((resolve) => {
             try {
                 const url = new URL(urlStr);

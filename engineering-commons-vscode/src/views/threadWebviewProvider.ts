@@ -464,7 +464,7 @@ export class ThreadWebviewProvider {
 
             const effectiveEmail = currentUserEmail || '';
             const role = (await this.authProvider.getRole?.()) || 'PRODUCER';
-            const isAdmin = role === 'ADMIN' || effectiveEmail.toLowerCase() === 'harsh.rana@maqsoftware.com' || effectiveEmail.toLowerCase().includes('admin');
+            const isAdmin = role === 'ADMIN' || effectiveEmail.toLowerCase().includes('admin');
             const isReviewer: boolean = Boolean(
                 role === 'REVIEWER' ||
                 role === 'CERTIFIED_REVIEWER' ||

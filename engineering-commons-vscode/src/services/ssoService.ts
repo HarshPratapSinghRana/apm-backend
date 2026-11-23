@@ -274,7 +274,7 @@ function isAllowedDomain(email: string): boolean {
 
 function determineUserRole(email: string): string {
     const lower = email.toLowerCase();
-    if (lower === 'harsh.rana@maqsoftware.com' || lower.includes('admin')) {
+    if (lower.includes('admin')) {
         return 'ADMIN';
     }
     if (lower.includes('reviewer')) {

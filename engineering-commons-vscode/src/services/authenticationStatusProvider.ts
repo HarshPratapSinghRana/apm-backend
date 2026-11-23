@@ -114,7 +114,6 @@ export class SessionFileAuthStatusProvider implements IAuthenticationStatusProvi
 
             const email = (await this.getEmail()) || '';
             const lowerEmail = email.toLowerCase();
-            if (lowerEmail === 'harsh.rana@maqsoftware.com') return 'ADMIN';
             if (lowerEmail.includes('admin')) return 'ADMIN';
             if (lowerEmail.includes('reviewer')) return 'REVIEWER';
             if (lowerEmail.includes('contributor') || lowerEmail.includes('producer')) return 'CONTRIBUTOR';

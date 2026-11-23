@@ -502,7 +502,8 @@
         "content": "# Agent Evaluation Agent (`agent-eval`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install agent-eval\n\n# Or with federated namespace:\nengineering-commons install leap-agent-eval\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@agent-eval Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@agent-eval Please analyze our active codebase and built-in opentelemetry instrumentation. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@agent-eval Please analyze our active codebase and built-in opentelemetry instrumentation. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "agent-mart",
@@ -563,7 +564,8 @@
         "content": "# AgentMart Agent (`agent-mart`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install agent-mart\n\n# Or with federated namespace:\nengineering-commons install leap-agent-mart\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@agent-mart Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@agent-mart Please analyze our active codebase and ai-driven personalized product recommendations. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@agent-mart Please analyze our active codebase and ai-driven personalized product recommendations. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "ai-biller-timekeeper-agent",
@@ -625,7 +627,8 @@
         "content": "# AI Biller & Timekeeper Agent (`ai-biller-timekeeper-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Legal\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install ai-biller-timekeeper-agent\n\n# Or with federated namespace:\nengineering-commons install leap-ai-biller-timekeeper-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@ai-biller-timekeeper-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@ai-biller-timekeeper-agent Please analyze our active codebase and natural language to structured time-entry conversion. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@ai-biller-timekeeper-agent Please analyze our active codebase and natural language to structured time-entry conversion. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "ai-personal-stylist-shopping-agent",
@@ -688,7 +691,8 @@
         "content": "# Style Crew Agent (`ai-personal-stylist-shopping-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install ai-personal-stylist-shopping-agent\n\n# Or with federated namespace:\nengineering-commons install leap-ai-personal-stylist-shopping-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@ai-personal-stylist-shopping-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@ai-personal-stylist-shopping-agent Please analyze our active codebase and conversational product discovery based on user intent (e.g., season, occasion, gender). Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@ai-personal-stylist-shopping-agent Please analyze our active codebase and conversational product discovery based on user intent (e.g., season, occasion, gender). Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "angular-migration-tool",
@@ -750,7 +754,8 @@
         "content": "# Angular Migration Tool Agent (`angular-migration-tool`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install angular-migration-tool\n\n# Or with federated namespace:\nengineering-commons install leap-angular-migration-tool\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@angular-migration-tool Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@angular-migration-tool Please analyze our active codebase and end-to-end legacy-to-angular migration pipeline. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@angular-migration-tool Please analyze our active codebase and end-to-end legacy-to-angular migration pipeline. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "cip-active-production-monitoring",
@@ -812,7 +817,8 @@
         "content": "# CIP — Active Production Monitoring Agent (`cip-active-production-monitoring`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Manufacturing\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install cip-active-production-monitoring\n\n# Or with federated namespace:\nengineering-commons install leap-cip-active-production-monitoring\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@cip-active-production-monitoring Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@cip-active-production-monitoring Please analyze our active codebase and deterministic engine for snapshot, daily output, risk, monitoring, ot, level loading, and coordination. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@cip-active-production-monitoring Please analyze our active codebase and deterministic engine for snapshot, daily output, risk, monitoring, ot, level loading, and coordination. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "cip-db-explorer",
@@ -950,7 +956,8 @@
         "content": "# Automated Customer Service Agent (`automated-customer-service`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install automated-customer-service\n\n# Or with federated namespace:\nengineering-commons install leap-automated-customer-service\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@automated-customer-service Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@automated-customer-service Please analyze our active codebase and 24/7 customer query resolution. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@automated-customer-service Please analyze our active codebase and 24/7 customer query resolution. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "automated-product-tag-generator",
@@ -1009,7 +1016,8 @@
         "content": "# Automated Product Tag Generator Agent (`automated-product-tag-generator`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install automated-product-tag-generator\n\n# Or with federated namespace:\nengineering-commons install leap-automated-product-tag-generator\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@automated-product-tag-generator Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@automated-product-tag-generator Please analyze our active codebase and intelligent tag extraction. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@automated-product-tag-generator Please analyze our active codebase and intelligent tag extraction. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "azure-bi-playbook",
@@ -1383,7 +1391,8 @@
         "content": "# Code Standards Reviewer Agent (`code-standards-reviewer-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install code-standards-reviewer-agent\n\n# Or with federated namespace:\nengineering-commons install leap-code-standards-reviewer-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@code-standards-reviewer-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@code-standards-reviewer-agent Please analyze our active codebase and staticanalyst → remediationspecialist + seniorarchitect (parallel asyncio.gather) → finalreport. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@code-standards-reviewer-agent Please analyze our active codebase and staticanalyst → remediationspecialist + seniorarchitect (parallel asyncio.gather) → finalreport. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "codeguardian",
@@ -1446,7 +1455,8 @@
         "content": "# CodeGuardian Agent (`codeguardian`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install codeguardian\n\n# Or with federated namespace:\nengineering-commons install leap-codeguardian\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@codeguardian Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@codeguardian Please analyze our active codebase and multi-agent review pipeline — parallel logic, security, and testing agents built on microsoft agent framework (maf). Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@codeguardian Please analyze our active codebase and multi-agent review pipeline — parallel logic, security, and testing agents built on microsoft agent framework (maf). Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "consumer-intelligence-agent",
@@ -1509,7 +1519,8 @@
         "content": "# Consumer Intelligence Agent (`consumer-intelligence-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install consumer-intelligence-agent\n\n# Or with federated namespace:\nengineering-commons install leap-consumer-intelligence-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@consumer-intelligence-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@consumer-intelligence-agent Please analyze our active codebase and continuous collection of consumer feedback from online sources. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@consumer-intelligence-agent Please analyze our active codebase and continuous collection of consumer feedback from online sources. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "copilot-accessibility-testing",
@@ -1568,7 +1579,8 @@
         "content": "# GitHub Copilot – Accessibility Testing Agent (`copilot-accessibility-testing`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Feature Showcase\n- **Architecture**: Low Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install copilot-accessibility-testing\n\n# Or with federated namespace:\nengineering-commons install leap-copilot-accessibility-testing\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@copilot-accessibility-testing Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "Integrate copilot-accessibility-testing into the workspace and run standard execution for Leverages GitHub Copilot to perform accessibility testing of websites, automatically identifying and listing accessibility issues to ensure WCAG compliance and inclusive user experiences."
+    "copilotPrompt": "Integrate copilot-accessibility-testing into the workspace and run standard execution for Leverages GitHub Copilot to perform accessibility testing of websites, automatically identifying and listing accessibility issues to ensure WCAG compliance and inclusive user experiences.",
+    "source": "AI_LEAP"
   },
   {
     "id": "copilot-code-upgrade",
@@ -1627,7 +1639,8 @@
         "content": "# GitHub Copilot – Code Upgrade Agent (`copilot-code-upgrade`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Feature Showcase\n- **Architecture**: Low Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install copilot-code-upgrade\n\n# Or with federated namespace:\nengineering-commons install leap-copilot-code-upgrade\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@copilot-code-upgrade Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "Integrate copilot-code-upgrade into the workspace and run standard execution for Demonstrates using GitHub Copilot to generate methods and components for new features during the development phase, significantly reducing time spent writing boilerplate code."
+    "copilotPrompt": "Integrate copilot-code-upgrade into the workspace and run standard execution for Demonstrates using GitHub Copilot to generate methods and components for new features during the development phase, significantly reducing time spent writing boilerplate code.",
+    "source": "AI_LEAP"
   },
   {
     "id": "copilot-mcp-server",
@@ -1686,7 +1699,8 @@
         "content": "# GitHub Copilot – MCP Server Agent (`copilot-mcp-server`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Feature Showcase\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install copilot-mcp-server\n\n# Or with federated namespace:\nengineering-commons install leap-copilot-mcp-server\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@copilot-mcp-server Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@copilot-mcp-server Please analyze our active codebase and on-demand mock matter data generation. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@copilot-mcp-server Please analyze our active codebase and on-demand mock matter data generation. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "copilot-ui-testing",
@@ -1745,7 +1759,8 @@
         "content": "# GitHub Copilot – UI Testing Agent (`copilot-ui-testing`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Feature Showcase\n- **Architecture**: Low Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install copilot-ui-testing\n\n# Or with federated namespace:\nengineering-commons install leap-copilot-ui-testing\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@copilot-ui-testing Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "Integrate copilot-ui-testing into the workspace and run standard execution for Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions."
+    "copilotPrompt": "Integrate copilot-ui-testing into the workspace and run standard execution for Uses GitHub Copilot to create UI test cases based on identified scenarios and detect edge cases that may affect expected behavior of UI components across interactions, data inputs, and rendering conditions.",
+    "source": "AI_LEAP"
   },
   {
     "id": "copilot-unit-testing",
@@ -1804,7 +1819,8 @@
         "content": "# GitHub Copilot – Unit Testing Agent (`copilot-unit-testing`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Feature Showcase\n- **Architecture**: Low Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install copilot-unit-testing\n\n# Or with federated namespace:\nengineering-commons install leap-copilot-unit-testing\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@copilot-unit-testing Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "Integrate copilot-unit-testing into the workspace and run standard execution for Uses GitHub Copilot to generate unit test cases from identified scenarios and detect edge cases affecting UI component behavior across interactions, data inputs, and rendering conditions."
+    "copilotPrompt": "Integrate copilot-unit-testing into the workspace and run standard execution for Uses GitHub Copilot to generate unit test cases from identified scenarios and detect edge cases affecting UI component behavior across interactions, data inputs, and rendering conditions.",
+    "source": "AI_LEAP"
   },
   {
     "id": "database-migration-guardian",
@@ -2012,7 +2028,8 @@
         "content": "# DevelopFAST Agent (`develop-fast`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install develop-fast\n\n# Or with federated namespace:\nengineering-commons install leap-develop-fast\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@develop-fast Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@develop-fast Please analyze our active codebase and automated user story generation from requirements. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@develop-fast Please analyze our active codebase and automated user story generation from requirements. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "devops-powerbi-semantic-model",
@@ -2071,7 +2088,8 @@
         "content": "# Enhanced DevOps for Power BI Semantic Model Agent (`devops-powerbi-semantic-model`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Feature Showcase\n- **Architecture**: Low Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Concept\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install devops-powerbi-semantic-model\n\n# Or with federated namespace:\nengineering-commons install leap-devops-powerbi-semantic-model\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@devops-powerbi-semantic-model Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "Integrate devops-powerbi-semantic-model into the workspace and run standard execution for AI-enhanced DevOps pipeline for Power BI Semantic Models, streamlining deployment, version control, and model management within enterprise BI workflows."
+    "copilotPrompt": "Integrate devops-powerbi-semantic-model into the workspace and run standard execution for AI-enhanced DevOps pipeline for Power BI Semantic Models, streamlining deployment, version control, and model management within enterprise BI workflows.",
+    "source": "AI_LEAP"
   },
   {
     "id": "docker-container-optimizer",
@@ -2206,7 +2224,8 @@
         "content": "# Enterprise Knowledge Bot Agent (`enterprise-knowledge-bot`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install enterprise-knowledge-bot\n\n# Or with federated namespace:\nengineering-commons install leap-enterprise-knowledge-bot\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@enterprise-knowledge-bot Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@enterprise-knowledge-bot Please analyze our active codebase and local faiss vector index for uploaded docs + azure ai search for external knowledge bases. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@enterprise-knowledge-bot Please analyze our active codebase and local faiss vector index for uploaded docs + azure ai search for external knowledge bases. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "enterprise-mock-data-generator",
@@ -2351,7 +2370,8 @@
         "content": "# Executive Copilot Agent (`executive-copilot-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Concept\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install executive-copilot-agent\n\n# Or with federated namespace:\nengineering-commons install leap-executive-copilot-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@executive-copilot-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@executive-copilot-agent Please analyze our active codebase and executive-level query processing. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@executive-copilot-agent Please analyze our active codebase and executive-level query processing. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "expense-forecaster",
@@ -2410,7 +2430,8 @@
         "content": "# Expense Forecaster Agent (`expense-forecaster`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install expense-forecaster\n\n# Or with federated namespace:\nengineering-commons install leap-expense-forecaster\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@expense-forecaster Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@expense-forecaster Please analyze our active codebase and predictive expense modeling. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@expense-forecaster Please analyze our active codebase and predictive expense modeling. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "expense-trend-analyzer",
@@ -2475,7 +2496,8 @@
         "content": "# Expense Trend Analyzer Agent (`expense-trend-analyzer`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install expense-trend-analyzer\n\n# Or with federated namespace:\nengineering-commons install leap-expense-trend-analyzer\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@expense-trend-analyzer Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@expense-trend-analyzer Please analyze our active codebase and multi-agent architecture using microsoft agent framework (maf). Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@expense-trend-analyzer Please analyze our active codebase and multi-agent architecture using microsoft agent framework (maf). Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "figma-context-mcp",
@@ -2612,7 +2634,8 @@
         "content": "# Fraud & Anomaly Detection Agent (`fraud-anomaly-detection-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install fraud-anomaly-detection-agent\n\n# Or with federated namespace:\nengineering-commons install leap-fraud-anomaly-detection-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@fraud-anomaly-detection-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@fraud-anomaly-detection-agent Please analyze our active codebase and automated fraud and anomaly detection across retail transaction datasets. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@fraud-anomaly-detection-agent Please analyze our active codebase and automated fraud and anomaly detection across retail transaction datasets. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "gdpr-compliance-agent",
@@ -2674,7 +2697,8 @@
         "content": "# GDPR Compliance Agent (`gdpr-compliance-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Legal\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install gdpr-compliance-agent\n\n# Or with federated namespace:\nengineering-commons install leap-gdpr-compliance-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@gdpr-compliance-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@gdpr-compliance-agent Please analyze our active codebase and end-to-end gdpr right-to-be-forgotten workflow automation. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@gdpr-compliance-agent Please analyze our active codebase and end-to-end gdpr right-to-be-forgotten workflow automation. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "git-auto-commit",
@@ -2904,7 +2928,8 @@
         "content": "# Hiring Support Agent (`hiring-support-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install hiring-support-agent\n\n# Or with federated namespace:\nengineering-commons install leap-hiring-support-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@hiring-support-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@hiring-support-agent Please analyze our active codebase and interviewquestiongenerator agent produces categorized questions (technical, behavioral, competency, cultural fit) tailored to role seniority. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@hiring-support-agent Please analyze our active codebase and interviewquestiongenerator agent produces categorized questions (technical, behavioral, competency, cultural fit) tailored to role seniority. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "inventory-overview-agent",
@@ -2966,7 +2991,8 @@
         "content": "# Inventory Overview Agent (IOA) Agent (`inventory-overview-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Manufacturing\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install inventory-overview-agent\n\n# Or with federated namespace:\nengineering-commons install leap-inventory-overview-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@inventory-overview-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@inventory-overview-agent Please analyze our active codebase and sub-agents registered as callable tools on the orchestrator — no manual routing logic. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@inventory-overview-agent Please analyze our active codebase and sub-agents registered as callable tools on the orchestrator — no manual routing logic. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "invoice-extraction-agent",
@@ -3028,7 +3054,8 @@
         "content": "# Invoice Extraction Agent (`invoice-extraction-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install invoice-extraction-agent\n\n# Or with federated namespace:\nengineering-commons install leap-invoice-extraction-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@invoice-extraction-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@invoice-extraction-agent Please analyze our active codebase and extractor → validator → ledesmapper agents via microsoft autogen. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@invoice-extraction-agent Please analyze our active codebase and extractor → validator → ledesmapper agents via microsoft autogen. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "invoice-po-matching-agent",
@@ -3093,7 +3120,8 @@
         "content": "# Invoice PO Matching Agent (`invoice-po-matching-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install invoice-po-matching-agent\n\n# Or with federated namespace:\nengineering-commons install leap-invoice-po-matching-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@invoice-po-matching-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@invoice-po-matching-agent Please analyze our active codebase and automated invoice-to-purchase-order matching. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@invoice-po-matching-agent Please analyze our active codebase and automated invoice-to-purchase-order matching. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "kubernetes-security-auditor",
@@ -3199,7 +3227,8 @@
         "content": "# LaunchFAST Agent (`launch-fast`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install launch-fast\n\n# Or with federated namespace:\nengineering-commons install leap-launch-fast\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@launch-fast Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@launch-fast Please analyze our active codebase and centralized catalog for agentic artifacts across multiple categories. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@launch-fast Please analyze our active codebase and centralized catalog for agentic artifacts across multiple categories. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "legal-intake-routing",
@@ -3258,7 +3287,8 @@
         "content": "# Legal Intake & Routing Agent (`legal-intake-routing`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Legal\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install legal-intake-routing\n\n# Or with federated namespace:\nengineering-commons install leap-legal-intake-routing\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@legal-intake-routing Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@legal-intake-routing Please analyze our active codebase and automated client intake interviews. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@legal-intake-routing Please analyze our active codebase and automated client intake interviews. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "loan-underwriting-agent",
@@ -3323,7 +3353,8 @@
         "content": "# Loan Underwriting Agent (`loan-underwriting-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install loan-underwriting-agent\n\n# Or with federated namespace:\nengineering-commons install leap-loan-underwriting-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@loan-underwriting-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@loan-underwriting-agent Please analyze our active codebase and end-to-end automated loan underwriting workflow. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@loan-underwriting-agent Please analyze our active codebase and end-to-end automated loan underwriting workflow. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "loyalty-newsletter-enrollment-agent",
@@ -3385,7 +3416,8 @@
         "content": "# Loyalty & Newsletter Enrollment Agent (`loyalty-newsletter-enrollment-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install loyalty-newsletter-enrollment-agent\n\n# Or with federated namespace:\nengineering-commons install leap-loyalty-newsletter-enrollment-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@loyalty-newsletter-enrollment-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@loyalty-newsletter-enrollment-agent Please analyze our active codebase and google gemini 1.5 flash with chain-of-thought reasoning and rag knowledge base retrieval for accurate, context-aware responses. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@loyalty-newsletter-enrollment-agent Please analyze our active codebase and google gemini 1.5 flash with chain-of-thought reasoning and rag knowledge base retrieval for accurate, context-aware responses. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "market-intelligence-pricing-agent",
@@ -3444,7 +3476,8 @@
         "content": "# Market Intelligence & Pricing Agent (`market-intelligence-pricing-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install market-intelligence-pricing-agent\n\n# Or with federated namespace:\nengineering-commons install leap-market-intelligence-pricing-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@market-intelligence-pricing-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@market-intelligence-pricing-agent Please analyze our active codebase and competitive rate benchmarking. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@market-intelligence-pricing-agent Please analyze our active codebase and competitive rate benchmarking. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "mcp-chat-application",
@@ -3499,7 +3532,8 @@
         "content": "# MCP Chat Application Agent (`mcp-chat-application`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Concept\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install mcp-chat-application\n\n# Or with federated namespace:\nengineering-commons install leap-mcp-chat-application\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@mcp-chat-application Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@mcp-chat-application Please analyze our active codebase and mcp-based conversational flow. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@mcp-chat-application Please analyze our active codebase and mcp-based conversational flow. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "monday-morning-agent",
@@ -3564,7 +3598,8 @@
         "content": "# Monday Morning Agent (`monday-morning-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install monday-morning-agent\n\n# Or with federated namespace:\nengineering-commons install leap-monday-morning-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@monday-morning-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@monday-morning-agent Please analyze our active codebase and metric subscription and custom question configuration. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@monday-morning-agent Please analyze our active codebase and metric subscription and custom question configuration. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "new-hire-experience-and-onboarding-orchestration-agent",
@@ -3630,7 +3665,8 @@
         "content": "# New Hire Experience and Onboarding Orchestration Agent (`new-hire-experience-and-onboarding-orchestration-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install new-hire-experience-and-onboarding-orchestration-agent\n\n# Or with federated namespace:\nengineering-commons install leap-new-hire-experience-and-onboarding-orchestration-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@new-hire-experience-and-onboarding-orchestration-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@new-hire-experience-and-onboarding-orchestration-agent Please analyze our active codebase and multi-agent onboarding orchestration. (hr, finance, it, education, admin). Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@new-hire-experience-and-onboarding-orchestration-agent Please analyze our active codebase and multi-agent onboarding orchestration. (hr, finance, it, education, admin). Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "pdf-extraction-utility",
@@ -3691,7 +3727,8 @@
         "content": "# PDF Extraction Utility Agent (`pdf-extraction-utility`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install pdf-extraction-utility\n\n# Or with federated namespace:\nengineering-commons install leap-pdf-extraction-utility\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@pdf-extraction-utility Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@pdf-extraction-utility Please analyze our active codebase and multi-format extraction (tables, images, text). Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@pdf-extraction-utility Please analyze our active codebase and multi-format extraction (tables, images, text). Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "personalization-engine",
@@ -3750,7 +3787,8 @@
         "content": "# Personalization Engine Agent (`personalization-engine`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install personalization-engine\n\n# Or with federated namespace:\nengineering-commons install leap-personalization-engine\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@personalization-engine Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@personalization-engine Please analyze our active codebase and behavioral pattern analysis. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@personalization-engine Please analyze our active codebase and behavioral pattern analysis. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "planogram-compliance-agent",
@@ -3809,7 +3847,8 @@
         "content": "# Planogram Compliance Agent (`planogram-compliance-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install planogram-compliance-agent\n\n# Or with federated namespace:\nengineering-commons install leap-planogram-compliance-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@planogram-compliance-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@planogram-compliance-agent Please analyze our active codebase and image recognition technology. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@planogram-compliance-agent Please analyze our active codebase and image recognition technology. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "poe-scanner",
@@ -3871,7 +3910,8 @@
         "content": "# POE Scanner Agent (`poe-scanner`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install poe-scanner\n\n# Or with federated namespace:\nengineering-commons install leap-poe-scanner\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@poe-scanner Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@poe-scanner Please analyze our active codebase and multi-agent pipeline orchestrated via semantic kernel agentgroupchat with yaml-configurable agents. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@poe-scanner Please analyze our active codebase and multi-agent pipeline orchestrated via semantic kernel agentgroupchat with yaml-configurable agents. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "pre-sales-agent",
@@ -3942,7 +3982,8 @@
         "content": "# Pre-Sales Agent (`pre-sales-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install pre-sales-agent\n\n# Or with federated namespace:\nengineering-commons install leap-pre-sales-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@pre-sales-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@pre-sales-agent Please analyze our active codebase and document intake & analysis. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@pre-sales-agent Please analyze our active codebase and document intake & analysis. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "product-discovery-bot",
@@ -4001,7 +4042,8 @@
         "content": "# Product Discovery Bot Agent (`product-discovery-bot`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install product-discovery-bot\n\n# Or with federated namespace:\nengineering-commons install leap-product-discovery-bot\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@product-discovery-bot Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@product-discovery-bot Please analyze our active codebase and interactive product exploration. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@product-discovery-bot Please analyze our active codebase and interactive product exploration. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "rai-agent",
@@ -4064,7 +4106,8 @@
         "content": "# RAI Agent (`rai-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install rai-agent\n\n# Or with federated namespace:\nengineering-commons install leap-rai-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@rai-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@rai-agent Please analyze our active codebase and multi-agent orchestration using crewai. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@rai-agent Please analyze our active codebase and multi-agent orchestration using crewai. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "recruiter-copilot",
@@ -4130,7 +4173,8 @@
         "content": "# Recruiter Copilot Agent (`recruiter-copilot`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Production\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install recruiter-copilot\n\n# Or with federated namespace:\nengineering-commons install leap-recruiter-copilot\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@recruiter-copilot Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@recruiter-copilot Please analyze our active codebase and ai resume screening. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@recruiter-copilot Please analyze our active codebase and ai resume screening. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "smart-store-supplychain-agent",
@@ -4193,7 +4237,8 @@
         "content": "# Smart Store Agent (`smart-store-supplychain-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install smart-store-supplychain-agent\n\n# Or with federated namespace:\nengineering-commons install leap-smart-store-supplychain-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@smart-store-supplychain-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@smart-store-supplychain-agent Please analyze our active codebase and shipment status tracking and visibility. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@smart-store-supplychain-agent Please analyze our active codebase and shipment status tracking and visibility. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "synthetic-data-generation",
@@ -4253,7 +4298,8 @@
         "content": "# Synthetic Data Generation Agent (`synthetic-data-generation`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install synthetic-data-generation\n\n# Or with federated namespace:\nengineering-commons install leap-synthetic-data-generation\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@synthetic-data-generation Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@synthetic-data-generation Please analyze our active codebase and statistical property preservation from original data. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@synthetic-data-generation Please analyze our active codebase and statistical property preservation from original data. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "vendor-invoice-reconciliation-agent",
@@ -4316,7 +4362,8 @@
         "content": "# Vendor Invoice Reconciliation Agent (VIRA) Agent (`vendor-invoice-reconciliation-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Finance\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install vendor-invoice-reconciliation-agent\n\n# Or with federated namespace:\nengineering-commons install leap-vendor-invoice-reconciliation-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@vendor-invoice-reconciliation-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@vendor-invoice-reconciliation-agent Please analyze our active codebase and automated data extraction from invoices, purchase orders, and contracts. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@vendor-invoice-reconciliation-agent Please analyze our active codebase and automated data extraction from invoices, purchase orders, and contracts. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "vendor-receipt-scanner",
@@ -4378,7 +4425,8 @@
         "content": "# Vendor Receipt Scanner Agent (`vendor-receipt-scanner`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Manufacturing\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install vendor-receipt-scanner\n\n# Or with federated namespace:\nengineering-commons install leap-vendor-receipt-scanner\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@vendor-receipt-scanner Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@vendor-receipt-scanner Please analyze our active codebase and extract (pdf/ocr) → parse → validate → storage, each node backed by a dedicated agent with registered tools. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@vendor-receipt-scanner Please analyze our active codebase and extract (pdf/ocr) → parse → validate → storage, each node backed by a dedicated agent with registered tools. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "video-generator-agent",
@@ -4438,7 +4486,8 @@
         "content": "# Video Generator Agent (`video-generator-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Engineering\n- **Architecture**: Pro Code\n- **Usability Tier**: 🤖 Copilot & Claude Ready (Copilot & Claude Ready Prompt)\n- **Maturity**: Concept\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install video-generator-agent\n\n# Or with federated namespace:\nengineering-commons install leap-video-generator-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@video-generator-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@video-generator-agent Please analyze our active codebase and parses scripts into structured workflows. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@video-generator-agent Please analyze our active codebase and parses scripts into structured workflows. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "voice-faq-agent",
@@ -4497,7 +4546,8 @@
         "content": "# Voice FAQ Agent (`voice-faq-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install voice-faq-agent\n\n# Or with federated namespace:\nengineering-commons install leap-voice-faq-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@voice-faq-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@voice-faq-agent Please analyze our active codebase and voice-enabled query processing. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@voice-faq-agent Please analyze our active codebase and voice-enabled query processing. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "wpp-pricing-optimizer-agent",
@@ -4560,7 +4610,8 @@
         "content": "# WPP Pricing Optimizer & Market Intelligence Agent (`wpp-pricing-optimizer-agent`)\n\nOfficial enterprise AI artifact from the **AI Leap Federated Registry**.\n\n- **Domain**: Retail\n- **Architecture**: Pro Code\n- **Usability Tier**: 📦 Reference App (Python) (Reference App (Python Codebase))\n- **Maturity**: Pilot\n- **Source**: AI Leap Platform\n- **Certification**: Verified Enterprise Certified (Level 3)\n\n## Quick Start & Installation\n\nInstall directly into your local workspace via Engineering Commons:\n```bash\n# Install via Engineering Commons CLI\nengineering-commons install wpp-pricing-optimizer-agent\n\n# Or with federated namespace:\nengineering-commons install leap-wpp-pricing-optimizer-agent\n```\n\n## Using in GitHub Copilot & Claude\n```markdown\n@wpp-pricing-optimizer-agent Please evaluate the current workspace and run domain assistance.\n```\n"
       }
     ],
-    "copilotPrompt": "@wpp-pricing-optimizer-agent Please analyze our active codebase and multi-scenario demand forecasting with price elasticity modeling. Identify architectural violations, security risks, and optimization opportunities."
+    "copilotPrompt": "@wpp-pricing-optimizer-agent Please analyze our active codebase and multi-scenario demand forecasting with price elasticity modeling. Identify architectural violations, security risks, and optimization opportunities.",
+    "source": "AI_LEAP"
   },
   {
     "id": "mcp-builder",

@@ -311,7 +311,7 @@ export class AdoGovernanceService {
             await this.getAccessRequestsAsync(undefined, true);
 
             let existing = this.cachedRoles.find(r => r.userEmail.toLowerCase() === normEmail);
-            const isAdmin = normEmail === 'harsh.rana@maqsoftware.com' || normEmail.includes('admin');
+            const isAdmin = normEmail.includes('admin');
 
             if (!existing) {
                 // Determine initial role: MAQ SSO users automatically receive CONTRIBUTOR role
@@ -373,7 +373,7 @@ export class AdoGovernanceService {
         const currentRank = ROLE_RANKS[currentRole] || 1;
         const requestedRank = ROLE_RANKS[targetRole] || 2;
 
-        if (currentRole === 'ADMIN' || normEmail === 'harsh.rana@maqsoftware.com') {
+        if (currentRole === 'ADMIN' || normEmail.includes('admin')) {
             throw new Error('You already have Administrator permissions with full access.');
         }
 
@@ -397,7 +397,7 @@ export class AdoGovernanceService {
             currentRole: currentRole,
             status: 'Pending',
             reason: reason || 'Requested via VS Code Extension',
-            adminEmail: 'harsh.rana@maqsoftware.com',
+            adminEmail: 'admin@maqsoftware.com',
             requestedAt: new Date().toISOString()
         };
 
@@ -419,7 +419,7 @@ export class AdoGovernanceService {
         req.status = 'Approved';
         req.reviewedAt = new Date().toISOString();
         req.adminNotes = notes || req.adminNotes || 'Approved by administrator';
-        req.adminEmail = adminEmail || 'harsh.rana@maqsoftware.com';
+        req.adminEmail = adminEmail || 'admin@maqsoftware.com';
 
         const userEmail = req.userEmail.toLowerCase();
         const targetRole = req.requestedRole.toUpperCase();
@@ -459,7 +459,7 @@ export class AdoGovernanceService {
         req.status = 'Rejected';
         req.reviewedAt = new Date().toISOString();
         req.adminNotes = notes || req.adminNotes || 'Rejected by administrator';
-        req.adminEmail = adminEmail || 'harsh.rana@maqsoftware.com';
+        req.adminEmail = adminEmail || 'admin@maqsoftware.com';
 
         return await this.pushGovernanceFilesAsync(`Reject access request ${requestId} for ${req.userEmail}`);
     }
