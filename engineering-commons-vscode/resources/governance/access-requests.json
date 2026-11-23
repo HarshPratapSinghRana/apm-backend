@@ -1,0 +1,114 @@
+{
+  "updatedAt": "2026-11-17T05:17:11.205Z",
+  "totalRequests": 9,
+  "requests": [
+    {
+      "id": "req-1792143511736-mj2dm6",
+      "userEmail": "mridul.mahajan@maqsoftware.com",
+      "requestedRole": "REVIEWER",
+      "currentRole": "CONTRIBUTOR",
+      "status": "Approved",
+      "reason": "hiii\n",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-16T09:38:31.736Z",
+      "reviewedAt": "2026-10-16T09:39:46.338Z",
+      "adminNotes": "approved"
+    },
+    {
+      "id": "req-1792143353575-99vyx",
+      "userEmail": "mridul.mahajan@maqsoftware.com",
+      "requestedRole": "CONTRIBUTOR",
+      "currentRole": "CONSUMER",
+      "status": "Approved",
+      "reason": "marketplace",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-16T09:35:53.575Z",
+      "reviewedAt": "2026-10-16T09:36:17.545Z",
+      "adminNotes": "approve"
+    },
+    {
+      "id": "req-1791369987912-bek4n",
+      "userEmail": "vivekp@maqsoftware.com",
+      "requestedRole": "REVIEWER",
+      "currentRole": "CONTRIBUTOR",
+      "status": "Approved",
+      "reason": "hi",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T10:46:27.912Z",
+      "reviewedAt": "2026-10-13T10:24:10.322Z",
+      "adminNotes": "approve"
+    },
+    {
+      "id": "req-1791363697600-y6y7d",
+      "userEmail": "vivekp@maqsoftware.com",
+      "requestedRole": "CONTRIBUTOR",
+      "currentRole": "CONSUMER",
+      "status": "Approved",
+      "reason": "hi",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T09:01:37.600Z",
+      "reviewedAt": "2026-10-07T09:02:00.592Z",
+      "adminNotes": "approved"
+    },
+    {
+      "id": "req-21425ee6",
+      "userEmail": "rishabhy@maqsoftware.com",
+      "requestedRole": "REVIEWER",
+      "currentRole": "CONTRIBUTOR",
+      "status": "Approved",
+      "reason": "Requesting Reviewer permissions for reviewing WCAG accessibility agents.",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T05:29:35.282Z",
+      "reviewedAt": "2026-10-07T08:57:01.182Z",
+      "adminNotes": "approved"
+    },
+    {
+      "id": "req-8f822992",
+      "userEmail": "vivekprasad@maqsoftware.com",
+      "requestedRole": "CONTRIBUTOR",
+      "currentRole": "CONSUMER",
+      "status": "Approved",
+      "reason": "I would like to contribute and publish new skills to the AI Artifacts marketplace.",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T03:29:35.282Z",
+      "reviewedAt": "2026-10-07T08:55:59.335Z",
+      "adminNotes": "approved"
+    },
+    {
+      "id": "req-0bc92e5e",
+      "userEmail": "producer@company.com",
+      "requestedRole": "CONTRIBUTOR",
+      "currentRole": "CONSUMER",
+      "status": "Approved",
+      "reason": "Need access to publish team artifacts",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "adminNotes": "Approved for contribution privileges",
+      "requestedAt": "2026-09-10T06:56:03.000Z",
+      "reviewedAt": "2026-09-10T06:56:15.000Z"
+    },
+    {
+      "id": "req-eae37b33",
+      "userEmail": "consumer@company.com",
+      "requestedRole": "REVIEWER",
+      "currentRole": "CONTRIBUTOR",
+      "status": "Approved",
+      "reason": "Need reviewer access to inspect AI artifacts and prompts",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "adminNotes": "Approved for reviewer permissions",
+      "requestedAt": "2026-09-09T17:21:11.000Z",
+      "reviewedAt": "2026-09-09T17:41:05.000Z"
+    },
+    {
+      "id": "req-init-1",
+      "userEmail": "developer@maqsoftware.com",
+      "requestedRole": "CONTRIBUTOR",
+      "currentRole": "CONSUMER",
+      "status": "Rejected",
+      "reason": "I would like to contribute new skills to the AI Artifacts marketplace.",
+      "adminEmail": "harsh.rana@maqsoftware.com",
+      "requestedAt": "2026-10-07T07:51:32.805Z",
+      "reviewedAt": "2026-10-07T09:05:14.976Z",
+      "adminNotes": "reject"
+    }
+  ]
+}

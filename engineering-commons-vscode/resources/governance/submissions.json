@@ -1,0 +1,46 @@
+{
+  "updatedAt": "2026-11-17T05:17:11.206Z",
+  "totalSubmissions": 2,
+  "submissions": [
+    {
+      "id": "rev-vp-agent-01",
+      "reviewId": "rev-vp-agent-01",
+      "artifactId": "vp-agent",
+      "artifactName": "vp-agent",
+      "artifactType": "agent",
+      "version": "1.0.0",
+      "content": "# VP Agent\nAn intelligent agent for enterprise VP reporting, metrics aggregation, and AI executive summaries.\n\n```yaml\nname: vp-agent\nversion: 1.0.0\ntype: agent\nstatus: InReview\n```",
+      "producerEmail": "producer@maqsoftware.com",
+      "userEmail": "producer@maqsoftware.com",
+      "status": "Approved",
+      "isPrivate": false,
+      "allowedContributors": null,
+      "allowedReviewers": null,
+      "allowedConsumers": null,
+      "submittedAt": "2026-10-15T06:53:49.578Z",
+      "feedback": "Code review approved.",
+      "reviewerEmail": "harsh.rana@maqsoftware.com",
+      "reviewedAt": "2026-10-15T06:59:18.527Z"
+    },
+    {
+      "id": "rev-a12f",
+      "reviewId": "rev-a12f",
+      "artifactId": "accessibility-fix",
+      "artifactName": "accessibility-fix",
+      "artifactType": "agent",
+      "version": "1.0.0",
+      "content": "# Accessibility Fix Agent\nAutomated WCAG compliance and contrast checks in source code.",
+      "producerEmail": "producer@maqsoftware.com",
+      "userEmail": "producer@maqsoftware.com",
+      "status": "Approved",
+      "isPrivate": false,
+      "allowedContributors": null,
+      "allowedReviewers": null,
+      "allowedConsumers": null,
+      "submittedAt": "2026-10-15T05:53:49.578Z",
+      "feedback": "Code review approved.",
+      "reviewerEmail": "harsh.rana@maqsoftware.com",
+      "reviewedAt": "2026-10-16T06:24:35.198Z"
+    }
+  ]
+}

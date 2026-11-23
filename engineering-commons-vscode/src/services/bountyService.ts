@@ -1,5 +1,7 @@
 import * as http from 'http';
 import * as https from 'https';
+import * as fs from 'fs';
+import * as path from 'path';
 import { IAuthenticationStatusProvider } from './authenticationStatusProvider';
 import { SharePointBountyService } from './sharepoint/sharepointBountyService';
 import { AdoGovernanceService } from './adoGovernanceService';
@@ -475,7 +477,67 @@ export class BountyService implements IBountyService {
             }
         }
 
-        // 3. Merge with local claimed and completed state
+        // 3. Tertiary Fallback: Local Workspace & Bundled Extension Governance Bounties
+        if (bounties.length === 0) {
+            try {
+                const candidatePaths = [
+                    path.join(process.cwd(), 'governance', 'bounties.json'),
+                    path.join(__dirname, '..', '..', '..', 'governance', 'bounties.json'),
+                    path.join(__dirname, '..', '..', 'governance', 'bounties.json'),
+                    path.join(__dirname, '..', '..', '..', 'resources', 'governance', 'bounties.json'),
+                    path.join(__dirname, '..', '..', 'resources', 'governance', 'bounties.json')
+                ];
+                for (const p of candidatePaths) {
+                    if (fs.existsSync(p)) {
+                        const localData = JSON.parse(fs.readFileSync(p, 'utf-8'));
+                        if (localData && Array.isArray(localData.bounties) && localData.bounties.length > 0) {
+                            bounties = localData.bounties.map((item: any) => this.normalizeBounty(item, userEmail));
+                            break;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.debug('[BountyService] Local bounties fallback handled:', err);
+            }
+        }
+
+        // 4. Default Seed Bounties: Guaranteed fallback so bounties are ALWAYS visible to all users
+        if (bounties.length === 0) {
+            bounties = [
+                this.normalizeBounty({
+                    id: 'bty-terraform-guard',
+                    title: 'Review terraform-compliance-guard agent',
+                    relatedArtifactId: 'terraform-compliance-guard',
+                    category: 'Review',
+                    credits: 160,
+                    rewardCredits: 160,
+                    points: 160,
+                    status: 'Open',
+                    stage: 'CodeGeneration',
+                    dueInDays: 2,
+                    autoReleasesHours: 18,
+                    description: 'Peer review Terraform Compliance Guard agent. Audit CIS benchmark checks, IAM privilege escalation checks, and policy rule definitions.',
+                    canClaim: true
+                }, userEmail),
+                this.normalizeBounty({
+                    id: 'bty-graphql-guardian',
+                    title: 'Review graphql-schema-guardian skill',
+                    relatedArtifactId: 'graphql-schema-guardian',
+                    category: 'Review',
+                    credits: 140,
+                    rewardCredits: 140,
+                    points: 140,
+                    status: 'Open',
+                    stage: 'CodeGeneration',
+                    dueInDays: 2,
+                    autoReleasesHours: 18,
+                    description: 'Peer review GraphQL Schema Guardian skill. Review AST breaking-change detection rules, Apollo Federation directive verifiers, and complexity analysis.',
+                    canClaim: true
+                }, userEmail)
+            ];
+        }
+
+        // 5. Merge with local claimed and completed state
         for (let i = 0; i < bounties.length; i++) {
             const b = bounties[i];
             if (this.localCompletedMap.has(b.id)) {

@@ -6,7 +6,8 @@
 artifacts/
 artifacts-json/
 certification/
-governance/
+/governance/
+!engineering-commons-vscode/resources/governance/
 telemetry/
 playbook-prompts/
 plugins/

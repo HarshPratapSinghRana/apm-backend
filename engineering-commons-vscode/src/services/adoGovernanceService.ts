@@ -828,7 +828,7 @@ export class AdoGovernanceService {
     }
 
     /**
-     * Reads and parses a JSON file directly from Azure DevOps Git
+     * Reads and parses a JSON file directly from Azure DevOps Git with local/bundled fallback
      */
     public async fetchAdoJsonFile(filePath: string): Promise<any> {
         const projectEnc = encodeURIComponent(this.project);
@@ -836,15 +836,40 @@ export class AdoGovernanceService {
         const branchEnc = encodeURIComponent(this.branch);
         const url = `https://dev.azure.com/${this.organization}/${projectEnc}/_apis/git/repositories/${repoEnc}/items?path=${encodeURIComponent(filePath)}&versionDescriptor.version=${branchEnc}&includeContent=true&api-version=7.0`;
         const res = await this.httpGetJsonAsync<any>(url);
-        if (!res) return null;
-        if (res.content && typeof res.content === 'string') {
-            try {
-                return JSON.parse(res.content);
-            } catch {
-                return null;
+        if (res) {
+            if (res.content && typeof res.content === 'string') {
+                try {
+                    return JSON.parse(res.content);
+                } catch {
+                    // Fall through to local fallback
+                }
+            } else if (typeof res === 'object') {
+                return res;
             }
         }
-        return res;
+
+        // Local workspace and bundled extension fallback
+        try {
+            const cleanPath = filePath.replace(/^\/+/, '');
+            const candidatePaths = [
+                path.join(process.cwd(), cleanPath),
+                path.join(__dirname, '..', '..', '..', cleanPath),
+                path.join(__dirname, '..', '..', cleanPath),
+                path.join(__dirname, '..', '..', '..', 'resources', cleanPath),
+                path.join(__dirname, '..', '..', 'resources', cleanPath),
+                path.join(__dirname, '..', '..', '..', 'resources', 'governance', path.basename(cleanPath)),
+                path.join(__dirname, '..', '..', 'resources', 'governance', path.basename(cleanPath))
+            ];
+            for (const p of candidatePaths) {
+                if (fs.existsSync(p)) {
+                    return JSON.parse(fs.readFileSync(p, 'utf-8'));
+                }
+            }
+        } catch (err) {
+            console.debug('[AdoGovernanceService] fetchAdoJsonFile fallback handled:', err);
+        }
+
+        return null;
     }
 
     /**
@@ -853,12 +878,34 @@ export class AdoGovernanceService {
     public async getBountiesFromAdoAsync(): Promise<any[]> {
         try {
             const data = await this.fetchAdoJsonFile('/governance/bounties.json');
-            if (data && Array.isArray(data.bounties)) return data.bounties;
-            if (Array.isArray(data)) return data;
-            return [];
+            if (data && Array.isArray(data.bounties) && data.bounties.length > 0) return data.bounties;
+            if (Array.isArray(data) && data.length > 0) return data;
         } catch {
-            return [];
+            // Handled
         }
+
+        // Fallback to local and bundled governance bounties
+        try {
+            const candidatePaths = [
+                path.join(process.cwd(), 'governance', 'bounties.json'),
+                path.join(__dirname, '..', '..', '..', 'governance', 'bounties.json'),
+                path.join(__dirname, '..', '..', 'governance', 'bounties.json'),
+                path.join(__dirname, '..', '..', '..', 'resources', 'governance', 'bounties.json'),
+                path.join(__dirname, '..', '..', 'resources', 'governance', 'bounties.json')
+            ];
+            for (const p of candidatePaths) {
+                if (fs.existsSync(p)) {
+                    const localData = JSON.parse(fs.readFileSync(p, 'utf-8'));
+                    if (localData && Array.isArray(localData.bounties) && localData.bounties.length > 0) {
+                        return localData.bounties;
+                    }
+                }
+            }
+        } catch (err) {
+            console.debug('[AdoGovernanceService] Local bounties fallback handled:', err);
+        }
+
+        return [];
     }
 
     /**

@@ -114,6 +114,31 @@ export class SessionFileAuthStatusProvider implements IAuthenticationStatusProvi
 
             const email = (await this.getEmail()) || '';
             const lowerEmail = email.toLowerCase();
+
+            // Check governance/user-roles.json
+            try {
+                const candidatePaths = [
+                    path.join(process.cwd(), 'governance', 'user-roles.json'),
+                    path.join(__dirname, '..', '..', '..', 'governance', 'user-roles.json'),
+                    path.join(__dirname, '..', '..', 'governance', 'user-roles.json'),
+                    path.join(__dirname, '..', '..', '..', 'resources', 'governance', 'user-roles.json'),
+                    path.join(__dirname, '..', '..', 'resources', 'governance', 'user-roles.json')
+                ];
+                for (const p of candidatePaths) {
+                    if (fs.existsSync(p)) {
+                        const localData = JSON.parse(fs.readFileSync(p, 'utf-8'));
+                        if (localData && Array.isArray(localData.userRoles)) {
+                            const match = localData.userRoles.find((r: any) => (r.userEmail || '').trim().toLowerCase() === lowerEmail);
+                            if (match && match.role) {
+                                return match.role.toUpperCase();
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.debug('[AuthenticationStatusProvider] Governance check handled:', err);
+            }
+
             if (lowerEmail.includes('admin')) return 'ADMIN';
             if (lowerEmail.includes('reviewer')) return 'REVIEWER';
             if (lowerEmail.includes('contributor') || lowerEmail.includes('producer')) return 'CONTRIBUTOR';
