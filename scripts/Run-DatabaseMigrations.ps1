@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     Automated CI/CD Database Migration Script for Engineering Commons.
 .DESCRIPTION
@@ -29,3 +29,4 @@ foreach ($file in $migrationFiles) {
 }
 
 Write-Host "`n✓ All migrations validated and prepared for CI/CD deployment." -ForegroundColor Green
+

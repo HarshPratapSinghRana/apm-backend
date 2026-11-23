@@ -25,3 +25,4 @@ ALTER TABLE usage_events DROP COLUMN SessionId;
 ALTER TABLE usage_events DROP COLUMN EventType;
 ALTER TABLE usage_events DROP COLUMN UserEmail;
 ALTER TABLE usage_events DROP COLUMN ArtifactId;
+

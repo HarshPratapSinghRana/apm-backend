@@ -27,3 +27,4 @@ ALTER TABLE artifact_certifications ADD COLUMN CriteriaJson TEXT;
 ALTER TABLE artifact_certifications ADD COLUMN MetricsJson TEXT;
 ALTER TABLE artifact_certifications ADD COLUMN CertifiedAt TEXT;
 ALTER TABLE artifact_certifications ADD COLUMN RevokedAt TEXT;
+

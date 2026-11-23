@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     Automated CI/CD Database Rollback Script for Engineering Commons.
 .DESCRIPTION
@@ -29,3 +29,4 @@ foreach ($file in $rollbackFiles) {
 }
 
 Write-Host "`n✓ All rollback scripts validated for safe recovery and zero data inconsistency." -ForegroundColor Green
+
