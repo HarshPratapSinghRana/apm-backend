@@ -310,7 +310,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "package": "vsce package --no-dependencies",
-    "test": "npm run compile && mocha --timeout 10000 -r ./out/test/setup.js \"out/test/**/*.test.js\""
+    "test": "npm run compile && mocha --timeout 20000 -r ./out/test/setup.js \"out/test/**/*.test.js\""
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",

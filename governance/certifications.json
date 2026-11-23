@@ -1,0 +1,670 @@
+{
+  "updatedAt": "2026-11-17T05:17:11.206Z",
+  "certifications": {
+    "cloud-finops-sentinel": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:30:36.290Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Enterprise FinOps standard verified"
+    },
+    "secops-threat-hunter": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:30:36.290Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Zero-Trust security standard verified"
+    },
+    "playwright-e2e-synthesizer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:30:36.290Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Automated E2E testing standard verified"
+    },
+    "database-migration-guardian": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:30:36.290Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Zero-downtime database standard verified"
+    },
+    "memory-mcp-server": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Anthropic Model Context Protocol standard verified"
+    },
+    "system-architect-prompt": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Enterprise Architecture prompt standard verified"
+    },
+    "git-smart-commit": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Conventional Commits tooling standard verified"
+    },
+    "cip-telemetry-sdk": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-11-17T05:16:24.787Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "OpenTelemetry distributed tracing standard verified"
+    },
+    "terraform-compliance-guard": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-11-17T05:16:24.787Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "CIS IaC compliance standard verified"
+    },
+    "graphql-schema-guardian": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-11-17T05:16:24.787Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Apollo Federation schema standard verified"
+    },
+    "design-reviewer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.465Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.9/100, 0 fatal crashes, verified developer adoption."
+    },
+    "accessibility-fix": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.459Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 97/100, 0 fatal crashes, verified developer adoption."
+    },
+    "api-test-generator": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.460Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.6/100, 0 fatal crashes, verified developer adoption."
+    },
+    "powerautomate-sync-engine": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.473Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 93.1/100, 0 fatal crashes, verified developer adoption."
+    },
+    "apm-telemetry-sdk": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-16T09:37:43.139Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "OpenTelemetry distributed tracing standard verified"
+    },
+    "accessibility-audit": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-agent-eval": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-agent-mart": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-ai-biller-timekeeper-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-ai-personal-stylist-shopping-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-angular-migration-tool": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-apm-active-production-monitoring": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "apm-db-explorer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.461Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 91.4/100, 0 fatal crashes, verified developer adoption."
+    },
+    "apm": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-automated-customer-service": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-automated-product-tag-generator": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "azure-cost-optimizer": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-certyfast": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "code-review": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-code-standards-reviewer-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-codeguardian": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-consumer-intelligence-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-copilot-accessibility-testing": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-copilot-code-upgrade": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-copilot-mcp-server": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-copilot-ui-testing": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-copilot-unit-testing": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "demo-skill": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-develop-fast": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-devops-powerbi-semantic-model": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-embedfast": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "enterprise-coding-standards": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-enterprise-knowledge-bot": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "enterprise-reviewer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.467Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.6/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-executive-copilot-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-expense-forecaster": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-expense-trend-analyzer": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "find_agent_debug_logs": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-fraud-anomaly-detection-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "full-test-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-gdpr-compliance-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "github-assistant": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.467Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 93.1/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-hiring-support-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-inventory-overview-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-invoice-extraction-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-invoice-po-matching-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "kubernetes-security-auditor": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-launch-fast": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-legal-intake-routing": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-loadfast": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-loan-underwriting-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-loyalty-newsletter-enrollment-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-market-intelligence-pricing-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-mcp-chat-application": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-migratefast": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-monday-morning-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-new-hire-experience-and-onboarding-orchestration-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-pdf-extraction-utility": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-personalization-engine": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-planogram-compliance-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-poe-scanner": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-pre-sales-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-product-discovery-bot": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-rai-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-recruiter-copilot": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-smart-store-supplychain-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-synthetic-data-generation": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-vendor-invoice-reconciliation-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-vendor-receipt-scanner": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-video-generator-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-voice-faq-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "leap-wpp-pricing-optimizer-agent": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "postgres-mcp": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.472Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 92.6/100, 0 fatal crashes, verified developer adoption."
+    },
+    "review-and-refactor": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.473Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 93.1/100, 0 fatal crashes, verified developer adoption."
+    },
+    "run-linter": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "security-rules": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "security-scan": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "semantic-sql-optimizer": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "sql-optimizer": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "style-checker": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "time-mcp": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.473Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 94.2/100, 0 fatal crashes, verified developer adoption."
+    },
+    "vp-agent": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.474Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 96.4/100, 0 fatal crashes, verified developer adoption."
+    },
+    "leap-cip-active-production-monitoring": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    },
+    "cip-db-explorer": {
+      "isCertified": true,
+      "status": "CERTIFIED",
+      "certifiedAt": "2026-10-15T07:44:29.461Z",
+      "certifiedVersion": "1.0.0",
+      "reason": "Officially Gold Certified: Composite score 91.4/100, 0 fatal crashes, verified developer adoption."
+    },
+    "cip": {
+      "isCertified": false,
+      "status": "Community",
+      "certifiedAt": null,
+      "certifiedVersion": "1.0.0",
+      "reason": "Passes static conformance checks; pending real-world adoption telemetry (< 10 runs)."
+    }
+  }
+}

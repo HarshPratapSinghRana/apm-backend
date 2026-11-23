@@ -158,7 +158,15 @@ export async function executeMicrosoftDeviceCodeSsoLogin(
         }
 
         // Step 5: Determine user role
-        let role = determineUserRole(email);
+        let tokenClaims: any = null;
+        try {
+            if (tokenResult?.access_token) {
+                tokenClaims = JSON.parse(Buffer.from(tokenResult.access_token.split('.')[1], 'base64').toString('utf-8'));
+            }
+        } catch {
+            // Handled safely
+        }
+        let role = determineUserRole(email, tokenClaims);
         let cipToken = tokenResult.access_token;
 
         // Step 6: Notify Backend if available (graceful fallback)
@@ -232,7 +240,15 @@ export async function executeMicrosoftNativeSsoLogin(
             return { success: false, error: errorMsg };
         }
 
-        let role = determineUserRole(email);
+        let tokenClaims: any = null;
+        try {
+            if (session?.accessToken) {
+                tokenClaims = JSON.parse(Buffer.from(session.accessToken.split('.')[1], 'base64').toString('utf-8'));
+            }
+        } catch {
+            // Handled safely
+        }
+        let role = determineUserRole(email, tokenClaims);
         let cipToken = session.accessToken;
 
         const config = vscode.workspace.getConfiguration('engineeringCommons');
@@ -278,8 +294,43 @@ function isAllowedDomain(email: string): boolean {
     return domains.some(d => lower.endsWith(`@${d}`));
 }
 
-function determineUserRole(email: string): string {
+function determineUserRole(email: string, tokenClaims?: any): string {
     const lower = email.toLowerCase();
+
+    // 1. Check token claims for Azure AD / Microsoft Entra ID App Roles
+    if (tokenClaims) {
+        const roles = tokenClaims.roles || tokenClaims.role || [];
+        const roleArray = Array.isArray(roles) ? roles : [roles];
+        if (roleArray.some((r: any) => typeof r === 'string' && r.toLowerCase().includes('admin'))) {
+            return 'ADMIN';
+        }
+        if (roleArray.some((r: any) => typeof r === 'string' && r.toLowerCase().includes('reviewer'))) {
+            return 'REVIEWER';
+        }
+    }
+
+    // 2. Check Azure DevOps governance user-roles repository
+    try {
+        const candidatePaths = [
+            path.join(process.cwd(), 'governance', 'user-roles.json'),
+            path.join(__dirname, '..', '..', '..', 'governance', 'user-roles.json'),
+            path.join(__dirname, '..', '..', 'governance', 'user-roles.json')
+        ];
+        for (const p of candidatePaths) {
+            if (fs.existsSync(p)) {
+                const localData = JSON.parse(fs.readFileSync(p, 'utf-8'));
+                if (localData && Array.isArray(localData.userRoles)) {
+                    const match = localData.userRoles.find((r: any) => (r.userEmail || '').trim().toLowerCase() === lower);
+                    if (match && match.role) {
+                        return match.role.toUpperCase();
+                    }
+                }
+            }
+        }
+    } catch (err) {
+        console.debug('[ssoService] Governance user role check handled:', err);
+    }
+
     if (lower.includes('admin')) {
         return 'ADMIN';
     }

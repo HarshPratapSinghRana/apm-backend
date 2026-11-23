@@ -1172,8 +1172,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
     private async renderHtml(force = false): Promise<string> {
         const isAuth = await this.authProvider.isAuthenticated();
         const userEmail = isAuth ? ((await this.authProvider.getEmail()) || 'user@company.com') : '';
-        const isPersonalAdmin = userEmail.toLowerCase().startsWith('harsh') || userEmail.toLowerCase().includes('.rana');
-        const displayUserEmail = isAuth ? (isPersonalAdmin ? 'admin@maqsoftware.com' : userEmail) : 'Not logged in';
+        const displayUserEmail = isAuth ? (userEmail || 'user@company.com') : 'Not logged in';
         let rawRole = isAuth ? ((await this.authProvider.getRole?.()) || 'CONSUMER') : 'CONSUMER';
 
         let adminAccessRequests: any[] = [];

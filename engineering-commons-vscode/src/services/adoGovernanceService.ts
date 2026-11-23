@@ -148,6 +148,28 @@ export class AdoGovernanceService {
             console.warn('[AdoGovernanceService] Failed to load user roles from ADO:', err);
         }
 
+        if (this.cachedRoles.length === 0) {
+            try {
+                const candidatePaths = [
+                    path.join(process.cwd(), 'governance', 'user-roles.json'),
+                    path.join(__dirname, '..', '..', '..', 'governance', 'user-roles.json'),
+                    path.join(__dirname, '..', '..', 'governance', 'user-roles.json')
+                ];
+                for (const p of candidatePaths) {
+                    if (fs.existsSync(p)) {
+                        const localData = JSON.parse(fs.readFileSync(p, 'utf-8'));
+                        if (localData && Array.isArray(localData.userRoles)) {
+                            this.cachedRoles = localData.userRoles;
+                            this.lastFetchMs = now;
+                            return this.cachedRoles;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.debug('[AdoGovernanceService] Local user roles fallback error handled:', err);
+            }
+        }
+
         return this.cachedRoles;
     }
 
@@ -189,6 +211,32 @@ export class AdoGovernanceService {
             }
         } catch (err) {
             console.warn('[AdoGovernanceService] Failed to load access requests from ADO:', err);
+        }
+
+        if (this.cachedRequests.length === 0) {
+            try {
+                const candidatePaths = [
+                    path.join(process.cwd(), 'governance', 'access-requests.json'),
+                    path.join(__dirname, '..', '..', '..', 'governance', 'access-requests.json'),
+                    path.join(__dirname, '..', '..', 'governance', 'access-requests.json')
+                ];
+                for (const p of candidatePaths) {
+                    if (fs.existsSync(p)) {
+                        const localData = JSON.parse(fs.readFileSync(p, 'utf-8'));
+                        if (localData && Array.isArray(localData.requests)) {
+                            this.cachedRequests = localData.requests;
+                            this.lastFetchMs = now;
+                            let list = this.cachedRequests;
+                            if (status) {
+                                list = list.filter(r => String(r.status).toLowerCase() === status.toLowerCase());
+                            }
+                            return list;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.debug('[AdoGovernanceService] Local access requests fallback error handled:', err);
+            }
         }
 
         return this.cachedRequests;
