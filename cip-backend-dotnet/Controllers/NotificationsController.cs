@@ -96,6 +96,8 @@ public class NotificationsController : ControllerBase
     }
 
     [HttpDelete]
+    [HttpDelete("clear-all")]
+    [HttpDelete("all")]
     public async Task<IActionResult> ClearAllNotifications()
     {
         var email = User.Identity?.Name ?? string.Empty;

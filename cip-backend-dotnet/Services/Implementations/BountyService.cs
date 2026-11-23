@@ -949,7 +949,7 @@ public class BountyService : IBountyService
             if (reviews.Count == 0 && (isReviewer || string.IsNullOrEmpty(userEmail) || userEmail.Contains("producer", StringComparison.OrdinalIgnoreCase)))
             {
                 var fallbackSubmitted = DateTime.UtcNow.AddHours(-4);
-                var fallbackDeadline = fallbackSubmitted.AddHours(24);
+                var fallbackDeadline = fallbackSubmitted.AddHours(BountyConstants.DefaultAutoReleaseHours);
                 var fallbackRemaining = Math.Round((fallbackDeadline - DateTime.UtcNow).TotalMinutes, 1);
                 var fallbackHours = (int)fallbackRemaining / 60;
                 var fallbackMins = (int)fallbackRemaining % 60;
@@ -960,10 +960,10 @@ public class BountyService : IBountyService
                     ArtifactName = "accessibility-fix",
                     Version = "1.0.0",
                     ShortHash = "#a12f",
-                    Status = "UnderReview",
+                    Status = BountyConstants.Statuses.UnderReview,
                     ProducerEmail = "producer@company.com",
                     SubmittedAt = fallbackSubmitted,
-                    SlaTargetMinutes = 1440,
+                    SlaTargetMinutes = BountyConstants.DefaultSlaTargetMinutes,
                     SlaDeadline = fallbackDeadline,
                     SlaRemainingMinutes = fallbackRemaining,
                     SlaRemainingFormatted = $"{fallbackHours}h {fallbackMins}m remaining",

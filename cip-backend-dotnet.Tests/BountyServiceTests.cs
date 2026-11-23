@@ -46,7 +46,7 @@ public class BountyServiceTests
 
     private class FakeEmailNotificationService : IEmailNotificationService
     {
-        public Task<bool> SendAccessRequestNotificationAsync(string adminEmail, string userEmail, string requestedRole, string? reason, string requestId) => Task.FromResult(true);
+        public Task<bool> SendAccessRequestNotificationAsync(string adminEmail, string userEmail, string requestedRole, string requestId, string? reason = null) => Task.FromResult(true);
         public Task<bool> SendAccessDecisionNotificationAsync(string userEmail, string decision, string role, string? notes) => Task.FromResult(true);
         public Task<bool> SendBountyAssignedNotificationAsync(string bountyTitle, string recipientEmail, int credits, string bountyId, int dueInDays) => Task.FromResult(true);
         public Task<bool> SendBountyIssueReportedNotificationAsync(string bountyTitle, string reporterEmail, string issueDescription, string severity, string bountyId) => Task.FromResult(true);

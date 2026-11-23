@@ -13,6 +13,7 @@ using EngineeringCommons.Backend.Services.Interfaces;
 namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
+[Authorize(Policy = "RequireAdmin")]
 [Route("api/admin/emails")]
 public class EmailDiagnosticsController : ControllerBase
 {
@@ -34,25 +35,9 @@ public class EmailDiagnosticsController : ControllerBase
         _config = config ?? throw new ArgumentNullException(nameof(config));
     }
 
-    private bool IsAdminAuthorized()
-    {
-        if (_env.IsDevelopment() || string.Equals(_config["EnableMockAuth"], "true", StringComparison.OrdinalIgnoreCase)) return true;
-        if (!User.Identity?.IsAuthenticated ?? true) return false;
-        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role || c.Type == "roles")?.Value;
-        var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
-        return string.Equals(role, UserRoles.Admin, StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(User.Identity?.Name, adminEmail, StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(User.Identity?.Name, "admin@company.com", StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(User.Identity?.Name, "admin@test.com", StringComparison.OrdinalIgnoreCase);
-    }
-
     [HttpGet("status")]
     public IActionResult GetStatus()
     {
-        if (!IsAdminAuthorized())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new { error = "Admin role required to view email service status." });
-        }
         var status = _emailService.GetStatus();
         return Ok(status);
     }
@@ -60,10 +45,6 @@ public class EmailDiagnosticsController : ControllerBase
     [HttpGet("outbox")]
     public IActionResult GetOutbox([FromQuery] int limit = DefaultEmailOutboxLimit)
     {
-        if (!IsAdminAuthorized())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new { error = "Admin role required to view email outbox." });
-        }
         var history = _emailService.GetOutboxHistory(limit);
         return Ok(history);
     }
@@ -71,12 +52,7 @@ public class EmailDiagnosticsController : ControllerBase
     [HttpPost("test")]
     public async Task<IActionResult> SendTestEmail([FromBody] TestEmailRequest? req)
     {
-        if (!IsAdminAuthorized())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new { error = "Admin role required to trigger test email notifications." });
-        }
-
-        var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
+        var adminEmail = _config["AdminEmail"] ?? User.Identity?.Name ?? "admin@company.com";
         var recipient = !string.IsNullOrWhiteSpace(req?.Recipient)
             ? req.Recipient.Trim()
             : adminEmail;
@@ -111,11 +87,6 @@ public class EmailDiagnosticsController : ControllerBase
     [HttpPost("alert")]
     public async Task<IActionResult> SendAdminAlert([FromBody] AdminAlertRequest req)
     {
-        if (!IsAdminAuthorized())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new { error = "Admin role required to dispatch admin alerts." });
-        }
-
         if (string.IsNullOrWhiteSpace(req?.AlertType) || string.IsNullOrWhiteSpace(req?.Message))
         {
             return BadRequest(new { error = "AlertType and Message are required." });

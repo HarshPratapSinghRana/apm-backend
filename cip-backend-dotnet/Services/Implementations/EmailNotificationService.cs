@@ -47,7 +47,7 @@ public class EmailNotificationService : IEmailNotificationService
     }
 
     // 1. Reviewer access request submitted
-    public async Task<bool> SendAccessRequestNotificationAsync(string adminEmail, string userEmail, string requestedRole, string? reason, string requestId)
+    public async Task<bool> SendAccessRequestNotificationAsync(string adminEmail, string userEmail, string requestedRole, string requestId, string? reason = null)
     {
         var subject = $"[Engineering Commons] Action Required: Access Request for {requestedRole} from {userEmail}";
         var details = new Dictionary<string, string>

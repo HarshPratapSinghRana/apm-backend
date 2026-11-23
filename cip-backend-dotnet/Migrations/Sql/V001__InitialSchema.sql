@@ -55,29 +55,20 @@ CREATE TABLE IF NOT EXISTS artifact_certifications (
     RevokedByEmail TEXT,
     RevocationReason TEXT,
     Reason TEXT,
-    CriteriaJson TEXT,
-    MetricsJson TEXT,
-    LastEvaluatedAt TEXT NOT NULL,
-    CertifiedAt TEXT,
-    RevokedAt TEXT
+    LastEvaluatedAt TEXT NOT NULL
 );
 
 -- 5. Usage & Telemetry Events Table
 CREATE TABLE IF NOT EXISTS usage_events (
     Id TEXT PRIMARY KEY,
     UserId TEXT NOT NULL,
-    UserEmail TEXT,
-    ArtifactId TEXT,
     ArtifactName TEXT,
     ArtifactType TEXT,
     ArtifactVersion TEXT,
-    EventType TEXT NOT NULL DEFAULT 'USE',
     Action TEXT NOT NULL DEFAULT 'USE',
     Source TEXT NOT NULL DEFAULT 'VS_CODE',
     Platform TEXT NOT NULL DEFAULT 'EngineeringCommons',
     Timestamp TEXT NOT NULL,
-    SessionId TEXT,
-    Metadata TEXT,
     Workspace TEXT
 );
 
@@ -92,15 +83,7 @@ CREATE TABLE IF NOT EXISTS reviews (
     Status TEXT NOT NULL,
     SubmittedAt TEXT NOT NULL,
     ReviewedAt TEXT,
-    Content TEXT,
-    IsPrivate INTEGER DEFAULT 0,
-    AllowedContributors TEXT,
-    AllowedReviewers TEXT,
-    AllowedConsumers TEXT,
-    ContentHash TEXT,
-    SlaTargetMinutes INTEGER DEFAULT 1440,
-    SlaDeadline TEXT,
-    LastSlaReminderSentAt TEXT
+    Content TEXT
 );
 
 -- 7. Review Threads Table

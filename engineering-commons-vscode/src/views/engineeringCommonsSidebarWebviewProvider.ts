@@ -243,6 +243,17 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
     private viewedMyWork: boolean = false;
     private themeMode: 'auto' | 'light' | 'dark' = 'auto';
 
+    public isLightMode(): boolean {
+        if (this.themeMode === 'light') return true;
+        if (this.themeMode === 'dark') return false;
+        try {
+            const kind = vscode.window.activeColorTheme?.kind;
+            return kind === vscode.ColorThemeKind.Light || kind === vscode.ColorThemeKind.HighContrastLight;
+        } catch {
+            return false;
+        }
+    }
+
     // In-memory catalog & data cache to guarantee 100% consistent artifact counts and sub-10ms tab switching
     private cachedMarketArtifacts: DiscoveredArtifactItem[] = [];
     private lastMarketArtifactsFetchMs: number = 0;
@@ -491,7 +502,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 break;
 
             case 'toggleTheme':
-                this.themeMode = this.themeMode === 'light' ? 'dark' : 'light';
+                this.themeMode = this.isLightMode() ? 'dark' : 'light';
                 this.detailsProvider.setThemeMode(this.themeMode);
                 UsageDashboardWebviewProvider.setThemeMode(this.themeMode);
                 await this.refresh(false);
@@ -739,7 +750,11 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 };
 
                 const userRoles = await this.adoGovernanceService.getUserRolesAsync();
-                const matchedRole = userRoles.find(r => r.userEmail.toLowerCase() === userEmail.toLowerCase());
+                const targetUserHash = AdoGovernanceService.computeUserHash(userEmail);
+                const matchedRole = userRoles.find(r => 
+                    (r.userEmail && r.userEmail.toLowerCase() === userEmail.toLowerCase()) || 
+                    (r.userHash && r.userHash.toLowerCase() === targetUserHash)
+                );
                 const currentRole = (matchedRole?.role || 'CONSUMER').toUpperCase();
                 const currentRank = ROLE_RANKS[currentRole] || 1;
                 const requestedRank = ROLE_RANKS[role] || 2;
@@ -1190,7 +1205,12 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     const rolesList = await this.adoGovernanceService.getUserRolesAsync(force);
                     const targetEmail = (userEmail || '').trim().toLowerCase();
                     const canonEmail = (targetEmail === 'vivekprasad@maqsoftware.com') ? 'vivekp@maqsoftware.com' : targetEmail;
-                    const matchedRole = rolesList.find(r => r.userEmail.toLowerCase() === targetEmail || r.userEmail.toLowerCase() === canonEmail);
+                    const targetHash = AdoGovernanceService.computeUserHash(targetEmail);
+                    const canonHash = AdoGovernanceService.computeUserHash(canonEmail);
+                    const matchedRole = rolesList.find(r => 
+                        (r.userHash && (r.userHash.toLowerCase() === targetHash || r.userHash.toLowerCase() === canonHash)) ||
+                        (r.userEmail && (r.userEmail.toLowerCase() === targetEmail || r.userEmail.toLowerCase() === canonEmail))
+                    );
                     if (matchedRole && matchedRole.role) {
                         rawRole = matchedRole.role.toUpperCase();
                     }
@@ -1727,8 +1747,9 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
         const adminBadge = (isAuth && isAdmin) ? pendingAdminRequestsCount : 0;
         const myWorkTotalBadge = (!isAuth || this.currentTab === 'my-work' || this.currentTab === 'installed' || this.currentTab === 'access' || this.viewedMyWork) ? 0 : (rawMyWorkBadge + adminBadge);
 
-        const themeAttr = this.themeMode === 'light' ? 'data-theme="light"' : (this.themeMode === 'dark' ? 'data-theme="dark"' : '');
-        const themeClass = this.themeMode === 'light' ? 'theme-light' : (this.themeMode === 'dark' ? 'theme-dark' : 'theme-auto');
+        const isLight = this.isLightMode();
+        const themeAttr = isLight ? 'data-theme="light"' : 'data-theme="dark"';
+        const themeClass = isLight ? 'theme-light' : 'theme-dark';
 
         function getSvgForType(type: string): string {
             const norm = (type || 'package').toLowerCase().trim();
@@ -4084,8 +4105,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                             <line x1="6" y1="20" x2="6" y2="14"/>
                         </svg>
                     </button>
-                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="${this.themeMode === 'light' ? 'Light Mode — Switch to Dark Mode' : 'Dark Mode — Switch to Light Mode'}" aria-label="Toggle Theme">
-                        ${this.themeMode === 'light' ? `
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="${isLight ? 'Light Mode — Switch to Dark Mode' : 'Dark Mode — Switch to Light Mode'}" aria-label="Toggle Theme">
+                        ${isLight ? `
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                         </svg>` : `
@@ -4521,7 +4542,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     <tbody>
                         ${allUserRoles.map((r: any) => `
                         <tr style="border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,0.05));">
-                            <td style="padding: 5px 6px; font-weight: 600; color: var(--text-primary); font-size: 10.5px;">${r.userEmail}</td>
+                            <td style="padding: 5px 6px; font-weight: 600; color: var(--text-primary); font-size: 10.5px;">${r.userEmail || 'Unknown'}</td>
                             <td style="padding: 5px 6px;"><span class="user-role-pill role-${(r.role || '').toLowerCase()}">${r.role}</span></td>
                             <td style="padding: 5px 6px; color: ${r.isCertifiedReviewer ? '#10b981' : 'var(--text-muted)'}; font-size: 10.5px;">${r.isCertifiedReviewer ? '★ Yes' : 'No'}</td>
                         </tr>

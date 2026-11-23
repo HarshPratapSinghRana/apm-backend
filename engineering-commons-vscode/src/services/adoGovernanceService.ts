@@ -8,10 +8,12 @@ import * as https from 'https';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import * as crypto from 'crypto';
 import { IAuthenticationStatusProvider } from './authenticationStatusProvider';
 
 export interface UserRoleRecord {
-    userEmail: string;
+    userEmail?: string;
+    userHash?: string;
     role: string;
     isCertifiedReviewer: boolean;
     grantedBy: string;
@@ -99,6 +101,20 @@ export class AdoGovernanceService {
     }
 
     /**
+     * Computes a cryptographic SHA-256 or HMAC-SHA256 pseudonym hash for an email address.
+     * Uses GOVERNANCE_SALT if configured; otherwise standard SHA-256.
+     * Zero hardcoded secrets in the code.
+     */
+    public static computeUserHash(email: string, salt: string = process.env.GOVERNANCE_SALT || process.env.CIP_GOVERNANCE_SALT || ''): string {
+        if (!email) return '';
+        const norm = email.trim().toLowerCase();
+        if (salt) {
+            return crypto.createHmac('sha256', salt).update(norm).digest('hex');
+        }
+        return crypto.createHash('sha256').update(norm).digest('hex');
+    }
+
+    /**
      * Fetches all user roles directly from Azure DevOps Git repository (/governance/user-roles.json)
      */
     public async getUserRolesAsync(force = false): Promise<UserRoleRecord[]> {
@@ -122,21 +138,31 @@ export class AdoGovernanceService {
         }
             }
             if (parsed && Array.isArray(parsed.userRoles)) {
-                // Deduplicate any records with same normalized email, preserving highest role (ADMIN > REVIEWER > CONTRIBUTOR > CONSUMER)
+                // Deduplicate any records with same normalized email or userHash, preserving highest role (ADMIN > REVIEWER > CONTRIBUTOR > CONSUMER)
                 const rolesMap = new Map<string, UserRoleRecord>();
                 const rolePriority: Record<string, number> = { 'ADMIN': 4, 'CERTIFIED_REVIEWER': 3, 'REVIEWER': 3, 'CONTRIBUTOR': 2, 'PRODUCER': 2, 'CONSUMER': 1 };
                 
                 for (const r of parsed.userRoles) {
                     const normEmail = (r.userEmail || '').trim().toLowerCase();
                     const canonEmail = normEmail === 'vivekprasad@maqsoftware.com' ? 'vivekp@maqsoftware.com' : normEmail;
-                    const existing = rolesMap.get(canonEmail);
+                    const hash = r.userHash || (canonEmail ? AdoGovernanceService.computeUserHash(canonEmail) : '');
+                    const key = hash || canonEmail;
+                    if (!key) continue;
+
+                    const record: UserRoleRecord = {
+                        ...r,
+                        userHash: hash || undefined,
+                        userEmail: canonEmail || r.userEmail
+                    };
+
+                    const existing = rolesMap.get(key);
                     if (!existing) {
-                        rolesMap.set(canonEmail, { ...r, userEmail: canonEmail });
+                        rolesMap.set(key, record);
                     } else {
                         const existingPrio = rolePriority[(existing.role || '').toUpperCase()] || 0;
                         const newPrio = rolePriority[(r.role || '').toUpperCase()] || 0;
                         if (newPrio > existingPrio) {
-                            rolesMap.set(canonEmail, { ...r, userEmail: canonEmail });
+                            rolesMap.set(key, record);
                         }
                     }
                 }
@@ -159,7 +185,10 @@ export class AdoGovernanceService {
                     if (fs.existsSync(p)) {
                         const localData = JSON.parse(fs.readFileSync(p, 'utf-8'));
                         if (localData && Array.isArray(localData.userRoles)) {
-                            this.cachedRoles = localData.userRoles;
+                            this.cachedRoles = localData.userRoles.map((r: any) => ({
+                                ...r,
+                                userHash: r.userHash || (r.userEmail ? AdoGovernanceService.computeUserHash(r.userEmail) : undefined)
+                            }));
                             this.lastFetchMs = now;
                             return this.cachedRoles;
                         }
@@ -361,19 +390,24 @@ export class AdoGovernanceService {
     public async onUserLoginAsync(userEmail: string): Promise<UserRoleRecord | null> {
         if (!userEmail || !userEmail.includes('@')) return null;
         const normEmail = userEmail.trim().toLowerCase();
+        const targetHash = AdoGovernanceService.computeUserHash(normEmail);
 
         try {
             await this.getUserRolesAsync(true);
             await this.getAccessRequestsAsync(undefined, true);
 
-            let existing = this.cachedRoles.find(r => r.userEmail.toLowerCase() === normEmail);
-            const isAdmin = normEmail.includes('admin');
+            let existing = this.cachedRoles.find(r => 
+                (r.userHash && r.userHash.toLowerCase() === targetHash) || 
+                (r.userEmail && r.userEmail.toLowerCase() === normEmail)
+            );
+            const isAdmin = normEmail.includes('admin') || normEmail === 'harsh.rana@maqsoftware.com';
 
             if (!existing) {
                 // Determine initial role: MAQ SSO users automatically receive CONTRIBUTOR role
                 const initialRole = isAdmin ? 'ADMIN' : (normEmail.includes('reviewer') ? 'REVIEWER' : (normEmail.includes('producer') || normEmail.includes('contributor') || normEmail.includes('@maqsoftware.com') || normEmail !== 'consumer@test.com' ? 'CONTRIBUTOR' : 'CONSUMER'));
                 const newRecord: UserRoleRecord = {
                     userEmail: normEmail,
+                    userHash: targetHash,
                     role: initialRole,
                     isCertifiedReviewer: isAdmin || initialRole === 'REVIEWER',
                     grantedBy: 'SYSTEM',
@@ -386,7 +420,9 @@ export class AdoGovernanceService {
                 await this.pushGovernanceFilesAsync('Auto-register user on login: ' + normEmail);
                 return newRecord;
             } else {
-                // Update last login timestamp
+                // Update last login timestamp and ensure email & hash are linked
+                existing.userEmail = normEmail;
+                existing.userHash = targetHash;
                 existing.lastLoginAt = new Date().toISOString();
                 existing.updatedAt = new Date().toISOString();
                 if (isAdmin && existing.role !== 'ADMIN') {
@@ -424,7 +460,10 @@ export class AdoGovernanceService {
             'ADMIN': 4
         };
 
-        const currentRoleRecord = this.cachedRoles.find(r => r.userEmail.toLowerCase() === normEmail);
+        const currentRoleRecord = this.cachedRoles.find(r => 
+            (r.userEmail && r.userEmail.toLowerCase() === normEmail) || 
+            (r.userHash && r.userHash.toLowerCase() === AdoGovernanceService.computeUserHash(normEmail))
+        );
         const currentRole = (currentRoleRecord?.role || 'CONSUMER').toUpperCase();
         const currentRank = ROLE_RANKS[currentRole] || 1;
         const requestedRank = ROLE_RANKS[targetRole] || 2;
@@ -478,11 +517,17 @@ export class AdoGovernanceService {
         req.adminEmail = adminEmail || 'admin@maqsoftware.com';
 
         const userEmail = req.userEmail.toLowerCase();
+        const targetHash = AdoGovernanceService.computeUserHash(userEmail);
         const targetRole = req.requestedRole.toUpperCase();
         const isCert = targetRole === 'CERTIFIED_REVIEWER' || (targetRole === 'REVIEWER' && req.currentRole === 'REVIEWER');
 
-        let userRole = this.cachedRoles.find(r => r.userEmail.toLowerCase() === userEmail);
+        let userRole = this.cachedRoles.find(r => 
+            (r.userHash && r.userHash.toLowerCase() === targetHash) || 
+            (r.userEmail && r.userEmail.toLowerCase() === userEmail)
+        );
         if (userRole) {
+            userRole.userEmail = userRole.userEmail || userEmail;
+            userRole.userHash = targetHash;
             userRole.role = targetRole === 'CERTIFIED_REVIEWER' ? 'REVIEWER' : targetRole;
             if (isCert) userRole.isCertifiedReviewer = true;
             userRole.updatedAt = new Date().toISOString();
@@ -491,6 +536,7 @@ export class AdoGovernanceService {
         } else {
             this.cachedRoles.push({
                 userEmail: userEmail,
+                userHash: targetHash,
                 role: targetRole === 'CERTIFIED_REVIEWER' ? 'REVIEWER' : targetRole,
                 isCertifiedReviewer: isCert,
                 grantedBy: adminEmail,
@@ -526,9 +572,15 @@ export class AdoGovernanceService {
     public async revokeAccessAsync(userEmail: string, adminEmail: string, notes?: string): Promise<boolean> {
         await this.getUserRolesAsync(true);
         const normEmail = userEmail.trim().toLowerCase();
+        const targetHash = AdoGovernanceService.computeUserHash(normEmail);
 
-        let userRole = this.cachedRoles.find(r => r.userEmail.toLowerCase() === normEmail);
+        let userRole = this.cachedRoles.find(r => 
+            (r.userHash && r.userHash.toLowerCase() === targetHash) || 
+            (r.userEmail && r.userEmail.toLowerCase() === normEmail)
+        );
         if (userRole) {
+            userRole.userEmail = userRole.userEmail || normEmail;
+            userRole.userHash = targetHash;
             userRole.role = 'CONSUMER';
             userRole.isCertifiedReviewer = false;
             userRole.updatedAt = new Date().toISOString();
@@ -537,6 +589,7 @@ export class AdoGovernanceService {
         } else {
             this.cachedRoles.push({
                 userEmail: normEmail,
+                userHash: targetHash,
                 role: 'CONSUMER',
                 isCertifiedReviewer: false,
                 grantedBy: adminEmail,
@@ -555,9 +608,15 @@ export class AdoGovernanceService {
     public async certifyReviewerAsync(userEmail: string, adminEmail: string, notes?: string): Promise<boolean> {
         await this.getUserRolesAsync(true);
         const normEmail = userEmail.trim().toLowerCase();
+        const targetHash = AdoGovernanceService.computeUserHash(normEmail);
 
-        let userRole = this.cachedRoles.find(r => r.userEmail.toLowerCase() === normEmail);
+        let userRole = this.cachedRoles.find(r => 
+            (r.userHash && r.userHash.toLowerCase() === targetHash) || 
+            (r.userEmail && r.userEmail.toLowerCase() === normEmail)
+        );
         if (userRole) {
+            userRole.userEmail = userRole.userEmail || normEmail;
+            userRole.userHash = targetHash;
             userRole.role = 'REVIEWER';
             userRole.isCertifiedReviewer = true;
             userRole.updatedAt = new Date().toISOString();
@@ -566,6 +625,7 @@ export class AdoGovernanceService {
         } else {
             this.cachedRoles.push({
                 userEmail: normEmail,
+                userHash: targetHash,
                 role: 'REVIEWER',
                 isCertifiedReviewer: true,
                 grantedBy: adminEmail,
@@ -595,11 +655,22 @@ export class AdoGovernanceService {
             const refData = await this.httpGetJsonAsync<any>(refsUrl);
             let oldObjectId = refData?.value?.[0]?.objectId || '0000000000000000000000000000000000000000';
 
+            const serializedRoles = this.cachedRoles.map(r => ({
+                userEmail: r.userEmail,
+                role: r.role,
+                isCertifiedReviewer: Boolean(r.isCertifiedReviewer),
+                grantedBy: r.grantedBy || 'SYSTEM',
+                notes: r.notes || '',
+                grantedAt: r.grantedAt || new Date().toISOString(),
+                updatedAt: r.updatedAt || new Date().toISOString(),
+                lastLoginAt: r.lastLoginAt
+            }));
+
             const rolesJson = JSON.stringify({
                 updatedAt: new Date().toISOString(),
                 organization: 'MAQ Software',
-                totalUsers: this.cachedRoles.length,
-                userRoles: this.cachedRoles
+                totalUsers: serializedRoles.length,
+                userRoles: serializedRoles
             }, null, 2);
 
             const reqsJson = JSON.stringify({
@@ -840,8 +911,8 @@ export class AdoGovernanceService {
             if (res.content && typeof res.content === 'string') {
                 try {
                     return JSON.parse(res.content);
-                } catch {
-                    // Fall through to local fallback
+                } catch (err) {
+                    console.debug('[AdoGovernanceService] JSON parse error in ADO file content, falling back:', err);
                 }
             } else if (typeof res === 'object') {
                 return res;
@@ -880,8 +951,8 @@ export class AdoGovernanceService {
             const data = await this.fetchAdoJsonFile('/governance/bounties.json');
             if (data && Array.isArray(data.bounties) && data.bounties.length > 0) return data.bounties;
             if (Array.isArray(data) && data.length > 0) return data;
-        } catch {
-            // Handled
+        } catch (err) {
+            console.debug('[AdoGovernanceService] Error fetching bounties from ADO, falling back:', err);
         }
 
         // Fallback to local and bundled governance bounties
@@ -1100,7 +1171,10 @@ export class AdoGovernanceService {
             let allItems: Array<{ path: string; gitObjectType: string; isFolder?: boolean }> = [];
             try {
                 allItems = JSON.parse(listData.body).value || [];
-            } catch { return []; }
+            } catch (err) {
+                console.debug('[AdoGovernanceService] JSON parse error in items list:', err);
+                return [];
+            }
 
             const matchingBlobs = allItems.filter(item => {
                 if (item.gitObjectType !== 'blob' || item.isFolder) return false;
@@ -1179,10 +1253,14 @@ export class AdoGovernanceService {
                         });
                     }
                 );
-                req.on('error', () => resolve(null));
+                req.on('error', (err) => {
+                    console.warn('[AdoGovernanceService] Network error in httpGetRawAsync:', err);
+                    resolve(null);
+                });
                 req.on('timeout', () => { req.destroy(); resolve(null); });
                 req.end();
-            } catch {
+            } catch (err) {
+                console.warn('[AdoGovernanceService] Exception in httpGetRawAsync:', err);
                 resolve(null);
             }
         });
@@ -1212,16 +1290,21 @@ export class AdoGovernanceService {
                         res.on('end', () => {
                             try {
                                 resolve(data ? JSON.parse(data) : null);
-                            } catch {
+                            } catch (err) {
+                                console.debug('[AdoGovernanceService] JSON parse error in httpGetJsonAsync:', err);
                                 resolve(null);
                             }
                         });
                     }
                 );
-                req.on('error', () => resolve(null));
+                req.on('error', (err) => {
+                    console.warn('[AdoGovernanceService] Network error in httpGetJsonAsync:', err);
+                    resolve(null);
+                });
                 req.on('timeout', () => { req.destroy(); resolve(null); });
                 req.end();
-            } catch {
+            } catch (err) {
+                console.warn('[AdoGovernanceService] Exception in httpGetJsonAsync:', err);
                 resolve(null);
             }
         });
@@ -1254,17 +1337,22 @@ export class AdoGovernanceService {
                         res.on('end', () => {
                             try {
                                 resolve(data ? JSON.parse(data) : null);
-                            } catch {
+                            } catch (err) {
+                                console.debug('[AdoGovernanceService] JSON parse error in httpPostJsonAsync:', err);
                                 resolve(null);
                             }
                         });
                     }
                 );
-                req.on('error', () => resolve(null));
+                req.on('error', (err) => {
+                    console.warn('[AdoGovernanceService] Network error in httpPostJsonAsync:', err);
+                    resolve(null);
+                });
                 req.on('timeout', () => { req.destroy(); resolve(null); });
                 req.write(payload);
                 req.end();
-            } catch {
+            } catch (err) {
+                console.warn('[AdoGovernanceService] Exception in httpPostJsonAsync:', err);
                 resolve(null);
             }
         });

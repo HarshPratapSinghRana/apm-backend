@@ -70,13 +70,16 @@ public class StaticAuthenticationService : IAuthenticationService
 
     public User? ValidateCredentials(string email, string password)
     {
-        var existing = _users.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && VerifyPassword(password, u));
-        if (existing != null) return existing;
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrEmpty(password)) return null;
 
-        // Only allow test domain accounts when running in test / development mode
-        if (_allowTestUsers && !string.IsNullOrEmpty(email) && 
-            (email.EndsWith("@company.com", StringComparison.OrdinalIgnoreCase) || email.EndsWith("@test.com", StringComparison.OrdinalIgnoreCase)) && 
-            (password == "password" || password == "Producer@123" || password == "Reviewer@123" || password == "Consumer@123"))
+        var existing = _users.FirstOrDefault(u => u.Email.Equals(email.Trim(), StringComparison.OrdinalIgnoreCase) && VerifyPassword(password, u));
+        if (existing != null)
+        {
+            return existing;
+        }
+
+        // Only allow test domain accounts when running in test / development mode with explicit opt-in
+        if (_allowTestUsers && (email.EndsWith("@company.com", StringComparison.OrdinalIgnoreCase) || email.EndsWith("@test.com", StringComparison.OrdinalIgnoreCase)))
         {
             var role = (email.StartsWith("reviewer@", StringComparison.OrdinalIgnoreCase) || email.StartsWith("designated-rev@", StringComparison.OrdinalIgnoreCase)) ? "REVIEWER" : 
                        (email.StartsWith("producer", StringComparison.OrdinalIgnoreCase) || email.StartsWith("contrib@", StringComparison.OrdinalIgnoreCase)) ? "PRODUCER" : "CONSUMER";

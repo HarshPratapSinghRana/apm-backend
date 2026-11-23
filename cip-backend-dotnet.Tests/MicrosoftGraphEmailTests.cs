@@ -109,7 +109,7 @@ public class MicrosoftGraphEmailTests : IDisposable
         Assert.Null(record.EmlFilePath);
 
         // Access request notification
-        var sent = await emailService.SendAccessRequestNotificationAsync("admin@maq.com", "user@maq.com", "REVIEWER", "reason", "id-1");
+        var sent = await emailService.SendAccessRequestNotificationAsync("admin@maq.com", "user@maq.com", "REVIEWER", "id-1", "reason");
         Assert.False(sent);
 
         // Access decision

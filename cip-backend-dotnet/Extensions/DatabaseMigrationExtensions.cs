@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,6 +13,7 @@ namespace EngineeringCommons.Backend.Extensions;
 
 /// <summary>
 /// Modular database initialization and schema migration runner, decoupled from Program.cs.
+/// Supports both forward migrations and rollback operations for CI/CD pipelines.
 /// </summary>
 public static class DatabaseMigrationExtensions
 {
@@ -22,101 +25,169 @@ public static class DatabaseMigrationExtensions
             return;
         }
 
-        var isDevOrTest = string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "Development", StringComparison.OrdinalIgnoreCase) ||
-                          string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "Testing", StringComparison.OrdinalIgnoreCase) ||
-                          string.Equals(Environment.GetEnvironmentVariable("AUTO_MIGRATE"), "true", StringComparison.OrdinalIgnoreCase);
-
-        if (!isDevOrTest)
-        {
-            logger.LogInformation("Production mode active: Database schema migrations are decoupled from application startup and managed via CI/CD execution scripts (V001, V002).");
-            return;
-        }
-
-        try
-        {
-            using var scope = app.ApplicationServices.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<CipDbContext>();
-            db.Database.EnsureCreated();
-
-            // Run standalone SQL migration script if present
-            var migrationCandidates = new[]
-            {
-                Path.Combine(AppContext.BaseDirectory, "Migrations", "Sql", "V001__InitialSchema.sql"),
-                Path.Combine(Directory.GetCurrentDirectory(), "Migrations", "Sql", "V001__InitialSchema.sql"),
-                Path.Combine(Directory.GetCurrentDirectory(), "cip-backend-dotnet", "Migrations", "Sql", "V001__InitialSchema.sql")
-            };
-
-            var scriptPath = migrationCandidates.FirstOrDefault(File.Exists);
-            if (scriptPath != null)
-            {
-                try
-                {
-                    var sql = File.ReadAllText(scriptPath);
-                    var statements = sql.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-                    foreach (var stmt in statements)
-                    {
-                        if (string.IsNullOrWhiteSpace(stmt)) continue;
-                        try
-                        {
-                            db.Database.ExecuteSqlRaw(stmt);
-                        }
-                        catch (Exception ex)
-                        {
-                            logger.LogDebug(ex, "Handled schema statement execution: {Statement}", stmt.Length > 50 ? stmt.Substring(0, 50) + "..." : stmt);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    logger.LogWarning(ex, "Error reading standalone SQL migration file: {ScriptPath}", scriptPath);
-                }
-            }
-
-            // Ensure column compatibility without pragma suppressions
-            EnsureAdditionalColumns(db, logger);
-
-            logger.LogInformation("SQLite database schema verified successfully.");
-        }
-        catch (Exception ex)
-        {
-            logger.LogWarning(ex, "Warning initializing database schema: {Message}", ex.Message);
-        }
+        logger.LogInformation("Database migrations are decoupled from application startup. Run scripts/Run-DatabaseMigrations.ps1 or 'dotnet run -- --migrate' in CI/CD pipeline.");
     }
 
-    private static void EnsureAdditionalColumns(CipDbContext db, ILogger logger)
+    /// <summary>
+    /// Explicitly executes forward SQL schema migrations (V001, V002, etc.) against target database.
+    /// Tracks applied versions in __MigrationHistory to avoid duplicate execution.
+    /// </summary>
+    public static int ApplyMigrations(string dbPath, string migrationsDir, ILogger? logger = null)
     {
-        var safeColumns = new (string Table, string Column, string ColType)[]
-        {
-            ("usage_events", "ArtifactId", "TEXT"),
-            ("usage_events", "UserEmail", "TEXT"),
-            ("usage_events", "EventType", "TEXT"),
-            ("usage_events", "SessionId", "TEXT"),
-            ("usage_events", "Metadata", "TEXT"),
-            ("reviews", "IsPrivate", "INTEGER DEFAULT 0"),
-            ("reviews", "AllowedContributors", "TEXT"),
-            ("reviews", "AllowedReviewers", "TEXT"),
-            ("reviews", "AllowedConsumers", "TEXT"),
-            ("reviews", "ContentHash", "TEXT"),
-            ("reviews", "SlaTargetMinutes", "INTEGER DEFAULT 1440"),
-            ("reviews", "SlaDeadline", "TEXT"),
-            ("reviews", "LastSlaReminderSentAt", "TEXT"),
-            ("artifact_certifications", "CriteriaJson", "TEXT"),
-            ("artifact_certifications", "MetricsJson", "TEXT"),
-            ("artifact_certifications", "CertifiedAt", "TEXT"),
-            ("artifact_certifications", "RevokedAt", "TEXT")
-        };
+        var fullDbPath = Path.GetFullPath(dbPath);
+        var fullDir = Path.GetFullPath(migrationsDir);
 
-        foreach (var item in safeColumns)
+        if (!Directory.Exists(fullDir))
         {
+            logger?.LogError("Migrations directory not found: {Dir}", fullDir);
+            Console.WriteLine($"ERROR: Migrations directory not found: {fullDir}");
+            return 1;
+        }
+
+        Console.WriteLine($"[ApplyMigrations] Target: {fullDbPath}");
+        Console.WriteLine($"[ApplyMigrations] Source: {fullDir}");
+
+        var connStr = $"Data Source={fullDbPath}";
+        using var conn = new SqliteConnection(connStr);
+        conn.Open();
+
+        // 1. Ensure __MigrationHistory exists
+        using (var cmd = conn.CreateCommand())
+        {
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS __MigrationHistory (MigrationId TEXT PRIMARY KEY, AppliedAt TEXT);";
+            cmd.ExecuteNonQuery();
+        }
+
+        // 2. Query applied migrations
+        var applied = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        using (var cmd = conn.CreateCommand())
+        {
+            cmd.CommandText = "SELECT MigrationId FROM __MigrationHistory;";
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                applied.Add(reader.GetString(0));
+            }
+        }
+
+        // 3. Find and apply pending migrations
+        var files = Directory.GetFiles(fullDir, "V*__*.sql").OrderBy(f => Path.GetFileName(f)).ToList();
+        int appliedCount = 0;
+
+        foreach (var file in files)
+        {
+            var migrationId = Path.GetFileNameWithoutExtension(file);
+            if (applied.Contains(migrationId))
+            {
+                Console.WriteLine($"  [SKIP] Migration {migrationId} already applied.");
+                continue;
+            }
+
+            Console.WriteLine($"  --> Applying migration: {Path.GetFileName(file)}...");
+            var sql = File.ReadAllText(file);
+            using var trans = conn.BeginTransaction();
             try
             {
-                var sql = string.Format("ALTER TABLE {0} ADD COLUMN {1} {2};", item.Table, item.Column, item.ColType);
-                db.Database.ExecuteSqlRaw(sql);
+                var statements = sql.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                foreach (var stmt in statements)
+                {
+                    if (string.IsNullOrWhiteSpace(stmt)) continue;
+                    using var cmd = conn.CreateCommand();
+                    cmd.Transaction = trans;
+                    cmd.CommandText = stmt;
+                    cmd.ExecuteNonQuery();
+                }
+
+                using var histCmd = conn.CreateCommand();
+                histCmd.Transaction = trans;
+                histCmd.CommandText = "INSERT INTO __MigrationHistory (MigrationId, AppliedAt) VALUES (@id, @at);";
+                histCmd.Parameters.AddWithValue("@id", migrationId);
+                histCmd.Parameters.AddWithValue("@at", DateTime.UtcNow.ToString("o"));
+                histCmd.ExecuteNonQuery();
+
+                trans.Commit();
+                appliedCount++;
+                Console.WriteLine($"  ✓ Successfully applied {migrationId}");
             }
             catch (Exception ex)
             {
-                logger.LogDebug(ex, "Handled column existence for {Table}.{Col}", item.Table, item.Column);
+                trans.Rollback();
+                logger?.LogError(ex, "Failed applying migration {Migration}", migrationId);
+                Console.WriteLine($"ERROR: Failed applying migration {migrationId}: {ex.Message}");
+                return 1;
             }
         }
+
+        Console.WriteLine($"✓ Applied {appliedCount} pending migrations.");
+        return 0;
+    }
+
+    /// <summary>
+    /// Explicitly executes rollback SQL schema migrations (U002, U001, etc.) against target database in reverse order.
+    /// Updates __MigrationHistory table accordingly.
+    /// </summary>
+    public static int RollbackMigrations(string dbPath, string migrationsDir, ILogger? logger = null)
+    {
+        var fullDbPath = Path.GetFullPath(dbPath);
+        var fullDir = Path.GetFullPath(migrationsDir);
+
+        if (!Directory.Exists(fullDir))
+        {
+            logger?.LogError("Migrations directory not found: {Dir}", fullDir);
+            Console.WriteLine($"ERROR: Migrations directory not found: {fullDir}");
+            return 1;
+        }
+
+        Console.WriteLine($"[RollbackMigrations] Target: {fullDbPath}");
+        Console.WriteLine($"[RollbackMigrations] Source: {fullDir}");
+
+        var connStr = $"Data Source={fullDbPath}";
+        using var conn = new SqliteConnection(connStr);
+        conn.Open();
+
+        var files = Directory.GetFiles(fullDir, "U*__*.sql").OrderByDescending(f => Path.GetFileName(f)).ToList();
+        int rollbackCount = 0;
+
+        foreach (var file in files)
+        {
+            var rollbackId = Path.GetFileNameWithoutExtension(file);
+            var forwardId = rollbackId.Replace("U", "V");
+
+            Console.WriteLine($"  <-- Rolling back: {Path.GetFileName(file)}...");
+            var sql = File.ReadAllText(file);
+            using var trans = conn.BeginTransaction();
+            try
+            {
+                var statements = sql.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                foreach (var stmt in statements)
+                {
+                    if (string.IsNullOrWhiteSpace(stmt)) continue;
+                    using var cmd = conn.CreateCommand();
+                    cmd.Transaction = trans;
+                    cmd.CommandText = stmt;
+                    cmd.ExecuteNonQuery();
+                }
+
+                using var histCmd = conn.CreateCommand();
+                histCmd.Transaction = trans;
+                histCmd.CommandText = "DELETE FROM __MigrationHistory WHERE MigrationId LIKE @prefix;";
+                histCmd.Parameters.AddWithValue("@prefix", forwardId.Substring(0, Math.Min(4, forwardId.Length)) + "%");
+                histCmd.ExecuteNonQuery();
+
+                trans.Commit();
+                rollbackCount++;
+                Console.WriteLine($"  ✓ Successfully reverted {rollbackId}");
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                logger?.LogError(ex, "Failed rolling back {Rollback}", rollbackId);
+                Console.WriteLine($"ERROR: Failed rolling back {rollbackId}: {ex.Message}");
+                return 1;
+            }
+        }
+
+        Console.WriteLine($"✓ Reverted {rollbackCount} migrations.");
+        return 0;
     }
 }

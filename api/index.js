@@ -6,8 +6,63 @@ const zlib = require('zlib');
 const certEngine = require('./certificationEngine');
 
 const app = express();
-app.use(cors());
+
+// Explicit CORS allowlist shared through environment configuration
+const defaultAllowedOrigins = [
+    'https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io',
+    'https://portal.azure.com',
+    'http://localhost:3000',
+    'http://localhost:5000',
+    'http://localhost:5173',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:5000',
+    'http://127.0.0.1:5173'
+];
+
+const configuredOrigins = process.env.ALLOWED_ORIGINS 
+    ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim()).filter(Boolean)
+    : defaultAllowedOrigins;
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl, server-to-server, or VS Code webviews)
+        if (!origin || origin.startsWith('vscode-webview://') || configuredOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error(`CORS policy violation: origin ${origin} is not allowed`));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'X-Correlation-Id', 'X-Api-Key']
+}));
 app.use(express.json({ limit: '10mb' }));
+
+// Structured JSON Logging Middleware with Correlation IDs (Azure / Application Insights compatible)
+app.use((req, res, next) => {
+    const correlationId = req.headers['x-correlation-id'] || req.headers['x-request-id'] || `corr-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+    req.correlationId = correlationId;
+    res.setHeader('X-Correlation-Id', correlationId);
+
+    const start = Date.now();
+    res.on('finish', () => {
+        const duration = Date.now() - start;
+        const logEntry = JSON.stringify({
+            timestamp: new Date().toISOString(),
+            level: res.statusCode >= 500 ? 'ERROR' : (res.statusCode >= 400 ? 'WARN' : 'INFO'),
+            correlationId,
+            method: req.method,
+            path: req.path,
+            statusCode: res.statusCode,
+            durationMs: duration
+        });
+        if (res.statusCode >= 500) {
+            console.error(logEntry);
+        } else if (res.statusCode >= 400) {
+            console.warn(logEntry);
+        }
+    });
+    next();
+});
 
 // Enterprise HTTP security response headers
 app.use((req, res, next) => {
@@ -94,7 +149,7 @@ for (const envPath of envCandidates) {
                     }
                 }
             }
-        } catch {}
+        } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
     }
 }
 
@@ -104,37 +159,19 @@ const PROJECT = (process.env.AZURE_DEVOPS_PROJECT || 'Engineering Commons').trim
 const REPO = (process.env.AZURE_DEVOPS_REPO || 'Engineering Commons').trim();
 const PAT = (process.env.AZURE_DEVOPS_PAT || process.env.ADO_PAT || '').trim();
 const BRANCH = (process.env.AZURE_DEVOPS_BRANCH || 'main').trim();
-const DEFAULT_SUPER_ADMIN = 'harsh.rana@maqsoftware.com';
+const DEFAULT_SUPER_ADMIN = (process.env.ADMIN_EMAIL || process.env.DEFAULT_SUPER_ADMIN || 'admin@company.com').trim();
 
 // ---------------------------------------------------------
-// Initial Seed Data & In-Memory State
+// Initial Governance Data & Role Cache (from ADO/config)
 // ---------------------------------------------------------
 
 let userRolesCache = [
     {
-        userEmail: 'harsh.rana@maqsoftware.com',
+        userEmail: DEFAULT_SUPER_ADMIN,
         role: 'ADMIN',
         isCertifiedReviewer: true,
         grantedBy: 'SYSTEM',
-        notes: 'Default SuperAdmin',
-        grantedAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-    },
-    {
-        userEmail: 'reviewer@maqsoftware.com',
-        role: 'REVIEWER',
-        isCertifiedReviewer: true,
-        grantedBy: 'ADMIN',
-        notes: 'Certified Reviewer for AI Leap',
-        grantedAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-    },
-    {
-        userEmail: 'producer@maqsoftware.com',
-        role: 'CONTRIBUTOR',
-        isCertifiedReviewer: false,
-        grantedBy: 'ADMIN',
-        notes: 'Contributor role for AI Artifacts',
+        notes: 'Configured Administrator',
         grantedAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
     }
@@ -216,7 +253,7 @@ if (fs.existsSync(certDir)) {
             const audData = JSON.parse(fs.readFileSync(audFile, 'utf8'));
             if (audData && Array.isArray(audData.entries)) certificationAuditLogDb = audData.entries;
         }
-    } catch {}
+    } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
 }
 
 let submissionsDb = {};
@@ -249,7 +286,7 @@ async function fetchAdoFile(filePath, timeoutMs = 8000) {
             if (parsed && typeof parsed.content === 'string') {
                 try {
                     parsed = JSON.parse(parsed.content);
-                } catch {}
+                } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
             }
             return parsed;
         }
@@ -701,18 +738,12 @@ function pushGovernanceToAdo() {
 function resolveUserRole(email) {
     if (!email) return 'CONSUMER';
     const norm = email.trim().toLowerCase();
-    if (norm === DEFAULT_SUPER_ADMIN.toLowerCase() || norm === 'admin@company.com' || norm === 'admin@test.com' || norm === 'admin@maqsoftware.com') {
+    if (norm === DEFAULT_SUPER_ADMIN.toLowerCase()) {
         return 'ADMIN';
     }
     const found = userRolesCache.find(r => r.userEmail && r.userEmail.toLowerCase() === norm);
     if (found && found.role) {
         return found.role.toUpperCase();
-    }
-    if (norm.startsWith('reviewer@') || norm.startsWith('designated-rev@')) return 'REVIEWER';
-    if (norm.startsWith('producer@') || norm.startsWith('contrib@') || norm.startsWith('contributor@')) return 'CONTRIBUTOR';
-    // Mechanism: When any user logs in with MAQ SSO (@maqsoftware.com), they automatically have CONTRIBUTOR role
-    if (norm.endsWith('@maqsoftware.com') || (norm.includes('@') && norm !== 'consumer@test.com' && norm !== 'consumer@company.com')) {
-        return 'CONTRIBUTOR';
     }
     return 'CONSUMER';
 }
@@ -723,7 +754,6 @@ function isCertifiedReviewer(email) {
     if (norm === DEFAULT_SUPER_ADMIN.toLowerCase()) return true;
     const found = userRolesCache.find(r => r.userEmail && r.userEmail.toLowerCase() === norm);
     if (found && (found.isCertifiedReviewer || found.role === 'ADMIN' || found.role === 'REVIEWER')) return true;
-    if (norm.endsWith('@maqsoftware.com') && (norm.startsWith('reviewer') || norm.startsWith('admin'))) return true;
     return false;
 }
 
@@ -740,7 +770,9 @@ function extractUserEmail(req) {
                               payload?.['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'] ||
                               payload?.['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
                 if (email) return String(email).trim().toLowerCase();
-            } catch {}
+            } catch (err) {
+                console.debug('[extractUserEmail] Token parsing error:', err.message);
+            }
         }
     }
 
@@ -754,7 +786,7 @@ function extractUserEmail(req) {
         }
     }
 
-    return 'consumer@maqsoftware.com';
+    return 'anonymous';
 }
 
 function isAdminUser(req) {
@@ -1211,7 +1243,7 @@ function resolveArtifactDetail(rawId) {
             try {
                 const content = fs.readFileSync(resolvedPath, 'utf8');
                 return JSON.parse(content);
-            } catch {}
+            } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
         }
     }
 
@@ -1287,7 +1319,7 @@ async function resolveArtifactCertification(rawId) {
         if (record) {
             return record;
         }
-    } catch {}
+    } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
 
     const clean = safeId.toLowerCase();
     const isLeap = clean.startsWith('leap-') || clean.includes('leap');
@@ -1324,7 +1356,7 @@ async function resolveArtifactReviews(rawId) {
                     return aId === clean || aId.replace(/^leap-/, '') === cleanWithoutLeap || clean.endsWith(aId);
                 });
             }
-        } catch {}
+        } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
     }
 
     return reviews;
@@ -1567,7 +1599,7 @@ app.get(['/api/artifacts/:id/download', '/api/artifacts/:id/zip', '/api/artifact
                     try {
                         const parsed = JSON.parse(payload.content);
                         if (Array.isArray(parsed.files)) files = parsed.files;
-                    } catch {}
+                    } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
                 }
                 const zipBuffer = createZipArchive(files);
                 const name = (payload && (payload.name || payload.rawId)) || req.params.id;
@@ -1635,7 +1667,7 @@ app.get(['/api/artifacts/:id/download', '/api/artifacts/:id/zip', '/api/artifact
                     parsed.content = JSON.stringify({ files: parsed.files });
                 }
                 return res.json(parsed);
-            } catch {}
+            } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
         }
     }
 
@@ -1674,7 +1706,7 @@ app.get(['/api/artifacts/:id/download', '/api/artifacts/:id/zip', '/api/artifact
             if (!adoPkg.content) adoPkg.content = JSON.stringify({ files: adoPkg.files });
             return res.json(adoPkg);
         }
-    } catch {}
+    } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
 
     // 4. Check submitted changes DB
     const match = artifactChangesDb.find(s => s.artifactId.toLowerCase() === id.toLowerCase() || s.artifactId.toLowerCase() === cleanId || s.id === id);
@@ -1686,7 +1718,7 @@ app.get(['/api/artifacts/:id/download', '/api/artifacts/:id/zip', '/api/artifact
             try {
                 const parsed = JSON.parse(match.content);
                 if (Array.isArray(parsed.files)) files = parsed.files;
-            } catch {}
+            } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
         }
 
         if (files.length === 0) {
@@ -1883,7 +1915,7 @@ app.post(['/api/artifacts/:artifactId/changes', '/api/reviews'], async (req, res
     if (typeof content === 'object') {
         try {
             content = JSON.stringify(content, null, 2);
-        } catch {}
+        } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
     }
 
     const reviewId = `rev-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
@@ -2090,7 +2122,7 @@ async function deleteArtifactFromAdo(artifactId) {
             if (fs.existsSync(localFile)) {
                 fs.unlinkSync(localFile);
             }
-        } catch {}
+        } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
 
         // 5. Check and update catalog.json in ADO if present
         const catalogItem = allItems.find(item => item.path === '/catalog.json' || item.path === 'catalog.json');
@@ -2749,7 +2781,7 @@ app.get('/api/reviews/:id/diff', async (req, res) => {
             try {
                 const parsed = JSON.parse(submission.content);
                 if (Array.isArray(parsed.files)) files = parsed.files;
-            } catch {}
+            } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
         }
     }
 
@@ -2762,7 +2794,7 @@ app.get('/api/reviews/:id/diff', async (req, res) => {
             try {
                 const parsed = JSON.parse(fs.readFileSync(localTarget, 'utf8'));
                 if (Array.isArray(parsed.files)) files = parsed.files;
-            } catch {}
+            } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
         }
     }
 
@@ -2771,7 +2803,7 @@ app.get('/api/reviews/:id/diff', async (req, res) => {
         try {
             const adoPkg = await fetchAdoFile(`/artifacts-json/${artName}.json`);
             if (adoPkg && Array.isArray(adoPkg.files)) files = adoPkg.files;
-        } catch {}
+        } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
     }
 
     // 4. Default fallback files if single markdown string
@@ -3439,7 +3471,7 @@ app.get('/api/certifications/:artifactId/reviews', async (req, res) => {
                     return id === clean || id.replace(/^leap-/, '') === cleanWithoutLeap || clean.endsWith(id);
                 });
             }
-        } catch {}
+        } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
     }
 
     res.json({
@@ -4117,7 +4149,7 @@ async function fetchAdoUsageEvents(force = false) {
                 if (Array.isArray(data)) {
                     events = data;
                 } else if (data && typeof data.content === 'string') {
-                    try { events = JSON.parse(data.content); } catch {}
+                    try { events = JSON.parse(data.content); } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
                 }
                 if (Array.isArray(events) && events.length > 0) {
                     cachedAdoUsageEvents = events;
@@ -4627,7 +4659,7 @@ async function fetchAdoCertificationItem(itemPath, force = false) {
             adoCertItemCache.set(cleanPath, { data: fallbackData, ts: Date.now() });
             return fallbackData;
         }
-    } catch {}
+    } catch (err) { console.debug('[EngineeringCommons] Handled error:', err.message); }
 
     return null;
 }

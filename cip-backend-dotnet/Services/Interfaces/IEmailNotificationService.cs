@@ -59,7 +59,7 @@ public record EmailServiceStatusDto(
 public interface IEmailNotificationService
 {
     // 1. Reviewer access request submitted
-    Task<bool> SendAccessRequestNotificationAsync(string adminEmail, string userEmail, string requestedRole, string? reason, string requestId);
+    Task<bool> SendAccessRequestNotificationAsync(string adminEmail, string userEmail, string requestedRole, string requestId, string? reason = null);
 
     // 2. Reviewer request approved / rejected
     Task<bool> SendAccessDecisionNotificationAsync(string userEmail, string decision, string role, string? notes);

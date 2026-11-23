@@ -27,17 +27,41 @@ public static class ApplicationBuilderExtensions
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "[HTTP 500 ERROR] {Method} {Path}: {Message}", context.Request.Method, context.Request.Path, ex.Message);
+                var correlationId = context.Response.Headers["X-Correlation-Id"].ToString();
+                if (string.IsNullOrWhiteSpace(correlationId))
+                {
+                    correlationId = Guid.NewGuid().ToString("N");
+                    context.Response.Headers["X-Correlation-Id"] = correlationId;
+                }
+
+                var (statusCode, title) = ex switch
+                {
+                    UnauthorizedAccessException => (StatusCodes.Status401Unauthorized, "Unauthorized"),
+                    KeyNotFoundException => (StatusCodes.Status404NotFound, "Resource Not Found"),
+                    ArgumentException or FormatException => (StatusCodes.Status400BadRequest, "Bad Request"),
+                    InvalidOperationException => (StatusCodes.Status409Conflict, "Conflict"),
+                    _ => (StatusCodes.Status500InternalServerError, "Internal Server Error")
+                };
+
+                if (statusCode == StatusCodes.Status500InternalServerError)
+                {
+                    logger.LogError(ex, "[HTTP 500 ERROR] [{CorrelationId}] {Method} {Path}: {Message}", correlationId, context.Request.Method, context.Request.Path, ex.Message);
+                }
+                else
+                {
+                    logger.LogWarning("[HTTP {StatusCode}] [{CorrelationId}] {Method} {Path}: {Message}", statusCode, correlationId, context.Request.Method, context.Request.Path, ex.Message);
+                }
 
                 if (!context.Response.HasStarted)
                 {
-                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                    context.Response.StatusCode = statusCode;
                     context.Response.ContentType = "application/json";
                     var isDev = environment.IsDevelopment();
                     var payload = System.Text.Json.JsonSerializer.Serialize(new
                     {
-                        error = "Internal Server Error",
-                        message = isDev ? ex.Message : "An unexpected error occurred while processing your request."
+                        error = title,
+                        message = (isDev || statusCode != StatusCodes.Status500InternalServerError) ? ex.Message : "An unexpected error occurred while processing your request.",
+                        correlationId
                     });
                     await context.Response.WriteAsync(payload);
                 }
@@ -52,6 +76,13 @@ public static class ApplicationBuilderExtensions
     {
         return app.Use(async (context, next) =>
         {
+            var correlationId = context.Request.Headers["X-Correlation-Id"].ToString();
+            if (string.IsNullOrWhiteSpace(correlationId))
+            {
+                correlationId = Guid.NewGuid().ToString("N");
+            }
+            context.Response.Headers["X-Correlation-Id"] = correlationId;
+
             context.Response.Headers["X-Content-Type-Options"] = "nosniff";
             context.Response.Headers["X-Frame-Options"] = "DENY";
             context.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
@@ -64,15 +95,14 @@ public static class ApplicationBuilderExtensions
 
     /// <summary>
     /// Configures the core security middleware pipeline with correct execution order:
-    /// CORS -> Routing -> Token Authentication -> Authorization
+    /// CORS -> Routing -> Authentication -> Authorization
     /// </summary>
     public static IApplicationBuilder UseEngineeringCommonsPipeline(this IApplicationBuilder app)
     {
         app.UseCors();
         app.UseRouting();
 
-        // Authentication MUST execute before Authorization
-        app.UseMiddleware<EngineeringCommons.Backend.Middleware.TokenAuthenticationMiddleware>();
+        // Standard canonical execution order without redundant middleware
         app.UseAuthentication();
         app.UseAuthorization();
 

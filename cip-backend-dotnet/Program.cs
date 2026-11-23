@@ -12,6 +12,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,105 +24,47 @@ using EngineeringCommons.Backend.Services.Interfaces;
 using EngineeringCommons.Backend.Services.Implementations;
 
 // =========================================================================
-// SECTION 1: Local Environment & Azure DevOps Secret Mapping
+// SECTION 1: Local Environment & Azure DevOps Secret Ingestion
 // =========================================================================
-var envCandidates = new[]
-{
-    Path.Combine(Directory.GetCurrentDirectory(), ".env"),
-    Path.Combine(Directory.GetCurrentDirectory(), "cip-backend-dotnet", ".env"),
-    Path.Combine(AppContext.BaseDirectory, ".env"),
-    Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".env")
-};
+EngineeringCommonsConfigurationExtensions.IngestEnvironmentAndSecrets();
 
-foreach (var envPath in envCandidates)
+// =========================================================================
+// SECTION 2: Decoupled Standalone Database Migration Execution CLI Command
+// =========================================================================
+if (args.Contains("--migrate") || args.Contains("migrate"))
 {
-    if (File.Exists(envPath))
+    var dbPath = "cip.db";
+    var migDir = Path.Combine(AppContext.BaseDirectory, "Migrations", "Sql");
+    if (!Directory.Exists(migDir)) migDir = Path.Combine(Directory.GetCurrentDirectory(), "cip-backend-dotnet", "Migrations", "Sql");
+    if (!Directory.Exists(migDir)) migDir = Path.Combine(Directory.GetCurrentDirectory(), "Migrations", "Sql");
+    
+    for (int i = 0; i < args.Length; i++)
     {
-        foreach (var raw in File.ReadAllLines(envPath))
-        {
-            var line = raw?.Trim();
-            if (string.IsNullOrEmpty(line) || line.StartsWith("#")) continue;
-            var idx = line.IndexOf('=');
-            if (idx <= 0) continue;
-            var key = line.Substring(0, idx).Trim();
-            var val = line.Substring(idx + 1).Trim().Trim('"', '\'').Trim();
-            Environment.SetEnvironmentVariable(key, val);
-
-            // Map Azure DevOps (ADO) env var names to configuration binder names
-            if (string.Equals(key, "AZURE_DEVOPS_TOKEN", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS_PAT", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "ADO_TOKEN", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "ADO_PAT", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS__TOKEN", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("AzureDevOps:Token", val);
-                Environment.SetEnvironmentVariable("AzureDevOps__Token", val);
-            }
-            if (string.Equals(key, "AZURE_DEVOPS_ORG", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS_ORGANIZATION", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "ADO_ORG", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS__ORGANIZATION", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("AzureDevOps:Organization", val);
-                Environment.SetEnvironmentVariable("AzureDevOps__Organization", val);
-            }
-            if (string.Equals(key, "AZURE_DEVOPS_PROJECT", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "ADO_PROJECT", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS__PROJECT", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("AzureDevOps:Project", val);
-                Environment.SetEnvironmentVariable("AzureDevOps__Project", val);
-            }
-            if (string.Equals(key, "AZURE_DEVOPS_REPOSITORY", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS_REPO", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "ADO_REPO", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS__REPOSITORY", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("AzureDevOps:Repository", val);
-                Environment.SetEnvironmentVariable("AzureDevOps__Repository", val);
-            }
-            if (string.Equals(key, "AZURE_DEVOPS_BRANCH", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "ADO_BRANCH", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "AZURE_DEVOPS__BRANCH", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("AzureDevOps:Branch", val);
-                Environment.SetEnvironmentVariable("AzureDevOps__Branch", val);
-            }
-
-            // Map common GitHub env var names to configuration binder names
-            if (string.Equals(key, "GITHUB_TOKEN", StringComparison.OrdinalIgnoreCase) || 
-                string.Equals(key, "GITHUB__TOKEN", StringComparison.OrdinalIgnoreCase) || 
-                string.Equals(key, "GITHUB_PAT", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("GitHub:Token", val);
-                Environment.SetEnvironmentVariable("GitHub__Token", val);
-            }
-            if (string.Equals(key, "GITHUB_OWNER", StringComparison.OrdinalIgnoreCase) || 
-                string.Equals(key, "GITHUB__OWNER", StringComparison.OrdinalIgnoreCase) || 
-                string.Equals(key, "GITHUB_USER", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("GitHub:Owner", val);
-                Environment.SetEnvironmentVariable("GitHub__Owner", val);
-            }
-            if (string.Equals(key, "GITHUB_REPOSITORY", StringComparison.OrdinalIgnoreCase) || 
-                string.Equals(key, "GITHUB__REPOSITORY", StringComparison.OrdinalIgnoreCase) || 
-                string.Equals(key, "GITHUB_REPO", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("GitHub:Repository", val);
-                Environment.SetEnvironmentVariable("GitHub__Repository", val);
-            }
-            if (string.Equals(key, "SQLITE_CONNECTION_STRING", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(key, "DATABASE_URL", StringComparison.OrdinalIgnoreCase))
-            {
-                Environment.SetEnvironmentVariable("ConnectionStrings:Sqlite", val);
-                Environment.SetEnvironmentVariable("ConnectionStrings__Sqlite", val);
-            }
-        }
+        if (args[i] == "--db" && i + 1 < args.Length) dbPath = args[i + 1];
+        if (args[i] == "--dir" && i + 1 < args.Length) migDir = args[i + 1];
     }
+
+    return DatabaseMigrationExtensions.ApplyMigrations(dbPath, migDir);
+}
+
+if (args.Contains("--rollback") || args.Contains("rollback"))
+{
+    var dbPath = "cip.db";
+    var migDir = Path.Combine(AppContext.BaseDirectory, "Migrations", "Sql");
+    if (!Directory.Exists(migDir)) migDir = Path.Combine(Directory.GetCurrentDirectory(), "cip-backend-dotnet", "Migrations", "Sql");
+    if (!Directory.Exists(migDir)) migDir = Path.Combine(Directory.GetCurrentDirectory(), "Migrations", "Sql");
+    
+    for (int i = 0; i < args.Length; i++)
+    {
+        if (args[i] == "--db" && i + 1 < args.Length) dbPath = args[i + 1];
+        if (args[i] == "--dir" && i + 1 < args.Length) migDir = args[i + 1];
+    }
+
+    return DatabaseMigrationExtensions.RollbackMigrations(dbPath, migDir);
 }
 
 // =========================================================================
-// SECTION 2: WebApplication Builder, JSON Converters & CORS Configuration
+// SECTION 3: WebApplication Builder, Services & Pipeline Configuration
 // =========================================================================
 var builder = WebApplication.CreateBuilder(args);
 
@@ -139,34 +82,13 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
     });
 
-// Restrict CORS policies strictly to explicitly trusted origins
-builder.Services.AddCors(options =>
-{
-    var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
-        ?? new[]
-        {
-            "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io",
-            "https://portal.azure.com",
-            "vscode-webview://",
-            "http://localhost:3000",
-            "http://localhost:5000",
-            "http://127.0.0.1:3000",
-            "http://127.0.0.1:5000"
-        };
-
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.WithOrigins(allowedOrigins)
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              .AllowCredentials();
-    });
-});
+// Whitelisted CORS policies
+builder.Services.AddEngineeringCommonsCors(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Authentication & Authorization Services
+// Authentication & Token Handler
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = "Token";
@@ -174,7 +96,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, EngineeringCommons.Backend.Middleware.TokenAuthenticationHandler>("Token", null);
 
-builder.Services.AddAuthorization();
+// Declarative App Role Authorization Policies
+builder.Services.AddEngineeringCommonsAuthorizationPolicies();
 
 // Configuration: bind static auth options
 builder.Services.Configure<StaticAuthOptions>(builder.Configuration.GetSection("StaticAuth"));
@@ -183,7 +106,8 @@ builder.Services.Configure<StaticAuthOptions>(builder.Configuration.GetSection("
 var useInMemory = string.Equals(Environment.GetEnvironmentVariable("ZERO_COST_MODE"), "true", StringComparison.OrdinalIgnoreCase) ||
                   string.Equals(Environment.GetEnvironmentVariable("NO_DB"), "true", StringComparison.OrdinalIgnoreCase);
 
-var sqliteConnectionString = builder.Configuration.GetConnectionString("Sqlite") 
+var sqliteConnectionString = builder.Configuration.GetConnectionString("EngineeringCommons")
+                             ?? builder.Configuration.GetConnectionString("Sqlite") 
                              ?? builder.Configuration.GetConnectionString("DefaultConnection")
                              ?? Environment.GetEnvironmentVariable("SQLITE_CONNECTION_STRING")
                              ?? "Data Source=cip.db";
@@ -194,9 +118,7 @@ builder.Services.AddEngineeringCommonsServices(builder.Configuration, useInMemor
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
-// =========================================================================
-// SECTION 3: Database Schema Verification & Migrations
-// =========================================================================
+// Database Schema Initialization (Decoupled in production)
 app.InitializeDatabaseSchema(logger, useInMemory);
 
 var enableSwagger = app.Environment.IsDevelopment() || 
@@ -209,7 +131,7 @@ if (enableSwagger)
 }
 
 // =========================================================================
-// SECTION 4: HTTP Middleware Pipeline & Correct Execution Order
+// SECTION 4: HTTP Middleware Pipeline (Standard Canonical Execution Order)
 // =========================================================================
 app.UseGlobalExceptionHandler(logger, app.Environment);
 app.UseEnterpriseSecurityHeaders();
@@ -220,6 +142,8 @@ app.MapControllers();
 logger.LogInformation("Engineering Commons backend initialization complete. Ready for traffic.");
 
 app.Run();
+
+return 0;
 
 // Required for WebApplicationFactory in integration tests
 public partial class Program { }

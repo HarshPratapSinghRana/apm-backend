@@ -82,4 +82,59 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
+
+    /// <summary>
+    /// Configures strictly whitelisted CORS origins from configuration.
+    /// </summary>
+    public static IServiceCollection AddEngineeringCommonsCors(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddCors(options =>
+        {
+            var allowedOrigins = configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+                ?? new[]
+                {
+                    "https://apm-backend.wittyriver-c768e02e.eastus.azurecontainerapps.io",
+                    "https://portal.azure.com",
+                    "vscode-webview://",
+                    "http://localhost:3000",
+                    "http://localhost:5000",
+                    "http://localhost:5173",
+                    "http://127.0.0.1:3000",
+                    "http://127.0.0.1:5000",
+                    "http://127.0.0.1:5173"
+                };
+
+            options.AddDefaultPolicy(policy =>
+            {
+                policy.WithOrigins(allowedOrigins)
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+                      .AllowCredentials();
+            });
+        });
+        return services;
+    }
+
+    /// <summary>
+    /// Configures declarative Entra ID / App Role authorization policies.
+    /// Eliminates manual email-name heuristic checks in controllers.
+    /// </summary>
+    public static IServiceCollection AddEngineeringCommonsAuthorizationPolicies(this IServiceCollection services)
+    {
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("RequireAdmin", policy =>
+                policy.RequireRole(UserRoles.Admin, "EngineeringCommons.Admin"));
+
+            options.AddPolicy("RequireReviewer", policy =>
+                policy.RequireRole(UserRoles.Admin, UserRoles.Reviewer, UserRoles.CertifiedReviewer, 
+                                   "EngineeringCommons.Admin", "EngineeringCommons.Reviewer"));
+
+            options.AddPolicy("RequireContributor", policy =>
+                policy.RequireRole(UserRoles.Admin, UserRoles.Reviewer, UserRoles.CertifiedReviewer, 
+                                   UserRoles.Contributor, UserRoles.Producer,
+                                   "EngineeringCommons.Admin", "EngineeringCommons.Reviewer", "EngineeringCommons.Producer"));
+        });
+        return services;
+    }
 }

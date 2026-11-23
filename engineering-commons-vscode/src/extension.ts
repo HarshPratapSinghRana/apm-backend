@@ -167,6 +167,11 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider('engineering-commons-explorer', sidebarWebviewProvider, {
             webviewOptions: { retainContextWhenHidden: true }
+        }),
+        vscode.window.onDidChangeActiveColorTheme(async () => {
+            if (sidebarWebviewProvider) {
+                await sidebarWebviewProvider.refresh(false);
+            }
         })
     );
 

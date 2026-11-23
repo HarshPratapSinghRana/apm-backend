@@ -29,14 +29,11 @@ public class CertificationsController : ControllerBase
 
     private string GetUserRole()
     {
-        var role = User.FindFirst(ClaimTypes.Role)?.Value;
+        var role = User.FindFirst(ClaimTypes.Role)?.Value 
+            ?? User.FindFirst("roles")?.Value 
+            ?? User.FindFirst("http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
+
         if (!string.IsNullOrEmpty(role)) return role.ToUpperInvariant();
-        var email = GetUserEmail().ToLowerInvariant();
-        if (email.Contains("admin") || email.Contains("reviewer") || 
-            (email.StartsWith("designated-rev@") && (email.EndsWith("@company.com") || email.EndsWith("@test.com") || email.EndsWith("@maqsoftware.com")))) 
-            return UserRoles.Reviewer;
-        if ((email.StartsWith("producer@") || email.StartsWith("contrib@")) && (email.EndsWith("@company.com") || email.EndsWith("@test.com") || email.EndsWith("@maqsoftware.com"))) 
-            return UserRoles.Producer;
         return UserRoles.Consumer;
     }
 
@@ -54,13 +51,14 @@ public class CertificationsController : ControllerBase
         return Ok(status);
     }
 
+    [HttpGet("{artifactId}/evaluate")]
     [HttpGet("evaluate/{artifactId}")]
     public async Task<IActionResult> EvaluateCertification(string artifactId)
     {
         var evaluation = await _certificationService.EvaluateCertificationAsync(artifactId);
         
-        var role = GetUserRole();
-        if (role == UserRoles.Consumer)
+        var userRole = UserRoleExtensions.ToUserRole(GetUserRole());
+        if (userRole == UserRole.Consumer)
         {
             return Ok(new
             {
@@ -76,13 +74,14 @@ public class CertificationsController : ControllerBase
         return Ok(evaluation);
     }
 
+    [HttpPost("{artifactId}/request")]
     [HttpPost("request-certification/{artifactId}")]
     public async Task<IActionResult> RequestCertification(string artifactId)
     {
         var email = GetUserEmail();
-        var role = GetUserRole();
+        var userRole = UserRoleExtensions.ToUserRole(GetUserRole());
 
-        if (role == UserRoles.Consumer)
+        if (userRole == UserRole.Consumer)
         {
             return StatusCode(StatusCodes.Status403Forbidden, new 
             { 
@@ -94,40 +93,36 @@ public class CertificationsController : ControllerBase
         return Ok(result);
     }
 
+    [Authorize(Policy = "RequireReviewer")]
+    [HttpPost("{artifactId}/certify")]
     [HttpPost("certify-artifact/{artifactId}")]
     public async Task<IActionResult> CertifyArtifact(string artifactId, [FromBody] CertifyRequestPayload? payload)
     {
         var email = GetUserEmail();
-        var role = GetUserRole();
-
-        if (role != UserRoles.Reviewer && role != UserRoles.Admin && role != UserRoles.CertifiedReviewer)
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new 
-            { 
-                error = "Access Denied: Only users with the Reviewer, Certified Reviewer, or Admin role have permission to certify artifacts (artifact.certify)." 
-            });
-        }
-
         var result = await _certificationService.CertifyArtifactAsync(artifactId, email, payload?.Version, payload?.Reason);
 
-        // TODO: Task #4821 - Wire Microsoft Graph API background email notification upon artifact certification approval
+        // Dispatches Microsoft Graph background email notification upon artifact certification approval
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await _emailService.SendArtifactCertifiedNotificationAsync(artifactId, payload?.Version ?? "1.0.0", email, email, result?.Status);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[CertificationsController] Notification dispatch error: {ex.Message}");
+            }
+        });
 
         return Ok(result);
     }
 
+    [Authorize(Policy = "RequireReviewer")]
+    [HttpPost("{artifactId}/revoke")]
     [HttpPost("revoke-certification/{artifactId}")]
     public async Task<IActionResult> RevokeCertification(string artifactId, [FromBody] RevokeRequestPayload payload)
     {
         var email = GetUserEmail();
-        var role = GetUserRole();
-
-        if (role != UserRoles.Reviewer && role != UserRoles.Admin && role != UserRoles.CertifiedReviewer)
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new 
-            { 
-                error = "Access Denied: Only users with the Reviewer, Certified Reviewer, or Admin role have permission to revoke certification (artifact.revoke_certification)." 
-            });
-        }
 
         if (string.IsNullOrWhiteSpace(payload?.Reason))
         {
@@ -136,7 +131,18 @@ public class CertificationsController : ControllerBase
 
         var result = await _certificationService.RevokeCertificationAsync(artifactId, email, payload.Reason);
 
-        // TODO: Task #4822 - Wire Microsoft Graph API background email notification upon artifact certification revocation
+        // Dispatches Microsoft Graph background email notification upon artifact certification revocation
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await _emailService.SendArtifactCertificationRejectedNotificationAsync(artifactId, email, payload.Reason, email);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[CertificationsController] Notification dispatch error: {ex.Message}");
+            }
+        });
 
         return Ok(result);
     }

@@ -67,6 +67,9 @@ sample-package       package    1.0.0
             detailsProvider,
             threadWebviewProvider
         );
+        (provider as any).adoGovernanceService.getUserRolesAsync = async () => [
+            { userEmail: 'harsh.rana@maqsoftware.com', role: 'ADMIN', isCertifiedReviewer: true, grantedBy: 'SYSTEM', grantedAt: '', updatedAt: '' }
+        ];
     });
 
     it('1. Default bounties are strictly dynamic (zero hardcoded mock arrays)', () => {

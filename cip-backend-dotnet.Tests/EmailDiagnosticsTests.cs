@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -16,10 +17,26 @@ public class EmailDiagnosticsTests : IClassFixture<TestWebApplicationFactory>
         _factory = factory;
     }
 
+    private async Task<HttpClient> CreateAdminClientAsync()
+    {
+        var client = _factory.CreateClient();
+        var ssoResp = await client.PostAsJsonAsync("/api/auth/sso", new
+        {
+            token = "mock-ms-token-admin",
+            email = "admin@maqsoftware.com",
+            name = "Admin User"
+        });
+        ssoResp.EnsureSuccessStatusCode();
+        var body = await ssoResp.Content.ReadFromJsonAsync<JsonElement>();
+        var token = body.GetProperty("token").GetString();
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        return client;
+    }
+
     [Fact]
     public async Task GetEmailStatus_ReturnsValidStatus()
     {
-        var client = _factory.CreateClient();
+        var client = await CreateAdminClientAsync();
         var resp = await client.GetAsync("/api/admin/emails/status");
         resp.EnsureSuccessStatusCode();
 
@@ -33,7 +50,7 @@ public class EmailDiagnosticsTests : IClassFixture<TestWebApplicationFactory>
     [Fact]
     public async Task SendTestEmail_DispatchesToAdmin_GeneratesEml()
     {
-        var client = _factory.CreateClient();
+        var client = await CreateAdminClientAsync();
         var resp = await client.PostAsJsonAsync("/api/admin/emails/test", new
         {
             recipient = "admin@maqsoftware.com",
@@ -55,7 +72,7 @@ public class EmailDiagnosticsTests : IClassFixture<TestWebApplicationFactory>
     [Fact]
     public async Task GetOutbox_ReturnsHistory()
     {
-        var client = _factory.CreateClient();
+        var client = await CreateAdminClientAsync();
 
         // Send a test email first
         await client.PostAsJsonAsync("/api/admin/emails/test", new

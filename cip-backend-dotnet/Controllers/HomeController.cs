@@ -23,7 +23,7 @@ public class HomeController : ControllerBase
                           Environment.GetEnvironmentVariable("GITHUB_PAT");
 
         return Ok(new {
-            message = "cip-backend-dotnet running (Azure DevOps Marketplace Backend)",
+            message = "Engineering Commons Backend running (Azure DevOps Marketplace Backend)",
             swagger = "/swagger",
             azureDevOpsConfigured = !string.IsNullOrEmpty(adoToken),
             adoConfigured = !string.IsNullOrEmpty(adoToken),

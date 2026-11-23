@@ -623,12 +623,11 @@ public class DuplicateDetectionTests
             ControllerContext = CreateControllerContext("producer@company.com")
         };
 
-        var requestBody = Newtonsoft.Json.Linq.JObject.FromObject(new
+        var requestBody = new EngineeringCommons.Backend.Models.SubmitChangeRequestDto
         {
-            name = "design-reviewer",
-            type = "agent",
-            content = existingContent
-        });
+            Type = "agent",
+            Content = existingContent
+        };
 
         // Act
         var response = await controller.SubmitChange("design-reviewer", requestBody, _marketplace);

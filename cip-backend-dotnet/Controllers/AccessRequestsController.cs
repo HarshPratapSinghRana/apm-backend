@@ -69,34 +69,24 @@ public class AccessRequestsController : ControllerBase
     }
 
     [HttpGet("api/admin/access-requests")]
+    [Authorize(Policy = "RequireAdmin")]
     public async Task<IActionResult> GetAdminAccessRequests([FromQuery] string? status = null)
     {
-        if (!await IsAdminUserAsync())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new
-            {
-                error = "access_denied",
-                detail = "Only system administrator can view and manage access requests."
-            });
-        }
-
         var requests = await _userRoleService.GetAccessRequestsAsync(status);
         return Ok(requests);
     }
 
+    private string GetAdminCallerIdentity() =>
+        User.Identity?.Name 
+        ?? User.FindFirst(ClaimTypes.Email)?.Value 
+        ?? User.FindFirst("preferred_username")?.Value 
+        ?? "admin";
+
     [HttpPost("api/admin/access-requests/{id}/approve")]
+    [Authorize(Policy = "RequireAdmin")]
     public async Task<IActionResult> ApproveAccessRequest(string id, [FromBody] ReviewAccessRequestDecisionDto? dto)
     {
-        if (!await IsAdminUserAsync())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new
-            {
-                error = "access_denied",
-                detail = "Only system administrator can approve access requests."
-            });
-        }
-
-        var adminEmail = User.Identity?.Name ?? SqliteUserRoleService.DefaultSuperAdmin;
+        var adminEmail = GetAdminCallerIdentity();
         var approved = await _userRoleService.ApproveRequestAsync(id, adminEmail, dto?.Notes);
         if (approved == null)
         {
@@ -111,18 +101,10 @@ public class AccessRequestsController : ControllerBase
     }
 
     [HttpPost("api/admin/access-requests/{id}/reject")]
+    [Authorize(Policy = "RequireAdmin")]
     public async Task<IActionResult> RejectAccessRequest(string id, [FromBody] ReviewAccessRequestDecisionDto? dto)
     {
-        if (!await IsAdminUserAsync())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new
-            {
-                error = "access_denied",
-                detail = "Only system administrator can reject access requests."
-            });
-        }
-
-        var adminEmail = User.Identity?.Name ?? SqliteUserRoleService.DefaultSuperAdmin;
+        var adminEmail = GetAdminCallerIdentity();
         var rejected = await _userRoleService.RejectRequestAsync(id, adminEmail, dto?.Notes);
         if (rejected == null)
         {
@@ -137,24 +119,16 @@ public class AccessRequestsController : ControllerBase
     }
 
     [HttpPost("api/admin/roles/revoke")]
+    [Authorize(Policy = "RequireAdmin")]
     public async Task<IActionResult> RevokeAccess([FromBody] RevokeAccessRequestDto dto)
     {
-        if (!await IsAdminUserAsync())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new
-            {
-                error = "access_denied",
-                detail = "Only system administrator can revoke reviewer access."
-            });
-        }
-
         var targetEmail = dto?.EffectiveTargetEmail;
         if (string.IsNullOrWhiteSpace(targetEmail))
         {
             return BadRequest(new { error = "missing_email", detail = "Target email is required to revoke access." });
         }
 
-        var adminEmail = User.Identity?.Name ?? SqliteUserRoleService.DefaultSuperAdmin;
+        var adminEmail = GetAdminCallerIdentity();
         var assignment = await _userRoleService.RevokeAccessAsync(targetEmail, adminEmail, dto?.Notes);
 
         return Ok(new
@@ -165,24 +139,16 @@ public class AccessRequestsController : ControllerBase
     }
 
     [HttpPost("api/admin/roles/certify-reviewer")]
+    [Authorize(Policy = "RequireAdmin")]
     public async Task<IActionResult> CertifyReviewer([FromBody] CertifyReviewerRequestDto dto)
     {
-        if (!await IsAdminUserAsync())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new
-            {
-                error = "access_denied",
-                detail = "Only system administrator can grant Certified Reviewer status."
-            });
-        }
-
         var targetEmail = dto?.EffectiveTargetEmail;
         if (string.IsNullOrWhiteSpace(targetEmail))
         {
             return BadRequest(new { error = "missing_email", detail = "Target email is required to certify reviewer." });
         }
 
-        var adminEmail = User.Identity?.Name ?? SqliteUserRoleService.DefaultSuperAdmin;
+        var adminEmail = GetAdminCallerIdentity();
         var assignment = await _userRoleService.CertifyReviewerAsync(targetEmail, adminEmail, dto?.Notes);
 
         return Ok(new
@@ -193,17 +159,9 @@ public class AccessRequestsController : ControllerBase
     }
 
     [HttpPost("api/admin/roles/sync-ado")]
+    [Authorize(Policy = "RequireAdmin")]
     public async Task<IActionResult> SyncAdminRolesAsync()
     {
-        if (!await IsAdminUserAsync())
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, new
-            {
-                error = "access_denied",
-                detail = "Only system administrator can trigger governance ADO sync."
-            });
-        }
-
         var success = await _userRoleService.SyncToAzureDevOpsAsync();
         return Ok(new
         {
@@ -219,17 +177,5 @@ public class AccessRequestsController : ControllerBase
     {
         var roles = await _userRoleService.GetAllRolesAsync();
         return Ok(roles);
-    }
-
-    private async Task<bool> IsAdminUserAsync()
-    {
-        if (!User.Identity?.IsAuthenticated ?? true) return false;
-        if (User.IsInRole(UserRoles.Admin)) return true;
-
-        var roleClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
-        if (string.Equals(roleClaim, UserRoles.Admin, StringComparison.OrdinalIgnoreCase)) return true;
-
-        var email = User.Identity?.Name ?? string.Empty;
-        return await _userRoleService.IsAdminAsync(email);
     }
 }

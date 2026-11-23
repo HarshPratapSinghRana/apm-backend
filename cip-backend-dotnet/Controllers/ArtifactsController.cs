@@ -206,22 +206,11 @@ public class ArtifactsController : ControllerBase
     }
 
     [HttpPost("{artifactId}/check-duplicate")]
-    public async Task<IActionResult> CheckDuplicate(string? artifactId, [FromBody] Newtonsoft.Json.Linq.JToken? rawBody)
+    public async Task<IActionResult> CheckDuplicate(string? artifactId, [FromBody] CheckDuplicateRequestDto? req)
     {
-        string targetId = artifactId ?? string.Empty;
-        string content = string.Empty;
-        string? artifactType = null;
-
-        if (rawBody is Newtonsoft.Json.Linq.JObject obj)
-        {
-            if (string.IsNullOrEmpty(targetId)) targetId = obj["name"]?.ToString() ?? obj["artifactId"]?.ToString() ?? string.Empty;
-            artifactType = obj["type"]?.ToString() ?? obj["artifactType"]?.ToString();
-            content = obj["content"]?.ToString() ?? obj.ToString(Newtonsoft.Json.Formatting.None);
-        }
-        else
-        {
-            content = rawBody?.ToString(Newtonsoft.Json.Formatting.None) ?? string.Empty;
-        }
+        string targetId = artifactId ?? req?.ArtifactId ?? req?.Name ?? string.Empty;
+        string content = req?.Content ?? string.Empty;
+        string? artifactType = req?.Type ?? req?.ArtifactType;
 
         if (string.IsNullOrWhiteSpace(targetId)) return BadRequest(new { error = "Artifact ID or name is required." });
 
@@ -230,59 +219,32 @@ public class ArtifactsController : ControllerBase
     }
 
     [HttpPost("{artifactId}/changes")]
-    public async Task<IActionResult> SubmitChange(string artifactId, [FromBody] Newtonsoft.Json.Linq.JToken? rawBody, [FromServices] IMarketplaceService marketplace)
+    public async Task<IActionResult> SubmitChange(string artifactId, [FromBody] SubmitChangeRequestDto? req, [FromServices] IMarketplaceService marketplace)
     {
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
-        string content;
-        string? artifactType = null;
-        bool isPrivate = false;
-        string? allowedContributors = null;
-        string? allowedReviewers = null;
-        string? allowedConsumers = null;
+        string content = req?.Content ?? string.Empty;
+        string? artifactType = req?.Type;
+        bool isPrivate = req?.IsPrivate ?? false;
+        string? allowedContributors = req?.AllowedContributors;
+        string? allowedReviewers = req?.AllowedReviewers;
+        string? allowedConsumers = req?.AllowedConsumers;
 
-        if (rawBody is Newtonsoft.Json.Linq.JObject obj)
+        if (!string.IsNullOrWhiteSpace(content))
         {
-            artifactType = obj["type"]?.ToString();
-            if (obj["isPrivate"] != null)
+            try
             {
-                isPrivate = (bool?)obj["isPrivate"] ?? false;
-            }
-            else if (obj["visibility"] != null)
-            {
-                isPrivate = obj["visibility"]!.ToString().Equals("private", StringComparison.OrdinalIgnoreCase);
-            }
-
-            allowedContributors = obj["allowedContributors"]?.ToString() ?? obj["contributors"]?.ToString();
-            allowedReviewers = obj["allowedReviewers"]?.ToString() ?? obj["reviewers"]?.ToString();
-            allowedConsumers = obj["allowedConsumers"]?.ToString() ?? obj["consumers"]?.ToString() ?? obj["installers"]?.ToString();
-
-            if (obj["content"] != null)
-            {
-                content = obj["content"]!.ToString();
-                try
+                using var doc = System.Text.Json.JsonDocument.Parse(content);
+                if (string.IsNullOrEmpty(artifactType) && doc.RootElement.TryGetProperty("type", out var typeProp))
                 {
-                    var innerObj = Newtonsoft.Json.Linq.JObject.Parse(content);
-                    if (string.IsNullOrEmpty(artifactType)) artifactType = innerObj["type"]?.ToString();
-                    if (obj["isPrivate"] == null && innerObj["isPrivate"] != null) isPrivate = (bool?)innerObj["isPrivate"] ?? false;
-                    if (allowedContributors == null && innerObj["allowedContributors"] != null) allowedContributors = innerObj["allowedContributors"]?.ToString();
-                    if (allowedReviewers == null && innerObj["allowedReviewers"] != null) allowedReviewers = innerObj["allowedReviewers"]?.ToString();
-                    if (allowedConsumers == null && innerObj["allowedConsumers"] != null) allowedConsumers = innerObj["allowedConsumers"]?.ToString();
-                }
-                catch (Newtonsoft.Json.JsonReaderException ex)
-                {
-                    _logger?.LogDebug(ex, "Non-JSON content string is used as-is for artifact {ArtifactId}", artifactId);
+                    artifactType = typeProp.GetString();
                 }
             }
-            else
+            catch (System.Text.Json.JsonException ex)
             {
-                content = obj.ToString(Newtonsoft.Json.Formatting.None);
+                _logger?.LogDebug(ex, "Non-JSON content string is used as-is for artifact {ArtifactId}", artifactId);
             }
-        }
-        else
-        {
-            content = rawBody?.ToString(Newtonsoft.Json.Formatting.None) ?? string.Empty;
         }
 
         if (_userRoleService != null)
@@ -397,31 +359,15 @@ public class ArtifactsController : ControllerBase
     }
 
     [HttpPut("{artifactId}/visibility")]
-    public async Task<IActionResult> UpdateVisibility(string artifactId, [FromBody] Newtonsoft.Json.Linq.JObject? body, [FromServices] IMarketplaceService marketplace)
+    public async Task<IActionResult> UpdateVisibility(string artifactId, [FromBody] UpdateVisibilityRequestDto? req, [FromServices] IMarketplaceService marketplace)
     {
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
-        bool isPrivate = false;
-        string? allowedContributors = null;
-        string? allowedReviewers = null;
-        string? allowedConsumers = null;
-
-        if (body != null)
-        {
-            if (body["isPrivate"] != null)
-            {
-                isPrivate = (bool?)body["isPrivate"] ?? false;
-            }
-            else if (body["visibility"] != null)
-            {
-                isPrivate = body["visibility"]!.ToString().Equals("private", StringComparison.OrdinalIgnoreCase);
-            }
-
-            allowedContributors = body["allowedContributors"]?.ToString() ?? body["contributors"]?.ToString();
-            allowedReviewers = body["allowedReviewers"]?.ToString() ?? body["reviewers"]?.ToString();
-            allowedConsumers = body["allowedConsumers"]?.ToString() ?? body["consumers"]?.ToString() ?? body["installers"]?.ToString();
-        }
+        bool isPrivate = req?.IsPrivate ?? false;
+        string? allowedContributors = req?.AllowedContributors;
+        string? allowedReviewers = req?.AllowedReviewers;
+        string? allowedConsumers = req?.AllowedConsumers;
 
         var existing = await marketplace.GetArtifactAsync(artifactId);
         if (existing == null)
@@ -527,6 +473,7 @@ public class ArtifactsController : ControllerBase
     }
 
     [HttpGet("my/changes")]
+    [HttpGet("/api/my/changes")]
     public IActionResult MyChanges()
     {
         var email = User.Identity?.Name ?? string.Empty;

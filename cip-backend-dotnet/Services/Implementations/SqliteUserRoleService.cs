@@ -16,8 +16,6 @@ namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class SqliteUserRoleService : IUserRoleService
 {
-    public const string DefaultSuperAdmin = "admin@maqsoftware.com";
-
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly INotificationService _notifications;
     private readonly IEmailNotificationService _emailService;
@@ -44,12 +42,19 @@ public class SqliteUserRoleService : IUserRoleService
         _httpFactory = httpFactory;
     }
 
+    private string? GetConfiguredAdminEmail()
+    {
+        return _config["AdminEmail"] 
+            ?? _config.GetSection("AdminEmails").Get<string[]>()?.FirstOrDefault();
+    }
+
     public Task<bool> IsAdminAsync(string email)
     {
         if (string.IsNullOrWhiteSpace(email)) return Task.FromResult(false);
         var norm = email.Trim().ToLowerInvariant();
 
-        if (norm == DefaultSuperAdmin.ToLowerInvariant())
+        var configured = GetConfiguredAdminEmail();
+        if (!string.IsNullOrEmpty(configured) && string.Equals(norm, configured.Trim().ToLowerInvariant(), StringComparison.OrdinalIgnoreCase))
         {
             return Task.FromResult(true);
         }
@@ -114,7 +119,10 @@ public class SqliteUserRoleService : IUserRoleService
             await db.SaveChangesAsync();
             TriggerAdoSync();
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to persist auto-registered role for user in database.");
+        }
 
         return defaultRole;
     }
@@ -153,6 +161,7 @@ public class SqliteUserRoleService : IUserRoleService
         }
 
         var currentRole = await ResolveUserRoleAsync(norm);
+        var adminRecipient = GetConfiguredAdminEmail();
         var request = new UserAccessRequest
         {
             Id = Guid.NewGuid().ToString(),
@@ -161,7 +170,7 @@ public class SqliteUserRoleService : IUserRoleService
             CurrentRole = currentRole,
             Status = AccessRequestStatus.Pending,
             Reason = reason,
-            AdminEmail = DefaultSuperAdmin,
+            AdminEmail = adminRecipient,
             RequestedAt = DateTime.UtcNow
         };
 
@@ -174,7 +183,7 @@ public class SqliteUserRoleService : IUserRoleService
         {
             await _notifications.CreateNotificationAsync(new Notification
             {
-                RecipientEmail = DefaultSuperAdmin,
+                RecipientEmail = adminRecipient,
                 Title = $"Access Request ({targetRole}) from {norm}",
                 Message = $"User {norm} has requested {targetRole} access. Reason: {reason ?? "None provided"}",
                 Type = NotificationType.AccessRequested,
@@ -192,7 +201,7 @@ public class SqliteUserRoleService : IUserRoleService
         /*
         try
         {
-            await _emailService.SendAccessRequestNotificationAsync(DefaultSuperAdmin, norm, targetRole, reason, request.Id);
+            await _emailService.SendAccessRequestNotificationAsync(adminRecipient, norm, targetRole, request.Id, reason);
         }
         catch (Exception ex)
         {
@@ -290,7 +299,10 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to create in-app notification for access request rejection (Request ID: {RequestId}).", request.Id);
+        }
 
         // Send Email to User (COMMENTED OUT FOR NOW)
         /*
@@ -298,7 +310,10 @@ public class SqliteUserRoleService : IUserRoleService
         {
             await _emailService.SendAccessDecisionNotificationAsync(norm, "APPROVED", request.RequestedRole, notes);
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to persist auto-registered role for user in database.");
+        }
         */
 
         return request;
@@ -334,7 +349,10 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to create in-app notification for access request rejection (Request ID: {RequestId}).", request.Id);
+        }
 
         // Send Email to User (COMMENTED OUT FOR NOW)
         /*
@@ -342,7 +360,10 @@ public class SqliteUserRoleService : IUserRoleService
         {
             await _emailService.SendAccessDecisionNotificationAsync(request.UserEmail.ToLowerInvariant(), "DECLINED", request.RequestedRole, notes);
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to persist auto-registered role for user in database.");
+        }
         */
 
         return request;
@@ -408,14 +429,20 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to create in-app notification for role revocation (User: {UserEmail}).", norm);
+        }
 
         // Send Email to User
         try
         {
             await _emailService.SendAccessDecisionNotificationAsync(norm, "REVOKED", "PRODUCER", notes);
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to send email notification for role revocation (User: {UserEmail}).", norm);
+        }
 
         return assignment;
     }
@@ -468,7 +495,10 @@ public class SqliteUserRoleService : IUserRoleService
                 CreatedAt = DateTime.UtcNow
             });
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to create in-app notification for reviewer certification (User: {UserEmail}).", norm);
+        }
 
         return assignment;
     }
@@ -499,6 +529,21 @@ public class SqliteUserRoleService : IUserRoleService
         });
     }
 
+    public static string ComputeUserHash(string email, string salt = "")
+    {
+        if (string.IsNullOrWhiteSpace(email)) return string.Empty;
+        var norm = email.Trim().ToLowerInvariant();
+
+        if (!string.IsNullOrEmpty(salt))
+        {
+            using var hmac = new System.Security.Cryptography.HMACSHA256(System.Text.Encoding.UTF8.GetBytes(salt));
+            return Convert.ToHexString(hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(norm))).ToLowerInvariant();
+        }
+
+        using var sha = System.Security.Cryptography.SHA256.Create();
+        return Convert.ToHexString(sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(norm))).ToLowerInvariant();
+    }
+
     public async Task<bool> SyncToAzureDevOpsAsync()
     {
         if (_httpFactory == null) return false;
@@ -520,18 +565,21 @@ public class SqliteUserRoleService : IUserRoleService
 
         var rolesList = await db.UserRoleAssignments.AsNoTracking().OrderBy(r => r.UserEmail).ToListAsync();
         var requestsList = await db.AccessRequests.AsNoTracking().OrderByDescending(r => r.RequestedAt).ToListAsync();
+        var salt = _config["Governance:Salt"] ?? Environment.GetEnvironmentVariable("GOVERNANCE_SALT") ?? string.Empty;
 
         var rolesJson = JsonSerializer.Serialize(new
         {
             updatedAt = DateTime.UtcNow,
             organization = "MAQ Software",
+            version = 2,
+            hashing = !string.IsNullOrEmpty(salt) ? "HMAC-SHA256" : "SHA-256",
             totalUsers = rolesList.Count,
             userRoles = rolesList.Select(r => new
             {
-                userEmail = r.UserEmail,
+                userHash = ComputeUserHash(r.UserEmail, salt),
                 role = r.Role,
                 isCertifiedReviewer = r.IsCertifiedReviewer,
-                grantedBy = r.GrantedBy,
+                grantedBy = (!string.IsNullOrEmpty(r.GrantedBy) && r.GrantedBy.Contains('@')) ? ComputeUserHash(r.GrantedBy, salt) : r.GrantedBy,
                 notes = r.Notes,
                 grantedAt = r.GrantedAt,
                 updatedAt = r.UpdatedAt
@@ -580,7 +628,10 @@ public class SqliteUserRoleService : IUserRoleService
                 }
             }
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to inspect Azure DevOps git ref objectId for branch {Branch}.", branchName);
+        }
 
         // Check if items exist to select edit vs add
         string rolesChangeType = "add";
@@ -591,7 +642,10 @@ public class SqliteUserRoleService : IUserRoleService
             var itemResp = await client.GetAsync(itemUrl);
             if (itemResp.IsSuccessStatusCode) rolesChangeType = "edit";
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to query Azure DevOps git item for user-roles.json.");
+        }
 
         try
         {
@@ -599,7 +653,10 @@ public class SqliteUserRoleService : IUserRoleService
             var itemResp = await client.GetAsync(itemUrl);
             if (itemResp.IsSuccessStatusCode) requestsChangeType = "edit";
         }
-        catch (Exception ex) { _logger.LogDebug(ex, "Handled non-fatal exception in SqliteUserRoleService operation"); }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to query Azure DevOps git item for access-requests.json.");
+        }
 
         var pushesUrl = $"https://dev.azure.com/{org}/{projectPart}_apis/git/repositories/{repo}/pushes?api-version=7.0";
         var pushPayload = new

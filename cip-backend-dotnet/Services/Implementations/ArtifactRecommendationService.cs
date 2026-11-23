@@ -11,6 +11,21 @@ public class ArtifactRecommendationService : IArtifactRecommendationService
 {
     private readonly IMarketplaceService _marketplace;
 
+    public static class RecommendationWeights
+    {
+        public const double NameMatchWeight = 4.0;
+        public const double TypeMatchWeight = 2.5;
+        public const double DescriptionMatchWeight = 1.5;
+        public const double TechnologyMatchWeight = 3.0;
+        public const double DependencyMatchWeight = 2.0;
+        public const double ExtensionMatchWeight = 3.5;
+        public const double CodeReviewMatchWeight = 2.0;
+        public const double MinRelevanceThreshold = 0.5;
+        public const double ScoreNormalizationFactor = 10.0;
+        public const double DefaultScore = 0.5;
+        public const int MaxResultLimit = 20;
+    }
+
     public ArtifactRecommendationService(IMarketplaceService marketplace)
     {
         _marketplace = marketplace;
@@ -57,17 +72,17 @@ public class ArtifactRecommendationService : IArtifactRecommendationService
             {
                 if (artName.Contains(token))
                 {
-                    score += 4.0;
+                    score += RecommendationWeights.NameMatchWeight;
                     reasons.Add($"Name matches search term '{token}'");
                 }
                 else if (artType.Contains(token))
                 {
-                    score += 2.5;
+                    score += RecommendationWeights.TypeMatchWeight;
                     reasons.Add($"Type matches search term '{token}'");
                 }
                 else if (artDesc.Contains(token))
                 {
-                    score += 1.5;
+                    score += RecommendationWeights.DescriptionMatchWeight;
                     reasons.Add($"Description matches keyword '{token}'");
                 }
             }
@@ -77,7 +92,7 @@ public class ArtifactRecommendationService : IArtifactRecommendationService
             {
                 if (artName.Contains(tech) || artDesc.Contains(tech))
                 {
-                    score += 3.0;
+                    score += RecommendationWeights.TechnologyMatchWeight;
                     reasons.Add($"Matches project technology '{tech}'");
                 }
             }
@@ -87,7 +102,7 @@ public class ArtifactRecommendationService : IArtifactRecommendationService
             {
                 if (artName.Contains(dep) || artDesc.Contains(dep))
                 {
-                    score += 2.0;
+                    score += RecommendationWeights.DependencyMatchWeight;
                     reasons.Add($"Relevant to project dependency '{dep}'");
                 }
             }
@@ -95,19 +110,19 @@ public class ArtifactRecommendationService : IArtifactRecommendationService
             // 4. File extension correlation (e.g., .sql -> sql transformer, .cs -> csharp reviewer)
             if (extTokens.Contains(".sql") && (artName.Contains("sql") || artDesc.Contains("sql") || artDesc.Contains("database")))
             {
-                score += 3.5;
+                score += RecommendationWeights.ExtensionMatchWeight;
                 reasons.Add("Recommended for SQL and database files found in workspace");
             }
             if ((extTokens.Contains(".cs") || extTokens.Contains(".ts") || extTokens.Contains(".js") || extTokens.Contains(".py")) && 
                 (artName.Contains("review") || artType == "agent"))
             {
-                score += 2.0;
+                score += RecommendationWeights.CodeReviewMatchWeight;
                 reasons.Add("Recommended for code review in your active codebase");
             }
 
-            if (score > 0.5 || queryTokens.Length == 0)
+            if (score > RecommendationWeights.MinRelevanceThreshold || queryTokens.Length == 0)
             {
-                var baseScore = score > 0.0 ? Math.Min(score / 10.0, 1.0) : 0.5;
+                var baseScore = score > 0.0 ? Math.Min(score / RecommendationWeights.ScoreNormalizationFactor, 1.0) : RecommendationWeights.DefaultScore;
                 results.Add(new RecommendationResult
                 {
                     ArtifactId = art.Id ?? art.Name,
@@ -121,7 +136,7 @@ public class ArtifactRecommendationService : IArtifactRecommendationService
             }
         }
 
-        var maxLimit = Math.Clamp(request.MaxResults, 1, 20);
+        var maxLimit = Math.Clamp(request.MaxResults, 1, RecommendationWeights.MaxResultLimit);
         return results
             .OrderByDescending(r => r.MatchScore)
             .Take(maxLimit);

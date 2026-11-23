@@ -53,3 +53,33 @@ public static class UserRoles
          string.Equals(role, Admin, StringComparison.OrdinalIgnoreCase));
 }
 
+public static class UserRoleExtensions
+{
+    public static UserRole ToUserRole(string? role)
+    {
+        if (string.IsNullOrWhiteSpace(role)) return UserRole.Consumer;
+        var clean = role.Trim().Replace("_", "").Replace("-", "");
+        if (Enum.TryParse<UserRole>(clean, true, out var parsed))
+        {
+            return parsed;
+        }
+        return UserRole.Consumer;
+    }
+
+    public static string ToRoleString(this UserRole role) => role switch
+    {
+        UserRole.Admin => UserRoles.Admin,
+        UserRole.CertifiedReviewer => UserRoles.CertifiedReviewer,
+        UserRole.Reviewer => UserRoles.Reviewer,
+        UserRole.Producer => UserRoles.Producer,
+        UserRole.Contributor => UserRoles.Contributor,
+        _ => UserRoles.Consumer
+    };
+
+    public static bool IsReviewerOrAdmin(this UserRole role) =>
+        role is UserRole.Reviewer or UserRole.CertifiedReviewer or UserRole.Admin;
+
+    public static bool IsAdmin(this UserRole role) =>
+        role == UserRole.Admin;
+}
+

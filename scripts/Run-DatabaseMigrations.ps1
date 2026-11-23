@@ -20,13 +20,14 @@ if (-not (Test-Path $MigrationsDir)) {
     exit 1
 }
 
-$migrationFiles = Get-ChildItem -Path $MigrationsDir -Filter "V*__*.sql" | Sort-Object Name
+$fullDb = [System.IO.Path]::GetFullPath($DatabasePath)
+$fullDir = [System.IO.Path]::GetFullPath($MigrationsDir)
 
-foreach ($file in $migrationFiles) {
-    Write-Host "`n--> Applying migration: $($file.Name)..." -ForegroundColor Yellow
-    $sql = Get-Content $file.FullName -Raw
-    Write-Host "    ✓ Script verified: $($file.Length) bytes" -ForegroundColor Green
+Write-Host "`n--> Executing migrations via decoupled runner..." -ForegroundColor Yellow
+dotnet run --project cip-backend-dotnet -- --migrate --db "$fullDb" --dir "$fullDir"
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Database migration execution failed with exit code $LASTEXITCODE"
+    exit $LASTEXITCODE
 }
 
-Write-Host "`n✓ All migrations validated and prepared for CI/CD deployment." -ForegroundColor Green
-
+Write-Host "`n✓ All database migrations executed and verified successfully." -ForegroundColor Green

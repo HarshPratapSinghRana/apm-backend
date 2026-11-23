@@ -1,6 +1,34 @@
 const crypto = require('crypto');
 
 /**
+ * Enterprise AI Artifact Certification Constants & Thresholds
+ * Formalizes dynamic health scoring thresholds and weight constants.
+ */
+const CERTIFICATION_CONSTANTS = {
+    WEIGHTS: {
+        ADOPTION: 0.25,
+        QUALITY: 0.20,
+        ONBOARDING: 0.15,
+        TECHNICAL: 0.20,
+        HEALTH: 0.20
+    },
+    THRESHOLDS: {
+        COMPOSITE_MIN: 90.0,
+        ADOPTION_MIN: 80.0,
+        QUALITY_MIN: 85.0,
+        ONBOARDING_MIN: 85.0,
+        TECHNICAL_MIN: 95.0,
+        HEALTH_MIN: 95.0,
+        FER_MAX: 0.01,
+        LATENCY_MAX_MS: 3000
+    },
+    LIMITS: {
+        DAILY_USER_INVOCATION_CAP: 5,
+        WINDOW_DAYS: 30
+    }
+};
+
+/**
  * Enterprise AI Artifact Certification Engine
  * Implements deterministic 5-pillar dynamic health scoring from AI-ARTIFACT-CERTIFICATION-LAYER-ARCHITECTURE.md
  */
@@ -441,6 +469,7 @@ function evaluateCertification(artifact, telemetryEvents = [], reviews = [], tes
 }
 
 module.exports = {
+    CERTIFICATION_CONSTANTS,
     computeContentHash,
     evaluateAdoptionScore,
     evaluateFeedbackScore,

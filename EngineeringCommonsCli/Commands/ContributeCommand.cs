@@ -287,7 +287,14 @@ public class ContributeCommand
             string content = string.Empty;
             if (File.Exists(fullPath))
             {
-                try { content = File.ReadAllText(fullPath); } catch (Exception) { /* handled non-fatal CLI fallback */ }
+                try 
+                { 
+                    content = File.ReadAllText(fullPath); 
+                } 
+                catch (Exception ex) 
+                { 
+                    Console.Error.WriteLine($"[ContributeCommand] Warning reading file '{fullPath}': {ex.Message}"); 
+                }
             }
 
             var canonicalPath = relativeFilePath.Replace('\\', '/');

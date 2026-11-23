@@ -20,13 +20,14 @@ if (-not (Test-Path $MigrationsDir)) {
     exit 1
 }
 
-$rollbackFiles = Get-ChildItem -Path $MigrationsDir -Filter "U*__*.sql" | Sort-Object Name -Descending
+$fullDb = [System.IO.Path]::GetFullPath($DatabasePath)
+$fullDir = [System.IO.Path]::GetFullPath($MigrationsDir)
 
-foreach ($file in $rollbackFiles) {
-    Write-Host "`n<-- Reverting migration with: $($file.Name)..." -ForegroundColor Yellow
-    $sql = Get-Content $file.FullName -Raw
-    Write-Host "    ✓ Rollback script verified: $($file.Length) bytes" -ForegroundColor Green
+Write-Host "`n<-- Executing database rollback via decoupled runner..." -ForegroundColor Yellow
+dotnet run --project cip-backend-dotnet -- --rollback --db "$fullDb" --dir "$fullDir"
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Database rollback execution failed with exit code $LASTEXITCODE"
+    exit $LASTEXITCODE
 }
 
-Write-Host "`n✓ All rollback scripts validated for safe recovery and zero data inconsistency." -ForegroundColor Green
-
+Write-Host "`n✓ All rollback scripts executed and verified successfully." -ForegroundColor Green

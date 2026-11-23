@@ -41,26 +41,13 @@ public class ReviewsController : ControllerBase
 
     private static bool IsReviewerOrAdmin(string? role, string? email = null)
     {
-        if (UserRoles.IsReviewerOrAdmin(role)) return true;
-        if (!string.IsNullOrWhiteSpace(email))
-        {
-            var e = email.Trim().ToLowerInvariant();
-            if (e.Contains("admin") || e.Contains("reviewer") || 
-                (e.StartsWith("designated-rev@") && (e.EndsWith("@company.com") || e.EndsWith("@test.com") || e.EndsWith("@maqsoftware.com"))))
-            {
-                return true;
-            }
-        }
-        return false;
+        return UserRoles.IsReviewerOrAdmin(role);
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpGet("pending")]
     public IActionResult Pending()
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
-        var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
-
         var list = _reviews.GetPendingReviews().Select(r => new
         {
             r.Id,
@@ -376,12 +363,11 @@ public class ReviewsController : ControllerBase
         }
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpPost("{reviewId}/request-changes")]
     public async Task<IActionResult> RequestChanges(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Reviewer;
         var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
         try
         {
@@ -468,12 +454,11 @@ public class ReviewsController : ControllerBase
         }
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpPost("{reviewId}/approve")]
     public async Task<IActionResult> Approve(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Reviewer;
         var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
         try
         {
@@ -538,12 +523,11 @@ public class ReviewsController : ControllerBase
         }
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpPost("{reviewId}/reject")]
     public async Task<IActionResult> Reject(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Reviewer;
         var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
         try
         {
@@ -608,12 +592,11 @@ public class ReviewsController : ControllerBase
         }
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpPost("{reviewId}/cancel")]
     public async Task<IActionResult> Cancel(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
         try
         {
@@ -628,13 +611,10 @@ public class ReviewsController : ControllerBase
         }
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpPost("{reviewId}/sla")]
     public IActionResult UpdateSla(string reviewId, [FromBody] UpdateSlaRequest req)
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
-        var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer or Admin role required." });
-
         try
         {
             var updated = _reviews.UpdateSlaTarget(reviewId, req.SlaTargetMinutes);
@@ -656,24 +636,18 @@ public class ReviewsController : ControllerBase
         }
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpGet("sla-summary")]
     public IActionResult GetSlaSummary()
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
-        var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
-
         var summary = _reviews.GetSlaSummary();
         return Ok(summary);
     }
 
+    [Authorize(Policy = "RequireReviewer")]
     [HttpPost("sla/check-now")]
     public async Task<IActionResult> TriggerSlaCheck()
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
-        var email = User.Identity?.Name ?? string.Empty;
-        if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
-
         var remindersSent = await _reviews.CheckSlaAndSendRemindersAsync();
         return Ok(new
         {
