@@ -16,7 +16,7 @@ namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class SqliteUserRoleService : IUserRoleService
 {
-    public const string DefaultSuperAdmin = "harsh.rana@maqsoftware.com";
+    public const string DefaultSuperAdmin = "admin@maqsoftware.com";
 
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly INotificationService _notifications;
@@ -169,7 +169,7 @@ public class SqliteUserRoleService : IUserRoleService
         await db.SaveChangesAsync();
         TriggerAdoSync();
 
-        // 1. Create In-App Notification for Admin harsh.rana@maqsoftware.com
+        // 1. Create In-App Notification for Admin
         try
         {
             await _notifications.CreateNotificationAsync(new Notification

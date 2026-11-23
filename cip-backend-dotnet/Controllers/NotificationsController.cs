@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using EngineeringCommons.Backend.Models;
 using EngineeringCommons.Backend.Services.Interfaces;
 
 namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/notifications")]
 public class NotificationsController : ControllerBase
 {
@@ -17,13 +19,12 @@ public class NotificationsController : ControllerBase
 
     public NotificationsController(INotificationService notifications)
     {
-        _notifications = notifications;
+        _notifications = notifications ?? throw new ArgumentNullException(nameof(notifications));
     }
 
     [HttpGet]
     public async Task<IActionResult> GetNotifications([FromQuery] bool unreadOnly = false)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -50,7 +51,6 @@ public class NotificationsController : ControllerBase
     [HttpPost("{id}/read")]
     public async Task<IActionResult> MarkAsRead(string id)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -66,7 +66,6 @@ public class NotificationsController : ControllerBase
     [HttpPost("thread/{threadId}/read")]
     public async Task<IActionResult> MarkThreadAsRead(string threadId)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -82,9 +81,9 @@ public class NotificationsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteNotification(string id)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -98,9 +97,9 @@ public class NotificationsController : ControllerBase
     }
 
     [HttpDelete]
+    [HttpDelete("clear-all")]
     public async Task<IActionResult> ClearAllNotifications()
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 

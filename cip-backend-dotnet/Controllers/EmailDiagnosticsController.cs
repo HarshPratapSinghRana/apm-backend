@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using EngineeringCommons.Backend.Models;
 using EngineeringCommons.Backend.Services.Interfaces;
 
 namespace EngineeringCommons.Backend.Controllers;
@@ -15,6 +16,7 @@ namespace EngineeringCommons.Backend.Controllers;
 [Route("api/admin/emails")]
 public class EmailDiagnosticsController : ControllerBase
 {
+    private const int DefaultEmailOutboxLimit = 20;
     private readonly IEmailNotificationService _emailService;
     private readonly IUserRoleService _roleService;
     private readonly IWebHostEnvironment _env;
@@ -26,25 +28,26 @@ public class EmailDiagnosticsController : ControllerBase
         IWebHostEnvironment env,
         IConfiguration config)
     {
-        _emailService = emailService;
-        _roleService = roleService;
-        _env = env;
-        _config = config;
+        _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+        _roleService = roleService ?? throw new ArgumentNullException(nameof(roleService));
+        _env = env ?? throw new ArgumentNullException(nameof(env));
+        _config = config ?? throw new ArgumentNullException(nameof(config));
     }
 
     private bool IsAdminAuthorized()
     {
         if (_env.IsDevelopment() || string.Equals(_config["EnableMockAuth"], "true", StringComparison.OrdinalIgnoreCase)) return true;
         if (!User.Identity?.IsAuthenticated ?? true) return false;
-        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
-        return string.Equals(role, "ADMIN", StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(User.Identity?.Name, _config["AdminEmail"] ?? "harsh.rana@maqsoftware.com", StringComparison.OrdinalIgnoreCase) ||
+        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role || c.Type == "roles")?.Value;
+        var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
+        return string.Equals(role, UserRoles.Admin, StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(User.Identity?.Name, adminEmail, StringComparison.OrdinalIgnoreCase) ||
                string.Equals(User.Identity?.Name, "admin@company.com", StringComparison.OrdinalIgnoreCase) ||
                string.Equals(User.Identity?.Name, "admin@test.com", StringComparison.OrdinalIgnoreCase);
     }
 
     [HttpGet("status")]
-    public async Task<IActionResult> GetStatus()
+    public IActionResult GetStatus()
     {
         if (!IsAdminAuthorized())
         {
@@ -55,7 +58,7 @@ public class EmailDiagnosticsController : ControllerBase
     }
 
     [HttpGet("outbox")]
-    public async Task<IActionResult> GetOutbox([FromQuery] int limit = 20)
+    public IActionResult GetOutbox([FromQuery] int limit = DefaultEmailOutboxLimit)
     {
         if (!IsAdminAuthorized())
         {
@@ -65,8 +68,6 @@ public class EmailDiagnosticsController : ControllerBase
         return Ok(history);
     }
 
-    public record TestEmailRequest(string? Recipient, string? Subject, string? Body);
-
     [HttpPost("test")]
     public async Task<IActionResult> SendTestEmail([FromBody] TestEmailRequest? req)
     {
@@ -75,11 +76,11 @@ public class EmailDiagnosticsController : ControllerBase
             return StatusCode(StatusCodes.Status403Forbidden, new { error = "Admin role required to trigger test email notifications." });
         }
 
+        var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
         var recipient = !string.IsNullOrWhiteSpace(req?.Recipient)
             ? req.Recipient.Trim()
-            : "harsh.rana@maqsoftware.com";
+            : adminEmail;
 
-        // Security Guard: Prevent open relay - recipient must be within authorized corporate domain
         var allowedDomain = _config["AzureAd:AllowedDomain"] ?? "maqsoftware.com";
         bool isAllowedDomain = recipient.EndsWith($"@{allowedDomain}", StringComparison.OrdinalIgnoreCase) ||
                                recipient.EndsWith("@company.com", StringComparison.OrdinalIgnoreCase) ||
@@ -87,7 +88,11 @@ public class EmailDiagnosticsController : ControllerBase
 
         if (!isAllowedDomain)
         {
-            return BadRequest(new { error = "invalid_recipient", detail = $"Open relay blocked: Test emails may only be dispatched to authorized corporate domains (@{allowedDomain}, @company.com, @test.com)." });
+            return BadRequest(new 
+            { 
+                error = "invalid_recipient", 
+                detail = $"Open relay blocked: Test emails may only be dispatched to authorized corporate domains (@{allowedDomain}, @company.com, @test.com)." 
+            });
         }
 
         var record = await _emailService.SendTestEmailAsync(recipient, req?.Subject, req?.Body);
@@ -102,8 +107,6 @@ public class EmailDiagnosticsController : ControllerBase
             record
         });
     }
-
-    public record AdminAlertRequest(string AlertType, string Message, string? Details);
 
     [HttpPost("alert")]
     public async Task<IActionResult> SendAdminAlert([FromBody] AdminAlertRequest req)

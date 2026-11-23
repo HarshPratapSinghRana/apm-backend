@@ -209,7 +209,7 @@ public class ReviewThreadService : IReviewThreadService
         if (!string.IsNullOrWhiteSpace(email))
         {
             var e = email.Trim().ToLowerInvariant();
-            if (e == "harsh.rana@maqsoftware.com" || e.Contains("admin") || e.Contains("reviewer")) return true;
+            if (e == "admin@maqsoftware.com" || e.Contains("admin") || e.Contains("reviewer")) return true;
         }
         return false;
     }

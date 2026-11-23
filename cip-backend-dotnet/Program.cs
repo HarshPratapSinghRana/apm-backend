@@ -166,6 +166,16 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Authentication & Authorization Services
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "Token";
+    options.DefaultChallengeScheme = "Token";
+})
+.AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, EngineeringCommons.Backend.Middleware.TokenAuthenticationHandler>("Token", null);
+
+builder.Services.AddAuthorization();
+
 // Configuration: bind static auth options
 builder.Services.Configure<StaticAuthOptions>(builder.Configuration.GetSection("StaticAuth"));
 

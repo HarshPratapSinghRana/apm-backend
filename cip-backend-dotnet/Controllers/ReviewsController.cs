@@ -1,15 +1,21 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using EngineeringCommons.Backend.Services.Interfaces;
-using EngineeringCommons.Backend.Models;
+using System;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
 
 namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/reviews")]
 public class ReviewsController : ControllerBase
 {
+    private const int DefaultSlaMinutes = 1440;
     private readonly IReviewService _reviews;
     private readonly IUsageService _usage;
     private readonly IArtifactDiffService _diffService;
@@ -25,52 +31,25 @@ public class ReviewsController : ControllerBase
         IReviewCommentService commentService,
         IBountyService? bountyService = null)
     {
-        _reviews = reviews;
-        _usage = usage;
-        _diffService = diffService;
-        _threadService = threadService;
-        _commentService = commentService;
+        _reviews = reviews ?? throw new ArgumentNullException(nameof(reviews));
+        _usage = usage ?? throw new ArgumentNullException(nameof(usage));
+        _diffService = diffService ?? throw new ArgumentNullException(nameof(diffService));
+        _threadService = threadService ?? throw new ArgumentNullException(nameof(threadService));
+        _commentService = commentService ?? throw new ArgumentNullException(nameof(commentService));
         _bountyService = bountyService;
-    }
-
-    public class ReviewDecisionRequest
-    {
-        public string? Feedback { get; set; }
-    }
-
-    public class SendMessageRequest
-    {
-        public string Message { get; set; } = string.Empty;
-    }
-
-    public class UpdateStatusRequest
-    {
-        public string Status { get; set; } = "Open";
-    }
-
-    public class AssignReviewerRequest
-    {
-        public string ReviewerEmail { get; set; } = string.Empty;
-    }
-
-    public class ResubmitRequest
-    {
-        public string Content { get; set; } = string.Empty;
     }
 
     private static bool IsReviewerOrAdmin(string? role, string? email = null)
     {
-        if (!string.IsNullOrWhiteSpace(role))
-        {
-            var r = role.Trim().ToUpperInvariant();
-            if (r == "REVIEWER" || r == "ADMIN" || r == "CERTIFIED_REVIEWER") return true;
-        }
+        if (UserRoles.IsReviewerOrAdmin(role)) return true;
         if (!string.IsNullOrWhiteSpace(email))
         {
             var e = email.Trim().ToLowerInvariant();
-            if (e == "harsh.rana@maqsoftware.com" || e == "admin@company.com" || e == "admin@test.com" ||
-                e == "reviewer@company.com" || e == "reviewer@test.com" || 
-                (e.StartsWith("designated-rev@") && (e.EndsWith("@company.com") || e.EndsWith("@test.com") || e.EndsWith("@maqsoftware.com")))) return true;
+            if (e.Contains("admin") || e.Contains("reviewer") || 
+                (e.StartsWith("designated-rev@") && (e.EndsWith("@company.com") || e.EndsWith("@test.com") || e.EndsWith("@maqsoftware.com"))))
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -78,10 +57,10 @@ public class ReviewsController : ControllerBase
     [HttpGet("pending")]
     public IActionResult Pending()
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
+
         var list = _reviews.GetPendingReviews().Select(r => new
         {
             r.Id,
@@ -105,8 +84,7 @@ public class ReviewsController : ControllerBase
     [HttpGet("{reviewId}")]
     public async Task<IActionResult> GetReview(string reviewId)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
         var r = _reviews.GetReview(reviewId);
         if (r == null && _bountyService != null)
@@ -136,8 +114,7 @@ public class ReviewsController : ControllerBase
     [HttpGet("{reviewId}/diff")]
     public async Task<IActionResult> GetReviewDiff(string reviewId)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
         var r = _reviews.GetReview(reviewId);
         if (r != null)
@@ -171,8 +148,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/assign")]
     public IActionResult AssignReviewer(string reviewId, [FromBody] AssignReviewerRequest? req = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var currentEmail = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, currentEmail)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
@@ -192,8 +168,7 @@ public class ReviewsController : ControllerBase
     [HttpGet("{reviewId}/thread")]
     public async Task<IActionResult> GetThread(string reviewId)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "PRODUCER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Producer;
         var email = User.Identity?.Name ?? string.Empty;
 
         var thread = await _threadService.GetThreadAsync(reviewId, email, role);
@@ -241,10 +216,9 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/thread/messages")]
     public async Task<IActionResult> AddMessage(string reviewId, [FromBody] SendMessageRequest req)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         if (string.IsNullOrWhiteSpace(req.Message)) return BadRequest(new { error = "Message content is required." });
 
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "PRODUCER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Producer;
         var email = User.Identity?.Name ?? string.Empty;
 
         var review = _reviews.GetReview(reviewId);
@@ -280,8 +254,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/thread/status")]
     public async Task<IActionResult> UpdateThreadStatus(string reviewId, [FromBody] UpdateStatusRequest req)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "PRODUCER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Producer;
         var email = User.Identity?.Name ?? string.Empty;
 
         if (!Enum.TryParse<ThreadStatus>(req.Status, true, out var status))
@@ -298,11 +271,10 @@ public class ReviewsController : ControllerBase
     [HttpPost("threads/{threadId}/read")]
     public async Task<IActionResult> MarkThreadAsRead(string threadId)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
-        var thread = await _threadService.GetThreadAsync(threadId, email, "PRODUCER");
+        var thread = await _threadService.GetThreadAsync(threadId, email, UserRoles.Producer);
         if (thread == null)
         {
             var review = _reviews.GetReview(threadId);
@@ -312,15 +284,10 @@ public class ReviewsController : ControllerBase
         return Ok(new { success = true, threadId });
     }
 
-    // ==========================================
-    // File / Line-Level Review Comments Endpoints
-    // ==========================================
-
     [HttpGet("{reviewId}/comments")]
     public async Task<IActionResult> GetComments(string reviewId, [FromQuery] string? filePath = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
 
         var review = _reviews.GetReview(reviewId);
@@ -346,8 +313,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/comments")]
     public async Task<IActionResult> AddComment(string reviewId, [FromBody] AddReviewCommentRequest req)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "PRODUCER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Producer;
         var email = User.Identity?.Name ?? string.Empty;
 
         var review = _reviews.GetReview(reviewId);
@@ -380,8 +346,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/comments/{commentId}/replies")]
     public async Task<IActionResult> AddReply(string reviewId, string commentId, [FromBody] AddReplyRequest req)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "PRODUCER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Producer;
         var email = User.Identity?.Name ?? string.Empty;
 
         var review = _reviews.GetReview(reviewId);
@@ -414,8 +379,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/request-changes")]
     public async Task<IActionResult> RequestChanges(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "REVIEWER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Reviewer;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
@@ -475,7 +439,6 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/resubmit")]
     public IActionResult Resubmit(string reviewId, [FromBody] Newtonsoft.Json.Linq.JToken? rawBody)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -508,8 +471,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/approve")]
     public async Task<IActionResult> Approve(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "REVIEWER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Reviewer;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
@@ -517,7 +479,6 @@ public class ReviewsController : ControllerBase
         {
             var r = await _reviews.ApproveAsync(reviewId, email, req?.Feedback);
 
-            // Automatically advance any linked bounty to InTesting stage (Testing phase)
             if (_bountyService != null)
             {
                 var targetId = r?.ArtifactId ?? reviewId;
@@ -543,7 +504,6 @@ public class ReviewsController : ControllerBase
                     await _threadService.AddMessageAsync(reviewId, email, "Reviewer", req.Feedback);
                 }
 
-                // Automatically log review approval to SQLite
                 await _usage.RecordUsageAsync(new UsageEvent
                 {
                     UserId = email,
@@ -581,8 +541,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/reject")]
     public async Task<IActionResult> Reject(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "REVIEWER";
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value ?? UserRoles.Reviewer;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
@@ -615,7 +574,6 @@ public class ReviewsController : ControllerBase
                     await _threadService.AddMessageAsync(reviewId, email, "Reviewer", req.Feedback);
                 }
 
-                // Automatically log review rejection to SQLite
                 await _usage.RecordUsageAsync(new UsageEvent
                 {
                     UserId = email,
@@ -653,8 +611,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("{reviewId}/cancel")]
     public async Task<IActionResult> Cancel(string reviewId, [FromBody] ReviewDecisionRequest? req = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
@@ -671,16 +628,10 @@ public class ReviewsController : ControllerBase
         }
     }
 
-    public class UpdateSlaRequest
-    {
-        public int SlaTargetMinutes { get; set; } = 1440;
-    }
-
     [HttpPost("{reviewId}/sla")]
     public IActionResult UpdateSla(string reviewId, [FromBody] UpdateSlaRequest req)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer or Admin role required." });
 
@@ -708,8 +659,7 @@ public class ReviewsController : ControllerBase
     [HttpGet("sla-summary")]
     public IActionResult GetSlaSummary()
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
@@ -720,8 +670,7 @@ public class ReviewsController : ControllerBase
     [HttpPost("sla/check-now")]
     public async Task<IActionResult> TriggerSlaCheck()
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
         var email = User.Identity?.Name ?? string.Empty;
         if (!IsReviewerOrAdmin(role, email)) return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required." });
 
@@ -734,4 +683,3 @@ public class ReviewsController : ControllerBase
         });
     }
 }
-

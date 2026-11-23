@@ -167,8 +167,8 @@ public class BackendClient : IBackendClient, IDisposable
         catch (HttpRequestException)
         {
             // Backend server is offline: proceed with direct Microsoft SSO session for SharePoint Online
-            var userEmail = email ?? "harsh.rana@maqsoftware.com";
-            var userRole = role ?? ((userEmail.ToLower().Contains("admin") || userEmail.ToLower() == "harsh.rana@maqsoftware.com") ? "ADMIN" : "CONSUMER");
+            var userEmail = email ?? "admin@maqsoftware.com";
+            var userRole = role ?? ((userEmail.ToLower().Contains("admin") || userEmail.ToLower() == "admin@maqsoftware.com") ? "ADMIN" : "CONSUMER");
             var userName = name ?? userEmail;
 
             return new UserSession(

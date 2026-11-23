@@ -12,7 +12,7 @@ namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class InMemoryUserRoleService : IUserRoleService
 {
-    public const string DefaultSuperAdmin = "harsh.rana@maqsoftware.com";
+    public const string DefaultSuperAdmin = "admin@maqsoftware.com";
 
     private readonly ConcurrentDictionary<string, UserRoleAssignment> _roles = new();
     private readonly ConcurrentDictionary<string, UserAccessRequest> _requests = new();
@@ -38,7 +38,7 @@ public class InMemoryUserRoleService : IUserRoleService
     {
         var admins = new[]
         {
-            "harsh.rana@maqsoftware.com",
+            "admin@maqsoftware.com",
             "admin@company.com",
             "admin@test.com"
         };

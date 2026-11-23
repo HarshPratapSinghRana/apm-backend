@@ -82,21 +82,21 @@ public class AuthenticationTests : IClassFixture<TestWebApplicationFactory>
     }
 
     [Fact]
-    public async Task SsoLogin_Admin_HarshRana_GetsAdminRole()
+    public async Task SsoLogin_Admin_GetsAdminRole()
     {
         var client = _factory.CreateClient();
         var ssoResp = await client.PostAsJsonAsync("/api/auth/sso", new
         {
             token = "mock-ms-token-admin",
-            email = "harsh.rana@maqsoftware.com",
-            name = "Harsh Rana"
+            email = "admin@maqsoftware.com",
+            name = "Admin User"
         });
 
         ssoResp.EnsureSuccessStatusCode();
         var body = await ssoResp.Content.ReadFromJsonAsync<System.Text.Json.JsonElement>();
         var user = body.GetProperty("user");
 
-        Assert.Equal("harsh.rana@maqsoftware.com", user.GetProperty("email").GetString());
+        Assert.Equal("admin@maqsoftware.com", user.GetProperty("email").GetString());
         Assert.Equal("ADMIN", user.GetProperty("role").GetString());
     }
 }

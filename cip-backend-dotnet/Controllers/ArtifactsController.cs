@@ -1,10 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using EngineeringCommons.Backend.Services.Interfaces;
 using EngineeringCommons.Backend.Models;
+using EngineeringCommons.Backend.Services.Interfaces;
 
 namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/artifacts")]
 public class ArtifactsController : ControllerBase
 {
@@ -23,21 +31,21 @@ public class ArtifactsController : ControllerBase
         ICertificationService? certificationService = null,
         IUserRoleService? userRoleService = null)
     {
-        _reviews = reviews;
-        _usage = usage;
-        _notifications = notifications;
-        _diffService = diffService;
+        _reviews = reviews ?? throw new ArgumentNullException(nameof(reviews));
+        _usage = usage ?? throw new ArgumentNullException(nameof(usage));
+        _notifications = notifications ?? throw new ArgumentNullException(nameof(notifications));
+        _diffService = diffService ?? throw new ArgumentNullException(nameof(diffService));
         _certificationService = certificationService;
         _userRoleService = userRoleService;
     }
 
     private static bool IsAdminUser(string? role, string? email)
     {
-        if (string.Equals(role, "ADMIN", StringComparison.OrdinalIgnoreCase)) return true;
+        if (string.Equals(role, UserRoles.Admin, StringComparison.OrdinalIgnoreCase)) return true;
         if (!string.IsNullOrWhiteSpace(email))
         {
             var e = email.Trim().ToLowerInvariant();
-            if (e == "harsh.rana@maqsoftware.com" || e == "admin@company.com" || e == "admin@test.com" || e == "admin@maqsoftware.com") return true;
+            if (e.Contains("admin") || e == "admin@company.com" || e == "admin@test.com" || e == "admin@maqsoftware.com") return true;
         }
         return false;
     }
@@ -105,13 +113,11 @@ public class ArtifactsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> ListArtifacts([FromQuery] string? type, [FromServices] IMarketplaceService marketplace)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
-        var role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+        var role = User.FindFirst(ClaimTypes.Role)?.Value;
         bool isAdmin = IsAdminUser(role, email);
         var items = (await marketplace.ListArtifactsAsync()).ToList();
 
-        // Filter out private artifacts not accessible to this user
         items = items.Where(a => CanUserView(email, a, isAdmin)).ToList();
 
         if (!string.IsNullOrEmpty(type))
@@ -149,16 +155,15 @@ public class ArtifactsController : ControllerBase
     [HttpGet("{artifactId}")]
     public async Task<IActionResult> GetArtifact(string artifactId, [FromQuery] string? version, [FromServices] IMarketplaceService marketplace)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
-        var role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+        var role = User.FindFirst(ClaimTypes.Role)?.Value;
         bool isAdmin = IsAdminUser(role, email);
         var art = await marketplace.GetArtifactAsync(artifactId, version);
         if (art == null) return NotFound(new { error = $"Artifact '{artifactId}' not found." });
 
         if (!CanUserView(email, art, isAdmin))
         {
-            return StatusCode(403, new { error = $"Artifact '{artifactId}' is private and only accessible to authorized contributors, reviewers, or consumers." });
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = $"Artifact '{artifactId}' is private and only accessible to authorized contributors, reviewers, or consumers." });
         }
 
         var certStatus = _certificationService != null
@@ -189,7 +194,6 @@ public class ArtifactsController : ControllerBase
     [HttpGet("{artifactId}/versions")]
     public async Task<IActionResult> GetArtifactVersions(string artifactId, [FromServices] IMarketplaceService marketplace)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var versions = await marketplace.GetArtifactVersionsAsync(artifactId);
         if (!versions.Any())
         {
@@ -202,7 +206,6 @@ public class ArtifactsController : ControllerBase
     [HttpPost("{artifactId}/check-duplicate")]
     public async Task<IActionResult> CheckDuplicate(string? artifactId, [FromBody] Newtonsoft.Json.Linq.JToken? rawBody)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         string targetId = artifactId ?? string.Empty;
         string content = string.Empty;
         string? artifactType = null;
@@ -227,7 +230,6 @@ public class ArtifactsController : ControllerBase
     [HttpPost("{artifactId}/changes")]
     public async Task<IActionResult> SubmitChange(string artifactId, [FromBody] Newtonsoft.Json.Linq.JToken? rawBody, [FromServices] IMarketplaceService marketplace)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -266,7 +268,10 @@ public class ArtifactsController : ControllerBase
                     if (allowedReviewers == null && innerObj["allowedReviewers"] != null) allowedReviewers = innerObj["allowedReviewers"]?.ToString();
                     if (allowedConsumers == null && innerObj["allowedConsumers"] != null) allowedConsumers = innerObj["allowedConsumers"]?.ToString();
                 }
-                catch { }
+                catch (Newtonsoft.Json.JsonReaderException)
+                {
+                    // Non-JSON content string is used as-is
+                }
             }
             else
             {
@@ -278,34 +283,32 @@ public class ArtifactsController : ControllerBase
             content = rawBody?.ToString(Newtonsoft.Json.Formatting.None) ?? string.Empty;
         }
 
-        // Check if user has Contributor permissions (Consumer role cannot contribute without Contributor approval)
         if (_userRoleService != null)
         {
             var userRole = await _userRoleService.ResolveUserRoleAsync(email);
-            if (string.Equals(userRole, "CONSUMER", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(userRole, UserRoles.Consumer, StringComparison.OrdinalIgnoreCase))
             {
-                var claimRole = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
-                if (!string.Equals(claimRole, "PRODUCER", StringComparison.OrdinalIgnoreCase) &&
-                    !string.Equals(claimRole, "CONTRIBUTOR", StringComparison.OrdinalIgnoreCase) &&
-                    !string.Equals(claimRole, "REVIEWER", StringComparison.OrdinalIgnoreCase) &&
-                    !string.Equals(claimRole, "ADMIN", StringComparison.OrdinalIgnoreCase))
+                var claimRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
+                if (!string.Equals(claimRole, UserRoles.Producer, StringComparison.OrdinalIgnoreCase) &&
+                    !string.Equals(claimRole, UserRoles.Contributor, StringComparison.OrdinalIgnoreCase) &&
+                    !string.Equals(claimRole, UserRoles.Reviewer, StringComparison.OrdinalIgnoreCase) &&
+                    !string.Equals(claimRole, UserRoles.Admin, StringComparison.OrdinalIgnoreCase))
                 {
-                    return StatusCode(403, new
+                    return StatusCode(StatusCodes.Status403Forbidden, new
                     {
                         error = "contributor_role_required",
-                        detail = $"Access Denied: You currently have the 'Consumer' role. Contributing and publishing AI artifacts requires the 'Contributor' role. Please submit an access request through the extension or CLI (run 'engineering-commons access request --role contributor')."
+                        detail = "Access Denied: You currently have the 'Consumer' role. Contributing and publishing AI artifacts requires the 'Contributor' role. Please submit an access request through the extension or CLI."
                     });
                 }
             }
         }
 
-        // Check contribution permissions if this is an existing private artifact
         var existingArt = await marketplace.GetArtifactAsync(artifactId);
-        var callerRole = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+        var callerRole = User.FindFirst(ClaimTypes.Role)?.Value;
         bool isCallerAdmin = IsAdminUser(callerRole, email);
         if (existingArt != null && existingArt.IsPrivate && !CanUserContribute(email, existingArt, isCallerAdmin))
         {
-            return StatusCode(403, new { error = $"Access denied: Artifact '{artifactId}' is private and only the producer or whitelisted contributors can submit changes ({existingArt.AllowedContributors ?? existingArt.ProducerEmail})." });
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = $"Access denied: Artifact '{artifactId}' is private and only the producer or whitelisted contributors can submit changes ({existingArt.AllowedContributors ?? existingArt.ProducerEmail})." });
         }
 
         var existingReview = _reviews.GetPendingReviews().FirstOrDefault(r => r.ArtifactId.Equals(artifactId, StringComparison.OrdinalIgnoreCase));
@@ -313,15 +316,13 @@ public class ArtifactsController : ControllerBase
         {
             if (!HasUserAccess(email, existingReview.ProducerEmail, existingReview.AllowedContributors))
             {
-                return StatusCode(403, new { error = $"Access denied: Artifact '{artifactId}' is private and only the producer or whitelisted contributors can submit changes ({existingReview.AllowedContributors ?? existingReview.ProducerEmail})." });
+                return StatusCode(StatusCodes.Status403Forbidden, new { error = $"Access denied: Artifact '{artifactId}' is private and only the producer or whitelisted contributors can submit changes ({existingReview.AllowedContributors ?? existingReview.ProducerEmail})." });
             }
         }
 
-        // 1. Server-side Duplicate / Unchanged Content Check BEFORE review creation
         var dupCheck = await _diffService.CheckDuplicateAsync(artifactId, content, artifactType);
         if (dupCheck.IsDuplicate && dupCheck.IsUnchanged)
         {
-            // Early Exit: Do NOT create review, do NOT notify reviewer
             await _usage.RecordUsageAsync(new UsageEvent
             {
                 UserId = email,
@@ -357,10 +358,8 @@ public class ArtifactsController : ControllerBase
             });
         }
 
-        // 2. Changes detected or new artifact: Proceed with review submission
         var review = _reviews.SubmitChange(artifactId, email, content, isPrivate, allowedContributors, allowedReviewers, allowedConsumers);
 
-        // Automatically log contribution to SQLite
         await _usage.RecordUsageAsync(new UsageEvent
         {
             UserId = email,
@@ -395,14 +394,10 @@ public class ArtifactsController : ControllerBase
         });
     }
 
-    /// <summary>
-    /// Update artifact visibility (Public vs Private) and RBAC whitelists
-    /// </summary>
     [HttpPut("{artifactId}/visibility")]
     [HttpPost("{artifactId}/visibility")]
     public async Task<IActionResult> UpdateVisibility(string artifactId, [FromBody] Newtonsoft.Json.Linq.JObject? body, [FromServices] IMarketplaceService marketplace)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -433,11 +428,11 @@ public class ArtifactsController : ControllerBase
             return NotFound(new { error = $"Artifact '{artifactId}' not found." });
         }
 
-        var callerRole = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+        var callerRole = User.FindFirst(ClaimTypes.Role)?.Value;
         bool isCallerAdmin = IsAdminUser(callerRole, email);
         if (!isCallerAdmin && !string.IsNullOrEmpty(existing.ProducerEmail) && !existing.ProducerEmail.Equals(email, StringComparison.OrdinalIgnoreCase))
         {
-            return StatusCode(403, new { error = $"Access denied: Only the original producer/owner ({existing.ProducerEmail}) or an administrator can change the visibility of this artifact." });
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = $"Access denied: Only the original producer/owner ({existing.ProducerEmail}) or an administrator can change the visibility of this artifact." });
         }
 
         try
@@ -473,19 +468,13 @@ public class ArtifactsController : ControllerBase
         }
         catch (UnauthorizedAccessException ex)
         {
-            return StatusCode(403, new { error = ex.Message });
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = ex.Message });
         }
     }
 
-    /// <summary>
-    /// Download artifact content using the server-side GitHub PAT.
-    /// The consumer CLI calls this instead of `cip install`, so no GitHub login is needed.
-    /// Returns the full artifact JSON (including files array with path/content).
-    /// </summary>
     [HttpGet("{artifactId}/download")]
     public async Task<IActionResult> DownloadArtifact(string artifactId, [FromQuery] string? version, [FromServices] IMarketplaceService marketplace)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? "authenticated-consumer";
         var art = await marketplace.GetArtifactAsync(artifactId, version);
         if (art == null)
@@ -502,14 +491,13 @@ public class ArtifactsController : ControllerBase
             return NotFound(new { error = $"Artifact '{artifactId}' not found." });
         }
 
-        var callerRole = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+        var callerRole = User.FindFirst(ClaimTypes.Role)?.Value;
         bool isCallerAdmin = IsAdminUser(callerRole, email);
         if (!CanUserDownload(email, art, isCallerAdmin))
         {
-            return StatusCode(403, new { error = $"Artifact '{artifactId}' is private and cannot be downloaded by your account ({email})." });
+            return StatusCode(StatusCodes.Status403Forbidden, new { error = $"Artifact '{artifactId}' is private and cannot be downloaded by your account ({email})." });
         }
 
-        // Automatically log install/download event to SQLite
         await _usage.RecordUsageAsync(new UsageEvent
         {
             UserId = email,
@@ -540,7 +528,6 @@ public class ArtifactsController : ControllerBase
     [HttpGet("my/changes")]
     public IActionResult MyChanges()
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name ?? string.Empty;
         var list = _reviews.GetByProducer(email).Select(r => new { 
             r.Id, 

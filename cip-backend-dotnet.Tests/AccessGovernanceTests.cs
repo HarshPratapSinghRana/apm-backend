@@ -19,21 +19,21 @@ public class AccessGovernanceTests : IClassFixture<TestWebApplicationFactory>
     }
 
     [Fact]
-    public async Task SsoLogin_HarshRana_ResolvedAsAdmin()
+    public async Task SsoLogin_Admin_ResolvedAsAdmin()
     {
         var client = _factory.CreateClient();
         var ssoResp = await client.PostAsJsonAsync("/api/auth/sso", new
         {
             token = "mock-ms-token-admin",
-            email = "harsh.rana@maqsoftware.com",
-            name = "Harsh Rana"
+            email = "admin@maqsoftware.com",
+            name = "Admin User"
         });
 
         ssoResp.EnsureSuccessStatusCode();
         var body = await ssoResp.Content.ReadFromJsonAsync<JsonElement>();
         var user = body.GetProperty("user");
 
-        Assert.Equal("harsh.rana@maqsoftware.com", user.GetProperty("email").GetString());
+        Assert.Equal("admin@maqsoftware.com", user.GetProperty("email").GetString());
         Assert.Equal("ADMIN", user.GetProperty("role").GetString());
     }
 
@@ -76,12 +76,12 @@ public class AccessGovernanceTests : IClassFixture<TestWebApplicationFactory>
         var userToken = userLoginDoc.GetProperty("token").GetString();
         Assert.Equal("CONSUMER", userLoginDoc.GetProperty("user").GetProperty("role").GetString());
 
-        // 2. Admin harsh.rana logs in via SSO -> ADMIN
+        // 2. Admin logs in via SSO -> ADMIN
         var adminLoginResp = await client.PostAsJsonAsync("/api/auth/sso", new
         {
             token = "ms-token-admin-session",
-            email = "harsh.rana@maqsoftware.com",
-            name = "Harsh Rana"
+            email = "admin@maqsoftware.com",
+            name = "Admin User"
         });
         adminLoginResp.EnsureSuccessStatusCode();
         var adminLoginDoc = await adminLoginResp.Content.ReadFromJsonAsync<JsonElement>();

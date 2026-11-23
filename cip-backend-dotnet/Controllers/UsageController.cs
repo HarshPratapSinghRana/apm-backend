@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using EngineeringCommons.Backend.Models;
 using EngineeringCommons.Backend.Services.Interfaces;
@@ -9,41 +10,22 @@ using EngineeringCommons.Backend.Services.Interfaces;
 namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/usage")]
 public class UsageController : ControllerBase
 {
+    private const int DefaultQueryLimit = 5;
     private readonly IUsageService _usageService;
 
     public UsageController(IUsageService usageService)
     {
-        _usageService = usageService;
-    }
-
-    public class RecordUsageRequest
-    {
-        public string? ArtifactId { get; set; }
-        public string? ArtifactName { get; set; }
-        public string? ArtifactType { get; set; }
-        public string? ArtifactVersion { get; set; }
-        public string? EventType { get; set; }
-        public string? Action { get; set; }
-        public string? Source { get; set; } = "VS_CODE";
-        public string? Platform { get; set; } = "EngineeringCommons";
-        public string? SessionId { get; set; }
-        public string? Metadata { get; set; }
-        public DateTime? Timestamp { get; set; }
-        public string? Workspace { get; set; }
+        _usageService = usageService ?? throw new ArgumentNullException(nameof(usageService));
     }
 
     [HttpPost]
     [HttpPost("events")]
     public async Task<IActionResult> RecordUsage([FromBody] RecordUsageRequest req)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized(new { error = "Authentication required to log usage events." });
-        }
-
         var eventType = !string.IsNullOrWhiteSpace(req.EventType) 
             ? req.EventType.Trim().ToUpperInvariant() 
             : (!string.IsNullOrWhiteSpace(req.Action) ? req.Action.Trim().ToUpperInvariant() : "USE");
@@ -76,11 +58,6 @@ public class UsageController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetUsageEvents([FromQuery] string? userId = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized();
-        }
-
         var events = await _usageService.GetUsageEventsAsync(userId);
         return Ok(events);
     }
@@ -90,15 +67,10 @@ public class UsageController : ControllerBase
         [FromQuery] string? period = "all",
         [FromQuery] string? artifactType = null,
         [FromQuery] string? artifactId = null,
-        [FromQuery] int limit = 5)
+        [FromQuery] int limit = DefaultQueryLimit)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized();
-        }
-
         var userEmail = User.Identity?.Name;
-        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? "Consumer";
+        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? UserRoles.Consumer;
 
         var filters = new UsageFilterOptions
         {
@@ -118,13 +90,8 @@ public class UsageController : ControllerBase
         [FromQuery] string? artifactType = null,
         [FromQuery] string? artifactId = null)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized();
-        }
-
         var userEmail = User.Identity?.Name;
-        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? "Consumer";
+        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? UserRoles.Consumer;
 
         var filters = new UsageFilterOptions
         {
@@ -140,13 +107,8 @@ public class UsageController : ControllerBase
     [HttpGet("artifacts/{artifactId}")]
     public async Task<IActionResult> GetArtifactDetailsAnalytics(string artifactId)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized();
-        }
-
         var userEmail = User.Identity?.Name;
-        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? "Consumer";
+        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? UserRoles.Consumer;
 
         var details = await _usageService.GetArtifactDetailsAnalyticsAsync(artifactId, userEmail, userRole);
         if (details == null)
@@ -159,17 +121,12 @@ public class UsageController : ControllerBase
 
     [HttpGet("most-downloaded")]
     public async Task<IActionResult> GetMostDownloaded(
-        [FromQuery] int limit = 5,
         [FromQuery] string? period = "all",
-        [FromQuery] string? artifactType = null)
+        [FromQuery] string? artifactType = null,
+        [FromQuery] int limit = DefaultQueryLimit)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized();
-        }
-
         var userEmail = User.Identity?.Name;
-        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? "Consumer";
+        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? UserRoles.Consumer;
 
         var filters = new UsageFilterOptions
         {
@@ -184,17 +141,12 @@ public class UsageController : ControllerBase
 
     [HttpGet("most-used")]
     public async Task<IActionResult> GetMostUsed(
-        [FromQuery] int limit = 5,
         [FromQuery] string? period = "all",
-        [FromQuery] string? artifactType = null)
+        [FromQuery] string? artifactType = null,
+        [FromQuery] int limit = DefaultQueryLimit)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized();
-        }
-
         var userEmail = User.Identity?.Name;
-        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? "Consumer";
+        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? UserRoles.Consumer;
 
         var filters = new UsageFilterOptions
         {
@@ -210,16 +162,10 @@ public class UsageController : ControllerBase
     [HttpGet("artifacts/{artifactId}/users")]
     public async Task<IActionResult> GetArtifactUserUsage(string artifactId)
     {
-        if (!User.Identity?.IsAuthenticated ?? true)
-        {
-            return Unauthorized();
-        }
-
         var userEmail = User.Identity?.Name ?? "anonymous";
-        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? "Consumer";
+        var userRole = User.FindFirstValue(ClaimTypes.Role) ?? UserRoles.Consumer;
 
         var users = await _usageService.GetUserUsageByArtifactAsync(artifactId, userEmail, userRole);
         return Ok(users);
     }
 }
-

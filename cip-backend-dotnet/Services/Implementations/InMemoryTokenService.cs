@@ -126,7 +126,8 @@ public class InMemoryTokenService : ITokenService
                         var normRole = !string.IsNullOrWhiteSpace(role) ? role.Trim() : "CONSUMER";
                         // Prevent unverified privilege escalation via local file tampering
                         if (string.Equals(normRole, "ADMIN", StringComparison.OrdinalIgnoreCase) && 
-                            !string.Equals(normEmail, "harsh.rana@maqsoftware.com", StringComparison.OrdinalIgnoreCase))
+                            !string.Equals(normEmail, "admin@maqsoftware.com", StringComparison.OrdinalIgnoreCase) &&
+                            !normEmail.StartsWith("admin@", StringComparison.OrdinalIgnoreCase))
                         {
                             normRole = "CONSUMER";
                         }

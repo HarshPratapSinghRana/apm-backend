@@ -24,7 +24,7 @@ public class InMemoryNotificationService : INotificationService
             new Notification
             {
                 Id = "notif-seed-1",
-                RecipientEmail = "harsh.rana@maqsoftware.com",
+                RecipientEmail = "admin@maqsoftware.com",
                 SubmissionId = "seed-submission-1",
                 ArtifactId = "semantic-sql-optimizer",
                 ArtifactName = "semantic-sql-optimizer",
@@ -38,7 +38,7 @@ public class InMemoryNotificationService : INotificationService
             new Notification
             {
                 Id = "notif-seed-2",
-                RecipientEmail = "harsh.rana@maqsoftware.com",
+                RecipientEmail = "admin@maqsoftware.com",
                 SubmissionId = "seed-submission-2",
                 ArtifactId = "api-test-generator",
                 ArtifactName = "api-test-generator",
@@ -52,7 +52,7 @@ public class InMemoryNotificationService : INotificationService
             new Notification
             {
                 Id = "notif-seed-3",
-                RecipientEmail = "harsh.rana@maqsoftware.com",
+                RecipientEmail = "admin@maqsoftware.com",
                 SubmissionId = "seed-submission-3",
                 ArtifactId = "bounty-accessibility-fix",
                 ArtifactName = "bounty-accessibility-fix",
@@ -66,7 +66,7 @@ public class InMemoryNotificationService : INotificationService
             new Notification
             {
                 Id = "notif-seed-4",
-                RecipientEmail = "harsh.rana@maqsoftware.com",
+                RecipientEmail = "admin@maqsoftware.com",
                 SubmissionId = "seed-submission-4",
                 ArtifactId = "review-and-refactor",
                 ArtifactName = "review-and-refactor",
@@ -80,7 +80,7 @@ public class InMemoryNotificationService : INotificationService
             new Notification
             {
                 Id = "notif-seed-5",
-                RecipientEmail = "harsh.rana@maqsoftware.com",
+                RecipientEmail = "admin@maqsoftware.com",
                 SubmissionId = "seed-submission-5",
                 ArtifactId = "design-reviewer",
                 ArtifactName = "design-reviewer",
@@ -94,7 +94,7 @@ public class InMemoryNotificationService : INotificationService
             new Notification
             {
                 Id = "notif-seed-6",
-                RecipientEmail = "harsh.rana@maqsoftware.com",
+                RecipientEmail = "admin@maqsoftware.com",
                 SubmissionId = "seed-submission-6",
                 ArtifactId = "time-mcp",
                 ArtifactName = "time-mcp",
@@ -108,7 +108,7 @@ public class InMemoryNotificationService : INotificationService
             new Notification
             {
                 Id = "notif-seed-7",
-                RecipientEmail = "harsh.rana@maqsoftware.com",
+                RecipientEmail = "admin@maqsoftware.com",
                 SubmissionId = "seed-submission-7",
                 ArtifactId = "security-scan",
                 ArtifactName = "security-scan",

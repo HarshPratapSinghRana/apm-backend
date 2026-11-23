@@ -38,12 +38,12 @@ public class MicrosoftGraphEmailTests : IDisposable
         var dict = new Dictionary<string, string?>
         {
             ["Smtp:PickupDirectory"] = _testOutboxDir,
-            ["AdminEmail"] = "harsh.rana@maqsoftware.com",
+            ["AdminEmail"] = "admin@maqsoftware.com",
             ["GraphEmail:Instance"] = "https://login.microsoftonline.com/",
             ["GraphEmail:TenantId"] = "e4d98dd2-9199-42e5-ba8b-da3e763ede2e",
             ["GraphEmail:ClientId"] = "a5f3ba81-4c95-4c74-afd9-38b72cf39156",
             ["GraphEmail:SenderMailbox"] = "cip-notifications@maqsoftware.com",
-            ["GraphEmail:FallbackSenderMailbox"] = "harsh.rana@maqsoftware.com",
+            ["GraphEmail:FallbackSenderMailbox"] = "admin@maqsoftware.com",
             ["GraphEmail:Enabled"] = "false",
             ["GraphEmail:SaveToSentItems"] = "true"
         };
@@ -102,7 +102,7 @@ public class MicrosoftGraphEmailTests : IDisposable
         var emailService = new EmailNotificationService(config, NullLogger<EmailNotificationService>.Instance, graphClient);
 
         // Test email
-        var record = await emailService.SendTestEmailAsync("harsh.rana@maqsoftware.com", "Test", "Test body");
+        var record = await emailService.SendTestEmailAsync("admin@maqsoftware.com", "Test", "Test body");
         Assert.Equal("Disabled (Commented Out)", record.DeliveryMethod);
         Assert.False(record.SmtpAttempted);
         Assert.False(record.GraphAttempted);

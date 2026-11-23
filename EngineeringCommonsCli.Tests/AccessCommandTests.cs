@@ -107,7 +107,7 @@ public class AccessCommandTests
                 new("req-123", "user@maqsoftware.com", "REVIEWER", "PRODUCER", "PENDING", "Need review perms", null, null, DateTime.UtcNow, null)
             });
 
-        var cmd = CreateCommand("ADMIN", "harsh.rana@maqsoftware.com");
+        var cmd = CreateCommand("ADMIN", "admin@maqsoftware.com");
         var exitCode = cmd.Invoke(new[] { "list" });
 
         Assert.Equal(0, exitCode);
@@ -120,7 +120,7 @@ public class AccessCommandTests
         _backendMock.Setup(b => b.ApproveAccessRequestAsync("req-123", "Approved by Harsh"))
             .ReturnsAsync(true);
 
-        var cmd = CreateCommand("ADMIN", "harsh.rana@maqsoftware.com");
+        var cmd = CreateCommand("ADMIN", "admin@maqsoftware.com");
         var exitCode = cmd.Invoke(new[] { "approve", "req-123", "--notes", "Approved by Harsh" });
 
         Assert.Equal(0, exitCode);
@@ -133,7 +133,7 @@ public class AccessCommandTests
         _backendMock.Setup(b => b.RejectAccessRequestAsync("req-123", "Not sufficient experience"))
             .ReturnsAsync(true);
 
-        var cmd = CreateCommand("ADMIN", "harsh.rana@maqsoftware.com");
+        var cmd = CreateCommand("ADMIN", "admin@maqsoftware.com");
         var exitCode = cmd.Invoke(new[] { "reject", "req-123", "--notes", "Not sufficient experience" });
 
         Assert.Equal(0, exitCode);
@@ -146,7 +146,7 @@ public class AccessCommandTests
         _backendMock.Setup(b => b.RevokeAccessAsync("developer@maqsoftware.com", "Project transitioned"))
             .ReturnsAsync(true);
 
-        var cmd = CreateCommand("ADMIN", "harsh.rana@maqsoftware.com");
+        var cmd = CreateCommand("ADMIN", "admin@maqsoftware.com");
         var exitCode = cmd.Invoke(new[] { "revoke", "developer@maqsoftware.com", "--notes", "Project transitioned" });
 
         Assert.Equal(0, exitCode);
@@ -159,7 +159,7 @@ public class AccessCommandTests
         _backendMock.Setup(b => b.CertifyReviewerAsync("lead@maqsoftware.com", "Completed certification checklist"))
             .ReturnsAsync(true);
 
-        var cmd = CreateCommand("ADMIN", "harsh.rana@maqsoftware.com");
+        var cmd = CreateCommand("ADMIN", "admin@maqsoftware.com");
         var exitCode = cmd.Invoke(new[] { "certify", "lead@maqsoftware.com", "--notes", "Completed certification checklist" });
 
         Assert.Equal(0, exitCode);

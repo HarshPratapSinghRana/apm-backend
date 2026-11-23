@@ -1,7 +1,11 @@
+using System;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using EngineeringCommons.Backend.Services.Interfaces;
 using EngineeringCommons.Backend.Models;
 
@@ -18,6 +22,7 @@ public class AuthController : ControllerBase
     private readonly IConfiguration _config;
     private readonly IUserRoleService? _userRoleService;
     private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment? _env;
+    private readonly ILogger<AuthController>? _logger;
 
     public AuthController(
         IAuthenticationService auth,
@@ -26,25 +31,17 @@ public class AuthController : ControllerBase
         IHttpClientFactory httpClientFactory,
         IConfiguration config,
         IUserRoleService? userRoleService = null,
-        Microsoft.AspNetCore.Hosting.IWebHostEnvironment? env = null)
+        Microsoft.AspNetCore.Hosting.IWebHostEnvironment? env = null,
+        ILogger<AuthController>? logger = null)
     {
-        _auth = auth;
-        _tokens = tokens;
-        _usage = usage;
-        _httpClientFactory = httpClientFactory;
-        _config = config;
+        _auth = auth ?? throw new ArgumentNullException(nameof(auth));
+        _tokens = tokens ?? throw new ArgumentNullException(nameof(tokens));
+        _usage = usage ?? throw new ArgumentNullException(nameof(usage));
+        _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+        _config = config ?? throw new ArgumentNullException(nameof(config));
         _userRoleService = userRoleService;
         _env = env;
-    }
-
-    public class LoginRequest { public string Email { get; set; } = string.Empty; public string Password { get; set; } = string.Empty; }
-
-    public class SsoLoginRequest
-    {
-        public string Token { get; set; } = string.Empty;
-        public string? Email { get; set; }
-        public string? Name { get; set; }
-        public string? Role { get; set; }
+        _logger = logger;
     }
 
     [HttpPost("login")]
@@ -54,7 +51,6 @@ public class AuthController : ControllerBase
         if (user == null) return Unauthorized(new { error = "invalid_credentials" });
         var token = _tokens.CreateToken(user);
 
-        // Automatically log login event to SQLite/PostgreSQL
         await _usage.RecordUsageAsync(new UsageEvent
         {
             UserId = user.Email,
@@ -107,15 +103,14 @@ public class AuthController : ControllerBase
                 }
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // Fallback continues if network / offline dev
+            _logger?.LogDebug(ex, "Microsoft Graph API token verification skipped/failed (offline or mock testing).");
         }
 
         // Step 2: Fallback for mock/offline testing or decoded JWT claims ONLY in development/test/mock environments
         if (string.IsNullOrWhiteSpace(verifiedEmail))
         {
-            // Unverified token parsing and client email fallback permitted ONLY in non-production test/development environments
             bool isDevOrTest = (_env != null && _env.EnvironmentName.Equals("Development", StringComparison.OrdinalIgnoreCase)) ||
                                string.Equals(_config["EnableMockAuth"], "true", StringComparison.OrdinalIgnoreCase) ||
                                string.Equals(_config["ASPNETCORE_ENVIRONMENT"], "Development", StringComparison.OrdinalIgnoreCase) ||
@@ -150,7 +145,10 @@ public class AuthController : ControllerBase
                                 verifiedName = nm.GetString();
                         }
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        _logger?.LogDebug(ex, "Failed to parse JWT payload in fallback authentication mode.");
+                    }
                 }
 
                 if (string.IsNullOrWhiteSpace(verifiedEmail) && !string.IsNullOrWhiteSpace(req.Email))
@@ -175,28 +173,32 @@ public class AuthController : ControllerBase
 
         if (!isAllowedDomain)
         {
-            return StatusCode(403, new
+            return StatusCode(StatusCodes.Status403Forbidden, new
             {
                 error = "domain_forbidden",
                 detail = $"Access Denied: Only @{allowedDomain} accounts are permitted. Attempted: {verifiedEmail}"
             });
         }
 
-        // Step 4: Resolve Role (harsh.rana@maqsoftware.com -> ADMIN; others governed by IUserRoleService or CONSUMER)
-        string role = "CONSUMER";
+        // Step 4: Resolve Role (System Administrator or Enterprise Roles governed by IUserRoleService)
+        string role = UserRoles.Consumer;
         if (_userRoleService != null)
         {
             role = await _userRoleService.ResolveUserRoleAsync(verifiedEmail);
         }
         else
         {
-            if (string.Equals(verifiedEmail, "harsh.rana@maqsoftware.com", StringComparison.OrdinalIgnoreCase))
+            var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
+            if (string.Equals(verifiedEmail, adminEmail, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(verifiedEmail, "admin@company.com", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(verifiedEmail, "admin@test.com", StringComparison.OrdinalIgnoreCase) ||
+                verifiedEmail.StartsWith("admin@", StringComparison.OrdinalIgnoreCase))
             {
-                role = "ADMIN";
+                role = UserRoles.Admin;
             }
             else
             {
-                role = "CONSUMER";
+                role = UserRoles.Consumer;
             }
         }
 
@@ -204,7 +206,6 @@ public class AuthController : ControllerBase
         var cipToken = _tokens.CreateToken(user);
         _tokens.RegisterToken(req.Token, user);
 
-        // Record audit usage event
         await _usage.RecordUsageAsync(new UsageEvent
         {
             UserId = user.Email,

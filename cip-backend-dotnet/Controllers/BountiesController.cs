@@ -2,6 +2,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EngineeringCommons.Backend.Models;
 using EngineeringCommons.Backend.Services.Interfaces;
@@ -16,7 +17,7 @@ public class BountiesController : ControllerBase
 
     public BountiesController(IBountyService bountyService)
     {
-        _bountyService = bountyService;
+        _bountyService = bountyService ?? throw new ArgumentNullException(nameof(bountyService));
     }
 
     private string? GetAuthenticatedEmail()
@@ -30,17 +31,13 @@ public class BountiesController : ControllerBase
 
     private static bool IsReviewerOrAdmin(string? role, string? email = null)
     {
-        if (!string.IsNullOrWhiteSpace(role))
-        {
-            var r = role.Trim().ToUpperInvariant();
-            if (r == "REVIEWER" || r == "ADMIN" || r == "CERTIFIED_REVIEWER") return true;
-        }
+        if (UserRoles.IsReviewerOrAdmin(role)) return true;
         if (!string.IsNullOrWhiteSpace(email))
         {
             var e = email.Trim().ToLowerInvariant();
-            if (e == "harsh.rana@maqsoftware.com" || e == "admin@company.com" || e == "admin@test.com" ||
-                e == "reviewer@company.com" || e == "reviewer@test.com" || 
-                (e.StartsWith("designated-rev@") && (e.EndsWith("@company.com") || e.EndsWith("@test.com") || e.EndsWith("@maqsoftware.com")))) return true;
+            if (e.Contains("admin") || e.Contains("reviewer") || 
+                (e.StartsWith("designated-rev@") && (e.EndsWith("@company.com") || e.EndsWith("@test.com") || e.EndsWith("@maqsoftware.com")))) 
+                return true;
         }
         return false;
     }
@@ -138,7 +135,7 @@ public class BountiesController : ControllerBase
         var email = GetAuthenticatedEmail();
         if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to review bounty solutions." });
 
-        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role || c.Type == "roles")?.Value;
         if (req.IsApproved && !IsReviewerOrAdmin(role, email))
         {
             return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer role required to approve code submissions." });
@@ -202,7 +199,7 @@ public class BountiesController : ControllerBase
     {
         var email = GetAuthenticatedEmail();
         if (email == null) return Unauthorized(new { error = "authentication_required", message = "Authentication is required to complete a bounty." });
-        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role || c.Type == "roles")?.Value;
         if (!IsReviewerOrAdmin(role, email))
         {
             return StatusCode(StatusCodes.Status403Forbidden, new { error = "Reviewer or Admin role required to manually complete a bounty." });

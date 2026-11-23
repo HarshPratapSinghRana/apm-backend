@@ -31,14 +31,14 @@ public class EmailDiagnosticsTests : IClassFixture<TestWebApplicationFactory>
     }
 
     [Fact]
-    public async Task SendTestEmail_DispatchesToHarshRana_GeneratesEml()
+    public async Task SendTestEmail_DispatchesToAdmin_GeneratesEml()
     {
         var client = _factory.CreateClient();
         var resp = await client.PostAsJsonAsync("/api/admin/emails/test", new
         {
-            recipient = "harsh.rana@maqsoftware.com",
+            recipient = "admin@maqsoftware.com",
             subject = "Test Automated Access Notification",
-            body = "Hello Harsh, this is a test notification."
+            body = "Hello Admin, this is a test notification."
         });
 
         resp.EnsureSuccessStatusCode();
@@ -46,7 +46,7 @@ public class EmailDiagnosticsTests : IClassFixture<TestWebApplicationFactory>
         Assert.True(body.GetProperty("success").GetBoolean());
 
         var record = body.GetProperty("record");
-        Assert.Equal("harsh.rana@maqsoftware.com", record.GetProperty("recipient").GetString());
+        Assert.Equal("admin@maqsoftware.com", record.GetProperty("recipient").GetString());
         Assert.Equal("Disabled (Commented Out)", record.GetProperty("deliveryMethod").GetString());
         Assert.False(record.GetProperty("smtpAttempted").GetBoolean());
         Assert.False(record.GetProperty("graphAttempted").GetBoolean());
@@ -60,7 +60,7 @@ public class EmailDiagnosticsTests : IClassFixture<TestWebApplicationFactory>
         // Send a test email first
         await client.PostAsJsonAsync("/api/admin/emails/test", new
         {
-            recipient = "harsh.rana@maqsoftware.com",
+            recipient = "admin@maqsoftware.com",
             subject = "History Check"
         });
 

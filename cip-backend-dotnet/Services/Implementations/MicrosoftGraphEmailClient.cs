@@ -55,7 +55,7 @@ public class MicrosoftGraphEmailClient : IMicrosoftGraphEmailClient
             ?? "cip-notifications@maqsoftware.com";
         _fallbackSenderMailbox = _config["GraphEmail:FallbackSenderMailbox"] 
             ?? Environment.GetEnvironmentVariable("GRAPH_FALLBACK_MAILBOX") 
-            ?? "harsh.rana@maqsoftware.com";
+            ?? "admin@maqsoftware.com";
 
         var enabledStr = _config["GraphEmail:Enabled"] ?? Environment.GetEnvironmentVariable("GRAPH_ENABLED");
         _enabled = !bool.TryParse(enabledStr, out var en) || en;

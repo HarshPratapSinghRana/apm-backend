@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EngineeringCommons.Backend.Models;
@@ -11,35 +12,39 @@ using EngineeringCommons.Backend.Services.Implementations;
 namespace EngineeringCommons.Backend.Controllers;
 
 [ApiController]
+[Authorize]
 public class AccessRequestsController : ControllerBase
 {
     private readonly IUserRoleService _userRoleService;
 
     public AccessRequestsController(IUserRoleService userRoleService)
     {
-        _userRoleService = userRoleService;
+        _userRoleService = userRoleService ?? throw new ArgumentNullException(nameof(userRoleService));
     }
 
     [HttpPost("api/access-requests")]
     public async Task<IActionResult> RequestAccess([FromBody] CreateAccessRequestDto dto)
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
         var requestedRole = !string.IsNullOrWhiteSpace(dto?.RequestedRole)
             ? dto.RequestedRole.Trim().ToUpperInvariant()
-            : "CONTRIBUTOR";
+            : UserRoles.Contributor;
 
-        if (requestedRole != "CONTRIBUTOR" && requestedRole != "PRODUCER" && requestedRole != "REVIEWER" && requestedRole != "CERTIFIED_REVIEWER")
+        if (!UserRoles.IsValidRequestableRole(requestedRole))
         {
-            return BadRequest(new { error = "invalid_role", detail = "Requested role must be 'CONTRIBUTOR', 'PRODUCER', 'REVIEWER', or 'CERTIFIED_REVIEWER'." });
+            return BadRequest(new 
+            { 
+                error = "invalid_role", 
+                detail = $"Requested role must be one of: {string.Join(", ", UserRoles.RequestableRoles)}." 
+            });
         }
 
         var request = await _userRoleService.SubmitAccessRequestAsync(email, requestedRole, dto?.Reason);
         return Ok(new
         {
-            message = $"Access request for {requestedRole} submitted successfully. An alert has been dispatched to admin harsh.rana@maqsoftware.com.",
+            message = $"Access request for {requestedRole} submitted successfully. An alert has been dispatched to system administrator.",
             request
         });
     }
@@ -47,7 +52,6 @@ public class AccessRequestsController : ControllerBase
     [HttpGet("api/access-requests/my")]
     public async Task<IActionResult> GetMyRequests()
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var email = User.Identity?.Name;
         if (string.IsNullOrWhiteSpace(email)) return Unauthorized();
 
@@ -72,7 +76,7 @@ public class AccessRequestsController : ControllerBase
             return StatusCode(StatusCodes.Status403Forbidden, new
             {
                 error = "access_denied",
-                detail = "Only system administrator harsh.rana@maqsoftware.com can view and manage access requests."
+                detail = "Only system administrator can view and manage access requests."
             });
         }
 
@@ -88,7 +92,7 @@ public class AccessRequestsController : ControllerBase
             return StatusCode(StatusCodes.Status403Forbidden, new
             {
                 error = "access_denied",
-                detail = "Only system administrator harsh.rana@maqsoftware.com can approve access requests."
+                detail = "Only system administrator can approve access requests."
             });
         }
 
@@ -114,7 +118,7 @@ public class AccessRequestsController : ControllerBase
             return StatusCode(StatusCodes.Status403Forbidden, new
             {
                 error = "access_denied",
-                detail = "Only system administrator harsh.rana@maqsoftware.com can reject access requests."
+                detail = "Only system administrator can reject access requests."
             });
         }
 
@@ -140,7 +144,7 @@ public class AccessRequestsController : ControllerBase
             return StatusCode(StatusCodes.Status403Forbidden, new
             {
                 error = "access_denied",
-                detail = "Only system administrator harsh.rana@maqsoftware.com can revoke reviewer access."
+                detail = "Only system administrator can revoke reviewer access."
             });
         }
 
@@ -168,7 +172,7 @@ public class AccessRequestsController : ControllerBase
             return StatusCode(StatusCodes.Status403Forbidden, new
             {
                 error = "access_denied",
-                detail = "Only system administrator harsh.rana@maqsoftware.com can grant Certified Reviewer status."
+                detail = "Only system administrator can grant Certified Reviewer status."
             });
         }
 
@@ -189,14 +193,14 @@ public class AccessRequestsController : ControllerBase
     }
 
     [HttpPost("api/admin/roles/sync-ado")]
-    public async Task<IActionResult> SyncToAdo()
+    public async Task<IActionResult> SyncAdminRolesAsync()
     {
         if (!await IsAdminUserAsync())
         {
             return StatusCode(StatusCodes.Status403Forbidden, new
             {
                 error = "access_denied",
-                detail = "Only system administrator harsh.rana@maqsoftware.com can trigger governance ADO sync."
+                detail = "Only system administrator can trigger governance ADO sync."
             });
         }
 
@@ -210,11 +214,10 @@ public class AccessRequestsController : ControllerBase
         });
     }
 
-    [HttpGet("api/roles")]
     [HttpGet("api/admin/roles")]
+    [HttpGet("api/roles")]
     public async Task<IActionResult> GetAllRoles()
     {
-        if (!User.Identity?.IsAuthenticated ?? true) return Unauthorized();
         var roles = await _userRoleService.GetAllRolesAsync();
         return Ok(roles);
     }
@@ -222,10 +225,12 @@ public class AccessRequestsController : ControllerBase
     private async Task<bool> IsAdminUserAsync()
     {
         if (!User.Identity?.IsAuthenticated ?? true) return false;
-        var email = User.Identity?.Name ?? string.Empty;
-        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        if (User.IsInRole(UserRoles.Admin)) return true;
 
-        if (string.Equals(role, "ADMIN", StringComparison.OrdinalIgnoreCase)) return true;
+        var roleClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role || c.Type == "roles")?.Value;
+        if (string.Equals(roleClaim, UserRoles.Admin, StringComparison.OrdinalIgnoreCase)) return true;
+
+        var email = User.Identity?.Name ?? string.Empty;
         return await _userRoleService.IsAdminAsync(email);
     }
 }

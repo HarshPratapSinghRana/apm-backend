@@ -323,7 +323,7 @@ public class AccessCommand
         Console.WriteLine("User Commands:");
         Console.WriteLine("  request-access [role] [--reason <text>]  Request Contributor, Reviewer, or Certified Reviewer access");
         Console.WriteLine("  access-status / my-requests              Check current role and status of my access requests\n");
-        Console.WriteLine("Admin Commands (harsh.rana@maqsoftware.com):");
+        Console.WriteLine("Admin Commands (admin@maqsoftware.com):");
         Console.WriteLine("  access-requests [status]                 List all user access requests (pending/approved/rejected)");
         Console.WriteLine("  approve-access <id> [--notes <text>]     Approve a user's access request (Contributor/Reviewer)");
         Console.WriteLine("  reject-access <id> [--notes <text>]      Reject a user's access request");
