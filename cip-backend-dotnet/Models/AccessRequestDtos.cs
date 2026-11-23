@@ -28,3 +28,4 @@ public class RevokeAccessRequestDto
     public string? Notes { get; set; }
     public string EffectiveTargetEmail => !string.IsNullOrWhiteSpace(TargetEmail) ? TargetEmail : (UserEmail ?? string.Empty);
 }
+

@@ -19,7 +19,7 @@ public class UsageControllerTests : IClassFixture<TestWebApplicationFactory>
     public async Task RecordUsage_Unauthenticated_ReturnsUnauthorized()
     {
         var client = _factory.CreateClient();
-        var resp = await client.PostAsJsonAsync("/api/usage", new
+        var resp = await client.PostAsJsonAsync("/api/usage/events", new
         {
             artifactName = "design-reviewer",
             artifactType = "agent",
@@ -58,7 +58,7 @@ public class UsageControllerTests : IClassFixture<TestWebApplicationFactory>
             action = "INSTALL",
             source = "vscode"
         };
-        var usageResp = await client.PostAsJsonAsync("/api/usage", usagePayload);
+        var usageResp = await client.PostAsJsonAsync("/api/usage/events", usagePayload);
         usageResp.EnsureSuccessStatusCode();
 
         var usageBody = await usageResp.Content.ReadFromJsonAsync<JsonElement>();

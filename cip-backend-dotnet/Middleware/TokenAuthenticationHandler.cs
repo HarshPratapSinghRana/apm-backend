@@ -36,3 +36,4 @@ public class TokenAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         return Response.WriteAsync(payload);
     }
 }
+

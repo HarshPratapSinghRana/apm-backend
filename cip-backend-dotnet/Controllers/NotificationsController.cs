@@ -81,7 +81,6 @@ public class NotificationsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteNotification(string id)
     {
         var email = User.Identity?.Name ?? string.Empty;
@@ -97,7 +96,6 @@ public class NotificationsController : ControllerBase
     }
 
     [HttpDelete]
-    [HttpDelete("clear-all")]
     public async Task<IActionResult> ClearAllNotifications()
     {
         var email = User.Identity?.Name ?? string.Empty;

@@ -160,7 +160,7 @@ public class ReviewThreadTests : IClassFixture<TestWebApplicationFactory>
         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", prodToken);
 
         // Record usage events with different platforms
-        await client.PostAsJsonAsync("/api/usage", new
+        await client.PostAsJsonAsync("/api/usage/events", new
         {
             artifactName = "design-reviewer",
             artifactVersion = "1.1.0",
@@ -168,7 +168,7 @@ public class ReviewThreadTests : IClassFixture<TestWebApplicationFactory>
             action = "USED"
         });
 
-        await client.PostAsJsonAsync("/api/usage", new
+        await client.PostAsJsonAsync("/api/usage/events", new
         {
             artifactName = "design-reviewer",
             artifactVersion = "1.1.0",
@@ -176,7 +176,7 @@ public class ReviewThreadTests : IClassFixture<TestWebApplicationFactory>
             action = "INVOKED"
         });
 
-        await client.PostAsJsonAsync("/api/usage", new
+        await client.PostAsJsonAsync("/api/usage/events", new
         {
             artifactName = "accessibility-reviewer",
             artifactVersion = "1.0.0",

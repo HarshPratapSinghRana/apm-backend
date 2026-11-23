@@ -52,3 +52,4 @@ public static class UserRoles
          string.Equals(role, CertifiedReviewer, StringComparison.OrdinalIgnoreCase) ||
          string.Equals(role, Admin, StringComparison.OrdinalIgnoreCase));
 }
+

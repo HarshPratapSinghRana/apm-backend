@@ -202,7 +202,6 @@ public class ArtifactsController : ControllerBase
         return Ok(versions);
     }
 
-    [HttpPost("check-duplicate")]
     [HttpPost("{artifactId}/check-duplicate")]
     public async Task<IActionResult> CheckDuplicate(string? artifactId, [FromBody] Newtonsoft.Json.Linq.JToken? rawBody)
     {
@@ -395,7 +394,6 @@ public class ArtifactsController : ControllerBase
     }
 
     [HttpPut("{artifactId}/visibility")]
-    [HttpPost("{artifactId}/visibility")]
     public async Task<IActionResult> UpdateVisibility(string artifactId, [FromBody] Newtonsoft.Json.Linq.JObject? body, [FromServices] IMarketplaceService marketplace)
     {
         var email = User.Identity?.Name ?? string.Empty;

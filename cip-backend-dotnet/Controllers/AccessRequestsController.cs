@@ -214,7 +214,6 @@ public class AccessRequestsController : ControllerBase
         });
     }
 
-    [HttpGet("api/admin/roles")]
     [HttpGet("api/roles")]
     public async Task<IActionResult> GetAllRoles()
     {

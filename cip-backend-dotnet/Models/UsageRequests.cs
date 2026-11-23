@@ -17,3 +17,4 @@ public class RecordUsageRequest
     public DateTime? Timestamp { get; set; }
     public string? Workspace { get; set; }
 }
+

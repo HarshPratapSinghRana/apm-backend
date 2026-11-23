@@ -22,7 +22,6 @@ public class UsageController : ControllerBase
         _usageService = usageService ?? throw new ArgumentNullException(nameof(usageService));
     }
 
-    [HttpPost]
     [HttpPost("events")]
     public async Task<IActionResult> RecordUsage([FromBody] RecordUsageRequest req)
     {

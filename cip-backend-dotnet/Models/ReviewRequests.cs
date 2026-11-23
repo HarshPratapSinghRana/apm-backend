@@ -31,3 +31,4 @@ public class UpdateSlaRequest
 {
     public int SlaTargetMinutes { get; set; } = 1440;
 }
+
