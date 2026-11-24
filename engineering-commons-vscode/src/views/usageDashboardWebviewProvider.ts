@@ -400,9 +400,9 @@ export class UsageDashboardWebviewProvider {
                         <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">v${a.currentVersion}</div>
                     </td>
                     <td><span class="badge ${a.artifactType}">${a.artifactType}</span></td>
-                    <td class="num-cell"><strong>${a.downloads}</strong></td>
+                    <td class="num-cell" style="font-weight: 600;">${a.downloads}</td>
                     <td class="num-cell">${a.uniqueUsers}</td>
-                    <td class="num-cell" style="color: var(--accent); font-weight: 700;">${a.usageCount}</td>
+                    <td class="num-cell" style="color: var(--accent); font-weight: 600;">${a.usageCount}</td>
                     <td class="num-cell">${a.usageRate}</td>
                     <td>${lastUsedStr}</td>
                     <td>
@@ -654,7 +654,7 @@ export class UsageDashboardWebviewProvider {
 
         .kpi-value {
             font-size: 2rem;
-            font-weight: 800;
+            font-weight: 600;
             color: var(--text-primary);
             letter-spacing: -0.5px;
             line-height: 1.1;
@@ -736,7 +736,7 @@ export class UsageDashboardWebviewProvider {
         }
 
         .metric-count {
-            font-weight: 700;
+            font-weight: 600;
             font-size: 12px;
             color: var(--text-secondary);
         }
@@ -1346,15 +1346,15 @@ export class UsageDashboardWebviewProvider {
                     '<div style="display: flex; gap: 10px; margin-bottom: 14px;">' +
                         '<div style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center;">' +
                             '<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Developers</div>' +
-                            '<div style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin-top: 2px;">' + activeUsers.length + '</div>' +
+                            '<div style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-top: 2px;">' + activeUsers.length + '</div>' +
                         '</div>' +
                         '<div style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center;">' +
                             '<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Invocations</div>' +
-                            '<div style="font-size: 16px; font-weight: 700; color: var(--accent); margin-top: 2px;">' + totalUses + '</div>' +
+                            '<div style="font-size: 16px; font-weight: 600; color: var(--accent); margin-top: 2px;">' + totalUses + '</div>' +
                         '</div>' +
                         '<div style="flex: 1; background: var(--panel-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center;">' +
                             '<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Downloads</div>' +
-                            '<div style="font-size: 16px; font-weight: 700; color: var(--text-secondary); margin-top: 2px;">' + totalDownloads + '</div>' +
+                            '<div style="font-size: 16px; font-weight: 600; color: var(--text-secondary); margin-top: 2px;">' + totalDownloads + '</div>' +
                         '</div>' +
                     '</div>';
 

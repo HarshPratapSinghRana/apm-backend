@@ -2463,7 +2463,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             background: var(--tab-active-bg);
             color: var(--tab-active-text);
             border: 1.5px solid var(--tab-active-border);
-            font-weight: 700;
+            font-weight: 600;
             box-shadow: none;
         }
 
@@ -3186,39 +3186,69 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
             flex-wrap: wrap;
         }
         .category-pill, .bounty-pill {
-            font-size: 10.5px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 20px;
-            letter-spacing: 0.3px;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 12px;
+            letter-spacing: 0.25px;
             text-transform: uppercase;
-            flex-shrink: 0;
-        }
-        .cat-review  { background: var(--bg-pro);   color: var(--text-pro);   }
-        .cat-codegen { background: var(--bg-teal);  color: var(--text-teal);  }
-        .cat-testing { background: var(--bg-coral); color: var(--text-coral); }
-
-        .stage-pill {
-            font-size: 9.5px;
-            font-weight: 800;
-            padding: 2.5px 9px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
             flex-shrink: 0;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
+            gap: 4px;
+            line-height: 1.2;
+            box-sizing: border-box;
+            border: 1px solid transparent;
+            vertical-align: middle;
         }
-        .stage-open          { background: rgba(107, 114, 128, 0.18); color: #9ca3af; border: 1px solid rgba(107, 114, 128, 0.3); }
-        .stage-codegeneration{ background: rgba(59, 130, 246, 0.18);  color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .stage-inreview      { background: rgba(251, 191, 36, 0.18);  color: #fde047; border: 1px solid rgba(251, 191, 36, 0.3); }
-        .stage-intesting     { background: rgba(168, 85, 247, 0.18);  color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-        .stage-completed     { background: rgba(16, 185, 129, 0.18);  color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .cat-review  { background: var(--bg-pro);   color: var(--text-pro);   border-color: rgba(124, 58, 237, 0.25); }
+        .cat-codegen { background: var(--bg-teal);  color: var(--text-teal);  border-color: rgba(20, 184, 166, 0.25); }
+        .cat-testing { background: var(--bg-coral); color: var(--text-coral); border-color: rgba(244, 63, 94, 0.25); }
+        :root[data-theme="light"] .cat-review  { background: #f5f0ff; color: #6d28d9; border-color: #ddd6fe; }
+        :root[data-theme="light"] .cat-codegen { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+        :root[data-theme="light"] .cat-testing { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
+
+        .stage-pill {
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.25px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            line-height: 1.2;
+            box-sizing: border-box;
+            border: 1px solid transparent;
+            vertical-align: middle;
+        }
+        .stage-open          { background: rgba(107, 114, 128, 0.18); color: #9ca3af; border-color: rgba(107, 114, 128, 0.3); }
+        .stage-codegeneration{ background: rgba(59, 130, 246, 0.18);  color: #60a5fa; border-color: rgba(59, 130, 246, 0.3); }
+        .stage-inreview      { background: rgba(251, 191, 36, 0.18);  color: #fde047; border-color: rgba(251, 191, 36, 0.35); }
+        .stage-intesting     { background: rgba(168, 85, 247, 0.18);  color: #c084fc; border-color: rgba(168, 85, 247, 0.3); }
+        .stage-completed     { background: rgba(16, 185, 129, 0.18);  color: #34d399; border-color: rgba(16, 185, 129, 0.3); }
         :root[data-theme="light"] .stage-open          { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
         :root[data-theme="light"] .stage-codegeneration{ background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
-        :root[data-theme="light"] .stage-inreview      { background: #fefce8; color: #a16207; border-color: #fef08a; }
+        :root[data-theme="light"] .stage-inreview      { background: #fefce8; color: #a16207; border-color: #fde047; }
         :root[data-theme="light"] .stage-intesting     { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
         :root[data-theme="light"] .stage-completed     { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+
+        .pill-icon {
+            font-size: 9.5px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pill-text {
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+        }
 
         .workflow-stepper {
             display: flex;
@@ -4410,7 +4440,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     const catIcon = b.category === 'Code gen' ? '💻' : (b.category === 'Testing' ? '🧪' : '🔍');
                     const stageKey = (b.stage || 'Open').toLowerCase();
                     const stageClass = `stage-${stageKey}`;
-                    const stageLabel = b.stage === 'CodeGeneration' ? '💻 Code Gen' : (b.stage === 'InReview' ? '🔍 In Review' : (b.stage === 'InTesting' ? '🧪 In Testing' : (b.stage === 'Completed' ? '✅ Completed' : (b.stage === 'Cancelled' ? '⛔ Cancelled' : `🟢 ${b.stage || 'Open'}`))));
+                    const stageIcon = b.stage === 'CodeGeneration' ? '💻' : (b.stage === 'InReview' ? '🔍' : (b.stage === 'InTesting' ? '🧪' : (b.stage === 'Completed' ? '✅' : (b.stage === 'Cancelled' ? '⛔' : '🟢'))));
+                    const stageText = b.stage === 'CodeGeneration' ? 'Code Gen' : (b.stage === 'InReview' ? 'In Review' : (b.stage === 'InTesting' ? 'In Testing' : (b.stage === 'Completed' ? 'Completed' : (b.stage === 'Cancelled' ? 'Cancelled' : (b.stage || 'Open')))));
                     const safeTitle = escapeHtml(b.title);
                     const safeCat = escapeHtml(b.category);
                     const safeIdJs = escapeJsArg(b.id);
@@ -4418,8 +4449,8 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     <div class="bounty-card" data-bcat="${safeCat}" onclick="selectBountyCard(this, event)">
                         <div class="bounty-top-row">
                             <div style="display: flex; gap: 5px; align-items: center;">
-                                <span class="category-pill ${tagClass}">${catIcon} ${safeCat}</span>
-                                <span class="stage-pill ${stageClass}">${stageLabel}</span>
+                                <span class="category-pill ${tagClass}"><span class="pill-icon">${catIcon}</span><span class="pill-text">${safeCat}</span></span>
+                                <span class="stage-pill ${stageClass}"><span class="pill-icon">${stageIcon}</span><span class="pill-text">${stageText}</span></span>
                             </div>
                             <span class="credits-reward">🏆 ${escapeHtml(String(b.credits ?? b.points ?? (b as any).rewardCredits ?? 100))} points</span>
                         </div>
@@ -4571,17 +4602,19 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                 -->
             </div>` : (myWork.claimedBounties.length > 0 ? myWork.claimedBounties.map(cb => {
                 const tagClass = cb.category === 'Code gen' ? 'cat-codegen' : (cb.category === 'Testing' ? 'cat-testing' : 'cat-review');
+                const catIcon = cb.category === 'Code gen' ? '💻' : (cb.category === 'Testing' ? '🧪' : '🔍');
                 const stageKey = (cb.stage || 'CodeGeneration').toLowerCase();
                 const stageClass = `stage-${stageKey}`;
-                const stageLabel = cb.stage === 'CodeGeneration' ? 'Code Gen' : (cb.stage === 'InReview' ? 'In Review' : (cb.stage === 'InTesting' ? 'In Testing' : (cb.stage || 'In Progress')));
+                const stageIcon = cb.stage === 'CodeGeneration' ? '💻' : (cb.stage === 'InReview' ? '🔍' : (cb.stage === 'InTesting' ? '🧪' : (cb.stage === 'Completed' ? '✅' : '🟢')));
+                const stageText = cb.stage === 'CodeGeneration' ? 'Code Gen' : (cb.stage === 'InReview' ? 'In Review' : (cb.stage === 'InTesting' ? 'In Testing' : (cb.stage || 'In Progress')));
                 const safeTitle = escapeHtml(cb.title);
                 const safeIdJs = escapeJsArg(cb.id);
                 return `
                 <div class="bounty-card" data-bounty-id="${safeIdJs}" data-sla-deadline="${cb.slaDeadline || ''}" data-autorelease-deadline="${cb.autoReleaseDeadline || ''}" data-due-days="${cb.dueInDays || 2}" data-autorelease-hours="${cb.autoReleasesHours || 18}" data-claimed-at="${cb.claimedAt || cb.createdAt || ''}">
                     <div class="bounty-top-row">
                         <div style="display: flex; gap: 5px; align-items: center;">
-                            <span class="category-pill ${tagClass}">${escapeHtml(cb.category)}</span>
-                            <span class="stage-pill ${stageClass}">${stageLabel}</span>
+                            <span class="category-pill ${tagClass}"><span class="pill-icon">${catIcon}</span><span class="pill-text">${escapeHtml(cb.category)}</span></span>
+                            <span class="stage-pill ${stageClass}"><span class="pill-icon">${stageIcon}</span><span class="pill-text">${stageText}</span></span>
                         </div>
                         <span class="status-in-progress">${escapeHtml((cb.status === 'InProgress' || cb.status === 'in_progress') ? 'In progress' : (cb.status || 'In progress'))}</span>
                     </div>
