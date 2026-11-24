@@ -232,7 +232,7 @@ public class InstallCommand
             catch (Exception ex)
             {
                 // CIP may not be installed in all test environments, log informationally
-                Console.WriteLine($"[CIP Notice] {ex.Message}");
+                Console.WriteLine($"[Engineering Commons Notice] {ex.Message}");
             }
         }
 

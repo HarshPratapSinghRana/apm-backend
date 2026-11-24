@@ -56,7 +56,7 @@ To make this vision real, we built and shipped an end-to-end platform comprising
 
 We deliberately designed Engineering Commons as a multi-tier platform with distinct responsibilities:
 
-1. **C# and ASP.NET Core (.NET 10) for the Enterprise Backend (`cip-backend-dotnet`)**:
+1. **C# and ASP.NET Core (.NET 10) for the Enterprise Backend (`engineering-commons-backend`)**:
    - *Why?* The backend handles mission-critical operations—role-based access control, qualification scoring, review workflows, and cryptographic authentication. C#'s strong static typing, pattern matching, and nullable reference types eliminate null-pointer and type-coercion bugs. .NET 10 delivers industry-leading throughput, low memory allocations, and native Ahead-Of-Time (AOT) readiness.
 2. **C# (.NET 10) for the Cross-Platform Console CLI (`EngineeringCommonsCli`)**:
    - *Why?* By sharing .NET 10 across backend and CLI, we share architectural paradigms and data transfer models. The CLI compiles into a single executable binary that runs natively on Windows, macOS, and Linux with millisecond response times.
@@ -166,19 +166,19 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 ---
 
-### Directory: `cip-backend-dotnet/` (ASP.NET Core Backend Root)
+### Directory: `engineering-commons-backend/` (ASP.NET Core Backend Root)
 > **Folder Overview**: The enterprise core backend built in .NET 10, managing RBAC governance, review lifecycles, bounty gamification, and cryptographic security.
 
 - **`.dockerignore`**: Excludes build outputs and obj directories from container builds of the .NET backend.
 - **`.gitignore`**: Excludes .NET build artifacts (`bin/`, `obj/`), user option files, and SQLite databases from Git.
 - **`appsettings.Development.json`**: Local development configuration overrides for debugging and testing.
 - **`appsettings.json`**: Production configuration defining database connections, CORS allowed origins, and SHA-256 test credentials.
-- **`cip-backend-dotnet.csproj`**: .NET 10 project file configuring C# 13, strict nullable reference types, and Entity Framework Core packages.
+- **`engineering-commons-backend.csproj`**: .NET 10 project file configuring C# 13, strict nullable reference types, and Entity Framework Core packages.
 - **`Dockerfile`**: Dedicated Dockerfile for building and containerizing the ASP.NET Core Web API service.
 - **`Program.cs`**: Application entrypoint configuring dependency injection, CORS origin whitelisting, global exception handling, and SQLite.
 - **`README.md`**: Documentation covering backend API architecture, database setup, and controller endpoints.
 
-#### Directory: `cip-backend-dotnet/Controllers/`
+#### Directory: `engineering-commons-backend/Controllers/`
 > **Folder Overview**: Exposes strongly typed HTTP REST endpoints for the developer platform.
 
 - **`AccessRequestsController.cs`**: Manages developer requests to access private or restricted enterprise artifacts.
@@ -194,12 +194,12 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 - **`ReviewsController.cs`**: Manages peer review submissions, file diff generation, and line-level comment workflows.
 - **`UsageController.cs`**: Ingests tool execution telemetry events and updates adoption statistics.
 
-#### Directory: `cip-backend-dotnet/Data/`
+#### Directory: `engineering-commons-backend/Data/`
 > **Folder Overview**: Contains the Entity Framework Core database context.
 
-- **`CipDbContext.cs`**: Entity Framework Core DbContext configuring relational schemas, indexes, and entity mappings for SQLite.
+- **`EngineeringCommonsDbContext.cs`**: Entity Framework Core DbContext configuring relational schemas, indexes, and entity mappings for SQLite.
 
-#### Directory: `cip-backend-dotnet/Events/`
+#### Directory: `engineering-commons-backend/Events/`
 > **Folder Overview**: Implements domain event publishing and event-driven review notifications.
 
 - **`DomainEventPublisher.cs`**: Dispatches domain events in-memory to registered event handlers asynchronously.
@@ -207,12 +207,12 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 - **`ReviewDomainEvents.cs`**: Event records capturing review submission, comment addition, and approval milestones.
 - **`ReviewNotificationEventHandler.cs`**: Listens for review domain events and dispatches notifications to reviewers and authors.
 
-#### Directory: `cip-backend-dotnet/Middleware/`
+#### Directory: `engineering-commons-backend/Middleware/`
 > **Folder Overview**: HTTP request pipeline middleware for security and authentication.
 
 - **`TokenAuthenticationMiddleware.cs`**: Extracts bearer tokens from HTTP Authorization headers and validates user sessions.
 
-#### Directory: `cip-backend-dotnet/Models/`
+#### Directory: `engineering-commons-backend/Models/`
 > **Folder Overview**: Strongly typed entity models and data transfer objects representing core domain concepts.
 
 - **`ArtifactCertification.cs`**: Domain model storing certification badges, qualification tiers, and audit dates.
@@ -229,12 +229,12 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 - **`UserAccessRequest.cs`**: Domain model tracking developer requests for access to restricted artifacts.
 - **`UserRoleAssignment.cs`**: Domain model mapping enterprise users to assigned RBAC roles and granted permissions.
 
-#### Directory: `cip-backend-dotnet/Properties/`
+#### Directory: `engineering-commons-backend/Properties/`
 > **Folder Overview**: Contains development runtime profile settings.
 
 - **`launchSettings.json`**: Configures local HTTP and HTTPS ports, environment variables, and ASP.NET Core profiles.
 
-#### Directory: `cip-backend-dotnet/Services/Implementations/`
+#### Directory: `engineering-commons-backend/Services/Implementations/`
 > **Folder Overview**: Implements core business logic, governance algorithms, database access, and external integrations.
 
 - **`ArtifactClassifier.cs`**: Inspects artifact manifests (`cip.yml`, frontmatter) to classify artifacts as skills, agents, or prompts.
@@ -263,7 +263,7 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 - **`StaticAuthenticationService.cs`**: Validates credentials using SHA-256 hashing and constant-time string comparison to prevent timing attacks.
 - **`UsageService.cs`**: Aggregates usage events and calculates artifact adoption analytics.
 
-#### Directory: `cip-backend-dotnet/Services/Interfaces/`
+#### Directory: `engineering-commons-backend/Services/Interfaces/`
 > **Folder Overview**: Abstract contracts decoupling business logic from concrete implementations across the backend.
 
 - **`IArtifactClassifier.cs`**: Interface for artifact type classification.
@@ -286,7 +286,7 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 ---
 
-### Directory: `cip-backend-dotnet.Tests/` (Backend Unit Tests)
+### Directory: `engineering-commons-backend.Tests/` (Backend Unit Tests)
 > **Folder Overview**: Comprehensive xUnit test suite verifying backend governance, security, and workflows.
 
 - **`AccessGovernanceTests.cs`**: Verifies that private artifacts block unauthorized consumers.
@@ -296,7 +296,7 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 - **`AzureDevOpsMarketplaceServiceTests.cs`**: Validates Azure DevOps Git synchronization.
 - **`BountyServiceTests.cs`**: Tests bounty claiming, submission, and credit allocation rules.
 - **`CertificationTests.cs`**: Validates 5-pillar reviewer qualification scoring algorithms.
-- **`cip-backend-dotnet.Tests.csproj`**: Test project file referencing xUnit, FluentAssertions, and Moq.
+- **`engineering-commons-backend.Tests.csproj`**: Test project file referencing xUnit, FluentAssertions, and Moq.
 - **`DuplicateDetectionTests.cs`**: Ensures duplicate artifact submissions are detected and prevented.
 - **`EmailDiagnosticsTests.cs`**: Tests email notification formatting and delivery pipelines.
 - **`GitHubMarketplaceServiceTests.cs`**: Validates GitHub remote repository artifact synchronization.
@@ -576,7 +576,7 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 **Answer**:
 "We manage SQLite concurrency using:
 1. **Async/Await**: All Entity Framework Core queries use asynchronous methods (`SaveChangesAsync`, `FirstOrDefaultAsync`), preventing thread-pool starvation.
-2. **Scoped DbContext**: Each HTTP request receives its own isolated `CipDbContext` instance.
+2. **Scoped DbContext**: Each HTTP request receives its own isolated `EngineeringCommonsDbContext` instance.
 3. **Atomic State Guards**: State transitions (such as claiming a bounty) use atomic conditions (`WHERE Status == 'Open'`), returning HTTP 409 Conflict if another developer claims it first."
 
 #### Q8: How do you ensure that unauthenticated users cannot download private artifacts or execute administrative actions?
@@ -654,7 +654,7 @@ We deliberately designed Engineering Commons as a multi-tier platform with disti
 
 #### Q24: Does the codebase follow proper file and folder structure?
 **Answer**:
-"Yes. It adheres to Microsoft enterprise design patterns: Controllers, Models, Data, and Services are partitioned in `cip-backend-dotnet`, Commands and Services are cleanly separated in `EngineeringCommonsCli`, and Commands, Views, and Services are modularized in `engineering-commons-vscode`, with all unit tests isolated in sibling `.Tests` projects."
+"Yes. It adheres to Microsoft enterprise design patterns: Controllers, Models, Data, and Services are partitioned in `engineering-commons-backend`, Commands and Services are cleanly separated in `EngineeringCommonsCli`, and Commands, Views, and Services are modularized in `engineering-commons-vscode`, with all unit tests isolated in sibling `.Tests` projects."
 
 #### Q25: Where is partitioning and chunking implemented?
 **Answer**:

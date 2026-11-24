@@ -5,8 +5,8 @@
     Executes version-controlled SQL migration scripts (V001, V002, etc.) against the target SQLite/SQL database.
 #>
 param(
-    [string]$DatabasePath = "cip.db",
-    [string]$MigrationsDir = "cip-backend-dotnet/Migrations/Sql"
+    [string]$DatabasePath = "engineering-commons.db",
+    [string]$MigrationsDir = "engineering-commons-backend/Migrations/Sql"
 )
 
 Write-Host "==========================================================" -ForegroundColor Cyan
@@ -24,7 +24,7 @@ $fullDb = [System.IO.Path]::GetFullPath($DatabasePath)
 $fullDir = [System.IO.Path]::GetFullPath($MigrationsDir)
 
 Write-Host "`n--> Executing migrations via decoupled runner..." -ForegroundColor Yellow
-dotnet run --project cip-backend-dotnet -- --migrate --db "$fullDb" --dir "$fullDir"
+dotnet run --project engineering-commons-backend -- --migrate --db "$fullDb" --dir "$fullDir"
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Database migration execution failed with exit code $LASTEXITCODE"
     exit $LASTEXITCODE

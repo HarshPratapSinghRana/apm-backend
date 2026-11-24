@@ -5,8 +5,8 @@
     Executes version-controlled SQL rollback scripts (U002, U001, etc.) in reverse order for safe recovery.
 #>
 param(
-    [string]$DatabasePath = "cip.db",
-    [string]$MigrationsDir = "cip-backend-dotnet/Migrations/Sql"
+    [string]$DatabasePath = "engineering-commons.db",
+    [string]$MigrationsDir = "engineering-commons-backend/Migrations/Sql"
 )
 
 Write-Host "==========================================================" -ForegroundColor Red
@@ -24,7 +24,7 @@ $fullDb = [System.IO.Path]::GetFullPath($DatabasePath)
 $fullDir = [System.IO.Path]::GetFullPath($MigrationsDir)
 
 Write-Host "`n<-- Executing database rollback via decoupled runner..." -ForegroundColor Yellow
-dotnet run --project cip-backend-dotnet -- --rollback --db "$fullDb" --dir "$fullDir"
+dotnet run --project engineering-commons-backend -- --rollback --db "$fullDb" --dir "$fullDir"
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Database rollback execution failed with exit code $LASTEXITCODE"
     exit $LASTEXITCODE

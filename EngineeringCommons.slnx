@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="cip-backend-dotnet.Tests/cip-backend-dotnet.Tests.csproj" />
-  <Project Path="cip-backend-dotnet/cip-backend-dotnet.csproj" />
+  <Project Path="engineering-commons-backend.Tests/engineering-commons-backend.Tests.csproj" />
+  <Project Path="engineering-commons-backend/engineering-commons-backend.csproj" />
   <Project Path="EngineeringCommonsCli.Tests/EngineeringCommonsCli.Tests.csproj" />
   <Project Path="EngineeringCommonsCli/EngineeringCommonsCli.csproj" />
 </Solution>

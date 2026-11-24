@@ -131,7 +131,7 @@ const envCandidates = [
     path.join(__dirname, '.env'),
     path.join(__dirname, '..', '.env'),
     path.join(process.cwd(), '.env'),
-    path.join(process.cwd(), 'cip-backend-dotnet', '.env')
+    path.join(process.cwd(), 'engineering-commons-backend', '.env')
 ];
 for (const envPath of envCandidates) {
     if (fs.existsSync(envPath)) {

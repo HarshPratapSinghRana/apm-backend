@@ -25,7 +25,7 @@ public class CipService : ICipService
     {
         if (string.IsNullOrWhiteSpace(cipPackageIdentifier)) return Task.CompletedTask;
 
-        Console.WriteLine($"[CipService] Registering {cipPackageIdentifier} in local CIP manifest...");
+        Console.WriteLine($"[EngineeringCommonsService] Registering {cipPackageIdentifier} in local manifest...");
         UpdateCipManifest(cipPackageIdentifier);
         return Task.CompletedTask;
     }
@@ -34,7 +34,7 @@ public class CipService : ICipService
     {
         if (string.IsNullOrWhiteSpace(cipPackageIdentifier)) return Task.CompletedTask;
 
-        Console.WriteLine($"[CipService] Updating {cipPackageIdentifier} in local CIP manifest...");
+        Console.WriteLine($"[EngineeringCommonsService] Updating {cipPackageIdentifier} in local manifest...");
         UpdateCipManifest(cipPackageIdentifier);
         return Task.CompletedTask;
     }
@@ -89,11 +89,11 @@ public class CipService : ICipService
             }
 
             File.WriteAllLines(cipYmlPath, lines);
-            Console.WriteLine($"[CipService] Updated dependency in {Path.GetFileName(cipYmlPath)}.");
+            Console.WriteLine($"[EngineeringCommonsService] Updated dependency in {Path.GetFileName(cipYmlPath)}.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[CipService Notice] Could not update cip.yml: {ex.Message}");
+            Console.WriteLine($"[EngineeringCommonsService Notice] Could not update {Path.GetFileName(cipYmlPath)}: {ex.Message}");
         }
     }
 

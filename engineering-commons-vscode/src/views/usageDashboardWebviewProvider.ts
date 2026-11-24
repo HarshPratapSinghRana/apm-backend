@@ -39,7 +39,7 @@ export class UsageDashboardWebviewProvider {
     ) {
         const isAuth = await authProvider.isAuthenticated();
         if (!isAuth) {
-            vscode.window.showWarningMessage('Please sign in to Engineering Commons to view the CIP Usage Dashboard.');
+            vscode.window.showWarningMessage('Please sign in to Engineering Commons to view the Usage & Analytics Dashboard.');
             return;
         }
 
@@ -355,7 +355,7 @@ export class UsageDashboardWebviewProvider {
             { id: 'mcpserver', label: 'MCP Servers' },
             { id: 'prompt', label: 'Prompts' },
             { id: 'command', label: 'Commands' },
-            { id: 'package', label: 'CIP Packages' }
+            { id: 'package', label: 'Packages' }
         ].map(t => {
             const sel = this._selectedType === t.id ? 'selected' : '';
             return `<option value="${t.id}" ${sel}>${t.label}</option>`;
@@ -1232,7 +1232,7 @@ export class UsageDashboardWebviewProvider {
     <div class="telemetry-notice">
         <strong>🔒 Telemetry Integrity & Privacy Policy:</strong>
         <ul style="margin: 6px 0 0 0; padding-left: 18px;">
-            <li><strong>Downloads</strong> represent verified CIP package installations from VS Code & CLI.</li>
+            <li><strong>Downloads</strong> represent verified package installations from VS Code & CLI.</li>
             <li><strong>Usage/Invocations</strong> represent explicit artifact executions tracked via VS Code and GitHub Copilot Agent Debug Logs (<code>OBSERVED</code>).</li>
             <li><strong>Unmonitored External AI Telemetry:</strong> Unmonitored third-party extensions or disabled debug logs are marked as <code>EXTERNAL_USAGE_UNAVAILABLE</code>. Zero fake data is fabricated.</li>
             <li><strong>Zero Sensitive Data:</strong> No prompt content, code snippets, or API secrets are stored.</li>

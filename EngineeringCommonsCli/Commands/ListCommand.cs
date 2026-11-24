@@ -134,7 +134,7 @@ public class ListCommand
         foreach (var it in items)
         {
             var isLeap = string.Equals(it.Source, "AI_LEAP", StringComparison.OrdinalIgnoreCase) || it.Name.StartsWith("leap-");
-            var sourceTag = isLeap ? "🚀 AI LEAP" : "⚡ CIP";
+            var sourceTag = isLeap ? "🚀 AI LEAP" : "⚡ Engineering Commons";
             var usabilityTag = it.UsabilityBadge ?? (it.IsCopilotReady || !isLeap ? "🤖 Copilot Ready" : (it.Usability == "solution-deck" ? "📑 Arch Deck" : "📦 Python Repo"));
             if (usabilityTag.Length > 25) usabilityTag = usabilityTag.Substring(0, 22) + "...";
             var domainTag = string.IsNullOrEmpty(it.Domain) ? "-" : it.Domain;

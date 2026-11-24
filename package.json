@@ -1,5 +1,5 @@
 {
-  "name": "cip-api-gateway",
+  "name": "engineering-commons-api-gateway",
   "version": "1.0.0",
   "description": "Engineering Commons API Gateway for Azure Container Apps",
   "main": "api/index.js",

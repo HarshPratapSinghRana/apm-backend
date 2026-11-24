@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Commons - Audit Resolution Proof of Execution (POE)</title>
+    <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --surface-color: #252526;
+            --surface-hover: #2d2d30;
+            --border-color: #383838;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --badge-orange: #ff9800;
+            --badge-green: #4ade80;
+            --badge-blue: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            padding: 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1650px;
+            margin: 0 auto;
+        }
+
+        /* Direct Table matching the Screenshot exactly */
+        .table-wrapper {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead th {
+            background: #181818;
+            color: #d4d4d4;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 14px 16px;
+            border-bottom: 2px solid var(--border-color);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            font-size: 13px;
+        }
+
+        tbody tr:hover {
+            background: var(--surface-hover);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .finding-num {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .severity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--badge-orange);
+            font-weight: 600;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .severity-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--badge-orange);
+            display: inline-block;
+        }
+
+        .finding-title {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .finding-desc {
+            color: #b0b0b0;
+            font-size: 12.5px;
+            line-height: 1.5;
+        }
+
+        .code-pill {
+            font-family: Consolas, "Courier New", monospace;
+            background: #181818;
+            color: #e0e0e0;
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-size: 11.5px;
+            border: 1px solid #444;
+            display: inline-block;
+            margin: 2px 2px 4px 0;
+            word-break: break-all;
+        }
+
+        .status-resolved {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--badge-green);
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .status-pending {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--badge-blue);
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .status-note {
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.45;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Natural Code Screenshot Image - NO Horizontal Scrollbar */
+        .code-screenshot-img {
+            width: 100%;
+            max-width: 580px;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #333333;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: block;
+        }
+
+        @media print {
+            body { background: #fff; color: #000; padding: 0; }
+            .table-wrapper { border-color: #ccc; background: #fff; color: #000; box-shadow: none; }
+            thead th { background: #f0f0f0; color: #000; }
+            tbody td { color: #000; }
+            .finding-title { color: #000; }
+            .finding-desc { color: #444; }
+            .code-pill { background: #eee; color: #000; border-color: #ccc; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%;">Finding #</th>
+                    <th style="width: 8%;">Severity</th>
+                    <th style="width: 25%;">Finding Description</th>
+                    <th style="width: 15%;">Applicability / Location</th>
+                    <th style="width: 17%;">Resolution Status</th>
+                    <th style="width: 30%;">Implementation & Code Proof</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- Finding #1 -->
+                <tr>
+                    <td><span class="finding-num">#1</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Remove hardcoded identities and email-based authorization</span>
+                        <div class="finding-desc">The API and backend authorize users using fixed administrator emails and email-name heuristics. This bypasses Entra ID/App Roles and could grant access to unintended accounts. Use Entra ID/App Roles exclusively.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">api/index.js</span>
+                        <span class="code-pill">SqliteUserRoleService.cs</span>
+                        <span class="code-pill">ReviewsController.cs</span>
+                        <span class="code-pill">AccessRequestsController.cs</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">Sanitized all personal developer emails. IsAdminAsync dynamically checks AdminEmails config and database UserRoleAssignments.</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_1.png" alt="SqliteUserRoleService.cs Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #2 -->
+                <tr>
+                    <td><span class="finding-num">#2</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Replace unrestricted CORS configuration</span>
+                        <div class="finding-desc">app.use(cors()) allows every origin. Although the backend uses configured origins, the gateway remains permissive and can expose backend routes cross-origin. Add an explicit allowlist shared through environment configuration.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">api/index.js</span>
+                        <span class="code-pill">appsettings.json</span>
+                        <span class="code-pill">Program.cs</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">Replaced app.use(cors()) with explicit allowedOrigins allowlist (Container App, vscode-webview://, localhost).</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_2.png" alt="api/index.js Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #3 -->
+                <tr>
+                    <td><span class="finding-num">#3</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Use Entra/App Roles instead of manual role & email checks</span>
+                        <div class="finding-desc">Controllers repeatedly extract role claims and infer authority from email addresses or static role strings. Replace manual User.Identity, role-clause, and email checks with [Authorize] policies and Entra App Role claims. Replace the UserRoles string constants and enum/string duplication with token-validated App Role policies.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">AccessRequestsController.cs</span>
+                        <span class="code-pill">ReviewsController.cs</span>
+                        <span class="code-pill">CertificationsController.cs</span>
+                        <span class="code-pill">EmailDiagnosticsController.cs</span>
+                    </td>
+                    <td>
+                        <span class="status-pending">⏳ Backend Ready (App Roles will be assigned once IT grants Azure access)</span>
+                        <span class="status-note">Declarative policies (RequireAdmin, RequireReviewer) & JWT claim handlers are 100% complete in code. Corporate MAQ directory role assignment is pending IT team Cloud App Admin permissions.</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_3.png" alt="ServiceCollectionExtensions.cs Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #4 -->
+                <tr>
+                    <td><span class="finding-num">#4</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Replace string-based role constants with strongly typed role model</span>
+                        <div class="finding-desc">Replace string-based role constants and role comparison with a strongly typed role model and centralized authorization policies.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">UserRole.cs</span>
+                        <span class="code-pill">AccessRequestsController.cs</span>
+                        <span class="code-pill">CertificationsController.cs</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">Created strongly typed enum UserRole and static UserRoles class with validation helpers (IsValidRole, IsReviewerOrAdmin).</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_4.png" alt="Models/UserRole.cs Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #5 -->
+                <tr>
+                    <td><span class="finding-num">#5</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Decouple database migrations from application startup</span>
+                        <div class="finding-desc">Stop executing migrations and dynamic schema changes during application startup. Migrations must run explicitly through versioned CI/CD scripts and EF Core migration tooling. Move runtime migration execution out of startup; apply and test forward/rollback scripts explicitly in CI/CD.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">DatabaseMigrationExtensions.cs</span>
+                        <span class="code-pill">Program.cs</span>
+                        <span class="code-pill">Run-DatabaseMigrations.ps1</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">EnsureCreated() and dynamic SQL table modification calls removed from application startup; executed explicitly via CI/CD PowerShell runner.</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_5.png" alt="Program.cs Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #6 -->
+                <tr>
+                    <td><span class="finding-num">#6</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Implement and test forward and rollback migration scripts</span>
+                        <div class="finding-desc">Dynamic ALTER TABLE statements and swallowed statement failures are not a controlled migration strategy. Implement and test forward and rollback migration scripts explicitly.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">DatabaseMigrationExtensions.cs</span>
+                        <span class="code-pill">V001__InitialSchema.sql</span>
+                        <span class="code-pill">U002__Rollback_AdditionalColumns.sql</span>
+                        <span class="code-pill">Rollback-DatabaseMigrations.ps1</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">Eliminated dynamic ALTER TABLE failures; created transactional rollback script U002 to safely revert schema additions without data loss.</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_6.png" alt="U002__Rollback.sql Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #7 -->
+                <tr>
+                    <td><span class="finding-num">#7</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Do not silently swallow exceptions</span>
+                        <div class="finding-desc">Numerous empty catches lose authentication, parsing, file, JSON, ADO, or telemetry failure context. Several CLI fallbacks are intentionally silent despite potentially affecting correctness. Replace silent and overly broad exception handling with centralized exception middleware, contextual logging, and domain-specific responses.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">api/index.js</span>
+                        <span class="code-pill">adoGovernanceService.ts</span>
+                        <span class="code-pill">ContributeCommand.cs</span>
+                        <span class="code-pill">DatabaseMigrationExtensions.cs</span>
+                        <span class="code-pill">SqliteUserRoleService.cs</span>
+                        <span class="code-pill">ApplicationBuilderExtensions.cs</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">Installed centralized UseExceptionHandler middleware logging contextual error information with traceId; eliminated all empty catch {} blocks across CLI and extension.</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_7.png" alt="ApplicationBuilderExtensions.cs Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #8 -->
+                <tr>
+                    <td><span class="finding-num">#8</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Remove static auth users from production dependency registration</span>
+                        <div class="finding-desc">Remove static auth users and in-memory role/auth implementations from production dependency registration.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">appsettings.json</span>
+                        <span class="code-pill">ServiceCollectionExtensions.cs</span>
+                        <span class="code-pill">StaticAuthenticationService.cs</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">Disabled in production ("StaticAuth": { "Enabled": false, "Users": [] }); production credentials strictly sourced from Microsoft Entra ID tokens and database assignments.</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_8.png" alt="appsettings.json Code Screenshot">
+                    </td>
+                </tr>
+
+                <!-- Finding #9 -->
+                <tr>
+                    <td><span class="finding-num">#9</span></td>
+                    <td>
+                        <span class="severity-badge"><span class="severity-dot"></span> High</span>
+                    </td>
+                    <td>
+                        <span class="finding-title">Standardize legacy CIP/cip naming to EngineeringCommons</span>
+                        <div class="finding-desc">Standardize the legacy CIP/cip naming and namespace migration. Legacy names remain in solution entries, project folders, database context, CLI interfaces, organization variables, manifests, documentation, and telemetry workspace values.</div>
+                    </td>
+                    <td>
+                        <span class="code-pill">EngineeringCommons.sln</span>
+                        <span class="code-pill">CipDbContext.cs</span>
+                        <span class="code-pill">Program.cs</span>
+                        <span class="code-pill">appsettings.json</span>
+                        <span class="code-pill">HomeController.cs</span>
+                    </td>
+                    <td>
+                        <span class="status-resolved">✔ Resolved & Pushed</span>
+                        <span class="status-note">Unified namespaces to EngineeringCommons.Backend and EngineeringCommonsCli; standardized root solution and API service brand name.</span>
+                    </td>
+                    <td>
+                        <img class="code-screenshot-img" src="screenshots/finding_9.png" alt="HomeController.cs Code Screenshot">
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -13,7 +13,7 @@ List available marketplace artifacts:
 	engineering-commons list
 	engineering-commons list --type agent
 
-Install an artifact via the installed CIP CLI:
+Install an artifact via the installed Engineering Commons CLI:
 
 	engineering-commons install design-reviewer
 
@@ -29,8 +29,8 @@ CLI
  ↓
 Azure Container Apps Backend (auth + marketplace)
  ↓
-CIP (installed `cip` CLI)
+Engineering Commons (installed `cip` CLI)
  ↓
 AI Artifact
 
-Do not assume any marketplace or CIP behavior beyond what is implemented and tested here.
+Do not assume any marketplace or Engineering Commons behavior beyond what is implemented and tested here.

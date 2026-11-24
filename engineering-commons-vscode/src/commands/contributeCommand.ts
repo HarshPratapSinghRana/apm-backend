@@ -227,7 +227,7 @@ export function discoverLocalArtifacts(workspaceRoot: string): DiscoveredLocalAr
                     version: verMatch ? verMatch[1].trim() : '1.0.0',
                     path: 'cip.yml',
                     files: ['cip.yml'],
-                    description: `Workspace CIP Package (${pkgName})`
+                    description: `Workspace Package (${pkgName})`
                 });
             }
         } catch (err) {

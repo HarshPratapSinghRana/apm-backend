@@ -34,7 +34,7 @@ import { AdvisorHookProvisioner, ADVISOR_SKILL_NAME } from './services/advisorHo
 
 /**
  * =========================================================================================
- * CIP #1067 – Engineering Commons VS Code Extension Main Entry Point
+ * Engineering Commons VS Code Extension Main Entry Point
  * =========================================================================================
  * 
  * High-Level Responsibilities:

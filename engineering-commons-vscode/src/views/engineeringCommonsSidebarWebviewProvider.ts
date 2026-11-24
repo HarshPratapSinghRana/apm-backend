@@ -1,6 +1,6 @@
 /**
  * =========================================================================================
- * CIP #1067 – Engineering Commons Primary Explorer Sidebar Webview Provider
+ * Engineering Commons Primary Explorer Sidebar Webview Provider
  * =========================================================================================
  *
  * Architecture & UI Layout:
@@ -5657,7 +5657,7 @@ export class EngineeringCommonsSidebarWebviewProvider implements vscode.WebviewV
                     bullets: [
                         { icon: '⚡', title: 'Instant Productivity', text: 'Ready to run directly in VS Code and agent workflows without deploying full apps.' },
                         { icon: '🧩', title: 'Modular & Reusable', text: 'Install only the capability you need into your active workspace.' },
-                        { icon: '🔒', title: 'CIP Compliant', text: 'Fully adheres to CIP specifications and corporate standards.' }
+                        { icon: '🔒', title: 'Engineering Commons Compliant', text: 'Fully adheres to Engineering Commons specifications and corporate standards.' }
                     ]
                 },
                 'token-opt': {

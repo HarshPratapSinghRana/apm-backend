@@ -161,7 +161,7 @@ public class LoginCommand
             var ssoSession = _auth.SsoLoginAsync(options.Token, options.Email, options.Email, options.Role).GetAwaiter().GetResult();
             if (ssoSession == null)
             {
-                Console.WriteLine("\nERROR: Microsoft SSO authorization failed. The provided token was rejected by CIP Backend.");
+                Console.WriteLine("\nERROR: Microsoft SSO authorization failed. The provided token was rejected by Engineering Commons Backend.");
                 return 1;
             }
 
@@ -199,7 +199,7 @@ public class LoginCommand
         var resolvedEmail = !string.IsNullOrWhiteSpace(options.Email) ? options.Email : authResult.Email;
         var resolvedName = authResult.DisplayName ?? resolvedEmail;
 
-        // Exchange Microsoft token with CIP backend /api/auth/sso
+        // Exchange Microsoft token with Engineering Commons backend /api/auth/sso
         var session = _auth.SsoLoginAsync(authResult.AccessToken, resolvedEmail, resolvedName, options.Role).GetAwaiter().GetResult();
         if (session == null)
         {
