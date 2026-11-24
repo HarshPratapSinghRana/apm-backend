@@ -42,13 +42,12 @@ public class ArtifactsController : ControllerBase
         _logger = logger;
     }
 
-    private static bool IsAdminUser(string? role, string? email)
+    private bool IsAdminUser(string? role, string? email)
     {
-        if (string.Equals(role, UserRoles.Admin, StringComparison.OrdinalIgnoreCase)) return true;
-        if (!string.IsNullOrWhiteSpace(email))
+        if (UserRoles.IsAdmin(role)) return true;
+        if (!string.IsNullOrWhiteSpace(email) && _userRoleService != null)
         {
-            var e = email.Trim().ToLowerInvariant();
-            if (e.Contains("admin") || e == "admin@company.com" || e == "admin@test.com" || e == "admin@maqsoftware.com") return true;
+            return _userRoleService.IsAdminAsync(email).GetAwaiter().GetResult();
         }
         return false;
     }

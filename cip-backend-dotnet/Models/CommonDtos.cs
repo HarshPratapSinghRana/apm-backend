@@ -19,12 +19,14 @@ public class CheckDuplicateRequestDto
 
 public class SubmitChangeRequestDto
 {
+    public string? ArtifactId { get; set; }
     public string? Type { get; set; }
     public bool IsPrivate { get; set; } = false;
     public string? AllowedContributors { get; set; }
     public string? AllowedReviewers { get; set; }
     public string? AllowedConsumers { get; set; }
     public string? Content { get; set; }
+    public int SlaTargetMinutes { get; set; } = BountyConstants.DefaultSlaTargetMinutes;
     public List<ArtifactFileEntryDto>? Files { get; set; }
 }
 

@@ -188,11 +188,8 @@ public class AuthController : ControllerBase
         }
         else
         {
-            var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
-            if (string.Equals(verifiedEmail, adminEmail, StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(verifiedEmail, "admin@company.com", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(verifiedEmail, "admin@test.com", StringComparison.OrdinalIgnoreCase) ||
-                verifiedEmail.StartsWith("admin@", StringComparison.OrdinalIgnoreCase))
+            var adminEmail = _config["AdminEmail"];
+            if (!string.IsNullOrEmpty(adminEmail) && string.Equals(verifiedEmail, adminEmail, StringComparison.OrdinalIgnoreCase))
             {
                 role = UserRoles.Admin;
             }

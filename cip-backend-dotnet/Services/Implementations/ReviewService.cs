@@ -32,7 +32,21 @@ public class ReviewService : IReviewService
         _logger = logger;
     }
 
-    public Review SubmitChange(string artifactId, string producerEmail, string content, bool isPrivate = false, string? allowedContributors = null, string? allowedReviewers = null, string? allowedConsumers = null, int slaTargetMinutes = 1440)
+    public Review SubmitChange(SubmitChangeRequestDto request, string producerEmail)
+    {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        return SubmitChange(
+            request.ArtifactId ?? string.Empty,
+            producerEmail,
+            request.Content ?? string.Empty,
+            request.IsPrivate,
+            request.AllowedContributors,
+            request.AllowedReviewers,
+            request.AllowedConsumers,
+            request.SlaTargetMinutes > 0 ? request.SlaTargetMinutes : BountyConstants.DefaultSlaTargetMinutes);
+    }
+
+    public Review SubmitChange(string artifactId, string producerEmail, string content, bool isPrivate = false, string? allowedContributors = null, string? allowedReviewers = null, string? allowedConsumers = null, int slaTargetMinutes = BountyConstants.DefaultSlaTargetMinutes)
     {
         // Check if there is an existing active submission to update or create a new one
         var existing = _repo.List()
@@ -54,7 +68,7 @@ public class ReviewService : IReviewService
             allowedConsumers ??= prior.AllowedConsumers;
         }
 
-        var targetMins = slaTargetMinutes > 0 ? slaTargetMinutes : 1440;
+        var targetMins = slaTargetMinutes > 0 ? slaTargetMinutes : BountyConstants.DefaultSlaTargetMinutes;
         var now = DateTime.UtcNow;
 
         var r = new Review
@@ -206,7 +220,7 @@ public class ReviewService : IReviewService
 
         r.Status = ReviewStatus.Resubmitted;
         r.SubmittedAt = DateTime.UtcNow;
-        r.SlaDeadline = r.SubmittedAt.AddMinutes(r.SlaTargetMinutes > 0 ? r.SlaTargetMinutes : 1440);
+        r.SlaDeadline = r.SubmittedAt.AddMinutes(r.SlaTargetMinutes > 0 ? r.SlaTargetMinutes : BountyConstants.DefaultSlaTargetMinutes);
         r.LastSlaReminderSentAt = null;
         r.Feedback = null;
         r.DecisionAt = null;
@@ -404,7 +418,7 @@ public class ReviewService : IReviewService
         var r = _repo.Get(reviewId);
         if (r == null) throw new InvalidOperationException($"Review '{reviewId}' not found.");
 
-        r.SlaTargetMinutes = slaTargetMinutes > 0 ? slaTargetMinutes : 1440;
+        r.SlaTargetMinutes = slaTargetMinutes > 0 ? slaTargetMinutes : BountyConstants.DefaultSlaTargetMinutes;
         r.SlaDeadline = r.SubmittedAt.AddMinutes(r.SlaTargetMinutes);
         _repo.Add(r);
         return r;

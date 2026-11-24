@@ -31,15 +31,7 @@ public class BountiesController : ControllerBase
 
     private static bool IsReviewerOrAdmin(string? role, string? email = null)
     {
-        if (UserRoles.IsReviewerOrAdmin(role)) return true;
-        if (!string.IsNullOrWhiteSpace(email))
-        {
-            var e = email.Trim().ToLowerInvariant();
-            if (e.Contains("admin") || e.Contains("reviewer") || 
-                (e.StartsWith("designated-rev@") && (e.EndsWith("@company.com") || e.EndsWith("@test.com") || e.EndsWith("@maqsoftware.com")))) 
-                return true;
-        }
-        return false;
+        return UserRoles.IsReviewerOrAdmin(role);
     }
 
     [HttpPost]

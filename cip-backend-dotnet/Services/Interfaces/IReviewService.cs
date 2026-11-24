@@ -6,7 +6,17 @@ namespace EngineeringCommons.Backend.Services.Interfaces;
 
 public interface IReviewService
 {
-    Review SubmitChange(string artifactId, string producerEmail, string content, bool isPrivate = false, string? allowedContributors = null, string? allowedReviewers = null, string? allowedConsumers = null, int slaTargetMinutes = 1440);
+    Review SubmitChange(SubmitChangeRequestDto request, string producerEmail) =>
+        SubmitChange(
+            request?.ArtifactId ?? string.Empty,
+            producerEmail,
+            request?.Content ?? string.Empty,
+            request?.IsPrivate ?? false,
+            request?.AllowedContributors,
+            request?.AllowedReviewers,
+            request?.AllowedConsumers,
+            request?.SlaTargetMinutes > 0 ? request.SlaTargetMinutes : BountyConstants.DefaultSlaTargetMinutes);
+    Review SubmitChange(string artifactId, string producerEmail, string content, bool isPrivate = false, string? allowedContributors = null, string? allowedReviewers = null, string? allowedConsumers = null, int slaTargetMinutes = BountyConstants.DefaultSlaTargetMinutes);
     Review AssignReview(string reviewId, string reviewerEmail);
     Review RequestChanges(string reviewId, string reviewerEmail, string? feedback = null);
     Review Resubmit(string reviewId, string producerEmail, string content, bool? isPrivate = null, string? allowedContributors = null, string? allowedReviewers = null, string? allowedConsumers = null);

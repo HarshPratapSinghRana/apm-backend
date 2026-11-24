@@ -12,7 +12,7 @@ namespace EngineeringCommons.Backend.Services.Implementations;
 
 public class InMemoryUserRoleService : IUserRoleService
 {
-    public const string DefaultSuperAdmin = "admin@maqsoftware.com";
+    public const string DefaultSuperAdmin = "admin@local";
 
     private readonly ConcurrentDictionary<string, UserRoleAssignment> _roles = new();
     private readonly ConcurrentDictionary<string, UserAccessRequest> _requests = new();
@@ -36,19 +36,18 @@ public class InMemoryUserRoleService : IUserRoleService
 
     private void SeedDefaults()
     {
-        var admins = new[]
-        {
-            "admin@maqsoftware.com",
-            "admin@company.com",
-            "admin@test.com"
-        };
+        var admins = _config.GetSection("AdminEmails").Get<string[]>() ?? Array.Empty<string>();
+        var singleAdmin = _config["AdminEmail"];
+        var adminList = new HashSet<string>(admins, StringComparer.OrdinalIgnoreCase);
+        if (!string.IsNullOrWhiteSpace(singleAdmin)) adminList.Add(singleAdmin);
 
-        foreach (var admin in admins)
+        foreach (var admin in adminList)
         {
+            if (string.IsNullOrWhiteSpace(admin)) continue;
             _roles[admin.ToLowerInvariant()] = new UserRoleAssignment
             {
                 UserEmail = admin.ToLowerInvariant(),
-                Role = "ADMIN",
+                Role = UserRoles.Admin,
                 IsCertifiedReviewer = true,
                 GrantedBy = "SYSTEM",
                 Notes = "System SuperAdmin",

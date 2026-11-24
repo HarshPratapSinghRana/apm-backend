@@ -46,11 +46,18 @@ public static class UserRoles
     public static bool IsValidRequestableRole(string? role) =>
         !string.IsNullOrWhiteSpace(role) && RequestableRoles.Contains(role.Trim().ToUpperInvariant());
 
+    public static bool IsAdmin(string? role) =>
+        !string.IsNullOrWhiteSpace(role) &&
+        (string.Equals(role, Admin, StringComparison.OrdinalIgnoreCase) ||
+         string.Equals(role, "EngineeringCommons.Admin", StringComparison.OrdinalIgnoreCase));
+
     public static bool IsReviewerOrAdmin(string? role) =>
         !string.IsNullOrWhiteSpace(role) && 
         (string.Equals(role, Reviewer, StringComparison.OrdinalIgnoreCase) ||
          string.Equals(role, CertifiedReviewer, StringComparison.OrdinalIgnoreCase) ||
-         string.Equals(role, Admin, StringComparison.OrdinalIgnoreCase));
+         string.Equals(role, Admin, StringComparison.OrdinalIgnoreCase) ||
+         string.Equals(role, "EngineeringCommons.Admin", StringComparison.OrdinalIgnoreCase) ||
+         string.Equals(role, "EngineeringCommons.Reviewer", StringComparison.OrdinalIgnoreCase));
 }
 
 public static class UserRoleExtensions

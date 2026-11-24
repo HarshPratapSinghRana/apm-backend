@@ -52,7 +52,7 @@ public class EmailDiagnosticsController : ControllerBase
     [HttpPost("test")]
     public async Task<IActionResult> SendTestEmail([FromBody] TestEmailRequest? req)
     {
-        var adminEmail = _config["AdminEmail"] ?? User.Identity?.Name ?? "admin@company.com";
+        var adminEmail = _config["AdminEmail"] ?? User.Identity?.Name ?? "admin@local";
         var recipient = !string.IsNullOrWhiteSpace(req?.Recipient)
             ? req.Recipient.Trim()
             : adminEmail;

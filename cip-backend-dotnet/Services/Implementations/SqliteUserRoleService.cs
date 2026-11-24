@@ -103,14 +103,14 @@ public class SqliteUserRoleService : IUserRoleService
                                norm.StartsWith("contributor@", StringComparison.OrdinalIgnoreCase) ||
                                (isTestDomain && (norm.Contains("producer", StringComparison.OrdinalIgnoreCase) || norm.Contains("contributor", StringComparison.OrdinalIgnoreCase)));
 
-        var defaultRole = await IsAdminAsync(norm) ? "ADMIN" : (isReviewerAlias ? "REVIEWER" : (isProducerAlias ? "CONTRIBUTOR" : "CONSUMER"));
+        var defaultRole = await IsAdminAsync(norm) ? UserRoles.Admin : (isReviewerAlias ? UserRoles.Reviewer : (isProducerAlias ? UserRoles.Contributor : UserRoles.Consumer));
         try
         {
             db.UserRoleAssignments.Add(new UserRoleAssignment
             {
                 UserEmail = norm,
                 Role = defaultRole,
-                IsCertifiedReviewer = defaultRole == "ADMIN",
+                IsCertifiedReviewer = defaultRole == UserRoles.Admin,
                 GrantedBy = "SYSTEM",
                 Notes = "Auto-registered default role",
                 GrantedAt = DateTime.UtcNow,
@@ -170,7 +170,7 @@ public class SqliteUserRoleService : IUserRoleService
             CurrentRole = currentRole,
             Status = AccessRequestStatus.Pending,
             Reason = reason,
-            AdminEmail = adminRecipient,
+            AdminEmail = adminRecipient ?? string.Empty,
             RequestedAt = DateTime.UtcNow
         };
 
@@ -183,7 +183,7 @@ public class SqliteUserRoleService : IUserRoleService
         {
             await _notifications.CreateNotificationAsync(new Notification
             {
-                RecipientEmail = adminRecipient,
+                RecipientEmail = adminRecipient ?? "admin@local",
                 Title = $"Access Request ({targetRole}) from {norm}",
                 Message = $"User {norm} has requested {targetRole} access. Reason: {reason ?? "None provided"}",
                 Type = NotificationType.AccessRequested,
@@ -708,7 +708,7 @@ public class SqliteUserRoleService : IUserRoleService
         else
         {
             var err = await pushResp.Content.ReadAsStringAsync();
-            var sanitizedErr = err.Length > 200 ? err.Substring(0, 200) + "..." : err;
+            var sanitizedErr = err.Length > BountyConstants.MaxErrorMessageLength ? err.Substring(0, BountyConstants.MaxErrorMessageLength) + "..." : err;
             _logger.LogWarning("Failed to push governance update to Azure DevOps: {StatusCode} {Error}", pushResp.StatusCode, sanitizedErr);
             return false;
         }

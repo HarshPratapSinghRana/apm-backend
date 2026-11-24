@@ -144,7 +144,13 @@ public class ReviewsController : ControllerBase
         try
         {
             var r = _reviews.AssignReview(reviewId, targetReviewer);
-            return Ok(new { success = true, reviewId, reviewerEmail = targetReviewer, status = r.Status.ToString() });
+            return Ok(new ReviewAssignmentResponseDto
+            {
+                Success = true,
+                ReviewId = reviewId,
+                ReviewerEmail = targetReviewer,
+                Status = r.Status.ToString()
+            });
         }
         catch (InvalidOperationException ex)
         {
@@ -268,7 +274,11 @@ public class ReviewsController : ControllerBase
             if (review == null) return NotFound(new { error = "Review thread not found." });
         }
 
-        return Ok(new { success = true, threadId });
+        return Ok(new ReviewThreadCreatedResponseDto
+        {
+            Success = true,
+            ThreadId = threadId
+        });
     }
 
     [HttpGet("{reviewId}/comments")]
@@ -410,7 +420,14 @@ public class ReviewsController : ControllerBase
                         IsApproved = false,
                         Feedback = req?.Feedback ?? "Changes requested."
                     });
-                    return Ok(new { success = true, reviewId = b.Id, status = "ChangesRequested", message = "Changes requested for bounty code.", bounty = res });
+                    return Ok(new ReviewActionResponseDto
+                    {
+                        Success = true,
+                        ReviewId = b.Id,
+                        Status = "ChangesRequested",
+                        Message = "Changes requested for bounty code.",
+                        Bounty = res
+                    });
                 }
             }
 
@@ -511,7 +528,14 @@ public class ReviewsController : ControllerBase
                         IsApproved = true,
                         Feedback = req?.Feedback ?? "Validated and approved."
                     });
-                    return Ok(new { success = true, reviewId = b.Id, status = "Approved", message = "Bounty code approved and moved to testing.", bounty = res });
+                    return Ok(new ReviewActionResponseDto
+                    {
+                        Success = true,
+                        ReviewId = b.Id,
+                        Status = "Approved",
+                        Message = "Bounty code approved and moved to testing.",
+                        Bounty = res
+                    });
                 }
             }
 
@@ -580,7 +604,14 @@ public class ReviewsController : ControllerBase
                         IsApproved = false,
                         Feedback = req?.Feedback ?? "Rejected."
                     });
-                    return Ok(new { success = true, reviewId = b.Id, status = "Rejected", message = "Bounty code rejected.", bounty = res });
+                    return Ok(new ReviewActionResponseDto
+                    {
+                        Success = true,
+                        ReviewId = b.Id,
+                        Status = "Rejected",
+                        Message = "Bounty code rejected.",
+                        Bounty = res
+                    });
                 }
             }
 
@@ -618,16 +649,16 @@ public class ReviewsController : ControllerBase
         try
         {
             var updated = _reviews.UpdateSlaTarget(reviewId, req.SlaTargetMinutes);
-            return Ok(new
+            return Ok(new ReviewSlaUpdateResponseDto
             {
-                success = true,
-                reviewId = updated.Id,
-                artifactId = updated.ArtifactId,
-                slaTargetMinutes = updated.SlaTargetMinutes,
-                slaDeadline = updated.EffectiveSlaDeadline,
-                slaRemainingMinutes = updated.SlaRemainingMinutes,
-                slaRemainingFormatted = updated.SlaRemainingFormatted,
-                slaStatus = updated.SlaStatus
+                Success = true,
+                ReviewId = updated.Id,
+                ArtifactId = updated.ArtifactId,
+                SlaTargetMinutes = updated.SlaTargetMinutes,
+                SlaDeadline = updated.EffectiveSlaDeadline,
+                SlaRemainingMinutes = updated.SlaRemainingMinutes,
+                SlaRemainingFormatted = updated.SlaRemainingFormatted,
+                SlaStatus = updated.SlaStatus
             });
         }
         catch (InvalidOperationException ex)
@@ -649,11 +680,11 @@ public class ReviewsController : ControllerBase
     public async Task<IActionResult> TriggerSlaCheck()
     {
         var remindersSent = await _reviews.CheckSlaAndSendRemindersAsync();
-        return Ok(new
+        return Ok(new ReviewSlaCheckResponseDto
         {
-            success = true,
-            remindersSent,
-            evaluatedAt = DateTime.UtcNow
+            Success = true,
+            RemindersSent = remindersSent,
+            CheckedAt = DateTime.UtcNow.ToString("o")
         });
     }
 }

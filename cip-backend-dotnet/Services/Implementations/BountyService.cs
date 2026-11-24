@@ -29,7 +29,7 @@ public class BountyService : IBountyService
                 Stage = BountyStages.InReview,
                 RelatedArtifactId = "accessibility-fix",
                 DueInDays = 2,
-                AutoReleasesHours = 18,
+                AutoReleasesHours = BountyConstants.StandardAutoReleaseHours,
                 Description = "Review the WCAG compliance changes and line-level accessibility checks in accessibility-fix.",
                 CreatedAt = DateTime.UtcNow.AddHours(-2),
                 Submissions = new List<BountySubmission>
@@ -71,7 +71,7 @@ public class BountyService : IBountyService
                 ClaimedByEmail = "developer@company.com",
                 ClaimedAt = DateTime.UtcNow.AddHours(-3),
                 DueInDays = 2,
-                AutoReleasesHours = 18,
+                AutoReleasesHours = BountyConstants.StandardAutoReleaseHours,
                 RelatedArtifactId = "cip-consumer-poc",
                 Description = "Author end-to-end and unit test coverage for the cip-consumer proof of concept.",
                 CreatedAt = DateTime.UtcNow.AddHours(-8),
@@ -102,14 +102,14 @@ public class BountyService : IBountyService
                 Id = "bty-4",
                 Title = "design-reviewer v1.2 refactor",
                 Category = "Code gen",
-                Credits = 200,
-                Points = 100,
+                Credits = BountyConstants.HighTierCredits,
+                Points = BountyConstants.DefaultCredits,
                 Status = "Claimed",
                 Stage = BountyStages.CodeGeneration,
                 ClaimedByEmail = "producer@company.com",
                 ClaimedAt = DateTime.UtcNow.AddHours(-6),
                 DueInDays = 2,
-                AutoReleasesHours = 18,
+                AutoReleasesHours = BountyConstants.StandardAutoReleaseHours,
                 RelatedArtifactId = "design-reviewer",
                 Description = "Refactor agent prompt structure and improve responsive layout detection for dark/light themes.",
                 CreatedAt = DateTime.UtcNow.AddDays(-1)
@@ -147,8 +147,8 @@ public class BountyService : IBountyService
                 Id = "bty-6",
                 Title = "brand-new-agent test harness",
                 Category = "Testing",
-                Credits = 100,
-                Points = 50,
+                Credits = BountyConstants.DefaultCredits,
+                Points = BountyConstants.DefaultPoints,
                 Status = "Claimed",
                 Stage = BountyStages.InTesting,
                 ClaimedByEmail = "producer@company.com",
@@ -166,7 +166,7 @@ public class BountyService : IBountyService
                         SolutionCode = "---\nname: brand-new-agent-xyz\nversion: 1.0.0\ntype: agent\ndescription: Agent test harness and end-to-end fixtures\n---\n\nexport class AgentTestRunner {\n  public static executeSuite() { return { passed: 10, failed: 0 }; }\n}",
                         CommitSha = "d87e33",
                         Notes = "End-to-end integration test runner.",
-                        SubmittedAt = DateTime.UtcNow.AddHours(-18)
+                        SubmittedAt = DateTime.UtcNow.AddHours(-BountyConstants.StandardAutoReleaseHours)
                     }
                 },
                 Reviews = new List<BountyReview>
@@ -206,7 +206,7 @@ public class BountyService : IBountyService
                 Stage = BountyStages.Open,
                 RelatedArtifactId = "sql-optimizer",
                 DueInDays = 2,
-                AutoReleasesHours = 18,
+                AutoReleasesHours = BountyConstants.StandardAutoReleaseHours,
                 Description = "Design system prompts, few-shot examples, and index recommendation heuristics for database query optimization.",
                 CreatedAt = DateTime.UtcNow.AddHours(-4)
             }
@@ -254,7 +254,7 @@ public class BountyService : IBountyService
             Title = req.Title,
             Description = req.Description,
             Category = string.IsNullOrWhiteSpace(req.Category) ? "Code gen" : req.Category,
-            Credits = req.Credits > 0 ? req.Credits : 100,
+            Credits = req.Credits > 0 ? req.Credits : BountyConstants.DefaultCredits,
             Points = req.Points > 0 ? req.Points : 50,
             Status = "Open",
             Stage = BountyStages.Open,
@@ -438,7 +438,7 @@ public class BountyService : IBountyService
         b.ClaimedByEmail = userEmail;
         b.ClaimedAt = DateTime.UtcNow;
         b.DueInDays = 2;
-        b.AutoReleasesHours = 18;
+        b.AutoReleasesHours = BountyConstants.StandardAutoReleaseHours;
 
         // Move to CodeGeneration stage if it was Open
         if (b.Stage == BountyStages.Open)

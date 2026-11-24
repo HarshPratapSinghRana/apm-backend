@@ -40,12 +40,11 @@ public static class DatabaseMigrationExtensions
         if (!Directory.Exists(fullDir))
         {
             logger?.LogError("Migrations directory not found: {Dir}", fullDir);
-            Console.WriteLine($"ERROR: Migrations directory not found: {fullDir}");
             return 1;
         }
 
-        Console.WriteLine($"[ApplyMigrations] Target: {fullDbPath}");
-        Console.WriteLine($"[ApplyMigrations] Source: {fullDir}");
+        logger?.LogInformation("[ApplyMigrations] Target: {Target}", fullDbPath);
+        logger?.LogInformation("[ApplyMigrations] Source: {Source}", fullDir);
 
         var connStr = $"Data Source={fullDbPath}";
         using var conn = new SqliteConnection(connStr);
@@ -79,11 +78,11 @@ public static class DatabaseMigrationExtensions
             var migrationId = Path.GetFileNameWithoutExtension(file);
             if (applied.Contains(migrationId))
             {
-                Console.WriteLine($"  [SKIP] Migration {migrationId} already applied.");
+                logger?.LogDebug("  [SKIP] Migration {MigrationId} already applied.", migrationId);
                 continue;
             }
 
-            Console.WriteLine($"  --> Applying migration: {Path.GetFileName(file)}...");
+            logger?.LogInformation("  --> Applying migration: {FileName}...", Path.GetFileName(file));
             var sql = File.ReadAllText(file);
             using var trans = conn.BeginTransaction();
             try
@@ -107,18 +106,17 @@ public static class DatabaseMigrationExtensions
 
                 trans.Commit();
                 appliedCount++;
-                Console.WriteLine($"  ✓ Successfully applied {migrationId}");
+                logger?.LogInformation("  ✓ Successfully applied {MigrationId}", migrationId);
             }
             catch (Exception ex)
             {
                 trans.Rollback();
-                logger?.LogError(ex, "Failed applying migration {Migration}", migrationId);
-                Console.WriteLine($"ERROR: Failed applying migration {migrationId}: {ex.Message}");
+                logger?.LogError(ex, "Failed applying migration {MigrationId}: {Message}", migrationId, ex.Message);
                 return 1;
             }
         }
 
-        Console.WriteLine($"✓ Applied {appliedCount} pending migrations.");
+        logger?.LogInformation("✓ Applied {Count} pending migrations.", appliedCount);
         return 0;
     }
 
@@ -134,12 +132,11 @@ public static class DatabaseMigrationExtensions
         if (!Directory.Exists(fullDir))
         {
             logger?.LogError("Migrations directory not found: {Dir}", fullDir);
-            Console.WriteLine($"ERROR: Migrations directory not found: {fullDir}");
             return 1;
         }
 
-        Console.WriteLine($"[RollbackMigrations] Target: {fullDbPath}");
-        Console.WriteLine($"[RollbackMigrations] Source: {fullDir}");
+        logger?.LogInformation("[RollbackMigrations] Target: {Target}", fullDbPath);
+        logger?.LogInformation("[RollbackMigrations] Source: {Source}", fullDir);
 
         var connStr = $"Data Source={fullDbPath}";
         using var conn = new SqliteConnection(connStr);
@@ -153,7 +150,7 @@ public static class DatabaseMigrationExtensions
             var rollbackId = Path.GetFileNameWithoutExtension(file);
             var forwardId = rollbackId.Replace("U", "V");
 
-            Console.WriteLine($"  <-- Rolling back: {Path.GetFileName(file)}...");
+            logger?.LogInformation("  <-- Rolling back: {FileName}...", Path.GetFileName(file));
             var sql = File.ReadAllText(file);
             using var trans = conn.BeginTransaction();
             try
@@ -176,18 +173,17 @@ public static class DatabaseMigrationExtensions
 
                 trans.Commit();
                 rollbackCount++;
-                Console.WriteLine($"  ✓ Successfully reverted {rollbackId}");
+                logger?.LogInformation("  ✓ Successfully reverted {RollbackId}", rollbackId);
             }
             catch (Exception ex)
             {
                 trans.Rollback();
-                logger?.LogError(ex, "Failed rolling back {Rollback}", rollbackId);
-                Console.WriteLine($"ERROR: Failed rolling back {rollbackId}: {ex.Message}");
+                logger?.LogError(ex, "Failed rolling back {RollbackId}: {Message}", rollbackId, ex.Message);
                 return 1;
             }
         }
 
-        Console.WriteLine($"✓ Reverted {rollbackCount} migrations.");
+        logger?.LogInformation("✓ Reverted {Count} migrations.", rollbackCount);
         return 0;
     }
 }

@@ -16,16 +16,24 @@ public class CertificationsController : ControllerBase
 {
     private readonly ICertificationService _certificationService;
     private readonly IEmailNotificationService _emailService;
+    private readonly ILogger<CertificationsController>? _logger;
 
     public CertificationsController(
         ICertificationService certificationService,
-        IEmailNotificationService emailService)
+        IEmailNotificationService emailService,
+        ILogger<CertificationsController>? logger = null)
     {
         _certificationService = certificationService ?? throw new ArgumentNullException(nameof(certificationService));
         _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+        _logger = logger;
     }
 
-    private string GetUserEmail() => User.Identity?.Name ?? string.Empty;
+    private string GetUserEmail() => 
+        User.FindFirst(ClaimTypes.Email)?.Value 
+        ?? User.FindFirst("email")?.Value 
+        ?? User.FindFirst("preferred_username")?.Value 
+        ?? User.Identity?.Name 
+        ?? string.Empty;
 
     private string GetUserRole()
     {
@@ -51,7 +59,6 @@ public class CertificationsController : ControllerBase
         return Ok(status);
     }
 
-    [HttpGet("{artifactId}/evaluate")]
     [HttpGet("evaluate/{artifactId}")]
     public async Task<IActionResult> EvaluateCertification(string artifactId)
     {
@@ -74,7 +81,6 @@ public class CertificationsController : ControllerBase
         return Ok(evaluation);
     }
 
-    [HttpPost("{artifactId}/request")]
     [HttpPost("request-certification/{artifactId}")]
     public async Task<IActionResult> RequestCertification(string artifactId)
     {
@@ -94,7 +100,6 @@ public class CertificationsController : ControllerBase
     }
 
     [Authorize(Policy = "RequireReviewer")]
-    [HttpPost("{artifactId}/certify")]
     [HttpPost("certify-artifact/{artifactId}")]
     public async Task<IActionResult> CertifyArtifact(string artifactId, [FromBody] CertifyRequestPayload? payload)
     {
@@ -110,7 +115,7 @@ public class CertificationsController : ControllerBase
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[CertificationsController] Notification dispatch error: {ex.Message}");
+                _logger?.LogError(ex, "[CertificationsController] Notification dispatch error: {Message}", ex.Message);
             }
         });
 
@@ -118,7 +123,6 @@ public class CertificationsController : ControllerBase
     }
 
     [Authorize(Policy = "RequireReviewer")]
-    [HttpPost("{artifactId}/revoke")]
     [HttpPost("revoke-certification/{artifactId}")]
     public async Task<IActionResult> RevokeCertification(string artifactId, [FromBody] RevokeRequestPayload payload)
     {
@@ -140,7 +144,7 @@ public class CertificationsController : ControllerBase
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[CertificationsController] Notification dispatch error: {ex.Message}");
+                _logger?.LogError(ex, "[CertificationsController] Notification dispatch error: {Message}", ex.Message);
             }
         });
 

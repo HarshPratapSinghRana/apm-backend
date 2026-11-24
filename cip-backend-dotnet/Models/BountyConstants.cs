@@ -8,8 +8,11 @@ public static class BountyConstants
 {
     public const int DefaultSlaTargetMinutes = 1440; // 24 hours
     public const int DefaultAutoReleaseHours = 24;
+    public const int StandardAutoReleaseHours = 18;
     public const int DefaultCredits = 100;
+    public const int HighTierCredits = 200;
     public const int DefaultPoints = 50;
+    public const int MaxErrorMessageLength = 200;
 
     public static class Statuses
     {

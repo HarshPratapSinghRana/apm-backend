@@ -32,7 +32,7 @@ public class InMemoryUsageService : IUsageService
                 ArtifactName = "semantic-sql-optimizer",
                 ArtifactType = "skill",
                 ArtifactVersion = "1.2.0",
-                UserId = "admin@maqsoftware.com",
+                UserId = "admin@local",
                 Source = "VS_CODE",
                 Platform = "EngineeringCommons",
                 Timestamp = DateTime.UtcNow.AddHours(-12)
@@ -46,7 +46,7 @@ public class InMemoryUsageService : IUsageService
                 ArtifactName = "api-test-generator",
                 ArtifactType = "skill",
                 ArtifactVersion = "2.1.0",
-                UserId = "admin@maqsoftware.com",
+                UserId = "admin@local",
                 Source = "CLI",
                 Platform = "EngineeringCommons",
                 Timestamp = DateTime.UtcNow.AddHours(-24)
@@ -60,7 +60,7 @@ public class InMemoryUsageService : IUsageService
                 ArtifactName = "review-and-refactor",
                 ArtifactType = "skill",
                 ArtifactVersion = "1.1.0",
-                UserId = "admin@maqsoftware.com",
+                UserId = "admin@local",
                 Source = "VS_CODE",
                 Platform = "EngineeringCommons",
                 Timestamp = DateTime.UtcNow.AddHours(-6)

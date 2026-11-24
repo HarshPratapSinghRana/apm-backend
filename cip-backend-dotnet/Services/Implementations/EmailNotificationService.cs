@@ -201,7 +201,7 @@ Engineering Commons System";
     // 4. Bounty issue reported
     public async Task<bool> SendBountyIssueReportedNotificationAsync(string bountyTitle, string reporterEmail, string issueDescription, string severity, string bountyId)
     {
-        var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
+        var adminEmail = _config["AdminEmail"] ?? "admin@local";
         var subject = $"[Engineering Commons] Issue Reported on Bounty: {bountyTitle} [{severity.ToUpperInvariant()}]";
 
         var details = new Dictionary<string, string>
@@ -411,7 +411,7 @@ Engineering Commons System";
     // 9. Important admin notifications
     public async Task<bool> SendAdminAlertNotificationAsync(string alertType, string message, string? details)
     {
-        var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
+        var adminEmail = _config["AdminEmail"] ?? "admin@local";
         var subject = $"[Engineering Commons Admin Alert] {alertType}";
 
         var fields = new Dictionary<string, string>
@@ -523,7 +523,7 @@ Engineering Commons System";
         {
             fromEmail = !string.IsNullOrWhiteSpace(username) ? username : "notifications@engineering-commons.internal";
         }
-        var adminEmail = _config["AdminEmail"] ?? "admin@maqsoftware.com";
+        var adminEmail = _config["AdminEmail"] ?? "admin@local";
 
         bool isConfigured = !string.IsNullOrWhiteSpace(host) && !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
         string mode = isConfigured 

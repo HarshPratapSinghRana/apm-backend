@@ -202,17 +202,7 @@ public class ReviewThreadService : IReviewThreadService
 
     private static bool userRoleIsReviewer(string role, string? email = null)
     {
-        if (!string.IsNullOrWhiteSpace(role))
-        {
-            var r = role.Trim().ToUpperInvariant();
-            if (r == "REVIEWER" || r == "ADMIN" || r == "CERTIFIED_REVIEWER") return true;
-        }
-        if (!string.IsNullOrWhiteSpace(email))
-        {
-            var e = email.Trim().ToLowerInvariant();
-            if (e == "admin@maqsoftware.com" || e.Contains("admin") || e.Contains("reviewer")) return true;
-        }
-        return false;
+        return UserRoles.IsReviewerOrAdmin(role);
     }
 
     private async Task<ReviewThread?> EnsureThreadExistsAsync(Review review)
@@ -250,8 +240,8 @@ public class ReviewThreadService : IReviewThreadService
                         var feedbackMsg = new ReviewMessage
                         {
                             ThreadId = existing.Id,
-                            AuthorEmail = review.ReviewerEmail ?? "reviewer@company.com",
-                            AuthorRole = "Reviewer",
+                            AuthorEmail = review.ReviewerEmail ?? "reviewer@local",
+                            AuthorRole = UserRole.Reviewer.ToString(),
                             Message = review.Feedback,
                             CreatedAt = review.DecisionAt ?? review.SubmittedAt
                         };
@@ -286,8 +276,8 @@ public class ReviewThreadService : IReviewThreadService
                 memThread.Messages.Add(new ReviewMessage
                 {
                     ThreadId = memThread.Id,
-                    AuthorEmail = review.ReviewerEmail ?? "reviewer@company.com",
-                    AuthorRole = "Reviewer",
+                    AuthorEmail = review.ReviewerEmail ?? "reviewer@local",
+                    AuthorRole = UserRole.Reviewer.ToString(),
                     Message = review.Feedback,
                     CreatedAt = review.DecisionAt ?? review.SubmittedAt
                 });
@@ -325,8 +315,8 @@ public class ReviewThreadService : IReviewThreadService
             newThread.Messages.Add(new ReviewMessage
             {
                 ThreadId = newThread.Id,
-                AuthorEmail = review.ReviewerEmail ?? "reviewer@company.com",
-                AuthorRole = "Reviewer",
+                AuthorEmail = review.ReviewerEmail ?? "reviewer@local",
+                AuthorRole = UserRole.Reviewer.ToString(),
                 Message = review.Feedback,
                 CreatedAt = review.DecisionAt ?? review.SubmittedAt
             });
